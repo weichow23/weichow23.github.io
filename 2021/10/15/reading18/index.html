@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记18：神经符号推理和知识图谱 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文《Neural symbolic reasoning with knowledge graphs: Knowledge extraction, relational reasoning, and inconsistency checking》的阅读笔记，提出了一种神经符号推理的总体框架     Introduction 知识图谱是一种用三元组的形式来表示现实世界中的事实的数据形"><meta name="keywords" content="人工智能,知识图谱,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/15/reading18/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记18：神经符号推理和知识图谱"><meta property="og:url" content="http://zhang-each.github.io/2021/10/15/reading18/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文《Neural symbolic reasoning with knowledge graphs: Knowledge extraction, relational reasoning, and inconsistency checking》的阅读笔记，提出了一种神经符号推理的总体框架     Introduction 知识图谱是一种用三元组的形式来表示现实世界中的事实的数据形"><meta property="og:image" content="http://zhang-each.github.io/img/cover/9.jpg"><meta property="article:published_time" content="2021-10-15T15:51:00.000Z"><meta property="article:modified_time" content="2021-10-15T16:05:43.394Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记18：神经符号推理和知识图谱 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文《Neural symbolic reasoning with knowledge graphs: Knowledge extraction, relational reasoning, and inconsistency checking》的阅读笔记，提出了一种神经符号推理的总体框架周炜
+ 
+ 
+ 
+ 
+ Introduction
+ 知识图谱是一种用三元组的形式来表示现实世界中的事实的数据形"><meta name="keywords" content="人工智能,知识图谱,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/15/reading18/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记18：神经符号推理和知识图谱"><meta property="og:url" content="http://zhang-each.github.io/2021/10/15/reading18/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文《Neural symbolic reasoning with knowledge graphs: Knowledge extraction, relational reasoning, and inconsistency checking》的阅读笔记，提出了一种神经符号推理的总体框架
+ 
+ 
+ 
+ 
+ Introduction
+ 知识图谱是一种用三元组的形式来表示现实世界中的事实的数据形"><meta property="og:image" content="http://zhang-each.github.io/img/cover/9.jpg"><meta property="article:published_time" content="2021-10-15T15:51:00.000Z"><meta property="article:modified_time" content="2021-10-15T16:05:43.394Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -278,7 +290,7 @@ mjx-container[display="true"] + br {
 <li>第一个挑战时公理的注入，因为事实和公理是两种不同的形式，我们需要将公理作为逻辑注入到基于事实的嵌入表示学习中</li>
 <li>第二个挑战是模型的<strong>不可知(agnosticism)</strong>，因为公理的利用方式不同，我们需要设计很多不同的临时模型用于不同的公理</li>
 </ul>
-<p>而在论文提出的框架中，用于完成关系推理的子结构被称为tripleGNN，首先定义一个三元组图，用无向无标签图的形式来表示知识图谱中的事实和公理，这和传统的方式相反。然后再用结点特征增强的图神经网络来学习嵌入表示并进行推理</p>
+<p>而在论文提出的框架中，用于完成关系推理的子结构被称为tripleGNN，首先定义一个三元组图，用无向无标签图的形式来表示知识图谱中的事实和公理，这和传统的方式相反。然后再用结点特征增强的图神经网络来学习嵌入表示并进行推理</p>周炜
 <h2 id="异常检测">异常检测</h2>
 <h3 id="问题的形式-1">问题的形式</h3>
 <ul>

@@ -1,4 +1,14 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CS224N自然语言处理5：Seq2Seq | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这个专题的笔记是我在学习斯坦福大学的公开课程CS224N:Deep Learning For Nature Language Processing时所做的一些课程笔记。这一节的主要内容是Seq2Seq模型。     词向量和RNN解决的主要是单词预测和命名实体识别(Named Entity Recognization)的问题，而这一节内容主要研究翻译、回答和概括等NLP子问题，并且重"><meta name="keywords" content="人工智能,深度学习,自然语言处理"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/29/nlp5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CS224N自然语言处理5：Seq2Seq"><meta property="og:url" content="http://zhang-each.github.io/2021/08/29/nlp5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这个专题的笔记是我在学习斯坦福大学的公开课程CS224N:Deep Learning For Nature Language Processing时所做的一些课程笔记。这一节的主要内容是Seq2Seq模型。     词向量和RNN解决的主要是单词预测和命名实体识别(Named Entity Recognization)的问题，而这一节内容主要研究翻译、回答和概括等NLP子问题，并且重"><meta property="og:image" content="http://zhang-each.github.io/img/cover/21.jpg"><meta property="article:published_time" content="2021-08-29T02:44:20.000Z"><meta property="article:modified_time" content="2021-10-22T05:56:26.575Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CS224N自然语言处理5：Seq2Seq | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这个专题的笔记是我在学习斯坦福大学的公开课程CS224N:Deep Learning For Nature Language Processing时所做的一些课程笔记。这一节的主要内容是Seq2Seq模型。周炜
+ 
+ 
+ 
+ 
+ 词向量和RNN解决的主要是单词预测和命名实体识别(Named Entity Recognization)的问题，而这一节内容主要研究翻译、回答和概括等NLP子问题，并且重"><meta name="keywords" content="人工智能,深度学习,自然语言处理"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/29/nlp5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CS224N自然语言处理5：Seq2Seq"><meta property="og:url" content="http://zhang-each.github.io/2021/08/29/nlp5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这个专题的笔记是我在学习斯坦福大学的公开课程CS224N:Deep Learning For Nature Language Processing时所做的一些课程笔记。这一节的主要内容是Seq2Seq模型。
+ 
+ 
+ 
+ 
+ 词向量和RNN解决的主要是单词预测和命名实体识别(Named Entity Recognization)的问题，而这一节内容主要研究翻译、回答和概括等NLP子问题，并且重"><meta property="og:image" content="http://zhang-each.github.io/img/cover/21.jpg"><meta property="article:published_time" content="2021-08-29T02:44:20.000Z"><meta property="article:modified_time" content="2021-10-22T05:56:26.575Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -200,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 .MathJax path {
   stroke-width: 3;
-}
+}周炜
 
 mjx-container[display="true"] {
   overflow: auto hidden;
@@ -277,7 +287,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li><p>贪婪解码(Greedy Decoding)的方式(其实就是极大似然的思想，每一步选择出最有可能的单词)，但是这种编码方式是又问题的，贪婪解码没有办法撤回已经作出的决策，也就是说后面的可能会被前面的带偏，概率最高的也不一定就是最好的</p></li>
 <li><p>穷举搜索(Exhaustive search)：计算所有可能的翻译结果选择概率最大的作为翻译结果，而这样的方法计算量是非常大的，是一个NP-Complete的问题</p></li>
-<li><p>定向搜索解码(Beam Search Decoding)：一种trade-off的解决方式，对于每一步，记录下k个最有可能的翻译结果(叫做hypotheses假设)，这里的k称为定向长度，一般是5-10</p></li>
+<li><p>定向搜索解码(Beam Search Decoding)：一种trade-off的解决方式，对于每一步，记录下k个最有可能的翻译结果(叫做hypotheses假设)，这里的k称为定向长度，一般是5-10</p></li>周炜
 </ul>
 <h2 id="机器翻译的效果评估">机器翻译的效果评估</h2>
 <p>到这里为止我们已经对机器翻译系统的构建有了一定的了解，但在实际的生产环境中，需要翻译的样本可能充满了噪声(比如语法错误)，这会大大降低翻译结果的精确程度，因此我们需要对机器翻译的效果来作出评估，帮助我们改进翻译系统。</p>

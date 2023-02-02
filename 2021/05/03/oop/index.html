@@ -1,4 +1,20 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>浙江大学《面向对象程序设计(C++)》课程笔记 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="OOP-Review RandomStar 1. C++的新特性 1.0 输入输出流  C++可以使用输入输出流(cin, cout)进行输出，比如cout&lt;&lt;&quot;Hello World&quot;; 需要包含头文件#include&lt;iostream&gt; 文件的输入输出, 使用ofstream和ifstream  1234567891011121314151617#inc"><meta name="keywords" content="设计模式,编程语言,浙江大学,C++"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/oop/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="浙江大学《面向对象程序设计(C++)》课程笔记"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/oop/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="OOP-Review RandomStar 1. C++的新特性 1.0 输入输出流  C++可以使用输入输出流(cin, cout)进行输出，比如cout&lt;&lt;&quot;Hello World&quot;; 需要包含头文件#include&lt;iostream&gt; 文件的输入输出, 使用ofstream和ifstream  1234567891011121314151617#inc"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T14:00:13.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:24.411Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>浙江大学《面向对象程序设计(C++)》课程笔记 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="OOP-Review周炜
+ RandomStar
+ 1. C++的新特性
+ 1.0 输入输出流
+ 
+ C++可以使用输入输出流(cin, cout)进行输出，比如cout&lt;&lt;&quot;Hello World&quot;; 需要包含头文件#include&lt;iostream&gt;
+ 文件的输入输出, 使用ofstream和ifstream
+ 
+ 1234567891011121314151617#inc"><meta name="keywords" content="设计模式,编程语言,浙江大学,C++"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/oop/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="浙江大学《面向对象程序设计(C++)》课程笔记"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/oop/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="OOP-Review
+ RandomStar
+ 1. C++的新特性
+ 1.0 输入输出流
+ 
+ C++可以使用输入输出流(cin, cout)进行输出，比如cout&lt;&lt;&quot;Hello World&quot;; 需要包含头文件#include&lt;iostream&gt;
+ 文件的输入输出, 使用ofstream和ifstream
+ 
+ 1234567891011121314151617#inc"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T14:00:13.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:24.411Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -194,7 +210,7 @@ mjx-status {
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
-  line-height: normal;
+  line-height: normal;周炜
   overflow: visible;
 }
 
@@ -861,7 +877,7 @@ mjx-container[display="true"] + br {
 <li>可以用<strong><code>move</code>方法来移动指针的所有权</strong>，比如<code>unique_ptr&lt;int&gt; p2 = move(p1);</code></li>
 <li>可以用<strong><code>release</code>方法</strong>来释放指针的所有权</li>
 </ul></li>
-</ul>
+</ul>周炜
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">A</span>(){</span><br><span class="line">        cout&lt;&lt;<span class="string">"A()"</span>&lt;&lt;endl;</span><br><span class="line">    }</span><br><span class="line">    ~<span class="built_in">A</span>(){</span><br><span class="line">        cout&lt;&lt;<span class="string">"~A()"</span>&lt;&lt;endl;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>{</span><br><span class="line">        cout&lt;&lt;<span class="string">"1"</span>&lt;&lt;endl;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    {</span><br><span class="line">        <span class="function">unique_ptr&lt;A&gt; <span class="title">pa</span><span class="params">(<span class="keyword">new</span> (A))</span></span>;</span><br><span class="line">        pa-&gt;<span class="built_in">foo</span>();</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><code>std::shared_ptr</code>非独占的指针，可以多个指针管理一个对象。shared_ptr使用<strong>引用计数</strong>，每一个shared_ptr的拷贝都指向相同的内存。每使用他一次，内部的引用计数加1，每析构一次，内部的引用计数减1，减为0时，自动删除所指向的堆内存。shared_ptr内部的引用计数是<strong>线程安全</strong>的，但是对象的读取需要<strong>加锁</strong></p>

@@ -1,4 +1,30 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java应用技术3：高级语法 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Java应用技术3：高级语法特性 4. Java高级语法特性 4.1 异常处理  Java中的异常类型  注意异常和错误的区别，系统错误是JVM抛出的，异常是由程序引起的，可以被检测出来   异常类型  Unchecked Exceptions 不可恢复的逻辑错误，包括RuntimeException和Error  比如NullPointerException和Index"><meta name="keywords" content="Java,编程语言,浙江大学"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/java3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Java应用技术3：高级语法"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/java3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Java应用技术3：高级语法特性 4. Java高级语法特性 4.1 异常处理  Java中的异常类型  注意异常和错误的区别，系统错误是JVM抛出的，异常是由程序引起的，可以被检测出来   异常类型  Unchecked Exceptions 不可恢复的逻辑错误，包括RuntimeException和Error  比如NullPointerException和Index"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T01:11:42.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:31.729Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java应用技术3：高级语法 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Java应用技术3：高级语法特性周炜
+ 4. Java高级语法特性
+ 4.1 异常处理
+ 
+ Java中的异常类型
+ 
+ 注意异常和错误的区别，系统错误是JVM抛出的，异常是由程序引起的，可以被检测出来
+ 
+ 
+ 异常类型
+ 
+ Unchecked Exceptions 不可恢复的逻辑错误，包括RuntimeException和Error
+ 
+ 比如NullPointerException和Index"><meta name="keywords" content="Java,编程语言,浙江大学"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/java3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Java应用技术3：高级语法"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/java3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Java应用技术3：高级语法特性
+ 4. Java高级语法特性
+ 4.1 异常处理
+ 
+ Java中的异常类型
+ 
+ 注意异常和错误的区别，系统错误是JVM抛出的，异常是由程序引起的，可以被检测出来
+ 
+ 
+ 异常类型
+ 
+ Unchecked Exceptions 不可恢复的逻辑错误，包括RuntimeException和Error
+ 
+ 比如NullPointerException和Index"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T01:11:42.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:31.729Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -184,7 +210,7 @@ mjx-status {
   position: fixed;
   left: 1em;
   bottom: 1em;
-  min-width: 25%;
+  min-width: 25%;周炜
   padding: .2em .4em;
   border: 1px solid #888;
   font-size: 90%;
@@ -371,7 +397,7 @@ mjx-container[display="true"] + br {
 </figure>
 <ul>
 <li>泛型类的所有实例都有相同的运行时类，所以泛型类的静态变量和方法是被它的所有实例共享的。所以在静态方法、数据域或初始化语句中，为了类而引用泛型参数是非法的</li>
-</ul></li>
+</ul></li>周炜
 </ul>
 <h3 id="collection-框架">4.6 Collection 框架</h3>
 <ul>

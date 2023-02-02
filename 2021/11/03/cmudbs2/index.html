@@ -1,4 +1,24 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统2：数据库索引 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU数据库课程15-445的第二个大的部分，主要讲数据库中的索引相关的内容，在2021秋的课程里应该对应Lecture06-Lecture08     索引 数据库中需要维护多种不同的数据结构用作系统内部的不同模块，包括：  内部的元数据信息，这一部分数据用来追踪数据库中存储信息本身的变化，比如页表 核心数据存储，用于存放元组的基本存储结构 临时数据结构，用在一些查询"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/03/cmudbs2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统2：数据库索引"><meta property="og:url" content="http://zhang-each.github.io/2021/11/03/cmudbs2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU数据库课程15-445的第二个大的部分，主要讲数据库中的索引相关的内容，在2021秋的课程里应该对应Lecture06-Lecture08     索引 数据库中需要维护多种不同的数据结构用作系统内部的不同模块，包括：  内部的元数据信息，这一部分数据用来追踪数据库中存储信息本身的变化，比如页表 核心数据存储，用于存放元组的基本存储结构 临时数据结构，用在一些查询"><meta property="og:image" content="http://zhang-each.github.io/img/cover/5.jpg"><meta property="article:published_time" content="2021-11-03T15:07:59.000Z"><meta property="article:modified_time" content="2021-11-03T15:11:42.687Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统2：数据库索引 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU数据库课程15-445的第二个大的部分，主要讲数据库中的索引相关的内容，在2021秋的课程里应该对应Lecture06-Lecture08周炜
+ 
+ 
+ 
+ 
+ 索引
+ 数据库中需要维护多种不同的数据结构用作系统内部的不同模块，包括：
+ 
+ 内部的元数据信息，这一部分数据用来追踪数据库中存储信息本身的变化，比如页表
+ 核心数据存储，用于存放元组的基本存储结构
+ 临时数据结构，用在一些查询"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/03/cmudbs2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统2：数据库索引"><meta property="og:url" content="http://zhang-each.github.io/2021/11/03/cmudbs2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU数据库课程15-445的第二个大的部分，主要讲数据库中的索引相关的内容，在2021秋的课程里应该对应Lecture06-Lecture08
+ 
+ 
+ 
+ 
+ 索引
+ 数据库中需要维护多种不同的数据结构用作系统内部的不同模块，包括：
+ 
+ 内部的元数据信息，这一部分数据用来追踪数据库中存储信息本身的变化，比如页表
+ 核心数据存储，用于存放元组的基本存储结构
+ 临时数据结构，用在一些查询"><meta property="og:image" content="http://zhang-each.github.io/img/cover/5.jpg"><meta property="article:published_time" content="2021-11-03T15:07:59.000Z"><meta property="article:modified_time" content="2021-11-03T15:11:42.687Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -190,7 +210,7 @@ mjx-status {
   font-size: 90%;
   background-color: #F8F8F8;
   color: black;
-}
+}周炜
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
@@ -403,7 +423,7 @@ mjx-container[display="true"] + br {
 <p>对于动态的Hash表来说锁的管理更加麻烦一点，目前常用的解决方式有以下两种，两种方法分别采用了不同粒度的锁来管理动态Hash上的并发访问：</p>
 <ul>
 <li>页锁：在每个页上设置一个读者写者锁，这种方法减小了并发量，但是可以让线程更快访问一个页中的多个槽</li>
-<li>槽锁：在每个槽中设置一个专门的锁(存储那一节我们讲过一个页有若干个槽)，这个时候使用的一般不是读者写者锁而是一个单状态的锁(为了减少对元数据的管理)，这种方法可以提高并发量，但是加大了对存储和算力的消耗。</li>
+<li>槽锁：在每个槽中设置一个专门的锁(存储那一节我们讲过一个页有若干个槽)，这个时候使用的一般不是读者写者锁而是一个单状态的锁(为了减少对元数据的管理)，这种方法可以提高并发量，但是加大了对存储和算力的消耗。</li>周炜
 </ul>
 <h3 id="b树的锁">B+树的锁</h3>
 <p>B+树索引中的锁主要需要解决以下两个问题：</p>

@@ -1,4 +1,10 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 Distributed Systems 5：RPC | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="分布式系统课程15-440学习笔记5，这一节主要讲远程过程调用RPC的内容。本笔记部分内容参考了该课程的推荐教材Distributed Systems  Introduction 很多时候，分布式系统的通过进程之间显式的通信来实现各种功能，但是这样的设计完全没有隐藏通信的细节，这就导致系统的访问透明性存在问题。这个问题可以用远程过程调用(Remote precedure call, RP"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/08/28/cmu-dis-sys5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 Distributed Systems 5：RPC"><meta property="og:url" content="http://zhang-each.github.io/2022/08/28/cmu-dis-sys5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="分布式系统课程15-440学习笔记5，这一节主要讲远程过程调用RPC的内容。本笔记部分内容参考了该课程的推荐教材Distributed Systems  Introduction 很多时候，分布式系统的通过进程之间显式的通信来实现各种功能，但是这样的设计完全没有隐藏通信的细节，这就导致系统的访问透明性存在问题。这个问题可以用远程过程调用(Remote precedure call, RP"><meta property="og:image" content="http://zhang-each.github.io/img/cover/8.jpg"><meta property="article:published_time" content="2022-08-28T12:57:07.000Z"><meta property="article:modified_time" content="2022-08-28T12:59:47.279Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 Distributed Systems 5：RPC | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="分布式系统课程15-440学习笔记5，这一节主要讲远程过程调用RPC的内容。本笔记部分内容参考了该课程的推荐教材Distributed Systems周炜
+ 
+ Introduction
+ 很多时候，分布式系统的通过进程之间显式的通信来实现各种功能，但是这样的设计完全没有隐藏通信的细节，这就导致系统的访问透明性存在问题。这个问题可以用远程过程调用(Remote precedure call, RP"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/08/28/cmu-dis-sys5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 Distributed Systems 5：RPC"><meta property="og:url" content="http://zhang-each.github.io/2022/08/28/cmu-dis-sys5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="分布式系统课程15-440学习笔记5，这一节主要讲远程过程调用RPC的内容。本笔记部分内容参考了该课程的推荐教材Distributed Systems
+ 
+ Introduction
+ 很多时候，分布式系统的通过进程之间显式的通信来实现各种功能，但是这样的设计完全没有隐藏通信的细节，这就导致系统的访问透明性存在问题。这个问题可以用远程过程调用(Remote precedure call, RP"><meta property="og:image" content="http://zhang-each.github.io/img/cover/8.jpg"><meta property="article:published_time" content="2022-08-28T12:57:07.000Z"><meta property="article:modified_time" content="2022-08-28T12:59:47.279Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -204,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 mjx-container[display="true"] {
   overflow: auto hidden;
-}
+}周炜
 
 mjx-container[display="true"] + br {
   display: none;
@@ -261,7 +267,7 @@ mjx-container[display="true"] + br {
 <p>传统的RPC的工作过程如下图所示：</p>
 <figure>
 <img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/Zhang-Each/Image-Bed/img/image-20220828171610207.png" alt="image-20220828171610207"><figcaption aria-hidden="true">image-20220828171610207</figcaption>
-</figure>
+</figure>周炜
 <p>在传统的RPC中，客户端需要等待服务端的回复，否则就一直处于阻塞状态。但是在异步的RPC中，客户端向服务端发出RPC请求之后，服务端会立马发送一个消息表示收到了请求，然后客户端继续工作，在服务端得到结果之后，再次给客户端发送消息，这个时候客户端会发生中断并回复客户端一个ACK消息，整个过程如下图所示：</p>
 <p><img src= "/img/loading.gif" data-src="https://cdn.jsdelivr.net/gh/Zhang-Each/Image-Bed/img/image-20220828171904665.png" alt="image-20220828171904665" style="zoom:50%;"></p>
 <figure>

@@ -1,4 +1,14 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记5：TransE | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文阅读笔记5：TransE  论文《Translating Embeddings for Modeling Multi-Realtional Data》阅读笔记  老生常谈的Introduction ​ 将关系和实体用低维向量进行表示是一个很常见的问题(这个时候知识图谱的概念还没有提出)，而关系和实体可以使用一个三元组(head, realtion, tail)来表示，而在多关系的数据"><meta name="keywords" content="知识图谱,图机器学习,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/06/27/reading5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记5：TransE"><meta property="og:url" content="http://zhang-each.github.io/2021/06/27/reading5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文阅读笔记5：TransE  论文《Translating Embeddings for Modeling Multi-Realtional Data》阅读笔记  老生常谈的Introduction ​ 将关系和实体用低维向量进行表示是一个很常见的问题(这个时候知识图谱的概念还没有提出)，而关系和实体可以使用一个三元组(head, realtion, tail)来表示，而在多关系的数据"><meta property="og:image" content="http://zhang-each.github.io/img/cover/19.jpg"><meta property="article:published_time" content="2021-06-27T02:20:51.000Z"><meta property="article:modified_time" content="2021-06-27T02:30:03.760Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记5：TransE | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文阅读笔记5：TransE周炜
+ 
+ 论文《Translating Embeddings for Modeling Multi-Realtional Data》阅读笔记
+ 
+ 老生常谈的Introduction
+ ​ 将关系和实体用低维向量进行表示是一个很常见的问题(这个时候知识图谱的概念还没有提出)，而关系和实体可以使用一个三元组(head, realtion, tail)来表示，而在多关系的数据"><meta name="keywords" content="知识图谱,图机器学习,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/06/27/reading5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记5：TransE"><meta property="og:url" content="http://zhang-each.github.io/2021/06/27/reading5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文阅读笔记5：TransE
+ 
+ 论文《Translating Embeddings for Modeling Multi-Realtional Data》阅读笔记
+ 
+ 老生常谈的Introduction
+ ​ 将关系和实体用低维向量进行表示是一个很常见的问题(这个时候知识图谱的概念还没有提出)，而关系和实体可以使用一个三元组(head, realtion, tail)来表示，而在多关系的数据"><meta property="og:image" content="http://zhang-each.github.io/img/cover/19.jpg"><meta property="article:published_time" content="2021-06-27T02:20:51.000Z"><meta property="article:modified_time" content="2021-06-27T02:30:03.760Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -200,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 .MathJax path {
   stroke-width: 3;
-}
+}周炜
 
 mjx-container[display="true"] {
   overflow: auto hidden;
@@ -240,7 +250,7 @@ mjx-container[display="true"] + br {
 <li>每一轮迭代过程中，首先要将实体的嵌入向量标准化，然后使用采样的一小批三元组进行训练，训练的过程中首先需要给每个三元组生成一个负样本，然后使用常数学习率更新参数</li>
 </ul>
 <h2 id="相关工作比较和metric选取">相关工作比较和metric选取</h2>
-<h3 id="相关模型的比较">相关模型的比较</h3>
+<h3 id="相关模型的比较">相关模型的比较</h3>周炜
 <p>​ 相比于其他已经存在的模型，TransE的参数亮可以说少的离谱，我们假设实体和关系都使用k维的向量来表示，则各个模型的参数量对比如下：</p>
 <p><img src= "/img/loading.gif" data-src="image-20210622161424597.png" alt="参数量对比" style="zoom:50%;"></p>
 <p>​ 参数少使得TransE的训练变得简单，可以避免欠拟合的问题(即因为数据太少而不够学)，</p>

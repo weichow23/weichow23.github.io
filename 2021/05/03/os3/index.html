@@ -1,4 +1,30 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统3：内存管理 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter 8：主存 Main Memory 8.1 基本知识  程序一定要从磁盘装载进入内存才能运行，内存和寄存器是CPU可以直接访问的存储部分  cache位于内存和CPU寄存器之间   逻辑地址和物理地址  逻辑地址也叫相对地址和虚地址，由CPU生成，用户程序汇编之后生成的目标代码通常采用相对地址的形式  首地址作为0，其他指令都用相对于首地址来编址 不用能逻辑"><meta name="keywords" content="操作系统,计算机系统,浙江大学,Linux"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/os3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="操作系统3：内存管理"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/os3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter 8：主存 Main Memory 8.1 基本知识  程序一定要从磁盘装载进入内存才能运行，内存和寄存器是CPU可以直接访问的存储部分  cache位于内存和CPU寄存器之间   逻辑地址和物理地址  逻辑地址也叫相对地址和虚地址，由CPU生成，用户程序汇编之后生成的目标代码通常采用相对地址的形式  首地址作为0，其他指令都用相对于首地址来编址 不用能逻辑"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T14:55:54.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:11.284Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统3：内存管理 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter 8：主存 Main Memory周炜
+ 8.1 基本知识
+ 
+ 程序一定要从磁盘装载进入内存才能运行，内存和寄存器是CPU可以直接访问的存储部分
+ 
+ cache位于内存和CPU寄存器之间
+ 
+ 
+ 逻辑地址和物理地址
+ 
+ 逻辑地址也叫相对地址和虚地址，由CPU生成，用户程序汇编之后生成的目标代码通常采用相对地址的形式
+ 
+ 首地址作为0，其他指令都用相对于首地址来编址
+ 不用能逻辑"><meta name="keywords" content="操作系统,计算机系统,浙江大学,Linux"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/os3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="操作系统3：内存管理"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/os3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter 8：主存 Main Memory
+ 8.1 基本知识
+ 
+ 程序一定要从磁盘装载进入内存才能运行，内存和寄存器是CPU可以直接访问的存储部分
+ 
+ cache位于内存和CPU寄存器之间
+ 
+ 
+ 逻辑地址和物理地址
+ 
+ 逻辑地址也叫相对地址和虚地址，由CPU生成，用户程序汇编之后生成的目标代码通常采用相对地址的形式
+ 
+ 首地址作为0，其他指令都用相对于首地址来编址
+ 不用能逻辑"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T14:55:54.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:11.284Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -184,7 +210,7 @@ mjx-status {
   position: fixed;
   left: 1em;
   bottom: 1em;
-  min-width: 25%;
+  min-width: 25%;周炜
   padding: .2em .4em;
   border: 1px solid #888;
   font-size: 90%;
@@ -461,7 +487,7 @@ mjx-container[display="true"] + br {
 <li>一个文件一开始用按需调页的方法读入</li>
 <li>文件子序列的读写被作为内存访问来进行</li>
 <li>允许多个进程将同一个文件映射到内存中</li>
-</ul></li>
+</ul></li>周炜
 </ul>
 <h3 id="内核内存分配">9.8 内核内存分配</h3>
 <ul>

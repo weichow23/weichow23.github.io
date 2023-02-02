@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>随意的学习总结4：图神经网络文献综述 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="2021春夏学期上凑学分课程《计算机科学思想史》的时候做的课程作业，内容是写一份计算机某领域的文献综述，我主要写了图神经网络相关的内容，东拼西凑搞出了下面这一篇文献综述。     Introduce 机器学习(Machine Learning)是人工智能(Artificial Intelligence)的核心，旨在研究计算机如何模拟或者实现人类的学习行为，让计算机可以从数据中“学习"><meta name="keywords" content="人工智能,深度学习,图神经网络,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/04/summary4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="随意的学习总结4：图神经网络文献综述"><meta property="og:url" content="http://zhang-each.github.io/2021/11/04/summary4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="2021春夏学期上凑学分课程《计算机科学思想史》的时候做的课程作业，内容是写一份计算机某领域的文献综述，我主要写了图神经网络相关的内容，东拼西凑搞出了下面这一篇文献综述。     Introduce 机器学习(Machine Learning)是人工智能(Artificial Intelligence)的核心，旨在研究计算机如何模拟或者实现人类的学习行为，让计算机可以从数据中“学习"><meta property="og:image" content="http://zhang-each.github.io/img/cover/18.jpg"><meta property="article:published_time" content="2021-11-04T12:47:55.000Z"><meta property="article:modified_time" content="2021-11-04T12:52:30.133Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>随意的学习总结4：图神经网络文献综述 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="2021春夏学期上凑学分课程《计算机科学思想史》的时候做的课程作业，内容是写一份计算机某领域的文献综述，我主要写了图神经网络相关的内容，东拼西凑搞出了下面这一篇文献综述。周炜
+ 
+ 
+ 
+ 
+ Introduce
+ 机器学习(Machine Learning)是人工智能(Artificial Intelligence)的核心，旨在研究计算机如何模拟或者实现人类的学习行为，让计算机可以从数据中“学习"><meta name="keywords" content="人工智能,深度学习,图神经网络,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/04/summary4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="随意的学习总结4：图神经网络文献综述"><meta property="og:url" content="http://zhang-each.github.io/2021/11/04/summary4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="2021春夏学期上凑学分课程《计算机科学思想史》的时候做的课程作业，内容是写一份计算机某领域的文献综述，我主要写了图神经网络相关的内容，东拼西凑搞出了下面这一篇文献综述。
+ 
+ 
+ 
+ 
+ Introduce
+ 机器学习(Machine Learning)是人工智能(Artificial Intelligence)的核心，旨在研究计算机如何模拟或者实现人类的学习行为，让计算机可以从数据中“学习"><meta property="og:image" content="http://zhang-each.github.io/img/cover/18.jpg"><meta property="article:published_time" content="2021-11-04T12:47:55.000Z"><meta property="article:modified_time" content="2021-11-04T12:52:30.133Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -314,7 +326,7 @@ mjx-container[display="true"] + br {
 <li><p>W. Hamilton, Z. Ying, and J. Leskovec, “Inductive representation learning on large graphs,” in Proc. of NIPS, 2017, pp. 1024–1034.</p></li>
 <li><p>F. Monti, D. Boscaini, J. Masci, E. Rodola, J. Svoboda, and M. M. Bronstein, “Geometric deep learning on graphs and manifolds using mixture model cnns,” i</p></li>
 <li><p>F. Scarselli, M. Gori, A. C. Tsoi, M. Hagenbuchner, and G. Monfardini, “The graph neural network model,” IEEE Transactions on Neural Networks, vol. 20, no. 1, pp. 61–80, 2009.</p></li>
-<li><p>K. Cho, B. Van Merrienboer, C. Gulcehre, D. Bahdanau, F. Bougares, ¨ H. Schwenk, and Y. Bengio, “Learning phrase representations using rnn encoder-decoder for statistical machine translation,” in Proc. of EMNLP, 2014, pp. 1724–1734.</p></li>
+<li><p>K. Cho, B. Van Merrienboer, C. Gulcehre, D. Bahdanau, F. Bougares, ¨ H. Schwenk, and Y. Bengio, “Learning phrase representations using rnn encoder-decoder for statistical machine translation,” in Proc. of EMNLP, 2014, pp. 1724–1734.</p></li>周炜
 <li><p>D. Xu, Y. Zhu, C. B. Choy, and L. Fei-Fei, “Scene graph generation by iterative message passing,” in Proc. of CVPR, vol. 2, 2017.</p></li>
 <li><p>T. N. Kipf and M. Welling, “Semi-supervised classification with graph convolutional networks,” in Proc. of ICLR, 2017.</p></li>
 <li><p>L. Song, Y. Zhang, Z. Wang, and D. Gildea, “A graph-to-sequence model for amr-to-text generation,” in Proc. of ACL, 2018.</p></li>

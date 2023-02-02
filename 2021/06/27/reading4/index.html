@@ -1,4 +1,14 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记4：Node2Vec | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文阅读报告：Node2Vec  论文《node2vec: Scalable Feature Learning for networks》的阅读笔记  前言与研究背景 ​ 本文是发表在KDD16上的一篇图数据挖掘和图机器学习主题的论文，我们知道在数据挖掘中，获得数据的特征是非常重要的一步，不管我们希望用什么算法，分类也好，回归也好，聚类也好，都首先需要获取数据的特征表示，然后再将机器学习"><meta name="keywords" content="图机器学习,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/06/27/reading4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记4：Node2Vec"><meta property="og:url" content="http://zhang-each.github.io/2021/06/27/reading4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文阅读报告：Node2Vec  论文《node2vec: Scalable Feature Learning for networks》的阅读笔记  前言与研究背景 ​ 本文是发表在KDD16上的一篇图数据挖掘和图机器学习主题的论文，我们知道在数据挖掘中，获得数据的特征是非常重要的一步，不管我们希望用什么算法，分类也好，回归也好，聚类也好，都首先需要获取数据的特征表示，然后再将机器学习"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2021-06-27T02:10:31.000Z"><meta property="article:modified_time" content="2021-11-04T12:57:25.818Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记4：Node2Vec | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文阅读报告：Node2Vec周炜
+ 
+ 论文《node2vec: Scalable Feature Learning for networks》的阅读笔记
+ 
+ 前言与研究背景
+ ​ 本文是发表在KDD16上的一篇图数据挖掘和图机器学习主题的论文，我们知道在数据挖掘中，获得数据的特征是非常重要的一步，不管我们希望用什么算法，分类也好，回归也好，聚类也好，都首先需要获取数据的特征表示，然后再将机器学习"><meta name="keywords" content="图机器学习,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/06/27/reading4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记4：Node2Vec"><meta property="og:url" content="http://zhang-each.github.io/2021/06/27/reading4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文阅读报告：Node2Vec
+ 
+ 论文《node2vec: Scalable Feature Learning for networks》的阅读笔记
+ 
+ 前言与研究背景
+ ​ 本文是发表在KDD16上的一篇图数据挖掘和图机器学习主题的论文，我们知道在数据挖掘中，获得数据的特征是非常重要的一步，不管我们希望用什么算法，分类也好，回归也好，聚类也好，都首先需要获取数据的特征表示，然后再将机器学习"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2021-06-27T02:10:31.000Z"><meta property="article:modified_time" content="2021-11-04T12:57:25.818Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -200,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 .MathJax path {
   stroke-width: 3;
-}
+}周炜
 
 mjx-container[display="true"] {
   overflow: auto hidden;
@@ -270,7 +280,7 @@ mjx-container[display="true"] + br {
 <p>同时论文中还给出了两种F1分数下的算法性能对比图：</p>
 <figure>
 <img src= "/img/loading.gif" data-src="image-20210612203446352.png" alt="实验结果2"><figcaption aria-hidden="true">实验结果2</figcaption>
-</figure>
+</figure>周炜
 <p>从上述实验结果的对比中我们可以看到，node2vec取得了比其他方法都要好的效果，这也说明node2vec可以学到更好的图特征表示。</p>
 <h3 id="scalability">Scalability</h3>
 <p>​ 论文中还对node2vec模型的scalability进行了一定的探究，在Erdos-Renyi图数据集上探究了算法消耗时间和节点数目的关系，最终得到的结果如下：</p>

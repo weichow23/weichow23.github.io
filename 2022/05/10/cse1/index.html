@@ -1,4 +1,14 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MIT6.033系统设计1：导言与操作系统层面的设计 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="MIT6.033这门课程的主题是Computer System Engineering，即计算机系统工程，这门课程主要教授计算机系统设计相关的知识，内容涵盖了操作系统、计算机网络和分布式系统等多个计算机系统的子方向，内容比较全面。虽然这门课没有公开的作业，但还是值得一学，由于每节课的PPT内容较少，我们将内容按照操作系统、计算机网络和分布式系统三个大块进行记录。     引言：系统设"><meta name="keywords" content="操作系统,计算机网络,计算机系统,系统设计"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/05/10/cse1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="MIT6.033系统设计1：导言与操作系统层面的设计"><meta property="og:url" content="http://zhang-each.github.io/2022/05/10/cse1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="MIT6.033这门课程的主题是Computer System Engineering，即计算机系统工程，这门课程主要教授计算机系统设计相关的知识，内容涵盖了操作系统、计算机网络和分布式系统等多个计算机系统的子方向，内容比较全面。虽然这门课没有公开的作业，但还是值得一学，由于每节课的PPT内容较少，我们将内容按照操作系统、计算机网络和分布式系统三个大块进行记录。     引言：系统设"><meta property="og:image" content="http://zhang-each.github.io/img/cover/21.jpg"><meta property="article:published_time" content="2022-05-10T08:57:52.000Z"><meta property="article:modified_time" content="2022-05-10T08:59:24.515Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MIT6.033系统设计1：导言与操作系统层面的设计 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="MIT6.033这门课程的主题是Computer System Engineering，即计算机系统工程，这门课程主要教授计算机系统设计相关的知识，内容涵盖了操作系统、计算机网络和分布式系统等多个计算机系统的子方向，内容比较全面。虽然这门课没有公开的作业，但还是值得一学，由于每节课的PPT内容较少，我们将内容按照操作系统、计算机网络和分布式系统三个大块进行记录。周炜
+ 
+ 
+ 
+ 
+ 引言：系统设"><meta name="keywords" content="操作系统,计算机网络,计算机系统,系统设计"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/05/10/cse1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="MIT6.033系统设计1：导言与操作系统层面的设计"><meta property="og:url" content="http://zhang-each.github.io/2022/05/10/cse1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="MIT6.033这门课程的主题是Computer System Engineering，即计算机系统工程，这门课程主要教授计算机系统设计相关的知识，内容涵盖了操作系统、计算机网络和分布式系统等多个计算机系统的子方向，内容比较全面。虽然这门课没有公开的作业，但还是值得一学，由于每节课的PPT内容较少，我们将内容按照操作系统、计算机网络和分布式系统三个大块进行记录。
+ 
+ 
+ 
+ 
+ 引言：系统设"><meta property="og:image" content="http://zhang-each.github.io/img/cover/21.jpg"><meta property="article:published_time" content="2022-05-10T08:57:52.000Z"><meta property="article:modified_time" content="2022-05-10T08:59:24.515Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -200,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 .MathJax path {
   stroke-width: 3;
-}
+}周炜
 
 mjx-container[display="true"] {
   overflow: auto hidden;
@@ -276,7 +286,7 @@ mjx-container[display="true"] + br {
 <img src= "/img/loading.gif" data-src="image-20220510133145908.png" alt="image-20220510133145908"><figcaption aria-hidden="true">image-20220510133145908</figcaption>
 </figure>
 <h2 id="系统性能存储storage">系统性能/存储Storage</h2>
-<p>评价一个系统性能，关键在于设计合理的评估方案找出系统的瓶颈在哪里。系统的性能有三个常见的指标可以用于评估，一个是延迟latency，一个是吞吐量throughput，一个是利用率utilization，三者的衡量标准如下：</p>
+<p>评价一个系统性能，关键在于设计合理的评估方案找出系统的瓶颈在哪里。系统的性能有三个常见的指标可以用于评估，一个是延迟latency，一个是吞吐量throughput，一个是利用率utilization，三者的衡量标准如下：</p>周炜
 <ul>
 <li>延迟：完成单个请求的事件是多少</li>
 <li>吞吐量：系统每个单位时间能够完成多少请求</li>

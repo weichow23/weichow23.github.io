@@ -1,4 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>随意的学习总结1：记一个Naive分布式数据库的实现 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="记录上学期一个做了比较长时间的课程Project——分布式关系型数据库引擎的实现方式和细节。    记一个Naive分布式数据库的实现  前言 上个学期上了一门必修课《大规模信息系统构建技术导论》，据说是用来对标MIT6.824而开设的一门分布式系统课程，然而上课内容一言难尽，感觉听的人也不是很多，唯一有价值的是这门课的project——实现一个分布式数据库引擎，但是对于具体怎么"><meta name="keywords" content="分布式系统,操作系统,计算机网络,数据库系统,Java"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/09/04/summary1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="随意的学习总结1：记一个Naive分布式数据库的实现"><meta property="og:url" content="http://zhang-each.github.io/2021/09/04/summary1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="记录上学期一个做了比较长时间的课程Project——分布式关系型数据库引擎的实现方式和细节。    记一个Naive分布式数据库的实现  前言 上个学期上了一门必修课《大规模信息系统构建技术导论》，据说是用来对标MIT6.824而开设的一门分布式系统课程，然而上课内容一言难尽，感觉听的人也不是很多，唯一有价值的是这门课的project——实现一个分布式数据库引擎，但是对于具体怎么"><meta property="og:image" content="http://zhang-each.github.io/img/cover/20.jpg"><meta property="article:published_time" content="2021-09-03T16:02:51.000Z"><meta property="article:modified_time" content="2021-09-05T14:59:16.295Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>随意的学习总结1：记一个Naive分布式数据库的实现 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="记录上学期一个做了比较长时间的课程Project——分布式关系型数据库引擎的实现方式和细节。周炜
+ 
+ 
+ 
+ 记一个Naive分布式数据库的实现
+ 
+ 前言
+ 上个学期上了一门必修课《大规模信息系统构建技术导论》，据说是用来对标MIT6.824而开设的一门分布式系统课程，然而上课内容一言难尽，感觉听的人也不是很多，唯一有价值的是这门课的project——实现一个分布式数据库引擎，但是对于具体怎么"><meta name="keywords" content="分布式系统,操作系统,计算机网络,数据库系统,Java"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/09/04/summary1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="随意的学习总结1：记一个Naive分布式数据库的实现"><meta property="og:url" content="http://zhang-each.github.io/2021/09/04/summary1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="记录上学期一个做了比较长时间的课程Project——分布式关系型数据库引擎的实现方式和细节。
+ 
+ 
+ 
+ 记一个Naive分布式数据库的实现
+ 
+ 前言
+ 上个学期上了一门必修课《大规模信息系统构建技术导论》，据说是用来对标MIT6.824而开设的一门分布式系统课程，然而上课内容一言难尽，感觉听的人也不是很多，唯一有价值的是这门课的project——实现一个分布式数据库引擎，但是对于具体怎么"><meta property="og:image" content="http://zhang-each.github.io/img/cover/20.jpg"><meta property="article:published_time" content="2021-09-03T16:02:51.000Z"><meta property="article:modified_time" content="2021-09-05T14:59:16.295Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -196,7 +210,7 @@ foreignObject[data-mjx-xml] {
   font-family: initial;
   line-height: normal;
   overflow: visible;
-}
+}周炜
 
 .MathJax path {
   stroke-width: 3;
@@ -280,7 +294,7 @@ mjx-container[display="true"] + br {
 <li>事实上也可以用RPC进行远程调用，但是这里我们实现了更底层的一套Socket通信框架，虽然比较简陋，但是至少能跑</li>
 <li>这套Socket通信框架允许客户端跟多个Region相连，也允许Master跟多个Region相连</li>
 </ul>
-<h3 id="客户端缓存">客户端缓存</h3>
+<h3 id="客户端缓存">客户端缓存</h3>周炜
 <p>中我们实现了客户端缓存，可以大大降低查询所需的时间，提高 IO 的 效率，缓存通过一个 HashMap 实现，并且会定期更新和清除缓存的内容，客户 端在向服务器发送 SQL 语句之前先对输入的 SQL 语句进行一个简单的解析，提 取出要处理的表名或者索引名，然后在缓存中先进行查询，如果查到了对应的 Region 地址就直接和 Region 进行连接，如果没有查到就和 Master 先连接并获取 Region 的地址之后再和 Region 连接。</p>
 <p>因此本系统实现了所谓的分布式查询，即客户端执行 SQL 语句时，并不是所 有时候都依赖 Master 提供的元信息，而是使用一套分布式的缓存功能（缓存分 布在各个客户端上），有的时候客户端可以直接实现和 Region 的连接以及通信， 并不完全依赖主服务器，因此也具有一定的容错容灾能力（当然主要的容错容灾 能力并不依赖于缓存）</p>
 <h3 id="集群管理">集群管理</h3>

@@ -1,4 +1,14 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>多任务学习和元学习2：元学习 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CS330：Multi-task Learning&amp;Meta Learning2  本章笔记的内容主要是原课程的Lecture3和4，主要讲元学习问题的定义和黑盒元学习，以及基于优化的元学习  元学习问题 ​ 前面已经说到多任务学习和迁移学习的定义和区别，这里再复习一下，多任务学习是训练模型一次性解决多个任务，而迁移学习是将一个任务上的模型迁移到另一个任务上，主要是通过训练+微调"><meta name="keywords" content="深度学习,元学习,多任务学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/01/mtml2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="多任务学习和元学习2：元学习"><meta property="og:url" content="http://zhang-each.github.io/2021/08/01/mtml2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CS330：Multi-task Learning&amp;Meta Learning2  本章笔记的内容主要是原课程的Lecture3和4，主要讲元学习问题的定义和黑盒元学习，以及基于优化的元学习  元学习问题 ​ 前面已经说到多任务学习和迁移学习的定义和区别，这里再复习一下，多任务学习是训练模型一次性解决多个任务，而迁移学习是将一个任务上的模型迁移到另一个任务上，主要是通过训练+微调"><meta property="og:image" content="http://zhang-each.github.io/img/cover/7.jpg"><meta property="article:published_time" content="2021-08-01T15:59:36.000Z"><meta property="article:modified_time" content="2021-08-07T02:51:15.049Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>多任务学习和元学习2：元学习 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CS330：Multi-task Learning&amp;Meta Learning2周炜
+ 
+ 本章笔记的内容主要是原课程的Lecture3和4，主要讲元学习问题的定义和黑盒元学习，以及基于优化的元学习
+ 
+ 元学习问题
+ ​ 前面已经说到多任务学习和迁移学习的定义和区别，这里再复习一下，多任务学习是训练模型一次性解决多个任务，而迁移学习是将一个任务上的模型迁移到另一个任务上，主要是通过训练+微调"><meta name="keywords" content="深度学习,元学习,多任务学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/01/mtml2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="多任务学习和元学习2：元学习"><meta property="og:url" content="http://zhang-each.github.io/2021/08/01/mtml2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CS330：Multi-task Learning&amp;Meta Learning2
+ 
+ 本章笔记的内容主要是原课程的Lecture3和4，主要讲元学习问题的定义和黑盒元学习，以及基于优化的元学习
+ 
+ 元学习问题
+ ​ 前面已经说到多任务学习和迁移学习的定义和区别，这里再复习一下，多任务学习是训练模型一次性解决多个任务，而迁移学习是将一个任务上的模型迁移到另一个任务上，主要是通过训练+微调"><meta property="og:image" content="http://zhang-each.github.io/img/cover/7.jpg"><meta property="article:published_time" content="2021-08-01T15:59:36.000Z"><meta property="article:modified_time" content="2021-08-07T02:51:15.049Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -200,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 .MathJax path {
   stroke-width: 3;
-}
+}周炜
 
 mjx-container[display="true"] {
   overflow: auto hidden;
@@ -281,7 +291,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>优点：
 <ul>
-<li>在训练初期提供正向的归纳偏置(Positve Inductive Bias)</li>
+<li>在训练初期提供正向的归纳偏置(Positve Inductive Bias)</li>周炜
 <li>在深度神经网络中拥有更强大的表示能力</li>
 <li>模型不可知，容易和其他模型进行组合</li>
 </ul></li>

@@ -1,4 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>机器学习代码实现3：KNN算法 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="机器学习代码实现3：KNN算法  这一专题的内容主要是我在进行统计机器学习的算法的代码实践的过程中的一些记录，包括公式的推导，算法的实现与数据集的实验结果。 这部分工作我比较早之前就已经开始做了，现在刚好趁此机会整理一下之前写过的所有小demo，汇总成一个完成的库  1.KNN算法  KNN算法是一种常见的监督学习算法，常用于分类问题，KNN算法的核心思想是用跟输入数据最接近的K个点"><meta name="keywords" content="机器学习,数据挖掘,Python"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/14/coding-ml3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="机器学习代码实现3：KNN算法"><meta property="og:url" content="http://zhang-each.github.io/2021/05/14/coding-ml3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="机器学习代码实现3：KNN算法  这一专题的内容主要是我在进行统计机器学习的算法的代码实践的过程中的一些记录，包括公式的推导，算法的实现与数据集的实验结果。 这部分工作我比较早之前就已经开始做了，现在刚好趁此机会整理一下之前写过的所有小demo，汇总成一个完成的库  1.KNN算法  KNN算法是一种常见的监督学习算法，常用于分类问题，KNN算法的核心思想是用跟输入数据最接近的K个点"><meta property="og:image" content="http://zhang-each.github.io/img/cover/15.jpg"><meta property="article:published_time" content="2021-05-14T02:45:38.000Z"><meta property="article:modified_time" content="2021-05-14T02:49:49.000Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>机器学习代码实现3：KNN算法 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="机器学习代码实现3：KNN算法周炜
+ 
+ 这一专题的内容主要是我在进行统计机器学习的算法的代码实践的过程中的一些记录，包括公式的推导，算法的实现与数据集的实验结果。
+ 这部分工作我比较早之前就已经开始做了，现在刚好趁此机会整理一下之前写过的所有小demo，汇总成一个完成的库
+ 
+ 1.KNN算法
+ 
+ KNN算法是一种常见的监督学习算法，常用于分类问题，KNN算法的核心思想是用跟输入数据最接近的K个点"><meta name="keywords" content="机器学习,数据挖掘,Python"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/14/coding-ml3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="机器学习代码实现3：KNN算法"><meta property="og:url" content="http://zhang-each.github.io/2021/05/14/coding-ml3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="机器学习代码实现3：KNN算法
+ 
+ 这一专题的内容主要是我在进行统计机器学习的算法的代码实践的过程中的一些记录，包括公式的推导，算法的实现与数据集的实验结果。
+ 这部分工作我比较早之前就已经开始做了，现在刚好趁此机会整理一下之前写过的所有小demo，汇总成一个完成的库
+ 
+ 1.KNN算法
+ 
+ KNN算法是一种常见的监督学习算法，常用于分类问题，KNN算法的核心思想是用跟输入数据最接近的K个点"><meta property="og:image" content="http://zhang-each.github.io/img/cover/15.jpg"><meta property="article:published_time" content="2021-05-14T02:45:38.000Z"><meta property="article:modified_time" content="2021-05-14T02:49:49.000Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -196,7 +210,7 @@ foreignObject[data-mjx-xml] {
   font-family: initial;
   line-height: normal;
   overflow: visible;
-}
+}周炜
 
 .MathJax path {
   stroke-width: 3;
@@ -267,7 +281,7 @@ mjx-container[display="true"] + br {
 </tr>
 <tr class="odd">
 <td>向量化</td>
-<td>0.152312</td>
+<td>0.152312</td>周炜
 </tr>
 </tbody>
 </table>

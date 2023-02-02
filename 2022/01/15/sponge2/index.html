@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS144-计算机网络Lab2：TCP接收端 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Stanford CS144 Introduction to Computer Network课程Project的lab2，这个lab主要任务是实现一个TCP的接收端TCPReceiver     Overview 上一个lab中，我们实现了一个TCP接收端的流重组器，接下来的lab3就要我们实现整个TCP接收端的东西，相比于流重组器，TCP的接收端还要处理一些接收到的TCP报文段"><meta name="keywords" content="计算机网络,计算机系统,TCP/IP,C++"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/01/15/sponge2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS144-计算机网络Lab2：TCP接收端"><meta property="og:url" content="http://zhang-each.github.io/2022/01/15/sponge2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Stanford CS144 Introduction to Computer Network课程Project的lab2，这个lab主要任务是实现一个TCP的接收端TCPReceiver     Overview 上一个lab中，我们实现了一个TCP接收端的流重组器，接下来的lab3就要我们实现整个TCP接收端的东西，相比于流重组器，TCP的接收端还要处理一些接收到的TCP报文段"><meta property="og:image" content="http://zhang-each.github.io/img/cover/10.jpg"><meta property="article:published_time" content="2022-01-15T10:38:55.000Z"><meta property="article:modified_time" content="2022-01-15T10:41:10.610Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS144-计算机网络Lab2：TCP接收端 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Stanford CS144 Introduction to Computer Network课程Project的lab2，这个lab主要任务是实现一个TCP的接收端TCPReceiver周炜
+ 
+ 
+ 
+ 
+ Overview
+ 上一个lab中，我们实现了一个TCP接收端的流重组器，接下来的lab3就要我们实现整个TCP接收端的东西，相比于流重组器，TCP的接收端还要处理一些接收到的TCP报文段"><meta name="keywords" content="计算机网络,计算机系统,TCP/IP,C++"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/01/15/sponge2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS144-计算机网络Lab2：TCP接收端"><meta property="og:url" content="http://zhang-each.github.io/2022/01/15/sponge2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Stanford CS144 Introduction to Computer Network课程Project的lab2，这个lab主要任务是实现一个TCP的接收端TCPReceiver
+ 
+ 
+ 
+ 
+ Overview
+ 上一个lab中，我们实现了一个TCP接收端的流重组器，接下来的lab3就要我们实现整个TCP接收端的东西，相比于流重组器，TCP的接收端还要处理一些接收到的TCP报文段"><meta property="og:image" content="http://zhang-each.github.io/img/cover/10.jpg"><meta property="article:published_time" content="2022-01-15T10:38:55.000Z"><meta property="article:modified_time" content="2022-01-15T10:41:10.610Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -284,7 +296,7 @@ mjx-container[display="true"] + br {
 <h3 id="ackno和window_size">ackno和window_size</h3>
 <p>这个方法需要我们返回Receiver的ackno，前面说过ackno代表的就是第一个没有收到的字节的index，并且要用TCP能接受的32位格式，同时，如果ISN还没有被设置(即Receiver还没有收到包含SYN的报文)时，这个函数要返回空指针，所以它的具体实现如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">optional&lt;WrappingInt32&gt; <span class="title">TCPReceiver::ackno</span><span class="params">()</span> <span class="keyword">const</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (_isn == <span class="literal">nullptr</span>) {</span><br><span class="line">        <span class="keyword">return</span> nullopt;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">uint64_t</span> n = _reassembler.<span class="built_in">stream_out</span>().<span class="built_in">bytes_written</span>() + <span class="number">1</span>;</span><br><span class="line">        n += <span class="keyword">static_cast</span>&lt;<span class="keyword">uint64_t</span>&gt;(_reassembler.<span class="built_in">stream_out</span>().<span class="built_in">input_ended</span>());</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">wrap</span>(n, *_isn);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>这里其实就是找到流重组器没有写入的第一个字节的下标并转化成32位格式。</p>
+<p>这里其实就是找到流重组器没有写入的第一个字节的下标并转化成32位格式。</p>周炜
 <p>而window_size这个函数只需要计算当前Receiver的窗口大小，即第一个没有整流的字节到第一个没有收到的字节的下标之差。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">TCPReceiver::window_size</span><span class="params">()</span> <span class="keyword">const</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> _capacity - _reassembler.<span class="built_in">stream_out</span>().<span class="built_in">buffer_size</span>();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <h3 id="segment_received">segment_received</h3>

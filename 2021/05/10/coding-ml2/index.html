@@ -1,4 +1,26 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>机器学习代码实现2：贝叶斯定理与参数估计 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="机器学习代码实现2：贝叶斯模型  这一专题的内容主要是我在进行统计机器学习的算法的代码实践的过程中的一些记录，包括公式的推导，算法的实现与数据集的实验结果。 这部分工作我比较早之前就已经开始做了，现在刚好趁此机会整理一下之前写过的所有小demo，汇总成一个完成的库  1.贝叶斯定理  贝叶斯定理主要是用来判断一个数据样本是否属于类别，其理论主要就是基于下面的公式：    这里"><meta name="keywords" content="机器学习,数据挖掘,Python"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/10/coding-ml2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="机器学习代码实现2：贝叶斯定理与参数估计"><meta property="og:url" content="http://zhang-each.github.io/2021/05/10/coding-ml2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="机器学习代码实现2：贝叶斯模型  这一专题的内容主要是我在进行统计机器学习的算法的代码实践的过程中的一些记录，包括公式的推导，算法的实现与数据集的实验结果。 这部分工作我比较早之前就已经开始做了，现在刚好趁此机会整理一下之前写过的所有小demo，汇总成一个完成的库  1.贝叶斯定理  贝叶斯定理主要是用来判断一个数据样本是否属于类别，其理论主要就是基于下面的公式：    这里"><meta property="og:image" content="http://zhang-each.github.io/img/cover/21.jpg"><meta property="article:published_time" content="2021-05-10T14:58:13.000Z"><meta property="article:modified_time" content="2021-05-13T07:45:28.000Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>机器学习代码实现2：贝叶斯定理与参数估计 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="机器学习代码实现2：贝叶斯模型周炜
+ 
+ 这一专题的内容主要是我在进行统计机器学习的算法的代码实践的过程中的一些记录，包括公式的推导，算法的实现与数据集的实验结果。
+ 这部分工作我比较早之前就已经开始做了，现在刚好趁此机会整理一下之前写过的所有小demo，汇总成一个完成的库
+ 
+ 1.贝叶斯定理
+ 
+ 贝叶斯定理主要是用来判断一个数据样本是否属于类别，其理论主要就是基于下面的公式：
+ 
+ 
+ 
+ 这里"><meta name="keywords" content="机器学习,数据挖掘,Python"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/10/coding-ml2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="机器学习代码实现2：贝叶斯定理与参数估计"><meta property="og:url" content="http://zhang-each.github.io/2021/05/10/coding-ml2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="机器学习代码实现2：贝叶斯模型
+ 
+ 这一专题的内容主要是我在进行统计机器学习的算法的代码实践的过程中的一些记录，包括公式的推导，算法的实现与数据集的实验结果。
+ 这部分工作我比较早之前就已经开始做了，现在刚好趁此机会整理一下之前写过的所有小demo，汇总成一个完成的库
+ 
+ 1.贝叶斯定理
+ 
+ 贝叶斯定理主要是用来判断一个数据样本是否属于类别，其理论主要就是基于下面的公式：
+ 
+ 
+ 
+ 这里"><meta property="og:image" content="http://zhang-each.github.io/img/cover/21.jpg"><meta property="article:published_time" content="2021-05-10T14:58:13.000Z"><meta property="article:modified_time" content="2021-05-13T07:45:28.000Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -188,7 +210,7 @@ mjx-status {
   padding: .2em .4em;
   border: 1px solid #888;
   font-size: 90%;
-  background-color: #F8F8F8;
+  background-color: #F8F8F8;周炜
   color: black;
 }
 
@@ -240,7 +262,7 @@ mjx-container[display="true"] + br {
 <li><p>这里使用的数据集来自浙江大学蔡登教授开设的《机器学习》课程，这里的数据集仅有1维特征和标签，比较简单。我们分别对仅使用似然和使用后验概率来进行预测的结果进行了可视化，得到的结果是：</p>
 <ul>
 <li>似然：</li>
-</ul>
+</ul>周炜
 <p><img src= "/img/loading.gif" data-src="image-20210510215345124.png" alt="似然分布情况" style="zoom: 50%;"></p>
 <ul>
 <li>后验概率：</li>

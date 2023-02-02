@@ -1,4 +1,8 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>统计机器学习8：聚类 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="统计机器学习08：聚类Clustering 聚类的基本概念 聚类是一种无监督学习，就是在给定的数据集中根据特征的相似度或者距离，将数据集中的对象归并到若干个类中(事先并不知道，即数据集是没有label的)，因此解决聚类问题的关键是要先定义距离的度量方式，因为很多时候数据点并没有物理意义上的&quot;距离&quot;(地图上的不同点拥有的是物理距离)，比如社交网络中人和人之间的关系就是一种广义上的距离，对"><meta name="keywords" content="人工智能,机器学习,数据挖掘"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/22/ml8/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="统计机器学习8：聚类"><meta property="og:url" content="http://zhang-each.github.io/2021/08/22/ml8/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="统计机器学习08：聚类Clustering 聚类的基本概念 聚类是一种无监督学习，就是在给定的数据集中根据特征的相似度或者距离，将数据集中的对象归并到若干个类中(事先并不知道，即数据集是没有label的)，因此解决聚类问题的关键是要先定义距离的度量方式，因为很多时候数据点并没有物理意义上的&quot;距离&quot;(地图上的不同点拥有的是物理距离)，比如社交网络中人和人之间的关系就是一种广义上的距离，对"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-08-22T02:49:31.000Z"><meta property="article:modified_time" content="2021-11-03T15:15:11.978Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>统计机器学习8：聚类 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="统计机器学习08：聚类Clustering周炜
+ 聚类的基本概念
+ 聚类是一种无监督学习，就是在给定的数据集中根据特征的相似度或者距离，将数据集中的对象归并到若干个类中(事先并不知道，即数据集是没有label的)，因此解决聚类问题的关键是要先定义距离的度量方式，因为很多时候数据点并没有物理意义上的&quot;距离&quot;(地图上的不同点拥有的是物理距离)，比如社交网络中人和人之间的关系就是一种广义上的距离，对"><meta name="keywords" content="人工智能,机器学习,数据挖掘"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/22/ml8/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="统计机器学习8：聚类"><meta property="og:url" content="http://zhang-each.github.io/2021/08/22/ml8/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="统计机器学习08：聚类Clustering
+ 聚类的基本概念
+ 聚类是一种无监督学习，就是在给定的数据集中根据特征的相似度或者距离，将数据集中的对象归并到若干个类中(事先并不知道，即数据集是没有label的)，因此解决聚类问题的关键是要先定义距离的度量方式，因为很多时候数据点并没有物理意义上的&quot;距离&quot;(地图上的不同点拥有的是物理距离)，比如社交网络中人和人之间的关系就是一种广义上的距离，对"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-08-22T02:49:31.000Z"><meta property="article:modified_time" content="2021-11-03T15:15:11.978Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -206,7 +210,7 @@ mjx-container[display="true"] {
   overflow: auto hidden;
 }
 
-mjx-container[display="true"] + br {
+mjx-container[display="true"] + br {周炜
   display: none;
 }
 </style><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
@@ -274,7 +278,7 @@ mjx-container[display="true"] + br {
 <li><p>然后回到第2步用新的K个中心点计算出新的分类，重复上述步骤直到划分结果不再改变，就得到了K均值聚类的最终结果</p></li>
 </ol>
 <h3 id="k-means算法的特点">K-Means算法的特点</h3>
-<ol type="1">
+<ol type="1">周炜
 <li><p>K均值聚类属于启发式的方法，不能保证收敛到全局的最优，初始中心的选择会直接影响聚类的结果，要注意的时候类中心的移动往往不会有非常大的波动</p></li>
 <li><p>不同的类别数K会带来不同的聚类结果，一般来说分类的平均直径会随着K的增大先减小后不变，这个算法中的K是一个超参数，也是需要人为进行设定的</p></li>
 </ol>

@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记21：时序知识图谱少样本学习FSL4TKG | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文《One-shot Learning for Temporal Knowledge Graphs》的阅读笔记，这篇论文主要提出了一种时序知识图谱表示方法和进行单样本学习的框架     Introduction 很多现实世界中实际的知识图谱会面临长尾分布的问题，也就是一些关系大量出现而一些关系出现的次数很少，即关系的分布非常不均匀，这种观察到的现象也推动了少样本学习的发展，顾名思"><meta name="keywords" content="人工智能,知识图谱,元学习,表示学习,少样本学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/26/reading21/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记21：时序知识图谱少样本学习FSL4TKG"><meta property="og:url" content="http://zhang-each.github.io/2021/10/26/reading21/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文《One-shot Learning for Temporal Knowledge Graphs》的阅读笔记，这篇论文主要提出了一种时序知识图谱表示方法和进行单样本学习的框架     Introduction 很多现实世界中实际的知识图谱会面临长尾分布的问题，也就是一些关系大量出现而一些关系出现的次数很少，即关系的分布非常不均匀，这种观察到的现象也推动了少样本学习的发展，顾名思"><meta property="og:image" content="http://zhang-each.github.io/img/cover/21.jpg"><meta property="article:published_time" content="2021-10-26T15:51:29.000Z"><meta property="article:modified_time" content="2021-10-26T16:12:38.082Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记21：时序知识图谱少样本学习FSL4TKG | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文《One-shot Learning for Temporal Knowledge Graphs》的阅读笔记，这篇论文主要提出了一种时序知识图谱表示方法和进行单样本学习的框架周炜
+ 
+ 
+ 
+ 
+ Introduction
+ 很多现实世界中实际的知识图谱会面临长尾分布的问题，也就是一些关系大量出现而一些关系出现的次数很少，即关系的分布非常不均匀，这种观察到的现象也推动了少样本学习的发展，顾名思"><meta name="keywords" content="人工智能,知识图谱,元学习,表示学习,少样本学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/26/reading21/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记21：时序知识图谱少样本学习FSL4TKG"><meta property="og:url" content="http://zhang-each.github.io/2021/10/26/reading21/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文《One-shot Learning for Temporal Knowledge Graphs》的阅读笔记，这篇论文主要提出了一种时序知识图谱表示方法和进行单样本学习的框架
+ 
+ 
+ 
+ 
+ Introduction
+ 很多现实世界中实际的知识图谱会面临长尾分布的问题，也就是一些关系大量出现而一些关系出现的次数很少，即关系的分布非常不均匀，这种观察到的现象也推动了少样本学习的发展，顾名思"><meta property="og:image" content="http://zhang-each.github.io/img/cover/21.jpg"><meta property="article:published_time" content="2021-10-26T15:51:29.000Z"><meta property="article:modified_time" content="2021-10-26T16:12:38.082Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -283,7 +295,7 @@ mjx-container[display="true"] + br {
 </figure>
 <h2 id="实验">实验</h2>
 <h3 id="数据集">数据集</h3>
-<p>这篇论文中采用的数据集是ICEWS和GDELT，是两个之前从来没听说过的时序知识图谱用的数据集，这两个数据集的规模如下：</p>
+<p>这篇论文中采用的数据集是ICEWS和GDELT，是两个之前从来没听说过的时序知识图谱用的数据集，这两个数据集的规模如下：</p>周炜
 <figure>
 <img src= "/img/loading.gif" data-src="image-20211025152614547.png" alt="image-20211025152614547"><figcaption aria-hidden="true">image-20211025152614547</figcaption>
 </figure>

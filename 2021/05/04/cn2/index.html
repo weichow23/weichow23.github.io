@@ -1,4 +1,26 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络2：物理层，数据链路层与MAC子层 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter2. Physics Layer 2.0 物理层的基本概念  物理层存在的意义正是要尽可能地屏蔽不同的传输媒体和通信手段之间的差异，使得物理层上面的数据链路层感受不到这些差异  物理层的协议也常常称为规程 procedure，这个词比协议要出现的早  一个数据通信系统分为如下几个部分  源系统，也叫发送端和发送方：包含源点和发送器 传输系统，也叫传输网络 目的系"><meta name="keywords" content="计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/cn2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="计算机网络2：物理层，数据链路层与MAC子层"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/cn2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter2. Physics Layer 2.0 物理层的基本概念  物理层存在的意义正是要尽可能地屏蔽不同的传输媒体和通信手段之间的差异，使得物理层上面的数据链路层感受不到这些差异  物理层的协议也常常称为规程 procedure，这个词比协议要出现的早  一个数据通信系统分为如下几个部分  源系统，也叫发送端和发送方：包含源点和发送器 传输系统，也叫传输网络 目的系"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T00:43:13.000Z"><meta property="article:modified_time" content="2021-09-10T09:14:33.507Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络2：物理层，数据链路层与MAC子层 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter2. Physics Layer周炜
+ 2.0 物理层的基本概念
+ 
+ 物理层存在的意义正是要尽可能地屏蔽不同的传输媒体和通信手段之间的差异，使得物理层上面的数据链路层感受不到这些差异
+ 
+ 物理层的协议也常常称为规程 procedure，这个词比协议要出现的早
+ 
+ 一个数据通信系统分为如下几个部分
+ 
+ 源系统，也叫发送端和发送方：包含源点和发送器
+ 传输系统，也叫传输网络
+ 目的系"><meta name="keywords" content="计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/cn2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="计算机网络2：物理层，数据链路层与MAC子层"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/cn2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter2. Physics Layer
+ 2.0 物理层的基本概念
+ 
+ 物理层存在的意义正是要尽可能地屏蔽不同的传输媒体和通信手段之间的差异，使得物理层上面的数据链路层感受不到这些差异
+ 
+ 物理层的协议也常常称为规程 procedure，这个词比协议要出现的早
+ 
+ 一个数据通信系统分为如下几个部分
+ 
+ 源系统，也叫发送端和发送方：包含源点和发送器
+ 传输系统，也叫传输网络
+ 目的系"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T00:43:13.000Z"><meta property="article:modified_time" content="2021-09-10T09:14:33.507Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -188,7 +210,7 @@ mjx-status {
   padding: .2em .4em;
   border: 1px solid #888;
   font-size: 90%;
-  background-color: #F8F8F8;
+  background-color: #F8F8F8;周炜
   color: black;
 }
 
@@ -721,7 +743,7 @@ mjx-container[display="true"] + br {
 </ul>
 <figure>
 <img src= "/img/loading.gif" data-src="image-20201020114421387.png" alt="image-20201020114421387"><figcaption aria-hidden="true">image-20201020114421387</figcaption>
-</figure>
+</figure>周炜
 <ul>
 <li>采用曼切斯特编码的方式</li>
 </ul></li>

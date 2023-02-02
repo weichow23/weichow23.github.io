@@ -1,4 +1,24 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统Project3：Query Execution | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CMU15-445的Project3，目标是实现若干种数据库操作的查询执行器，这一Project的重大意义在于理解Bustub数据库引擎中对于executor的模块和迭代查询处理模型的设计和实现。     START 这一个Project中我们需要实现数据库中多种操作的执行器，包括：  访问方式：顺序扫描 数据修改：查询，删除，更新 复杂操作：循环嵌套Join，Hash J"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/12/12/cmudbs-lab3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统Project3：Query Execution"><meta property="og:url" content="http://zhang-each.github.io/2021/12/12/cmudbs-lab3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CMU15-445的Project3，目标是实现若干种数据库操作的查询执行器，这一Project的重大意义在于理解Bustub数据库引擎中对于executor的模块和迭代查询处理模型的设计和实现。     START 这一个Project中我们需要实现数据库中多种操作的执行器，包括：  访问方式：顺序扫描 数据修改：查询，删除，更新 复杂操作：循环嵌套Join，Hash J"><meta property="og:image" content="http://zhang-each.github.io/img/cover/5.jpg"><meta property="article:published_time" content="2021-12-12T07:59:16.000Z"><meta property="article:modified_time" content="2021-12-12T08:00:47.307Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统Project3：Query Execution | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CMU15-445的Project3，目标是实现若干种数据库操作的查询执行器，这一Project的重大意义在于理解Bustub数据库引擎中对于executor的模块和迭代查询处理模型的设计和实现。周炜
+ 
+ 
+ 
+ 
+ START
+ 这一个Project中我们需要实现数据库中多种操作的执行器，包括：
+ 
+ 访问方式：顺序扫描
+ 数据修改：查询，删除，更新
+ 复杂操作：循环嵌套Join，Hash J"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/12/12/cmudbs-lab3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统Project3：Query Execution"><meta property="og:url" content="http://zhang-each.github.io/2021/12/12/cmudbs-lab3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CMU15-445的Project3，目标是实现若干种数据库操作的查询执行器，这一Project的重大意义在于理解Bustub数据库引擎中对于executor的模块和迭代查询处理模型的设计和实现。
+ 
+ 
+ 
+ 
+ START
+ 这一个Project中我们需要实现数据库中多种操作的执行器，包括：
+ 
+ 访问方式：顺序扫描
+ 数据修改：查询，删除，更新
+ 复杂操作：循环嵌套Join，Hash J"><meta property="og:image" content="http://zhang-each.github.io/img/cover/5.jpg"><meta property="article:published_time" content="2021-12-12T07:59:16.000Z"><meta property="article:modified_time" content="2021-12-12T08:00:47.307Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -190,7 +210,7 @@ mjx-status {
   font-size: 90%;
   background-color: #F8F8F8;
   color: black;
-}
+}周炜
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
@@ -266,7 +286,7 @@ mjx-container[display="true"] + br {
 <h3 id="顺序扫描">顺序扫描</h3>
 <p>顺序扫描执行器 <code>SeqScanExecutor</code>是最基本的一个执行器，它会在一个表上进行迭代式的扫描并返回其元组的信息，每次返回一个，一个顺序扫描被一个<code>SeqScanPlanNode</code>来定义，这个执行计划结点会指定需要扫描的表，同时这个结点中可能会包含一个判断条件(Predicate)，需要过滤掉不符合要求的元组。</p>
 <p>同时Bustub中已经提高了一个<code>TableIterator</code>对象可以用来遍历一个表，并且在表达式类<code>AbstractExpression</code>中提供了一个<code>Evaluate()</code>函数可以用来判断一个元组是否满足Predicate中的表达式，它会返回一个Value对象，将其转化成bool类型之后就可以表示元组是否满足表达式中的判断条件。</p>
-<ul>
+<ul>周炜
 <li>所以顺序扫描其实对应的就是有条件的<code>SELECT</code>操作</li>
 </ul>
 <p>顺序扫描的代码实现如下：</p>

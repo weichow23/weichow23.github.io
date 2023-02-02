@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>多任务学习和元学习4：高级话题 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CS330：多任务学习和元学习4  这一部分笔记对应CS330课程中的Lecture7，主题是Advanced Meta Learning，主要讲了元学习中一些比较高级的topic  元学习中的Memorization 如何处理互斥的任务 先回忆了一下元学习中几种已有的模型，包括黑盒模型，优化模型和非参数化的模型。我们在元学习的过程中要对数据集进行适当的划分，将已有的样本和标签划分成若"><meta name="keywords" content="深度学习,元学习,多任务学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/07/mtml4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="多任务学习和元学习4：高级话题"><meta property="og:url" content="http://zhang-each.github.io/2021/08/07/mtml4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CS330：多任务学习和元学习4  这一部分笔记对应CS330课程中的Lecture7，主题是Advanced Meta Learning，主要讲了元学习中一些比较高级的topic  元学习中的Memorization 如何处理互斥的任务 先回忆了一下元学习中几种已有的模型，包括黑盒模型，优化模型和非参数化的模型。我们在元学习的过程中要对数据集进行适当的划分，将已有的样本和标签划分成若"><meta property="og:image" content="http://zhang-each.github.io/img/cover/9.jpg"><meta property="article:published_time" content="2021-08-07T02:55:17.000Z"><meta property="article:modified_time" content="2021-08-07T02:57:30.269Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>多任务学习和元学习4：高级话题 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CS330：多任务学习和元学习4周炜
+ 
+ 这一部分笔记对应CS330课程中的Lecture7，主题是Advanced Meta Learning，主要讲了元学习中一些比较高级的topic
+ 
+ 元学习中的Memorization
+ 如何处理互斥的任务
+ 先回忆了一下元学习中几种已有的模型，包括黑盒模型，优化模型和非参数化的模型。我们在元学习的过程中要对数据集进行适当的划分，将已有的样本和标签划分成若"><meta name="keywords" content="深度学习,元学习,多任务学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/07/mtml4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="多任务学习和元学习4：高级话题"><meta property="og:url" content="http://zhang-each.github.io/2021/08/07/mtml4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CS330：多任务学习和元学习4
+ 
+ 这一部分笔记对应CS330课程中的Lecture7，主题是Advanced Meta Learning，主要讲了元学习中一些比较高级的topic
+ 
+ 元学习中的Memorization
+ 如何处理互斥的任务
+ 先回忆了一下元学习中几种已有的模型，包括黑盒模型，优化模型和非参数化的模型。我们在元学习的过程中要对数据集进行适当的划分，将已有的样本和标签划分成若"><meta property="og:image" content="http://zhang-each.github.io/img/cover/9.jpg"><meta property="article:published_time" content="2021-08-07T02:55:17.000Z"><meta property="article:modified_time" content="2021-08-07T02:57:30.269Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -231,7 +243,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>这个东西太抽象我就不管了先，反正PPT上也就放了个公式</li>
 </ul>
-<h2 id="无监督元学习">无监督元学习</h2>
+<h2 id="无监督元学习">无监督元学习</h2>周炜
 <p>到目前为止讲的内容都是自带了数据集和label的有监督元学习，而现实世界中很多时候数据集是没有标注的，这时候就需要我们对数据集进行一定的预处理然后尝试将这些数据集用于元学习模型的训练中。</p>
 <p>我们需要从无标注的数据中找到足够的任务，并用这些任务构建元学习模型，而找任务就需要有标准的数据，同时我们希望构造出的任务是多样化并且结构化的，这样一来可以让少样本学习得以实现。</p>
 <h3 id="未标注的图片">未标注的图片</h3>

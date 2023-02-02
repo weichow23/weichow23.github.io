@@ -1,4 +1,24 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>浙江大学研究生课程《数据挖掘》考前速成 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="浙江大学计算机学院研究生课程《数据挖掘》考试重点内容的速成。  Data 关键的统计信息  Mean 平均值，进一步有加权平均值 Median 中位数 Mode 众数 Quartiles，Q1是排在第25%的数据，Q3是数据中排在75%处的数据 Inter-quartile range IQR&#x3D;Q3-Q1 Variance 方差, Standard Deviation标准差"><meta name="keywords" content="人工智能,机器学习,数据挖掘"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/11/04/dmreview/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="浙江大学研究生课程《数据挖掘》考前速成"><meta property="og:url" content="http://zhang-each.github.io/2022/11/04/dmreview/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="浙江大学计算机学院研究生课程《数据挖掘》考试重点内容的速成。  Data 关键的统计信息  Mean 平均值，进一步有加权平均值 Median 中位数 Mode 众数 Quartiles，Q1是排在第25%的数据，Q3是数据中排在75%处的数据 Inter-quartile range IQR&#x3D;Q3-Q1 Variance 方差, Standard Deviation标准差"><meta property="og:image" content="http://zhang-each.github.io/img/cover/3.jpg"><meta property="article:published_time" content="2022-11-04T05:05:16.000Z"><meta property="article:modified_time" content="2022-11-04T05:08:07.051Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>浙江大学研究生课程《数据挖掘》考前速成 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="浙江大学计算机学院研究生课程《数据挖掘》考试重点内容的速成。周炜
+ 
+ Data
+ 关键的统计信息
+ 
+ Mean 平均值，进一步有加权平均值
+ Median 中位数
+ Mode 众数
+ Quartiles，Q1是排在第25%的数据，Q3是数据中排在75%处的数据
+ Inter-quartile range IQR&#x3D;Q3-Q1
+ Variance 方差, Standard Deviation标准差"><meta name="keywords" content="人工智能,机器学习,数据挖掘"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/11/04/dmreview/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="浙江大学研究生课程《数据挖掘》考前速成"><meta property="og:url" content="http://zhang-each.github.io/2022/11/04/dmreview/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="浙江大学计算机学院研究生课程《数据挖掘》考试重点内容的速成。
+ 
+ Data
+ 关键的统计信息
+ 
+ Mean 平均值，进一步有加权平均值
+ Median 中位数
+ Mode 众数
+ Quartiles，Q1是排在第25%的数据，Q3是数据中排在75%处的数据
+ Inter-quartile range IQR&#x3D;Q3-Q1
+ Variance 方差, Standard Deviation标准差"><meta property="og:image" content="http://zhang-each.github.io/img/cover/3.jpg"><meta property="article:published_time" content="2022-11-04T05:05:16.000Z"><meta property="article:modified_time" content="2022-11-04T05:08:07.051Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -190,7 +210,7 @@ mjx-status {
   font-size: 90%;
   background-color: #F8F8F8;
   color: black;
-}
+}周炜
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
@@ -341,7 +361,7 @@ mjx-container[display="true"] + br {
 <li>F1-score，综合考虑Precision和Recall</li>
 </ul>
 <h2 id="clustering">Clustering</h2>
-<p>聚类是一种无监督学习的算法，目标是将没有标签的数据分成若干个簇，并且<strong>让簇内的数据尽可能相似，而让簇间的数据尽可能不相似</strong>(这也是聚类算法设计的基本原则)。聚类可以用于数据分析以及作为其他算法的预处理步骤。</p>
+<p>聚类是一种无监督学习的算法，目标是将没有标签的数据分成若干个簇，并且<strong>让簇内的数据尽可能相似，而让簇间的数据尽可能不相似</strong>(这也是聚类算法设计的基本原则)。聚类可以用于数据分析以及作为其他算法的预处理步骤。</p>周炜
 <p>聚类算法主要可以分成这样几类：</p>
 <ul>
 <li>Partition方法，将数据进行划分并用某些指标来评估，然后学习到好的聚类</li>

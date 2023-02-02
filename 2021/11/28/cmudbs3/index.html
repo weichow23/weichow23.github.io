@@ -1,4 +1,20 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统3：查询处理 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU数据库课程15-445的第二个大的部分，主要讲数据库中的索引相关的内容，在2021秋的课程里应该对应Lecture09-Lecture12     数据库系统处理查询的时候经常需要进行的操作有排序，聚合和连接(Join)，下面先简单说一下每一种操作的不同实现方式。 常见的查询操作 排序 数据库系统往往需要对数据元组进行排序，而比如面临ORDER BY，GROUP BY"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/28/cmudbs3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统3：查询处理"><meta property="og:url" content="http://zhang-each.github.io/2021/11/28/cmudbs3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU数据库课程15-445的第二个大的部分，主要讲数据库中的索引相关的内容，在2021秋的课程里应该对应Lecture09-Lecture12     数据库系统处理查询的时候经常需要进行的操作有排序，聚合和连接(Join)，下面先简单说一下每一种操作的不同实现方式。 常见的查询操作 排序 数据库系统往往需要对数据元组进行排序，而比如面临ORDER BY，GROUP BY"><meta property="og:image" content="http://zhang-each.github.io/img/cover/111.svg"><meta property="article:published_time" content="2021-11-28T08:52:42.000Z"><meta property="article:modified_time" content="2021-11-28T08:55:13.436Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统3：查询处理 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU数据库课程15-445的第二个大的部分，主要讲数据库中的索引相关的内容，在2021秋的课程里应该对应Lecture09-Lecture12周炜
+ 
+ 
+ 
+ 
+ 数据库系统处理查询的时候经常需要进行的操作有排序，聚合和连接(Join)，下面先简单说一下每一种操作的不同实现方式。
+ 常见的查询操作
+ 排序
+ 数据库系统往往需要对数据元组进行排序，而比如面临ORDER BY，GROUP BY"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/28/cmudbs3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统3：查询处理"><meta property="og:url" content="http://zhang-each.github.io/2021/11/28/cmudbs3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU数据库课程15-445的第二个大的部分，主要讲数据库中的索引相关的内容，在2021秋的课程里应该对应Lecture09-Lecture12
+ 
+ 
+ 
+ 
+ 数据库系统处理查询的时候经常需要进行的操作有排序，聚合和连接(Join)，下面先简单说一下每一种操作的不同实现方式。
+ 常见的查询操作
+ 排序
+ 数据库系统往往需要对数据元组进行排序，而比如面临ORDER BY，GROUP BY"><meta property="og:image" content="http://zhang-each.github.io/img/cover/111.svg"><meta property="article:published_time" content="2021-11-28T08:52:42.000Z"><meta property="article:modified_time" content="2021-11-28T08:55:13.436Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -194,7 +210,7 @@ mjx-status {
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
-  line-height: normal;
+  line-height: normal;周炜
   overflow: visible;
 }
 
@@ -478,7 +494,7 @@ mjx-container[display="true"] + br {
 <figure>
 <img src= "/img/loading.gif" data-src="image-20211128151519561.png" alt="pipeline"><figcaption aria-hidden="true">pipeline</figcaption>
 </figure>
-<h5 id="混合并行化">混合并行化</h5>
+<h5 id="混合并行化">混合并行化</h5>周炜
 <p>其实就是将上面两种方法相结合，在这种模式下，工作者同时执行来自查询计划的不同段的多个操作符。</p>
 <figure>
 <img src= "/img/loading.gif" data-src="image-20211128151532963.png" alt="bushy"><figcaption aria-hidden="true">bushy</figcaption>

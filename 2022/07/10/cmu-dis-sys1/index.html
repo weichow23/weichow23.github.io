@@ -1,4 +1,14 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 分布式系统1：Introduction | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CMU的15&#x2F;440是一门分布式系统的入门课程，我一直对这个领域有点兴趣，想通过公开课来学习，不过MIT的6.824似乎难度较大，对我这种菜鸡不太友好，所以先找了一门听说比6.824容易一点的课来学一学。  什么是分布式系统？ 分布式系统是什么？这门课程给出的定义如下：  A collection of independent computers that appears to it"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/07/10/cmu-dis-sys1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 分布式系统1：Introduction"><meta property="og:url" content="http://zhang-each.github.io/2022/07/10/cmu-dis-sys1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CMU的15&#x2F;440是一门分布式系统的入门课程，我一直对这个领域有点兴趣，想通过公开课来学习，不过MIT的6.824似乎难度较大，对我这种菜鸡不太友好，所以先找了一门听说比6.824容易一点的课来学一学。  什么是分布式系统？ 分布式系统是什么？这门课程给出的定义如下：  A collection of independent computers that appears to it"><meta property="og:image" content="http://zhang-each.github.io/cover/2.png"><meta property="article:published_time" content="2022-07-10T06:37:36.000Z"><meta property="article:modified_time" content="2022-08-21T06:44:18.155Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 分布式系统1：Introduction | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CMU的15&#x2F;440是一门分布式系统的入门课程，我一直对这个领域有点兴趣，想通过公开课来学习，不过MIT的6.824似乎难度较大，对我这种菜鸡不太友好，所以先找了一门听说比6.824容易一点的课来学一学。周炜
+ 
+ 什么是分布式系统？
+ 分布式系统是什么？这门课程给出的定义如下：
+ 
+ A collection of independent computers that appears to it"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/07/10/cmu-dis-sys1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 分布式系统1：Introduction"><meta property="og:url" content="http://zhang-each.github.io/2022/07/10/cmu-dis-sys1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CMU的15&#x2F;440是一门分布式系统的入门课程，我一直对这个领域有点兴趣，想通过公开课来学习，不过MIT的6.824似乎难度较大，对我这种菜鸡不太友好，所以先找了一门听说比6.824容易一点的课来学一学。
+ 
+ 什么是分布式系统？
+ 分布式系统是什么？这门课程给出的定义如下：
+ 
+ A collection of independent computers that appears to it"><meta property="og:image" content="http://zhang-each.github.io/cover/2.png"><meta property="article:published_time" content="2022-07-10T06:37:36.000Z"><meta property="article:modified_time" content="2022-08-21T06:44:18.155Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -200,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 .MathJax path {
   stroke-width: 3;
-}
+}周炜
 
 mjx-container[display="true"] {
   overflow: auto hidden;
@@ -240,7 +250,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>开放性问题。一个开放的分布式系统根据描述这些服务的语法和语义的标准规则来提供服务。也就是说，系统的接口是明确规定的，并且可以免费使用。这就需要分布式系统具有良好的接口定义和编程规范，同时，一个开放的系统应该具有：
 <ul>
-<li>互操作性<strong>Interoperability</strong>，允许两个不同的系统或者应用同时进行工作</li>
+<li>互操作性<strong>Interoperability</strong>，允许两个不同的系统或者应用同时进行工作</li>周炜
 <li>可移植性<strong>Portability</strong>，一个设计了要运行分布式系统的应用，在使用另一个实现了等效接口的分布式系统中依然可以正常运行</li>
 <li>可扩展性<strong>Extensibility</strong>，系统应该允许方便地添加新的组建和特征</li>
 </ul></li>

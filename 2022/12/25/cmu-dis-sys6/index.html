@@ -1,4 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 Distributed Systems 6：DFS | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="分布式系统课程15-440学习笔记6，这一部分内容主要讲了分布式文件系统的内容。  Introduction 分布式文件系统(Distributed File System, DFS)是指部署在分布式系统中的文件系统，我们可以通过DFS提供的文件系统接口来访问存储在服务器(是一个分布式系统)上的文件。 文件系统接口提供的操作主要包括：  文件的打开和关闭，文件统计信息的读取 从文"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/12/25/cmu-dis-sys6/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 Distributed Systems 6：DFS"><meta property="og:url" content="http://zhang-each.github.io/2022/12/25/cmu-dis-sys6/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="分布式系统课程15-440学习笔记6，这一部分内容主要讲了分布式文件系统的内容。  Introduction 分布式文件系统(Distributed File System, DFS)是指部署在分布式系统中的文件系统，我们可以通过DFS提供的文件系统接口来访问存储在服务器(是一个分布式系统)上的文件。 文件系统接口提供的操作主要包括：  文件的打开和关闭，文件统计信息的读取 从文"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2022-12-25T10:11:46.000Z"><meta property="article:modified_time" content="2022-12-31T11:13:54.324Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 Distributed Systems 6：DFS | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="分布式系统课程15-440学习笔记6，这一部分内容主要讲了分布式文件系统的内容。周炜
+ 
+ Introduction
+ 分布式文件系统(Distributed File System, DFS)是指部署在分布式系统中的文件系统，我们可以通过DFS提供的文件系统接口来访问存储在服务器(是一个分布式系统)上的文件。
+ 文件系统接口提供的操作主要包括：
+ 
+ 文件的打开和关闭，文件统计信息的读取
+ 从文"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/12/25/cmu-dis-sys6/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 Distributed Systems 6：DFS"><meta property="og:url" content="http://zhang-each.github.io/2022/12/25/cmu-dis-sys6/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="分布式系统课程15-440学习笔记6，这一部分内容主要讲了分布式文件系统的内容。
+ 
+ Introduction
+ 分布式文件系统(Distributed File System, DFS)是指部署在分布式系统中的文件系统，我们可以通过DFS提供的文件系统接口来访问存储在服务器(是一个分布式系统)上的文件。
+ 文件系统接口提供的操作主要包括：
+ 
+ 文件的打开和关闭，文件统计信息的读取
+ 从文"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2022-12-25T10:11:46.000Z"><meta property="article:modified_time" content="2022-12-31T11:13:54.324Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -196,7 +210,7 @@ foreignObject[data-mjx-xml] {
   font-family: initial;
   line-height: normal;
   overflow: visible;
-}
+}周炜
 
 .MathJax path {
   stroke-width: 3;
@@ -263,7 +277,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li><strong>Broadcast invalidations</strong>，当有文件被更新的时候，要通知每个cache了这个文件的客户端更新cache中的内容，这个方法简单并且能保证严格的一致性，但是会带来很多无效的网络通信，不够scalable</li>
 <li><strong>Check on use</strong>，客户端在使用某些数据之前先在服务端进行确认，但它和上面的方法一样不够有效率</li>
-<li><strong>Callbacks</strong>，回调，客户端需要在服务端进行注册，表明我有一份文件的拷贝，当服务端通知客户端这份文件无效的时候，这个拷贝就失效了，这种方法以服务端的形式维持系统的一致性，但是如果服务端崩溃了，就会失去之前的所有回调信息，这时候可以<strong>依靠客户端来重建服务端的回调信息</strong>。如果客户端崩溃了，就必须重新验证它所使用的任何cache，因为它可能有错过了回调。AFS实际上用的是这一种方案</li>
+<li><strong>Callbacks</strong>，回调，客户端需要在服务端进行注册，表明我有一份文件的拷贝，当服务端通知客户端这份文件无效的时候，这个拷贝就失效了，这种方法以服务端的形式维持系统的一致性，但是如果服务端崩溃了，就会失去之前的所有回调信息，这时候可以<strong>依靠客户端来重建服务端的回调信息</strong>。如果客户端崩溃了，就必须重新验证它所使用的任何cache，因为它可能有错过了回调。AFS实际上用的是这一种方案</li>周炜
 <li><strong>Leases</strong>，租约，对每个cache file设定一个有效期限(相当于从服务端租来了这个文件)，当时间到期了之后，客户端就需要向服务端要求更新缓存的数据。同时，这里的租约还可以分为<strong>读租约和写租约</strong>，为了保证系统的一致性，可以同时有多个客户端获得读租约，但是只有一个客户端才能获得写租约。</li>
 </ul>
 <h4 id="caching-v2">Caching V2</h4>

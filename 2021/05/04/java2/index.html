@@ -1,4 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java应用技术2：类和对象 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Java应用技术2：类和对象 RandomStar Chapter 3. Java OOP 3.1 类和对象 3.1.1 类的定义和初始化  一个对象拥有状态(state)和行为(behavior)两个属性，状态定义了对象的内容，表现定义了对象可以进行哪些操作，类就是用于定义同一类对象的  Java中用变量定义状态，用方法定义行为 Java中的类也有构造函数，在对象构造的时候调用"><meta name="keywords" content="Java,编程语言,浙江大学"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/java2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Java应用技术2：类和对象"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/java2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Java应用技术2：类和对象 RandomStar Chapter 3. Java OOP 3.1 类和对象 3.1.1 类的定义和初始化  一个对象拥有状态(state)和行为(behavior)两个属性，状态定义了对象的内容，表现定义了对象可以进行哪些操作，类就是用于定义同一类对象的  Java中用变量定义状态，用方法定义行为 Java中的类也有构造函数，在对象构造的时候调用"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T01:11:38.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:35.019Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java应用技术2：类和对象 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Java应用技术2：类和对象周炜
+ RandomStar
+ Chapter 3. Java OOP
+ 3.1 类和对象
+ 3.1.1 类的定义和初始化
+ 
+ 一个对象拥有状态(state)和行为(behavior)两个属性，状态定义了对象的内容，表现定义了对象可以进行哪些操作，类就是用于定义同一类对象的
+ 
+ Java中用变量定义状态，用方法定义行为
+ Java中的类也有构造函数，在对象构造的时候调用"><meta name="keywords" content="Java,编程语言,浙江大学"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/java2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Java应用技术2：类和对象"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/java2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Java应用技术2：类和对象
+ RandomStar
+ Chapter 3. Java OOP
+ 3.1 类和对象
+ 3.1.1 类的定义和初始化
+ 
+ 一个对象拥有状态(state)和行为(behavior)两个属性，状态定义了对象的内容，表现定义了对象可以进行哪些操作，类就是用于定义同一类对象的
+ 
+ Java中用变量定义状态，用方法定义行为
+ Java中的类也有构造函数，在对象构造的时候调用"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T01:11:38.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:35.019Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -192,7 +210,7 @@ mjx-status {
   color: black;
 }
 
-foreignObject[data-mjx-xml] {
+foreignObject[data-mjx-xml] {周炜
   font-family: initial;
   line-height: normal;
   overflow: visible;
@@ -714,7 +732,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>如果实现接口的类是抽象类，就可以先不用实现</li>
 <li>一个类可以有多个接口，但是只能继承自一个类</li>
-</ul></li>
+</ul></li>周炜
 <li>marker interface 标记接口
 <ul>
 <li><strong>没有任何方法和属性</strong>的接口，仅仅表明它的类属于某个特定的类型，这个接口只起到了标记作为</li>

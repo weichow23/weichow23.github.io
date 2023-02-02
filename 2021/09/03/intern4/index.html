@@ -1,4 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2021暑期实习总结 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="经历了一段比较无聊的暑期实习，目前已经跑路，总的来说对这段实习比较失望，来记录一下实习过程中学过的一些东西(都来源于网络公开内容，不属于公司内部资料)     实习笔记1：GPU的体系架构  在阿里云基础平台开发实习期间学习的一些笔记，当然处于保密性原则，这些笔记只包含网络中可以搜索的公开内容，不包含任何涉密信息。  ​ GPU是图形处理单元(Graph Processing"><meta name="keywords" content="操作系统,计算机网络,计算机系统,实习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/09/03/intern4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="2021暑期实习总结"><meta property="og:url" content="http://zhang-each.github.io/2021/09/03/intern4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="经历了一段比较无聊的暑期实习，目前已经跑路，总的来说对这段实习比较失望，来记录一下实习过程中学过的一些东西(都来源于网络公开内容，不属于公司内部资料)     实习笔记1：GPU的体系架构  在阿里云基础平台开发实习期间学习的一些笔记，当然处于保密性原则，这些笔记只包含网络中可以搜索的公开内容，不包含任何涉密信息。  ​ GPU是图形处理单元(Graph Processing"><meta property="og:image" content="http://zhang-each.github.io/img/cover/15.jpg"><meta property="article:published_time" content="2021-09-03T15:54:35.000Z"><meta property="article:modified_time" content="2021-09-03T16:10:22.706Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2021暑期实习总结 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="经历了一段比较无聊的暑期实习，目前已经跑路，总的来说对这段实习比较失望，来记录一下实习过程中学过的一些东西(都来源于网络公开内容，不属于公司内部资料)周炜
+ 
+ 
+ 
+ 
+ 实习笔记1：GPU的体系架构
+ 
+ 在阿里云基础平台开发实习期间学习的一些笔记，当然处于保密性原则，这些笔记只包含网络中可以搜索的公开内容，不包含任何涉密信息。
+ 
+ ​ GPU是图形处理单元(Graph Processing"><meta name="keywords" content="操作系统,计算机网络,计算机系统,实习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/09/03/intern4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="2021暑期实习总结"><meta property="og:url" content="http://zhang-each.github.io/2021/09/03/intern4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="经历了一段比较无聊的暑期实习，目前已经跑路，总的来说对这段实习比较失望，来记录一下实习过程中学过的一些东西(都来源于网络公开内容，不属于公司内部资料)
+ 
+ 
+ 
+ 
+ 实习笔记1：GPU的体系架构
+ 
+ 在阿里云基础平台开发实习期间学习的一些笔记，当然处于保密性原则，这些笔记只包含网络中可以搜索的公开内容，不包含任何涉密信息。
+ 
+ ​ GPU是图形处理单元(Graph Processing"><meta property="og:image" content="http://zhang-each.github.io/img/cover/15.jpg"><meta property="article:published_time" content="2021-09-03T15:54:35.000Z"><meta property="article:modified_time" content="2021-09-03T16:10:22.706Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -192,7 +210,7 @@ mjx-status {
   color: black;
 }
 
-foreignObject[data-mjx-xml] {
+foreignObject[data-mjx-xml] {周炜
   font-family: initial;
   line-height: normal;
   overflow: visible;
@@ -328,7 +346,7 @@ mjx-container[display="true"] + br {
 <p>​ libfuse是一个实现了Linux FUSE系统的开源项目，其中FUSE的内核代码在Linux Kernel的仓库中维护，而用户态的库在<a target="_blank" rel="noopener" href="https://github.com/libfuse/libfuse">这个仓库</a>中进行维护，这个用户态的库提供了挂起/卸载文件系统、从内核中读取请求并且发送回复等功能。</p>
 <figure>
 <img src= "/img/loading.gif" data-src="image-20210729163634704.png" alt="image-20210729163634704"><figcaption aria-hidden="true">image-20210729163634704</figcaption>
-</figure>
+</figure>周炜
 <p>​ 同时linfuse提供了高级和低级两套api系统，高级api是同步的，低级的api是异步的，但是二者都使用了回调的方式将内核发送过来的请求传递到了主程序中，当使用高级api的时候这些回调通过文件名和路径来执行，并且在回调函数返回的时候结束一个请求的处理过程，而低级api往往是通过inode来调用并且必须用一些独立的api函数来显式地进行返回。</p>
 <h2 id="系统调用拦截syscall-intercept">系统调用拦截(Syscall Intercept)</h2>
 <p>​ libsyscall_intercept是一个开源的系统调用拦截库，提供了一个低层级的接口用于在用户空间中阻断系统调用。这个过程是通过对进程内存中的机器代码打上热补丁的方式进行了，同时这个库还停工了在用户空间实现几乎所有系统调用的功能，并且api比较简单，形式如下：</p>

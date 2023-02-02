@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS144-计算机网络Lab1：流重组器 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Stanford CS144 Introduction to Computer Network课程Project的lab1，这个lab需要我们实现一个流重组器(Stream Assembler)对分段的字符串进行重组，这个结构在后续的lab中非常重要     Overview 在lab0中，我们实现了一个可信的顺序字节流数据结构，然而，网络通信可能是best-effort的，发送的"><meta name="keywords" content="计算机网络,计算机系统,TCP/IP,C++"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/12/31/sponge1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS144-计算机网络Lab1：流重组器"><meta property="og:url" content="http://zhang-each.github.io/2021/12/31/sponge1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Stanford CS144 Introduction to Computer Network课程Project的lab1，这个lab需要我们实现一个流重组器(Stream Assembler)对分段的字符串进行重组，这个结构在后续的lab中非常重要     Overview 在lab0中，我们实现了一个可信的顺序字节流数据结构，然而，网络通信可能是best-effort的，发送的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/1.jpg"><meta property="article:published_time" content="2021-12-31T11:01:45.000Z"><meta property="article:modified_time" content="2022-01-15T10:39:56.686Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS144-计算机网络Lab1：流重组器 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Stanford CS144 Introduction to Computer Network课程Project的lab1，这个lab需要我们实现一个流重组器(Stream Assembler)对分段的字符串进行重组，这个结构在后续的lab中非常重要周炜
+ 
+ 
+ 
+ 
+ Overview
+ 在lab0中，我们实现了一个可信的顺序字节流数据结构，然而，网络通信可能是best-effort的，发送的"><meta name="keywords" content="计算机网络,计算机系统,TCP/IP,C++"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/12/31/sponge1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS144-计算机网络Lab1：流重组器"><meta property="og:url" content="http://zhang-each.github.io/2021/12/31/sponge1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Stanford CS144 Introduction to Computer Network课程Project的lab1，这个lab需要我们实现一个流重组器(Stream Assembler)对分段的字符串进行重组，这个结构在后续的lab中非常重要
+ 
+ 
+ 
+ 
+ Overview
+ 在lab0中，我们实现了一个可信的顺序字节流数据结构，然而，网络通信可能是best-effort的，发送的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/1.jpg"><meta property="article:published_time" content="2021-12-31T11:01:45.000Z"><meta property="article:modified_time" content="2022-01-15T10:39:56.686Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -235,7 +247,7 @@ mjx-container[display="true"] + br {
 <p>总的来说，ByteStream存储的内容和未整流的segment的关系如下图所示：</p>
 <figure>
 <img src= "/img/loading.gif" data-src="image-20211231000601186.png" alt="image-20211231000601186"><figcaption aria-hidden="true">image-20211231000601186</figcaption>
-</figure>
+</figure>周炜
 <h3 id="代码实现">代码实现</h3>
 <p>首先我们需要在类中定义一些变量来实现StreamReassembler的功能，最关键的其实就是如何保存没有整流的数据，而网上很多公开的实现自己定义了一个类Segment并定义了每个Segment的开始index和结束index，然后用一个set来存储这些segment，虽然很合理但是也有点麻烦，我们这里采用了一个string直接来存储没有整流的字节，然后用一个bool类型的数组filled来标注这个临时string每个位置上的使用情况，用一个ByteStream来存储最终输出的结果。然后再定义一些其他变量，比如剩余的字节数量<code>_left_bytes</code>，还有流重组器每次整理的开始位置的标志<code>_start</code> 和EOF的标志等等。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StreamReassembler</span> {</span></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// Your code here -- add private members as necessary.</span></span><br><span class="line">    ByteStream _output;  <span class="comment">//!&lt; The reassembled in-order byte stream</span></span><br><span class="line">    <span class="keyword">size_t</span> _capacity;    <span class="comment">//!&lt; The maximum number of bytes</span></span><br><span class="line">    std::string _buffer;</span><br><span class="line">    <span class="keyword">uint64_t</span> _start, _start_index;</span><br><span class="line">    <span class="keyword">uint64_t</span> _left_bytes;</span><br><span class="line">    <span class="keyword">bool</span> _eof;</span><br><span class="line">    std::unique_ptr&lt;<span class="keyword">bool</span>[]&gt; _filled{};</span><br><span class="line">}</span><br></pre></td></tr></table></figure>

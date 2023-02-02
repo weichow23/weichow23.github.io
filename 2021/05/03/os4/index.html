@@ -1,4 +1,24 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统4：磁盘与I/O | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter 10. File-System Interface 10.1 文件  文件是存储在某种介质上的并且具有文件名的一组信息的集合，分为数据和程序  文件具有很多属性，比如name，type，location，size，protection等等 文件是一种抽象数据类型，可以进行创建、读写、删除等操作 打开文件需要：  文件指针，指向上次读写位置的指针 文件打开次数的计"><meta name="keywords" content="操作系统,计算机系统,浙江大学,Linux"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/os4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="操作系统4：磁盘与I/O"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/os4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter 10. File-System Interface 10.1 文件  文件是存储在某种介质上的并且具有文件名的一组信息的集合，分为数据和程序  文件具有很多属性，比如name，type，location，size，protection等等 文件是一种抽象数据类型，可以进行创建、读写、删除等操作 打开文件需要：  文件指针，指向上次读写位置的指针 文件打开次数的计"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T15:07:46.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:07.899Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统4：磁盘与I/O | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter 10. File-System Interface周炜
+ 10.1 文件
+ 
+ 文件是存储在某种介质上的并且具有文件名的一组信息的集合，分为数据和程序
+ 
+ 文件具有很多属性，比如name，type，location，size，protection等等
+ 文件是一种抽象数据类型，可以进行创建、读写、删除等操作
+ 打开文件需要：
+ 
+ 文件指针，指向上次读写位置的指针
+ 文件打开次数的计"><meta name="keywords" content="操作系统,计算机系统,浙江大学,Linux"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/os4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="操作系统4：磁盘与I/O"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/os4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter 10. File-System Interface
+ 10.1 文件
+ 
+ 文件是存储在某种介质上的并且具有文件名的一组信息的集合，分为数据和程序
+ 
+ 文件具有很多属性，比如name，type，location，size，protection等等
+ 文件是一种抽象数据类型，可以进行创建、读写、删除等操作
+ 打开文件需要：
+ 
+ 文件指针，指向上次读写位置的指针
+ 文件打开次数的计"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T15:07:46.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:07.899Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -190,7 +210,7 @@ mjx-status {
   font-size: 90%;
   background-color: #F8F8F8;
   color: black;
-}
+}周炜
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
@@ -520,7 +540,7 @@ mjx-container[display="true"] + br {
 <li>解决了CPU和I/O设备的速度失配问题，需要管理缓冲区的创建、分配和释放</li>
 <li>单缓冲、双缓冲、多缓冲、缓冲池</li>
 </ul></li>
-<li>假脱机SPOOLing 用来保存设备输出的缓冲，这些设备如打印机不能接收交叉的数据流</li>
+<li>假脱机SPOOLing 用来保存设备输出的缓冲，这些设备如打印机不能接收交叉的数据流</li>周炜
 <li>内核中需要维护一些I/O相关的数据结构，保存留I/O组件使用的状态信息，包括打开文件表，网络连接，字符设备状态等</li>
 </ul></li>
 <li><p>进程从磁盘中读取一个文件的过程</p></li>

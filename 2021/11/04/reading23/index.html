@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记23：Graphformer | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文《Do Transformers Really Perform Bad for Graph Representation?》的阅读笔记，该论文发表在NIPS2021上，提出了一种新的图Transformer架构，对原有的GNN和Graph-Transformer等架构进行了总结和改进。     Introduction Transformer是近几年来人工智能领域极度热门的一个"><meta name="keywords" content="人工智能,深度学习,图神经网络,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/04/reading23/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记23：Graphformer"><meta property="og:url" content="http://zhang-each.github.io/2021/11/04/reading23/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文《Do Transformers Really Perform Bad for Graph Representation?》的阅读笔记，该论文发表在NIPS2021上，提出了一种新的图Transformer架构，对原有的GNN和Graph-Transformer等架构进行了总结和改进。     Introduction Transformer是近几年来人工智能领域极度热门的一个"><meta property="og:image" content="http://zhang-each.github.io/img/cover/16.jpg"><meta property="article:published_time" content="2021-11-04T12:53:10.000Z"><meta property="article:modified_time" content="2021-11-04T13:26:01.050Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记23：Graphformer | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文《Do Transformers Really Perform Bad for Graph Representation?》的阅读笔记，该论文发表在NIPS2021上，提出了一种新的图Transformer架构，对原有的GNN和Graph-Transformer等架构进行了总结和改进。周炜
+ 
+ 
+ 
+ 
+ Introduction
+ Transformer是近几年来人工智能领域极度热门的一个"><meta name="keywords" content="人工智能,深度学习,图神经网络,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/04/reading23/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记23：Graphformer"><meta property="og:url" content="http://zhang-each.github.io/2021/11/04/reading23/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文《Do Transformers Really Perform Bad for Graph Representation?》的阅读笔记，该论文发表在NIPS2021上，提出了一种新的图Transformer架构，对原有的GNN和Graph-Transformer等架构进行了总结和改进。
+ 
+ 
+ 
+ 
+ Introduction
+ Transformer是近几年来人工智能领域极度热门的一个"><meta property="og:image" content="http://zhang-each.github.io/img/cover/16.jpg"><meta property="article:published_time" content="2021-11-04T12:53:10.000Z"><meta property="article:modified_time" content="2021-11-04T13:26:01.050Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -300,7 +312,7 @@ mjx-container[display="true"] + br {
 <tbody>
 <tr class="odd">
 <td>数据集</td>
-<td>OGB-LSC和PCQM4M-LSC，两个特别大规模的图数据集</td>
+<td>OGB-LSC和PCQM4M-LSC，两个特别大规模的图数据集</td>周炜
 </tr>
 <tr class="even">
 <td>Baseline</td>

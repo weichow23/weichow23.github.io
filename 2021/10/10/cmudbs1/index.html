@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统1：数据存储 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="15-445是CMU非常著名的数据库系统课程，本节内容是其中的第一部分数据存储部分的笔记，包括了数据在磁盘上的存储和在内存中的管理。     计算机中的存储 CMU15-445的主题是数据库系统，实际上关键就是面向磁盘存储的数据库系统(特别是关系型数据库)，而数据库的存储的主要研究对象也是面向磁盘的数据库管理系统架构，所谓的面向磁盘存储就是说数据库中的数据存储在非易失性的磁盘中。"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/10/cmudbs1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统1：数据存储"><meta property="og:url" content="http://zhang-each.github.io/2021/10/10/cmudbs1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="15-445是CMU非常著名的数据库系统课程，本节内容是其中的第一部分数据存储部分的笔记，包括了数据在磁盘上的存储和在内存中的管理。     计算机中的存储 CMU15-445的主题是数据库系统，实际上关键就是面向磁盘存储的数据库系统(特别是关系型数据库)，而数据库的存储的主要研究对象也是面向磁盘的数据库管理系统架构，所谓的面向磁盘存储就是说数据库中的数据存储在非易失性的磁盘中。"><meta property="og:image" content="http://zhang-each.github.io/img/cover/20.jpg"><meta property="article:published_time" content="2021-10-10T14:42:43.000Z"><meta property="article:modified_time" content="2021-11-03T15:09:01.917Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统1：数据存储 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="15-445是CMU非常著名的数据库系统课程，本节内容是其中的第一部分数据存储部分的笔记，包括了数据在磁盘上的存储和在内存中的管理。周炜
+ 
+ 
+ 
+ 
+ 计算机中的存储
+ CMU15-445的主题是数据库系统，实际上关键就是面向磁盘存储的数据库系统(特别是关系型数据库)，而数据库的存储的主要研究对象也是面向磁盘的数据库管理系统架构，所谓的面向磁盘存储就是说数据库中的数据存储在非易失性的磁盘中。"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/10/cmudbs1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统1：数据存储"><meta property="og:url" content="http://zhang-each.github.io/2021/10/10/cmudbs1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="15-445是CMU非常著名的数据库系统课程，本节内容是其中的第一部分数据存储部分的笔记，包括了数据在磁盘上的存储和在内存中的管理。
+ 
+ 
+ 
+ 
+ 计算机中的存储
+ CMU15-445的主题是数据库系统，实际上关键就是面向磁盘存储的数据库系统(特别是关系型数据库)，而数据库的存储的主要研究对象也是面向磁盘的数据库管理系统架构，所谓的面向磁盘存储就是说数据库中的数据存储在非易失性的磁盘中。"><meta property="og:image" content="http://zhang-each.github.io/img/cover/20.jpg"><meta property="article:published_time" content="2021-10-10T14:42:43.000Z"><meta property="article:modified_time" content="2021-11-03T15:09:01.917Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -376,7 +388,7 @@ mjx-container[display="true"] + br {
 <h4 id="操作系统api">操作系统API</h4>
 <p>一般数据库系统直接使用操作系统提供的API进行读写，同时操作系统还提供了文件系统的cache和页的cache可以提高查询的效率</p>
 <h3 id="缓冲区的替换策略">缓冲区的替换策略</h3>
-<p>一般来说缓冲池中的块的数量是有一个上限的，而随着新的查询需要新的块读入内存，就会出现缓冲池的帧被用完的情况，这个时候就需要采取一定的策略对已有的页进行替换，常见的替换策略有：</p>
+<p>一般来说缓冲池中的块的数量是有一个上限的，而随着新的查询需要新的块读入内存，就会出现缓冲池的帧被用完的情况，这个时候就需要采取一定的策略对已有的页进行替换，常见的替换策略有：</p>周炜
 <ul>
 <li>LRU最近最少使用，给每个页维护一个时间戳记录每个页上一次被调用的时间，在替换的时候替换掉上次使用时间距今最远的一个块</li>
 <li>CLOCK，是LRU的一个替代方法，不需要维护每个页的时间戳，而是使用一个引用位来标记，如果一个页被访问了，就把这个引用位标记成1，然后在需要替换的时候用一个“时针”对buffer进行顺序扫描，如果碰到一个标记为1的块就将其引用位重制成0然后换出，并且保留时针的位置(实际上就是使用循环队列)</li>

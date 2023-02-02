@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记32：提示学习Prompt | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="综述论文《Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing》的阅读笔记，来简单了解一下去年听说很热门的Prompt是个什么东西。     Introduction: NLP范式的变迁 NLP领域的范式(Paradigms)经过"><meta name="keywords" content="人工智能,深度学习,自然语言处理,预训练"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/01/27/reading32/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记32：提示学习Prompt"><meta property="og:url" content="http://zhang-each.github.io/2022/01/27/reading32/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="综述论文《Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing》的阅读笔记，来简单了解一下去年听说很热门的Prompt是个什么东西。     Introduction: NLP范式的变迁 NLP领域的范式(Paradigms)经过"><meta property="og:image" content="http://zhang-each.github.io/img/cover/1.jpg"><meta property="article:published_time" content="2022-01-27T06:00:14.000Z"><meta property="article:modified_time" content="2022-03-01T14:08:57.332Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记32：提示学习Prompt | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="综述论文《Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing》的阅读笔记，来简单了解一下去年听说很热门的Prompt是个什么东西。周炜
+ 
+ 
+ 
+ 
+ Introduction: NLP范式的变迁
+ NLP领域的范式(Paradigms)经过"><meta name="keywords" content="人工智能,深度学习,自然语言处理,预训练"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/01/27/reading32/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记32：提示学习Prompt"><meta property="og:url" content="http://zhang-each.github.io/2022/01/27/reading32/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="综述论文《Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing》的阅读笔记，来简单了解一下去年听说很热门的Prompt是个什么东西。
+ 
+ 
+ 
+ 
+ Introduction: NLP范式的变迁
+ NLP领域的范式(Paradigms)经过"><meta property="og:image" content="http://zhang-each.github.io/img/cover/1.jpg"><meta property="article:published_time" content="2022-01-27T06:00:14.000Z"><meta property="article:modified_time" content="2022-03-01T14:08:57.332Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -388,7 +400,7 @@ mjx-container[display="true"] + br {
 </tr>
 <tr class="odd">
 <td>Fix-prompt LM Tuning</td>
-<td>Prompt的参数不变，调整PLM的参数</td>
+<td>Prompt的参数不变，调整PLM的参数</td>周炜
 <td>提示工程和答案工程的效果会更好，并且可以更有效的学习</td>
 <td>依然需要提示工程和答案工程，同时泛化能力可能不好，在一个下游任务上微调的参数不一定适合另一个任务</td>
 </tr>

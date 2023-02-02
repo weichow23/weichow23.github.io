@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS231N-Assignment札记6：模型可视化和GAN | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Stanford2021年春季课程CS231N:Convolutional Neural Networks for Visual Recognition的一些作业笔记，这门课的作业围绕视觉相关的任务，需要从底层手动实现一大批经典机器学习算法和神经网络模型，本文是作业的第六部分，包含了GAN的实现和手写数字生成等具体的任务。     神经网络模型的可视化 其实在做GAN之前还有一个任"><meta name="keywords" content="人工智能,机器学习,深度学习,神经网络,计算机视觉,对抗学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/13/dlnn6/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS231N-Assignment札记6：模型可视化和GAN"><meta property="og:url" content="http://zhang-each.github.io/2021/11/13/dlnn6/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Stanford2021年春季课程CS231N:Convolutional Neural Networks for Visual Recognition的一些作业笔记，这门课的作业围绕视觉相关的任务，需要从底层手动实现一大批经典机器学习算法和神经网络模型，本文是作业的第六部分，包含了GAN的实现和手写数字生成等具体的任务。     神经网络模型的可视化 其实在做GAN之前还有一个任"><meta property="og:image" content="http://zhang-each.github.io/img/cover/4.jpg"><meta property="article:published_time" content="2021-11-13T06:09:52.000Z"><meta property="article:modified_time" content="2021-11-13T11:21:03.650Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS231N-Assignment札记6：模型可视化和GAN | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Stanford2021年春季课程CS231N:Convolutional Neural Networks for Visual Recognition的一些作业笔记，这门课的作业围绕视觉相关的任务，需要从底层手动实现一大批经典机器学习算法和神经网络模型，本文是作业的第六部分，包含了GAN的实现和手写数字生成等具体的任务。周炜
+ 
+ 
+ 
+ 
+ 神经网络模型的可视化
+ 其实在做GAN之前还有一个任"><meta name="keywords" content="人工智能,机器学习,深度学习,神经网络,计算机视觉,对抗学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/13/dlnn6/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS231N-Assignment札记6：模型可视化和GAN"><meta property="og:url" content="http://zhang-each.github.io/2021/11/13/dlnn6/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Stanford2021年春季课程CS231N:Convolutional Neural Networks for Visual Recognition的一些作业笔记，这门课的作业围绕视觉相关的任务，需要从底层手动实现一大批经典机器学习算法和神经网络模型，本文是作业的第六部分，包含了GAN的实现和手写数字生成等具体的任务。
+ 
+ 
+ 
+ 
+ 神经网络模型的可视化
+ 其实在做GAN之前还有一个任"><meta property="og:image" content="http://zhang-each.github.io/img/cover/4.jpg"><meta property="article:published_time" content="2021-11-13T06:09:52.000Z"><meta property="article:modified_time" content="2021-11-13T11:21:03.650Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -288,7 +300,7 @@ mjx-container[display="true"] + br {
 <li>BatchNorm</li>
 <li>Fully connected with output size 7 x 7 x 128</li>
 <li>ReLU</li>
-<li>BatchNorm</li>
+<li>BatchNorm</li>周炜
 <li>Reshape into Image Tensor of shape 7, 7, 128</li>
 <li>Conv2D^T (Transpose): 64 filters of 4x4, stride 2, 'same' padding (use <code>padding=1</code>)</li>
 <li><code>ReLU</code></li>

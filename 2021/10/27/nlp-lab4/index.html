@@ -1,4 +1,20 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS224N-Assignment4札记：基于注意力的Seq2Seq机器翻译 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="做Stanford CS224N Deep Learning for NLP课程的作业的一些笔记，第三部分是Assignment4，这个作业实现了一个基于Attention机制的Seq2Seq模型用于实现机器翻译。     模型概览 这次的作业是利用PyTorch框架实现一个有注意力机制的Seq2Seq模型，并用于翻译任务。要实现的模型的总体架构如下图所示：  image-20"><meta name="keywords" content="人工智能,深度学习,神经网络,自然语言处理"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/27/nlp-lab4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS224N-Assignment4札记：基于注意力的Seq2Seq机器翻译"><meta property="og:url" content="http://zhang-each.github.io/2021/10/27/nlp-lab4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="做Stanford CS224N Deep Learning for NLP课程的作业的一些笔记，第三部分是Assignment4，这个作业实现了一个基于Attention机制的Seq2Seq模型用于实现机器翻译。     模型概览 这次的作业是利用PyTorch框架实现一个有注意力机制的Seq2Seq模型，并用于翻译任务。要实现的模型的总体架构如下图所示：  image-20"><meta property="og:image" content="http://zhang-each.github.io/img/cover/1.jpg"><meta property="article:published_time" content="2021-10-26T16:03:32.000Z"><meta property="article:modified_time" content="2021-11-01T14:50:20.843Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS224N-Assignment4札记：基于注意力的Seq2Seq机器翻译 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="做Stanford CS224N Deep Learning for NLP课程的作业的一些笔记，第三部分是Assignment4，这个作业实现了一个基于Attention机制的Seq2Seq模型用于实现机器翻译。周炜
+ 
+ 
+ 
+ 
+ 模型概览
+ 这次的作业是利用PyTorch框架实现一个有注意力机制的Seq2Seq模型，并用于翻译任务。要实现的模型的总体架构如下图所示：
+ 
+ image-20"><meta name="keywords" content="人工智能,深度学习,神经网络,自然语言处理"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/27/nlp-lab4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS224N-Assignment4札记：基于注意力的Seq2Seq机器翻译"><meta property="og:url" content="http://zhang-each.github.io/2021/10/27/nlp-lab4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="做Stanford CS224N Deep Learning for NLP课程的作业的一些笔记，第三部分是Assignment4，这个作业实现了一个基于Attention机制的Seq2Seq模型用于实现机器翻译。
+ 
+ 
+ 
+ 
+ 模型概览
+ 这次的作业是利用PyTorch框架实现一个有注意力机制的Seq2Seq模型，并用于翻译任务。要实现的模型的总体架构如下图所示：
+ 
+ image-20"><meta property="og:image" content="http://zhang-each.github.io/img/cover/1.jpg"><meta property="article:published_time" content="2021-10-26T16:03:32.000Z"><meta property="article:modified_time" content="2021-11-01T14:50:20.843Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -194,7 +210,7 @@ mjx-status {
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
-  line-height: normal;
+  line-height: normal;周炜
   overflow: visible;
 }
 
@@ -244,7 +260,7 @@ mjx-container[display="true"] + br {
 <li>首先输入的是一系列经过填充的token，我们需要先得到这些token的embedding</li>
 <li>然后将其打包构成双向LSTM的输入X</li>
 <li>在输入encoder之后得到所有的隐层状态和最后一个位置的hidden和cell</li>
-<li>然后调用<code>pa d_packed_sequence</code>，并计算decoder中的初始状态作为结果。</li>
+<li>然后调用<code>pa d_packed_sequence</code>，并计算decoder中的初始状态作为结果。</li>周炜
 </ol>
 <ul>
 <li>这里的<code>pack_padded_sequence</code>和<code>pad_packed_sequence</code>两个方法的作用分别是将填充后的数据进行压缩，将压缩后的数据恢复成原本的状态，这是PyTorch提供给RNN以及LSTM等结构使用的，用来阻止填充用的token进入RNN或者LSTM，因为这些token是无效的，还会浪费算力，因此使用这样一对函数可以起到现将padding后的数据压缩投入网络中，然后再将结果重新填充得到输出结果</li>

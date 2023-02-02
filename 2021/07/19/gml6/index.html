@@ -1,4 +1,28 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>图机器学习6：GNN的训练和应用 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="GNN的训练和应用  GNN的pipeline  GNN面对的任务  prediction head有多种类型，包括节点级别的，边级别的和图级别的任务   不同级别的任务  节点级别的任务 ​ 节点级别的任务可以直接使用节点嵌入来完成，假设我们通过GNN得到了d维的节点嵌入向量，并且需要做k路的prediction(在分类问题中是k类的多分类任务，在回归问题中是k个目标的回"><meta name="keywords" content="机器学习,数据挖掘,图神经网络"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/07/19/gml6/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="图机器学习6：GNN的训练和应用"><meta property="og:url" content="http://zhang-each.github.io/2021/07/19/gml6/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="GNN的训练和应用  GNN的pipeline  GNN面对的任务  prediction head有多种类型，包括节点级别的，边级别的和图级别的任务   不同级别的任务  节点级别的任务 ​ 节点级别的任务可以直接使用节点嵌入来完成，假设我们通过GNN得到了d维的节点嵌入向量，并且需要做k路的prediction(在分类问题中是k类的多分类任务，在回归问题中是k个目标的回"><meta property="og:image" content="http://zhang-each.github.io/img/cover/14.jpg"><meta property="article:published_time" content="2021-07-19T15:56:40.000Z"><meta property="article:modified_time" content="2021-11-04T12:49:39.940Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>图机器学习6：GNN的训练和应用 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="GNN的训练和应用周炜
+ 
+ GNN的pipeline
+ 
+ GNN面对的任务
+ 
+ prediction head有多种类型，包括节点级别的，边级别的和图级别的任务
+ 
+ 
+ 不同级别的任务
+ 
+ 节点级别的任务
+ ​ 节点级别的任务可以直接使用节点嵌入来完成，假设我们通过GNN得到了d维的节点嵌入向量，并且需要做k路的prediction(在分类问题中是k类的多分类任务，在回归问题中是k个目标的回"><meta name="keywords" content="机器学习,数据挖掘,图神经网络"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/07/19/gml6/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="图机器学习6：GNN的训练和应用"><meta property="og:url" content="http://zhang-each.github.io/2021/07/19/gml6/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="GNN的训练和应用
+ 
+ GNN的pipeline
+ 
+ GNN面对的任务
+ 
+ prediction head有多种类型，包括节点级别的，边级别的和图级别的任务
+ 
+ 
+ 不同级别的任务
+ 
+ 节点级别的任务
+ ​ 节点级别的任务可以直接使用节点嵌入来完成，假设我们通过GNN得到了d维的节点嵌入向量，并且需要做k路的prediction(在分类问题中是k类的多分类任务，在回归问题中是k个目标的回"><meta property="og:image" content="http://zhang-each.github.io/img/cover/14.jpg"><meta property="article:published_time" content="2021-07-19T15:56:40.000Z"><meta property="article:modified_time" content="2021-11-04T12:49:39.940Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -186,7 +210,7 @@ mjx-status {
   bottom: 1em;
   min-width: 25%;
   padding: .2em .4em;
-  border: 1px solid #888;
+  border: 1px solid #888;周炜
   font-size: 90%;
   background-color: #F8F8F8;
   color: black;
@@ -235,7 +259,7 @@ mjx-container[display="true"] + br {
 <figure>
 <img src= "/img/loading.gif" data-src="image-20210628184320025.png" alt="image-20210628184320025"><figcaption aria-hidden="true">image-20210628184320025</figcaption>
 </figure>
-<ul>
+<ul>周炜
 <li>点积运算，即 <img src= "/img/loading.gif" data-src="p4.png"> 不过只能用于1-way的prediction，可以使用multi-head的注意力机制来实现k-way prediction</li>
 </ul>
 <h4 id="图级别的任务">图级别的任务</h4>

@@ -1,4 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UCB-LinuxSysAdminDecal学习记录 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="UCB的Linux System Admin Decal是一门Linux系统使用的入门课程，介绍了一些最基本的Linux使用知识，从Shell脚本到操作系统和计算机网络，再到版本控制和虚拟化。总的来说可以作为了解性的课程粗略地学习一下  Shell Script 一些比较神奇的shell指令  !!表示重新显示上一条执行的命令  !:1这样的用法可以从上一条命令中获取对应位置的参"><meta name="keywords" content="操作系统,计算机网络,计算机系统,Linux"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/09/05/linux-sys-admin/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="UCB-LinuxSysAdminDecal学习记录"><meta property="og:url" content="http://zhang-each.github.io/2022/09/05/linux-sys-admin/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="UCB的Linux System Admin Decal是一门Linux系统使用的入门课程，介绍了一些最基本的Linux使用知识，从Shell脚本到操作系统和计算机网络，再到版本控制和虚拟化。总的来说可以作为了解性的课程粗略地学习一下  Shell Script 一些比较神奇的shell指令  !!表示重新显示上一条执行的命令  !:1这样的用法可以从上一条命令中获取对应位置的参"><meta property="og:image" content="http://zhang-each.github.io/img/cover/2.jpg"><meta property="article:published_time" content="2022-09-05T14:48:24.000Z"><meta property="article:modified_time" content="2022-09-05T14:52:22.133Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UCB-LinuxSysAdminDecal学习记录 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="UCB的Linux System Admin Decal是一门Linux系统使用的入门课程，介绍了一些最基本的Linux使用知识，从Shell脚本到操作系统和计算机网络，再到版本控制和虚拟化。总的来说可以作为了解性的课程粗略地学习一下周炜
+ 
+ Shell Script
+ 一些比较神奇的shell指令
+ 
+ !!表示重新显示上一条执行的命令
+ 
+ !:1这样的用法可以从上一条命令中获取对应位置的参"><meta name="keywords" content="操作系统,计算机网络,计算机系统,Linux"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/09/05/linux-sys-admin/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="UCB-LinuxSysAdminDecal学习记录"><meta property="og:url" content="http://zhang-each.github.io/2022/09/05/linux-sys-admin/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="UCB的Linux System Admin Decal是一门Linux系统使用的入门课程，介绍了一些最基本的Linux使用知识，从Shell脚本到操作系统和计算机网络，再到版本控制和虚拟化。总的来说可以作为了解性的课程粗略地学习一下
+ 
+ Shell Script
+ 一些比较神奇的shell指令
+ 
+ !!表示重新显示上一条执行的命令
+ 
+ !:1这样的用法可以从上一条命令中获取对应位置的参"><meta property="og:image" content="http://zhang-each.github.io/img/cover/2.jpg"><meta property="article:published_time" content="2022-09-05T14:48:24.000Z"><meta property="article:modified_time" content="2022-09-05T14:52:22.133Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -196,7 +210,7 @@ foreignObject[data-mjx-xml] {
   font-family: initial;
   line-height: normal;
   overflow: visible;
-}
+}周炜
 
 .MathJax path {
   stroke-width: 3;
@@ -300,7 +314,7 @@ mjx-container[display="true"] + br {
 <li>当合并的过程中有冲突的时候，冲突部分的代码不会被merge到最新的结果中，需要通过进一步操作来完成冲突代码的检查和合并</li>
 <li>git中的remote表示不在本地的仓库备份，默认的名字是origin，我们可以用<code>git fetch</code>来获取远程的新增内容并更新到本地的仓库中(注意不是工作目录)</li>
 </ul>
-<p>这节课的另一部分内容是备份，介绍了数据备份的3-2-1法则，即：</p>
+<p>这节课的另一部分内容是备份，介绍了数据备份的3-2-1法则，即：</p>周炜
 <ul>
 <li>3代表数据至少要存储3份</li>
 <li>2代表数据至少要存储在2台以上的设备中</li>

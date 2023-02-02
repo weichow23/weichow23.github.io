@@ -1,4 +1,14 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记3：Transformer | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文阅读笔记3：Transformer  经典论文《Attention Is All You Need》阅读笔记，该论文中提出了自注意力机制和Transformer模型  Introduce 主流的序列转换模型往往使用复杂的循环的卷积网络，并且是编码器-解码器的架构，而表现性能好的模型往往还使用注意力机制，这片论文中提供了一个简单的网络架构，被称为Transformer，这种网络架构只使"><meta name="keywords" content="深度学习,神经网络,图机器学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/06/06/reading3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记3：Transformer"><meta property="og:url" content="http://zhang-each.github.io/2021/06/06/reading3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文阅读笔记3：Transformer  经典论文《Attention Is All You Need》阅读笔记，该论文中提出了自注意力机制和Transformer模型  Introduce 主流的序列转换模型往往使用复杂的循环的卷积网络，并且是编码器-解码器的架构，而表现性能好的模型往往还使用注意力机制，这片论文中提供了一个简单的网络架构，被称为Transformer，这种网络架构只使"><meta property="og:image" content="http://zhang-each.github.io/img/cover/11.jpg"><meta property="article:published_time" content="2021-06-06T15:52:02.000Z"><meta property="article:modified_time" content="2021-06-06T16:02:31.548Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记3：Transformer | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文阅读笔记3：Transformer周炜
+ 
+ 经典论文《Attention Is All You Need》阅读笔记，该论文中提出了自注意力机制和Transformer模型
+ 
+ Introduce
+ 主流的序列转换模型往往使用复杂的循环的卷积网络，并且是编码器-解码器的架构，而表现性能好的模型往往还使用注意力机制，这片论文中提供了一个简单的网络架构，被称为Transformer，这种网络架构只使"><meta name="keywords" content="深度学习,神经网络,图机器学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/06/06/reading3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记3：Transformer"><meta property="og:url" content="http://zhang-each.github.io/2021/06/06/reading3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文阅读笔记3：Transformer
+ 
+ 经典论文《Attention Is All You Need》阅读笔记，该论文中提出了自注意力机制和Transformer模型
+ 
+ Introduce
+ 主流的序列转换模型往往使用复杂的循环的卷积网络，并且是编码器-解码器的架构，而表现性能好的模型往往还使用注意力机制，这片论文中提供了一个简单的网络架构，被称为Transformer，这种网络架构只使"><meta property="og:image" content="http://zhang-each.github.io/img/cover/11.jpg"><meta property="article:published_time" content="2021-06-06T15:52:02.000Z"><meta property="article:modified_time" content="2021-06-06T16:02:31.548Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -200,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 .MathJax path {
   stroke-width: 3;
-}
+}周炜
 
 mjx-container[display="true"] {
   overflow: auto hidden;
@@ -279,7 +289,7 @@ mjx-container[display="true"] + br {
 <li>我觉得这里的path可以理解为，为了捕获长距离的依赖而需要进行一个信息传递的过程，而两个位置之间的信息传递越直接(即消息传递的path越短)，能够捕捉到的长距离依赖就越多。</li>
 <li>而在RNN中，因为隐层之间的信息是逐渐向下传递的，所以从全局来看，两个位置之间的最长消息传递path的长度是n级别的，而Transformer中因为自注意力机制直接将每个位置和所有的位置进行了注意力的计算，这就省略了RNN中一步步向下传递的过程，因此可以捕捉到非常多的长距离依赖信息</li>
 <li>这样一来Transformer凭借其独特的注意力机制从传统模型中脱颖而出，实现了论文的标题：Attention is all you need</li>
-</ul>
+</ul>周炜
 <h2 id="训练">训练</h2>
 <p>论文中训练模型有几个值得注意的点，一个是优化器，另一个是正则化的一些操作</p>
 <h3 id="优化器">优化器</h3>

@@ -1,4 +1,10 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>海量数据挖掘3：计算广告学和流数据挖掘 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="计算广告学 早期广告算法 互联网中的广告是非常常见的，而广告也可以使用推荐算法进行推荐，常见的广告算法往往都是“在线算法”，即算法不是直接获得所有的输入数据，而是逐渐接受输入数据并作出及时的决策，一次性得到所有数据并建立模型的是离线算法。 传统的广告算法可以看成是一个图匹配的问题，一个图中一部分节点是广告商而另一部节点是投放广告的时机，我们需要给每个广告商X找到合适的时机来投放广告，这是一个"><meta name="keywords" content="机器学习,数据挖掘,推荐系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/20/dm3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="海量数据挖掘3：计算广告学和流数据挖掘"><meta property="og:url" content="http://zhang-each.github.io/2021/08/20/dm3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="计算广告学 早期广告算法 互联网中的广告是非常常见的，而广告也可以使用推荐算法进行推荐，常见的广告算法往往都是“在线算法”，即算法不是直接获得所有的输入数据，而是逐渐接受输入数据并作出及时的决策，一次性得到所有数据并建立模型的是离线算法。 传统的广告算法可以看成是一个图匹配的问题，一个图中一部分节点是广告商而另一部节点是投放广告的时机，我们需要给每个广告商X找到合适的时机来投放广告，这是一个"><meta property="og:image" content="http://zhang-each.github.io/img/cover/4.jpg"><meta property="article:published_time" content="2021-08-20T08:20:15.000Z"><meta property="article:modified_time" content="2021-08-20T08:21:46.391Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>海量数据挖掘3：计算广告学和流数据挖掘 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="计算广告学周炜
+ 早期广告算法
+ 互联网中的广告是非常常见的，而广告也可以使用推荐算法进行推荐，常见的广告算法往往都是“在线算法”，即算法不是直接获得所有的输入数据，而是逐渐接受输入数据并作出及时的决策，一次性得到所有数据并建立模型的是离线算法。
+ 传统的广告算法可以看成是一个图匹配的问题，一个图中一部分节点是广告商而另一部节点是投放广告的时机，我们需要给每个广告商X找到合适的时机来投放广告，这是一个"><meta name="keywords" content="机器学习,数据挖掘,推荐系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/20/dm3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="海量数据挖掘3：计算广告学和流数据挖掘"><meta property="og:url" content="http://zhang-each.github.io/2021/08/20/dm3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="计算广告学
+ 早期广告算法
+ 互联网中的广告是非常常见的，而广告也可以使用推荐算法进行推荐，常见的广告算法往往都是“在线算法”，即算法不是直接获得所有的输入数据，而是逐渐接受输入数据并作出及时的决策，一次性得到所有数据并建立模型的是离线算法。
+ 传统的广告算法可以看成是一个图匹配的问题，一个图中一部分节点是广告商而另一部节点是投放广告的时机，我们需要给每个广告商X找到合适的时机来投放广告，这是一个"><meta property="og:image" content="http://zhang-each.github.io/img/cover/4.jpg"><meta property="article:published_time" content="2021-08-20T08:20:15.000Z"><meta property="article:modified_time" content="2021-08-20T08:21:46.391Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -204,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 mjx-container[display="true"] {
   overflow: auto hidden;
-}
+}周炜
 
 mjx-container[display="true"] + br {
   display: none;
@@ -306,7 +312,7 @@ mjx-container[display="true"] + br {
 </ul>
 <h2 id="数据流过滤">数据流过滤</h2>
 <ul>
-<li>待补充</li>
+<li>待补充</li>周炜
 </ul>
 <h2 id="元素计数">元素计数</h2>
 <ul>

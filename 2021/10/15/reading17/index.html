@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记17：Rule-Based-KGE | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这次读了两篇规则注入的知识图谱补全论文，分别是《Knowledge base completion using embeddings and rules》和《Injecting logical background knowledge into embeddings for relation extraction》来记录一下学习心得体会     Introduction 规则注入的"><meta name="keywords" content="人工智能,知识图谱,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/15/reading17/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记17：Rule-Based-KGE"><meta property="og:url" content="http://zhang-each.github.io/2021/10/15/reading17/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这次读了两篇规则注入的知识图谱补全论文，分别是《Knowledge base completion using embeddings and rules》和《Injecting logical background knowledge into embeddings for relation extraction》来记录一下学习心得体会     Introduction 规则注入的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/15.jpg"><meta property="article:published_time" content="2021-10-15T15:46:54.000Z"><meta property="article:modified_time" content="2021-10-15T15:57:59.171Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记17：Rule-Based-KGE | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这次读了两篇规则注入的知识图谱补全论文，分别是《Knowledge base completion using embeddings and rules》和《Injecting logical background knowledge into embeddings for relation extraction》来记录一下学习心得体会周炜
+ 
+ 
+ 
+ 
+ Introduction
+ 规则注入的"><meta name="keywords" content="人工智能,知识图谱,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/15/reading17/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记17：Rule-Based-KGE"><meta property="og:url" content="http://zhang-each.github.io/2021/10/15/reading17/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这次读了两篇规则注入的知识图谱补全论文，分别是《Knowledge base completion using embeddings and rules》和《Injecting logical background knowledge into embeddings for relation extraction》来记录一下学习心得体会
+ 
+ 
+ 
+ 
+ Introduction
+ 规则注入的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/15.jpg"><meta property="article:published_time" content="2021-10-15T15:46:54.000Z"><meta property="article:modified_time" content="2021-10-15T15:57:59.171Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -248,7 +260,7 @@ mjx-container[display="true"] + br {
 <p>这个整数线性规划的几个约束条件分别对应了一条逻辑规则：</p>
 <ul>
 <li>R1对应逻辑规则1，这个约束表明判断结果和观察结果应该是一致的</li>
-<li>R2代表了参数类型约束，即不满足参数类型约束的三元组应该认为是错的</li>
+<li>R2代表了参数类型约束，即不满足参数类型约束的三元组应该认为是错的</li>周炜
 <li>R3代表了各种不同关系的实体数量约束</li>
 <li>R4代表了细分的关系可以被更广泛的关系代替</li>
 </ul>

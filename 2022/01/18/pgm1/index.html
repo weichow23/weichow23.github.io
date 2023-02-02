@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU10-708概率图模型1：Introduction | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU的一门研究生课程，主要讲概率图模型及其相关的各种应用，由知名学者Eric Xing主讲，看起来课程内容非常不错，因此来学一学这门课。我一开始看的是2020Spring的Eric Xing的Lecture，发现不太能get到PPT里的点，所以后来改成了2021Spring由Matt Gormley主讲。     Introduction 这是一门讲概率图模型的入门课程，讲的"><meta name="keywords" content="机器学习,概率图模型"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/01/18/pgm1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU10-708概率图模型1：Introduction"><meta property="og:url" content="http://zhang-each.github.io/2022/01/18/pgm1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU的一门研究生课程，主要讲概率图模型及其相关的各种应用，由知名学者Eric Xing主讲，看起来课程内容非常不错，因此来学一学这门课。我一开始看的是2020Spring的Eric Xing的Lecture，发现不太能get到PPT里的点，所以后来改成了2021Spring由Matt Gormley主讲。     Introduction 这是一门讲概率图模型的入门课程，讲的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/9.jpg"><meta property="article:published_time" content="2022-01-18T06:44:44.000Z"><meta property="article:modified_time" content="2022-01-18T06:40:00.767Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU10-708概率图模型1：Introduction | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU的一门研究生课程，主要讲概率图模型及其相关的各种应用，由知名学者Eric Xing主讲，看起来课程内容非常不错，因此来学一学这门课。我一开始看的是2020Spring的Eric Xing的Lecture，发现不太能get到PPT里的点，所以后来改成了2021Spring由Matt Gormley主讲。周炜
+ 
+ 
+ 
+ 
+ Introduction
+ 这是一门讲概率图模型的入门课程，讲的"><meta name="keywords" content="机器学习,概率图模型"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/01/18/pgm1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU10-708概率图模型1：Introduction"><meta property="og:url" content="http://zhang-each.github.io/2022/01/18/pgm1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU的一门研究生课程，主要讲概率图模型及其相关的各种应用，由知名学者Eric Xing主讲，看起来课程内容非常不错，因此来学一学这门课。我一开始看的是2020Spring的Eric Xing的Lecture，发现不太能get到PPT里的点，所以后来改成了2021Spring由Matt Gormley主讲。
+ 
+ 
+ 
+ 
+ Introduction
+ 这是一门讲概率图模型的入门课程，讲的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/9.jpg"><meta property="article:published_time" content="2022-01-18T06:44:44.000Z"><meta property="article:modified_time" content="2022-01-18T06:40:00.767Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -316,7 +328,7 @@ mjx-container[display="true"] + br {
 <td>推理阶段是trivial的</td>
 <td>推理阶段是NP-hard活着#P-hard的，并且很多时候需要近似</td>
 </tr>
-</tbody>
+</tbody>周炜
 </table>
 <p>常见的结构化预测问题有：</p>
 <ul>

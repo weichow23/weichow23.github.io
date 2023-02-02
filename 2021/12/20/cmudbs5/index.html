@@ -1,4 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统5：事务和并发控制 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU数据库课程15-445的第五个大的部分，主要讲数据库中的事务和并发控制的内容，在2021秋的课程里应该对应Lecture15-Lecture16     事务 事务的概念 事务(Transaction)是数据库中最重要的一个抽象，一个事务指的是在一个共享的数据库上一系列操作的执行(可以是一个或者多个)，这些操作共同组成一个更高级的功能(比如复杂的SQL查询)，事务不允许"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/12/20/cmudbs5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统5：事务和并发控制"><meta property="og:url" content="http://zhang-each.github.io/2021/12/20/cmudbs5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU数据库课程15-445的第五个大的部分，主要讲数据库中的事务和并发控制的内容，在2021秋的课程里应该对应Lecture15-Lecture16     事务 事务的概念 事务(Transaction)是数据库中最重要的一个抽象，一个事务指的是在一个共享的数据库上一系列操作的执行(可以是一个或者多个)，这些操作共同组成一个更高级的功能(比如复杂的SQL查询)，事务不允许"><meta property="og:image" content="http://zhang-each.github.io/img/cover/16.jpg"><meta property="article:published_time" content="2021-12-20T15:29:16.000Z"><meta property="article:modified_time" content="2021-12-20T15:30:44.717Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统5：事务和并发控制 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU数据库课程15-445的第五个大的部分，主要讲数据库中的事务和并发控制的内容，在2021秋的课程里应该对应Lecture15-Lecture16周炜
+ 
+ 
+ 
+ 
+ 事务
+ 事务的概念
+ 事务(Transaction)是数据库中最重要的一个抽象，一个事务指的是在一个共享的数据库上一系列操作的执行(可以是一个或者多个)，这些操作共同组成一个更高级的功能(比如复杂的SQL查询)，事务不允许"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/12/20/cmudbs5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统5：事务和并发控制"><meta property="og:url" content="http://zhang-each.github.io/2021/12/20/cmudbs5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU数据库课程15-445的第五个大的部分，主要讲数据库中的事务和并发控制的内容，在2021秋的课程里应该对应Lecture15-Lecture16
+ 
+ 
+ 
+ 
+ 事务
+ 事务的概念
+ 事务(Transaction)是数据库中最重要的一个抽象，一个事务指的是在一个共享的数据库上一系列操作的执行(可以是一个或者多个)，这些操作共同组成一个更高级的功能(比如复杂的SQL查询)，事务不允许"><meta property="og:image" content="http://zhang-each.github.io/img/cover/16.jpg"><meta property="article:published_time" content="2021-12-20T15:29:16.000Z"><meta property="article:modified_time" content="2021-12-20T15:30:44.717Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -196,7 +210,7 @@ foreignObject[data-mjx-xml] {
   font-family: initial;
   line-height: normal;
   overflow: visible;
-}
+}周炜
 
 .MathJax path {
   stroke-width: 3;
@@ -310,7 +324,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>死锁检测：在事务处理的过程中检测是否存在死锁，通过创建一个wait-for图(类似于前趋图，两个事务之间如果存在等待关系就加一条有向边)，如果wait-for图中有环就要想办法打破这种情况，比如选择一个victim transaction并把它abort，通过这种方式打破死锁</li>
 <li>死锁阻止：死锁阻止是在事务开始执行之前就开始就检测是不是有死锁存在，如果存在就先解决死锁问题再执行事务，如果一个事务想申请一个其他事务持有的锁，那么就会先kill其中一个，并把锁分配给需要的事务，主要分成两种方式来kill事务的方式：
-<ul>
+<ul>周炜
 <li>Wait-Die 老的进程等新的事务，即一旦有新事务请求某个被老事务占有的锁，那么就直接让给新的事务，新事务有更高的优先级</li>
 <li>Wound-Wait 新的事务等老的事务先完成再进行申请，老的事务有更高的优先级</li>
 </ul></li>

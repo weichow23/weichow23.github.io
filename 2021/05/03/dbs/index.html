@@ -1,4 +1,36 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>浙江大学《数据库系统》课程笔记 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="数据库系统复习整理 RandomStar 第一部分：基本概念和关系代数 1.0 课程绪论  Nothing important，主要是介绍课程的评分标准和瞎吹一通  1.1 关系型数据库 Relational Database 关系型数据的一些基本特点  关系型数据库是一系列表的集合 一张表是一个基本单位 表中的一行表示一条关系  1.2 基本概念和结构  a re"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储,浙江大学,SQL"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/dbs/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="浙江大学《数据库系统》课程笔记"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/dbs/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="数据库系统复习整理 RandomStar 第一部分：基本概念和关系代数 1.0 课程绪论  Nothing important，主要是介绍课程的评分标准和瞎吹一通  1.1 关系型数据库 Relational Database 关系型数据的一些基本特点  关系型数据库是一系列表的集合 一张表是一个基本单位 表中的一行表示一条关系  1.2 基本概念和结构  a re"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T10:47:14.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:47.026Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>浙江大学《数据库系统》课程笔记 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="数据库系统复习整理周炜
+ RandomStar
+ 第一部分：基本概念和关系代数
+ 1.0 课程绪论
+ 
+ Nothing important，主要是介绍课程的评分标准和瞎吹一通
+ 
+ 1.1 关系型数据库 Relational Database
+ 关系型数据的一些基本特点
+ 
+ 关系型数据库是一系列表的集合
+ 一张表是一个基本单位
+ 表中的一行表示一条关系
+ 
+ 1.2 基本概念和结构
+ 
+ a re"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储,浙江大学,SQL"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/dbs/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="浙江大学《数据库系统》课程笔记"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/dbs/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="数据库系统复习整理
+ RandomStar
+ 第一部分：基本概念和关系代数
+ 1.0 课程绪论
+ 
+ Nothing important，主要是介绍课程的评分标准和瞎吹一通
+ 
+ 1.1 关系型数据库 Relational Database
+ 关系型数据的一些基本特点
+ 
+ 关系型数据库是一系列表的集合
+ 一张表是一个基本单位
+ 表中的一行表示一条关系
+ 
+ 1.2 基本概念和结构
+ 
+ a re"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T10:47:14.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:47.026Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -178,7 +210,7 @@ mjx-tool > mjx-tip {
 g[data-mml-node="maction"][data-toggle] {
   cursor: pointer;
 }
-
+周炜
 mjx-status {
   display: block;
   position: fixed;
@@ -1948,7 +1980,7 @@ mjx-container[display="true"] + br {
 <li>*可以表示所有的元素节点，比如<code>//*</code> 可以获取文档中的所有元素</li>
 <li><span class="citation" data-cites="*可以表示所有的属性节点">@*可以表示所有的属性节点</span></li>
 </ul></li>
-<li>可以用 | 来连接两个查询</li>
+<li>可以用 | 来连接两个查询</li>周炜
 </ul></li>
 <li><p><code>//</code> 可以跳过多层node直奔要找的目标</p>
 <ul>

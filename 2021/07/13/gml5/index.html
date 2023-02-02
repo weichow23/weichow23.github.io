@@ -1,4 +1,12 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>图机器学习5：图神经网络 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="GNN图神经网络 ​ 前面几节内容主要介绍了节点嵌入的概念，也就是说我们可以将一个图中的节点映射到一个的d维向量上，而这种映射方式使得相似的节点对应的向量更接近，但主要的问题还是，我们如何学习出一个映射函数f，而图嵌入的两个核心组件是编码器和相似度函数，之前也介绍了比较naive的shallow编码器，而图神经网络GNN提供了一种基于深度学习的节点嵌入方法。   相比于图片和文本，网络结构"><meta name="keywords" content="机器学习,数据挖掘,图神经网络"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/07/13/gml5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="图机器学习5：图神经网络"><meta property="og:url" content="http://zhang-each.github.io/2021/07/13/gml5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="GNN图神经网络 ​ 前面几节内容主要介绍了节点嵌入的概念，也就是说我们可以将一个图中的节点映射到一个的d维向量上，而这种映射方式使得相似的节点对应的向量更接近，但主要的问题还是，我们如何学习出一个映射函数f，而图嵌入的两个核心组件是编码器和相似度函数，之前也介绍了比较naive的shallow编码器，而图神经网络GNN提供了一种基于深度学习的节点嵌入方法。   相比于图片和文本，网络结构"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2021-07-13T03:47:12.000Z"><meta property="article:modified_time" content="2021-11-04T12:49:34.320Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>图机器学习5：图神经网络 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="GNN图神经网络周炜
+ ​ 前面几节内容主要介绍了节点嵌入的概念，也就是说我们可以将一个图中的节点映射到一个的d维向量上，而这种映射方式使得相似的节点对应的向量更接近，但主要的问题还是，我们如何学习出一个映射函数f，而图嵌入的两个核心组件是编码器和相似度函数，之前也介绍了比较naive的shallow编码器，而图神经网络GNN提供了一种基于深度学习的节点嵌入方法。
+ 
+ 
+ 相比于图片和文本，网络结构"><meta name="keywords" content="机器学习,数据挖掘,图神经网络"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/07/13/gml5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="图机器学习5：图神经网络"><meta property="og:url" content="http://zhang-each.github.io/2021/07/13/gml5/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="GNN图神经网络
+ ​ 前面几节内容主要介绍了节点嵌入的概念，也就是说我们可以将一个图中的节点映射到一个的d维向量上，而这种映射方式使得相似的节点对应的向量更接近，但主要的问题还是，我们如何学习出一个映射函数f，而图嵌入的两个核心组件是编码器和相似度函数，之前也介绍了比较naive的shallow编码器，而图神经网络GNN提供了一种基于深度学习的节点嵌入方法。
+ 
+ 
+ 相比于图片和文本，网络结构"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2021-07-13T03:47:12.000Z"><meta property="article:modified_time" content="2021-11-04T12:49:34.320Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -202,7 +210,7 @@ foreignObject[data-mjx-xml] {
   stroke-width: 3;
 }
 
-mjx-container[display="true"] {
+mjx-container[display="true"] {周炜
   overflow: auto hidden;
 }
 
@@ -384,7 +392,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>给图中的节点增加唯一ID标识，使用one-hot向量来表示特征</li>
 </ul></li>
-<li>图太稀疏可以增加虚拟的节点或者边</li>
+<li>图太稀疏可以增加虚拟的节点或者边</li>周炜
 <li>图太稠密的时候可以在消息传递的过程中进行邻居采样</li>
 <li>图的规模太大的时候可以分割成若干个子图分别进行嵌入</li>
 </ul></li>

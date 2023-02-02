@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 Distributed Systems 4：Mutex | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="分布式系统课程15-440学习笔记4，这一节主要讲分布式系统中的Mutual Exclusion问题  互斥 互斥(Mutual Exclusion)是分布式系统的关键设计点之一，我们需要保证在每个时刻只有一个代码实例可以访问临界区。互斥需要保证系统具有：  正确性&#x2F;安全性，即上面说的每个时刻最多只有一个进程可以获得访问临界区的锁 公平性，任何发出请求的进程都必须有机会获得访问临界"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/08/23/cmu-dis-sys4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 Distributed Systems 4：Mutex"><meta property="og:url" content="http://zhang-each.github.io/2022/08/23/cmu-dis-sys4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="分布式系统课程15-440学习笔记4，这一节主要讲分布式系统中的Mutual Exclusion问题  互斥 互斥(Mutual Exclusion)是分布式系统的关键设计点之一，我们需要保证在每个时刻只有一个代码实例可以访问临界区。互斥需要保证系统具有：  正确性&#x2F;安全性，即上面说的每个时刻最多只有一个进程可以获得访问临界区的锁 公平性，任何发出请求的进程都必须有机会获得访问临界"><meta property="og:image" content="http://zhang-each.github.io/cover/5.png"><meta property="article:published_time" content="2022-08-23T12:00:36.000Z"><meta property="article:modified_time" content="2022-08-23T13:36:24.080Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 Distributed Systems 4：Mutex | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="分布式系统课程15-440学习笔记4，这一节主要讲分布式系统中的Mutual Exclusion问题周炜
+ 
+ 互斥
+ 互斥(Mutual Exclusion)是分布式系统的关键设计点之一，我们需要保证在每个时刻只有一个代码实例可以访问临界区。互斥需要保证系统具有：
+ 
+ 正确性&#x2F;安全性，即上面说的每个时刻最多只有一个进程可以获得访问临界区的锁
+ 公平性，任何发出请求的进程都必须有机会获得访问临界"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/08/23/cmu-dis-sys4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 Distributed Systems 4：Mutex"><meta property="og:url" content="http://zhang-each.github.io/2022/08/23/cmu-dis-sys4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="分布式系统课程15-440学习笔记4，这一节主要讲分布式系统中的Mutual Exclusion问题
+ 
+ 互斥
+ 互斥(Mutual Exclusion)是分布式系统的关键设计点之一，我们需要保证在每个时刻只有一个代码实例可以访问临界区。互斥需要保证系统具有：
+ 
+ 正确性&#x2F;安全性，即上面说的每个时刻最多只有一个进程可以获得访问临界区的锁
+ 公平性，任何发出请求的进程都必须有机会获得访问临界"><meta property="og:image" content="http://zhang-each.github.io/cover/5.png"><meta property="article:published_time" content="2022-08-23T12:00:36.000Z"><meta property="article:modified_time" content="2022-08-23T13:36:24.080Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -293,7 +305,7 @@ mjx-container[display="true"] + br {
 <li>已经访问过临界资源的接收端，在收到请求之后直接不回复，而是将请求放到队列中</li>
 <li>对于想要访问但是还没有访问临界区的接收端，在收到请求后，会将自己这边发送的请求的时间戳(之前也发给自己了)和收到的请求的时间戳进行比较，时间靠前的那个先处理。如果收到的请求的时间戳更靠前就回复一个OK信息，如果自己的更靠前，就把别的节点的请求放到队列中并不发送消息</li>
 </ul>
-<p>总的来说，就是时间戳比较小(靠前)的那个请求会被优先处理，并且可以证明，这个算法可以保证互斥性，每个时刻只有一个进程可以访问临界区，并且不会出现死锁和饥饿现象。</p>
+<p>总的来说，就是时间戳比较小(靠前)的那个请求会被优先处理，并且可以证明，这个算法可以保证互斥性，每个时刻只有一个进程可以访问临界区，并且不会出现死锁和饥饿现象。</p>周炜
 <h3 id="令牌环互斥">令牌环互斥</h3>
 <p>令牌环互斥将进程(不同节点)组织成一个逻辑环，有一个令牌在这个环上传递，持有令牌的进程可以访问临界区。</p>
 <figure>

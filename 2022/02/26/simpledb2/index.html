@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MIT6.830数据库系统-lab2：SimpleDB Operators | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="MIT6.830 Database Systems课程Project的第二部分，我们需要实现一些数据库系统中基本的算子和对应的Buffer、Page的管理。我们主要需要实现的操作有Filter, Join, Aggregate, Insert和Delete     Project Overview 在6.830的Project2中，我们要实现常见的SQL语句所需要的数据库操作，在P"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/02/26/simpledb2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="MIT6.830数据库系统-lab2：SimpleDB Operators"><meta property="og:url" content="http://zhang-each.github.io/2022/02/26/simpledb2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="MIT6.830 Database Systems课程Project的第二部分，我们需要实现一些数据库系统中基本的算子和对应的Buffer、Page的管理。我们主要需要实现的操作有Filter, Join, Aggregate, Insert和Delete     Project Overview 在6.830的Project2中，我们要实现常见的SQL语句所需要的数据库操作，在P"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2022-02-26T06:03:22.000Z"><meta property="article:modified_time" content="2022-02-26T06:04:19.032Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MIT6.830数据库系统-lab2：SimpleDB Operators | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="MIT6.830 Database Systems课程Project的第二部分，我们需要实现一些数据库系统中基本的算子和对应的Buffer、Page的管理。我们主要需要实现的操作有Filter, Join, Aggregate, Insert和Delete周炜
+ 
+ 
+ 
+ 
+ Project Overview
+ 在6.830的Project2中，我们要实现常见的SQL语句所需要的数据库操作，在P"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/02/26/simpledb2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="MIT6.830数据库系统-lab2：SimpleDB Operators"><meta property="og:url" content="http://zhang-each.github.io/2022/02/26/simpledb2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="MIT6.830 Database Systems课程Project的第二部分，我们需要实现一些数据库系统中基本的算子和对应的Buffer、Page的管理。我们主要需要实现的操作有Filter, Join, Aggregate, Insert和Delete
+ 
+ 
+ 
+ 
+ Project Overview
+ 在6.830的Project2中，我们要实现常见的SQL语句所需要的数据库操作，在P"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2022-02-26T06:03:22.000Z"><meta property="article:modified_time" content="2022-02-26T06:04:19.032Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -253,7 +265,7 @@ mjx-container[display="true"] + br {
 <p>接下来我们还要实现Delete和Insert两种操作，这两种操作和前面的区别在于，Delete和Insert会改变数据表的Page中存储的元组信息，比如Insert会找到一个空的slot并插入元组，Delete会把对应slot上的元组标记为invalid，这样就表示这段位置上的元组已经失效，可以填入其他的元组。</p>
 <h4 id="存储系统中的修改操作">存储系统中的修改操作</h4>
 <p>为此我们要先实现每个Heap Page上的插入删除操作，然后实现每个Heap File上的插入删除，然后再实现BufferPool中的插入删除。这和我们在lab1中构建SimpleDB的存储体系的顺序是一样的。同时我们也会发现，之前定义的对bitMap的操作也会很有用，因为插入和删除操作也涉及到bitMap的读和写，我们用封装好的位运算操作会让代码更加简洁和干净。</p>
-<ul>
+<ul>周炜
 <li>同时，在一个Page发生了修改之后，这个Page就变成了脏页，需要标记为dirty，并让BufferPool在适当的时机写回磁盘存储的文件中</li>
 <li>之后所有涉及到页修改的操作都需要通过BufferPool对外提供的方法进行，这其中执行的逻辑是BufferPool先判断要操作的页在不在Buffer中，如果不在就先去磁盘中把对应的Page读进来，然后在这个页上进行相关操作</li>
 </ul>

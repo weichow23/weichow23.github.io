@@ -1,4 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU10-708概率图模型3：Exact Inference | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CMU10-708的Lecture3，主要内容是介绍概率图模型中的因子图和精确推理等内容     因子图Factor Graph 因子图提供了一种同时可以用来表示有向图模型和无向图模型的方法，它将概率图模型中不同变量之间的联合分布转化成因子的势能函数之间的乘积。它可以用在马尔可夫随机场(无向图模型)，条件随机场和贝叶斯网络(有向图模型)等多种不同的概率图中，非常General 因"><meta name="keywords" content="机器学习,概率图模型,图论"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/04/10/pgm3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU10-708概率图模型3：Exact Inference"><meta property="og:url" content="http://zhang-each.github.io/2022/04/10/pgm3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CMU10-708的Lecture3，主要内容是介绍概率图模型中的因子图和精确推理等内容     因子图Factor Graph 因子图提供了一种同时可以用来表示有向图模型和无向图模型的方法，它将概率图模型中不同变量之间的联合分布转化成因子的势能函数之间的乘积。它可以用在马尔可夫随机场(无向图模型)，条件随机场和贝叶斯网络(有向图模型)等多种不同的概率图中，非常General 因"><meta property="og:image" content="http://zhang-each.github.io/img/cover/18.jpg"><meta property="article:published_time" content="2022-04-10T11:50:34.000Z"><meta property="article:modified_time" content="2022-04-10T11:53:37.762Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU10-708概率图模型3：Exact Inference | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="CMU10-708的Lecture3，主要内容是介绍概率图模型中的因子图和精确推理等内容周炜
+ 
+ 
+ 
+ 
+ 因子图Factor Graph
+ 因子图提供了一种同时可以用来表示有向图模型和无向图模型的方法，它将概率图模型中不同变量之间的联合分布转化成因子的势能函数之间的乘积。它可以用在马尔可夫随机场(无向图模型)，条件随机场和贝叶斯网络(有向图模型)等多种不同的概率图中，非常General
+ 因"><meta name="keywords" content="机器学习,概率图模型,图论"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/04/10/pgm3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU10-708概率图模型3：Exact Inference"><meta property="og:url" content="http://zhang-each.github.io/2022/04/10/pgm3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="CMU10-708的Lecture3，主要内容是介绍概率图模型中的因子图和精确推理等内容
+ 
+ 
+ 
+ 
+ 因子图Factor Graph
+ 因子图提供了一种同时可以用来表示有向图模型和无向图模型的方法，它将概率图模型中不同变量之间的联合分布转化成因子的势能函数之间的乘积。它可以用在马尔可夫随机场(无向图模型)，条件随机场和贝叶斯网络(有向图模型)等多种不同的概率图中，非常General
+ 因"><meta property="og:image" content="http://zhang-each.github.io/img/cover/18.jpg"><meta property="article:published_time" content="2022-04-10T11:50:34.000Z"><meta property="article:modified_time" content="2022-04-10T11:53:37.762Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -196,7 +210,7 @@ foreignObject[data-mjx-xml] {
   font-family: initial;
   line-height: normal;
   overflow: visible;
-}
+}周炜
 
 .MathJax path {
   stroke-width: 3;
@@ -276,7 +290,7 @@ mjx-container[display="true"] + br {
 <th>变量消去</th>
 <th>信任传播</th>
 </tr>
-</thead>
+</thead>周炜
 <tbody>
 <tr class="odd">
 <td>使用场景</td>

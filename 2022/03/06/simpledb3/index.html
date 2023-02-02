@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MIT6.830数据库系统-lab3：Query Optimizer | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="MIT6.830 Database Systems课程Project的第三部分，我们需要实现一些数据库系统中的查询优化的功能，使用数据库提供的统计信息来对嵌套的Join操作进行优化     Overview MIT6.830的lab3中，我们主要需要实现一个基于cost的查询优化模块，这个模块的主要作用是在SimpleDB处理Join等SQL语句的时候可以对输入的SQL查询进行优化"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/03/06/simpledb3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="MIT6.830数据库系统-lab3：Query Optimizer"><meta property="og:url" content="http://zhang-each.github.io/2022/03/06/simpledb3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="MIT6.830 Database Systems课程Project的第三部分，我们需要实现一些数据库系统中的查询优化的功能，使用数据库提供的统计信息来对嵌套的Join操作进行优化     Overview MIT6.830的lab3中，我们主要需要实现一个基于cost的查询优化模块，这个模块的主要作用是在SimpleDB处理Join等SQL语句的时候可以对输入的SQL查询进行优化"><meta property="og:image" content="http://zhang-each.github.io/img/cover/8.jpg"><meta property="article:published_time" content="2022-03-06T05:54:34.000Z"><meta property="article:modified_time" content="2022-03-06T07:55:46.536Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MIT6.830数据库系统-lab3：Query Optimizer | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="MIT6.830 Database Systems课程Project的第三部分，我们需要实现一些数据库系统中的查询优化的功能，使用数据库提供的统计信息来对嵌套的Join操作进行优化周炜
+ 
+ 
+ 
+ 
+ Overview
+ MIT6.830的lab3中，我们主要需要实现一个基于cost的查询优化模块，这个模块的主要作用是在SimpleDB处理Join等SQL语句的时候可以对输入的SQL查询进行优化"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/03/06/simpledb3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="MIT6.830数据库系统-lab3：Query Optimizer"><meta property="og:url" content="http://zhang-each.github.io/2022/03/06/simpledb3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="MIT6.830 Database Systems课程Project的第三部分，我们需要实现一些数据库系统中的查询优化的功能，使用数据库提供的统计信息来对嵌套的Join操作进行优化
+ 
+ 
+ 
+ 
+ Overview
+ MIT6.830的lab3中，我们主要需要实现一个基于cost的查询优化模块，这个模块的主要作用是在SimpleDB处理Join等SQL语句的时候可以对输入的SQL查询进行优化"><meta property="og:image" content="http://zhang-each.github.io/img/cover/8.jpg"><meta property="article:published_time" content="2022-03-06T05:54:34.000Z"><meta property="article:modified_time" content="2022-03-06T07:55:46.536Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -234,7 +246,7 @@ mjx-container[display="true"] + br {
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NUM_HIST_BINS = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> tableId, ioCostPerPage;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> numPages, numTuples;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> TupleDesc tupleDesc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] maxValues, minValues;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> HashMap&lt;Integer, IntHistogram&gt; intHistograms;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> HashMap&lt;Integer, StringHistogram&gt; stringHistograms;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> DbFile file;</span><br></pre></td></tr></table></figure>
 <p>剩下的主要是一些重复性的劳动，比如先根据TulpeDesc来初始化一系列直方图，然后调用Heap File的Iterator对整个表进行遍历，在直方图中填充数据，最后实现一些对外的接口来调用不同的直方图获取信息就可以。</p>
 <h2 id="join的估计">Join的估计</h2>
-<p>下面我们就需要来实现Join操作的估计，主要分为两个部分，一个是Join的Cost估计，一个是对嵌套的Join操作进行优化并重新排序。</p>
+<p>下面我们就需要来实现Join操作的估计，主要分为两个部分，一个是Join的Cost估计，一个是对嵌套的Join操作进行优化并重新排序。</p>周炜
 <h3 id="cost的估计">Cost的估计</h3>
 <p>这一部分我们先来实现计算每次Join的Cost和这次Join产生的元组数量，分别对应两个方法<code>estimateJoinCost</code>和<code>estimateJoinCardinality</code></p>
 <ul>

@@ -1,4 +1,10 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NLP与对抗学习 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU11-711 Advanced NLP课程中的一节，主要介绍了对抗学习在NLP中的应用。最近对这方面有点兴趣，希望通过学习这节课的PPT来了解一些基本的知识。课程链接https:&#x2F;&#x2F;phontron.com&#x2F;class&#x2F;anlp2022&#x2F;schedule&#x2F;adversarial.html  对抗学习Adversarial Learning 对抗学习是机器学习中的一大类方法，它的"><meta name="keywords" content="人工智能,机器学习,深度学习,自然语言处理"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/11/21/advnlp/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="NLP与对抗学习"><meta property="og:url" content="http://zhang-each.github.io/2022/11/21/advnlp/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU11-711 Advanced NLP课程中的一节，主要介绍了对抗学习在NLP中的应用。最近对这方面有点兴趣，希望通过学习这节课的PPT来了解一些基本的知识。课程链接https:&#x2F;&#x2F;phontron.com&#x2F;class&#x2F;anlp2022&#x2F;schedule&#x2F;adversarial.html  对抗学习Adversarial Learning 对抗学习是机器学习中的一大类方法，它的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2022-11-21T14:49:32.000Z"><meta property="article:modified_time" content="2022-11-21T14:50:57.326Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NLP与对抗学习 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU11-711 Advanced NLP课程中的一节，主要介绍了对抗学习在NLP中的应用。最近对这方面有点兴趣，希望通过学习这节课的PPT来了解一些基本的知识。课程链接https:&#x2F;&#x2F;phontron.com&#x2F;class&#x2F;anlp2022&#x2F;schedule&#x2F;adversarial.html周炜
+ 
+ 对抗学习Adversarial Learning
+ 对抗学习是机器学习中的一大类方法，它的"><meta name="keywords" content="人工智能,机器学习,深度学习,自然语言处理"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/11/21/advnlp/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="NLP与对抗学习"><meta property="og:url" content="http://zhang-each.github.io/2022/11/21/advnlp/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU11-711 Advanced NLP课程中的一节，主要介绍了对抗学习在NLP中的应用。最近对这方面有点兴趣，希望通过学习这节课的PPT来了解一些基本的知识。课程链接https:&#x2F;&#x2F;phontron.com&#x2F;class&#x2F;anlp2022&#x2F;schedule&#x2F;adversarial.html
+ 
+ 对抗学习Adversarial Learning
+ 对抗学习是机器学习中的一大类方法，它的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2022-11-21T14:49:32.000Z"><meta property="article:modified_time" content="2022-11-21T14:50:57.326Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -204,7 +210,7 @@ foreignObject[data-mjx-xml] {
 
 mjx-container[display="true"] {
   overflow: auto hidden;
-}
+}周炜
 
 mjx-container[display="true"] + br {
   display: none;
@@ -265,7 +271,7 @@ mjx-container[display="true"] + br {
 </figure>
 <p>还有像对抗多任务学习，它的核心思想就是希望学习到一些跨任务的共同特征，并将其另外任务相关的特征分开学习，因此引入一个对抗判别器，对共同特征进行对抗训练。</p>
 <h2 id="对抗鲁棒性">对抗鲁棒性</h2>
-<p>神经网络模型可能会对微小的扰动有剧烈的反应，对抗鲁棒性就是希望找到合适的对抗样本，并用对抗样本来增强模型的鲁棒性。</p>
+<p>神经网络模型可能会对微小的扰动有剧烈的反应，对抗鲁棒性就是希望找到合适的对抗样本，并用对抗样本来增强模型的鲁棒性。</p>周炜
 <p>什么是对抗样本(Adversarial Example)？一个神经网络模型，可能因为微小的扰动而产生巨大的变化，比如一张猫的图片，加入一点噪声，就可能会被识别成狗，但加噪声之后的图片在人类看起来还是一只猫，所以对抗样本就是希望能够尽量保留输入端的数据含义(即和普通的数据差不多)，但同时破坏输出端的语义信息(就是让模型预测失败)，这个过程可以用下面的公式来表示：</p>
 <figure>
 <img src= "/img/loading.gif" data-src="image-20221120213401084.png" alt="image-20221120213401084"><figcaption aria-hidden="true">image-20221120213401084</figcaption>

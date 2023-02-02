@@ -1,4 +1,34 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统2：CPU调度，同步和死锁 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter5：CPU Schedule 5.1 基本概念&#x2F;标准  调度的基本概念  CPU调度&#x3D;处理机调度&#x3D;进程调度 进程运行消耗的时间主要分为CPU时间和I&#x2F;O时间，根据程序运行主要消耗的时间，可以分为CPU型的程序和I&#x2F;O型的程序 三种层级的调度  短程调度、中程调度和长程调度，其中CPU主要是短程调度   调度发生的时间点：  从运行切换到暂停的时候 从运行"><meta name="keywords" content="操作系统,计算机系统,浙江大学,Linux"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/os2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="操作系统2：CPU调度，同步和死锁"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/os2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter5：CPU Schedule 5.1 基本概念&#x2F;标准  调度的基本概念  CPU调度&#x3D;处理机调度&#x3D;进程调度 进程运行消耗的时间主要分为CPU时间和I&#x2F;O时间，根据程序运行主要消耗的时间，可以分为CPU型的程序和I&#x2F;O型的程序 三种层级的调度  短程调度、中程调度和长程调度，其中CPU主要是短程调度   调度发生的时间点：  从运行切换到暂停的时候 从运行"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T14:49:59.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:15.436Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统2：CPU调度，同步和死锁 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter5：CPU Schedule周炜
+ 5.1 基本概念&#x2F;标准
+ 
+ 调度的基本概念
+ 
+ CPU调度&#x3D;处理机调度&#x3D;进程调度
+ 进程运行消耗的时间主要分为CPU时间和I&#x2F;O时间，根据程序运行主要消耗的时间，可以分为CPU型的程序和I&#x2F;O型的程序
+ 三种层级的调度
+ 
+ 短程调度、中程调度和长程调度，其中CPU主要是短程调度
+ 
+ 
+ 调度发生的时间点：
+ 
+ 从运行切换到暂停的时候
+ 从运行"><meta name="keywords" content="操作系统,计算机系统,浙江大学,Linux"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/03/os2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="操作系统2：CPU调度，同步和死锁"><meta property="og:url" content="http://zhang-each.github.io/2021/05/03/os2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter5：CPU Schedule
+ 5.1 基本概念&#x2F;标准
+ 
+ 调度的基本概念
+ 
+ CPU调度&#x3D;处理机调度&#x3D;进程调度
+ 进程运行消耗的时间主要分为CPU时间和I&#x2F;O时间，根据程序运行主要消耗的时间，可以分为CPU型的程序和I&#x2F;O型的程序
+ 三种层级的调度
+ 
+ 短程调度、中程调度和长程调度，其中CPU主要是短程调度
+ 
+ 
+ 调度发生的时间点：
+ 
+ 从运行切换到暂停的时候
+ 从运行"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T14:49:59.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:15.436Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -180,7 +210,7 @@ g[data-mml-node="maction"][data-toggle] {
 }
 
 mjx-status {
-  display: block;
+  display: block;周炜
   position: fixed;
   left: 1em;
   bottom: 1em;
@@ -570,7 +600,7 @@ mjx-container[display="true"] + br {
 </ul></li>
 <li><p>资源分配图算法：</p>
 <ul>
-<li>用虚线表示需求边，一定条件下可以转换成请求边</li>
+<li>用虚线表示需求边，一定条件下可以转换成请求边</li>周炜
 <li>假设P需要R，只有在需求边P-R变成分配边R-P而不会形成环的时候才允许这次申请</li>
 </ul></li>
 <li><p>银行家算法：</p>

@@ -1,4 +1,20 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 Distributed Systems 2：Networking Communication | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="分布式系统课程15-440学习笔记2，这一节主要讲网络通信相关的内容。  进程之间的交互是分布式系统中的核心，不研究位于不同机器上的进程之间的通信的分布式系统研究是没有意义的。 网络链接Network Links 网络链接是网络通信中的基本组成单位，节点指的就是一台计算机(当然有的时候一台计算机上会分出多个虚拟节点)  image-20220623172117716  如果我们"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/07/21/cmu-dis-sys2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 Distributed Systems 2：Networking Communication"><meta property="og:url" content="http://zhang-each.github.io/2022/07/21/cmu-dis-sys2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="分布式系统课程15-440学习笔记2，这一节主要讲网络通信相关的内容。  进程之间的交互是分布式系统中的核心，不研究位于不同机器上的进程之间的通信的分布式系统研究是没有意义的。 网络链接Network Links 网络链接是网络通信中的基本组成单位，节点指的就是一台计算机(当然有的时候一台计算机上会分出多个虚拟节点)  image-20220623172117716  如果我们"><meta property="og:image" content="http://zhang-each.github.io/cover/3.png"><meta property="article:published_time" content="2022-07-21T05:40:24.000Z"><meta property="article:modified_time" content="2022-08-21T07:15:32.818Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU-15/440 Distributed Systems 2：Networking Communication | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="分布式系统课程15-440学习笔记2，这一节主要讲网络通信相关的内容。周炜
+ 
+ 进程之间的交互是分布式系统中的核心，不研究位于不同机器上的进程之间的通信的分布式系统研究是没有意义的。
+ 网络链接Network Links
+ 网络链接是网络通信中的基本组成单位，节点指的就是一台计算机(当然有的时候一台计算机上会分出多个虚拟节点)
+ 
+ image-20220623172117716
+ 
+ 如果我们"><meta name="keywords" content="分布式系统,操作系统,计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2022/07/21/cmu-dis-sys2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU-15/440 Distributed Systems 2：Networking Communication"><meta property="og:url" content="http://zhang-each.github.io/2022/07/21/cmu-dis-sys2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="分布式系统课程15-440学习笔记2，这一节主要讲网络通信相关的内容。
+ 
+ 进程之间的交互是分布式系统中的核心，不研究位于不同机器上的进程之间的通信的分布式系统研究是没有意义的。
+ 网络链接Network Links
+ 网络链接是网络通信中的基本组成单位，节点指的就是一台计算机(当然有的时候一台计算机上会分出多个虚拟节点)
+ 
+ image-20220623172117716
+ 
+ 如果我们"><meta property="og:image" content="http://zhang-each.github.io/cover/3.png"><meta property="article:published_time" content="2022-07-21T05:40:24.000Z"><meta property="article:modified_time" content="2022-08-21T07:15:32.818Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -194,7 +210,7 @@ mjx-status {
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
-  line-height: normal;
+  line-height: normal;周炜
   overflow: visible;
 }
 
@@ -260,7 +276,7 @@ mjx-container[display="true"] + br {
 <p>网络服务模型就是对一个网络所提供的服务的描述。包括网络传输数据的保证、对发送失败的处理、网络的可信程度、网络冲突控制、发包顺序等等。</p>
 <p>为了更好地对网络服务模型中的不同功能模块进行管理，现在的网络系统往往采用分层的设计方式，将整个网络分成若干层，每一层负责具体的目标。比如这是一个常见的四层模型：</p>
 <figure>
-<img src= "/img/loading.gif" data-src="https://raw.githubusercontent.com/Zhang-Each/Image-Bed/main/img/image-20220703233958980.png" alt="image-20220703233958980"><figcaption aria-hidden="true">image-20220703233958980</figcaption>
+<img src= "/img/loading.gif" data-src="https://raw.githubusercontent.com/Zhang-Each/Image-Bed/main/img/image-20220703233958980.png" alt="image-20220703233958980"><figcaption aria-hidden="true">image-20220703233958980</figcaption>周炜
 </figure>
 <p>它将网络分成了四个层级，分别是网络硬件、主机到主机的链接层、应用到应用的信道和具体的应用程序。在OSI网络模型中，整个网络被划分成了7层。每一层提供的服务都依赖于上一层，并且向它的下一层提供特定的服务，，不同层之间通过网络结构的设计进行交互，这些具体的接口定义也就是网络协议。不同主机上的同层级也可以进行交互</p>
 <p>在网络中，各种各样的数据包都可以进行传输，虽然传的内容各有不同，但是都可以共用一个网络，这个过程称为Multiplexing，网络的每一层可能会有多种不同的实现，比如传输层就可以有TCP/UDP等多种协议，为了让接收端能够感知每一层使用的协议，需要在每个数据包的头部用特定的内容来表示不同的协议，在应用程序具体处理的时候，就可以根据数据包头部的信息来判断数据哪一种协议。</p>

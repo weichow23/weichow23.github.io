@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记20：关系消息传播框架PathCon | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="KDD2021论文《Relational Message Passing for Knowledge Graph Completion》 的阅读笔记，提出了一种用关系消息传递进行的知识图谱补全方法。     Introduction 论文首先还是说知识图谱很有用，然后提出知识图谱的不完整性以及存在错误样本的问题，因此知识图谱的补全就非常有必要。同时论文认为知识图谱中的关系并不是均匀"><meta name="keywords" content="人工智能,知识图谱,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/16/reading20/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记20：关系消息传播框架PathCon"><meta property="og:url" content="http://zhang-each.github.io/2021/10/16/reading20/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="KDD2021论文《Relational Message Passing for Knowledge Graph Completion》 的阅读笔记，提出了一种用关系消息传递进行的知识图谱补全方法。     Introduction 论文首先还是说知识图谱很有用，然后提出知识图谱的不完整性以及存在错误样本的问题，因此知识图谱的补全就非常有必要。同时论文认为知识图谱中的关系并不是均匀"><meta property="og:image" content="http://zhang-each.github.io/img/cover/14.jpg"><meta property="article:published_time" content="2021-10-15T16:02:07.000Z"><meta property="article:modified_time" content="2021-10-15T16:07:18.423Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记20：关系消息传播框架PathCon | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="KDD2021论文《Relational Message Passing for Knowledge Graph Completion》 的阅读笔记，提出了一种用关系消息传递进行的知识图谱补全方法。周炜
+ 
+ 
+ 
+ 
+ Introduction
+ 论文首先还是说知识图谱很有用，然后提出知识图谱的不完整性以及存在错误样本的问题，因此知识图谱的补全就非常有必要。同时论文认为知识图谱中的关系并不是均匀"><meta name="keywords" content="人工智能,知识图谱,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/10/16/reading20/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记20：关系消息传播框架PathCon"><meta property="og:url" content="http://zhang-each.github.io/2021/10/16/reading20/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="KDD2021论文《Relational Message Passing for Knowledge Graph Completion》 的阅读笔记，提出了一种用关系消息传递进行的知识图谱补全方法。
+ 
+ 
+ 
+ 
+ Introduction
+ 论文首先还是说知识图谱很有用，然后提出知识图谱的不完整性以及存在错误样本的问题，因此知识图谱的补全就非常有必要。同时论文认为知识图谱中的关系并不是均匀"><meta property="og:image" content="http://zhang-each.github.io/img/cover/14.jpg"><meta property="article:published_time" content="2021-10-15T16:02:07.000Z"><meta property="article:modified_time" content="2021-10-15T16:07:18.423Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -275,7 +287,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>这个模型被称为PathCon</li>
 </ul>
-<h3 id="可解释性">可解释性</h3>
+<h3 id="可解释性">可解释性</h3>周炜
 <p>PathCon模型只学习关系的表示，因此可以得到不同关系类型之间的纯关系，该模型的可解释性可以分成两个部分。</p>
 <ul>
 <li>一方面，对关系上下文进行建模可以捕捉到想要预测的关系和附近关系的相关性</li>

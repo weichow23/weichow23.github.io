@@ -1,4 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>随意的学习总结2：记一个物联网设备管理网站的设计和开发 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是上个学期一门专业选修课《B&#x2F;S体系软件设计》的课程Project，目标是自选前后端技术，制作一个具有完整前后端的物联网设备管理网站。顺带一提这门课给分很好，而且整个课程就这么一个Project+几篇文档，相比于其他课非常省事，推荐去选。     最终做好的网站可以点击链接查看 网站需求 在《B&#x2F;S体系软件设计》这门课上，我独立完成了一个物联网设备管理网站，基本实现了所有给定的"><meta name="keywords" content="Java,Web开发,React,Spring Boot"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/09/19/summary2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="随意的学习总结2：记一个物联网设备管理网站的设计和开发"><meta property="og:url" content="http://zhang-each.github.io/2021/09/19/summary2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是上个学期一门专业选修课《B&#x2F;S体系软件设计》的课程Project，目标是自选前后端技术，制作一个具有完整前后端的物联网设备管理网站。顺带一提这门课给分很好，而且整个课程就这么一个Project+几篇文档，相比于其他课非常省事，推荐去选。     最终做好的网站可以点击链接查看 网站需求 在《B&#x2F;S体系软件设计》这门课上，我独立完成了一个物联网设备管理网站，基本实现了所有给定的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/20.jpg"><meta property="article:published_time" content="2021-09-19T02:35:25.000Z"><meta property="article:modified_time" content="2021-09-19T02:43:52.912Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>随意的学习总结2：记一个物联网设备管理网站的设计和开发 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是上个学期一门专业选修课《B&#x2F;S体系软件设计》的课程Project，目标是自选前后端技术，制作一个具有完整前后端的物联网设备管理网站。顺带一提这门课给分很好，而且整个课程就这么一个Project+几篇文档，相比于其他课非常省事，推荐去选。周炜
+ 
+ 
+ 
+ 
+ 最终做好的网站可以点击链接查看
+ 网站需求
+ 在《B&#x2F;S体系软件设计》这门课上，我独立完成了一个物联网设备管理网站，基本实现了所有给定的"><meta name="keywords" content="Java,Web开发,React,Spring Boot"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/09/19/summary2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="随意的学习总结2：记一个物联网设备管理网站的设计和开发"><meta property="og:url" content="http://zhang-each.github.io/2021/09/19/summary2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是上个学期一门专业选修课《B&#x2F;S体系软件设计》的课程Project，目标是自选前后端技术，制作一个具有完整前后端的物联网设备管理网站。顺带一提这门课给分很好，而且整个课程就这么一个Project+几篇文档，相比于其他课非常省事，推荐去选。
+ 
+ 
+ 
+ 
+ 最终做好的网站可以点击链接查看
+ 网站需求
+ 在《B&#x2F;S体系软件设计》这门课上，我独立完成了一个物联网设备管理网站，基本实现了所有给定的"><meta property="og:image" content="http://zhang-each.github.io/img/cover/20.jpg"><meta property="article:published_time" content="2021-09-19T02:35:25.000Z"><meta property="article:modified_time" content="2021-09-19T02:43:52.912Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -196,7 +210,7 @@ foreignObject[data-mjx-xml] {
   font-family: initial;
   line-height: normal;
   overflow: visible;
-}
+}周炜
 
 .MathJax path {
   stroke-width: 3;
@@ -288,7 +302,7 @@ mjx-container[display="true"] + br {
 </ul>
 <figure>
 <img src= "/img/loading.gif" data-src="image-20210701225240632.png" alt="image-20210701225240632"><figcaption aria-hidden="true">image-20210701225240632</figcaption>
-</figure>
+</figure>周炜
 <ul>
 <li>用户的设备统计信息，包括了设备总数，活跃设备数(设定为一天内有登录记录的设备数量)以及消息总数，还有一个持有设备分布情况的扇形统计图</li>
 </ul>

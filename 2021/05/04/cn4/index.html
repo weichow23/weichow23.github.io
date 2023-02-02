@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络4：应用层与网络安全 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter6：Application Layer 6.1 域名系统DNS  域名系统(Domain Name System)用于将主机名字转换成IP地址  DNS是一个分布式的域名系统，是一个联机的分布式数据库系统，并采用C&#x2F;S模式，大多数域名在本地解析而少量解析需要互联网上的通信 域名到IP地址的解析是由分布在互联网上的许多域名服务程序共同完成的，域名服务器在专门设置的节点上运行"><meta name="keywords" content="计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/cn4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="计算机网络4：应用层与网络安全"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/cn4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter6：Application Layer 6.1 域名系统DNS  域名系统(Domain Name System)用于将主机名字转换成IP地址  DNS是一个分布式的域名系统，是一个联机的分布式数据库系统，并采用C&#x2F;S模式，大多数域名在本地解析而少量解析需要互联网上的通信 域名到IP地址的解析是由分布在互联网上的许多域名服务程序共同完成的，域名服务器在专门设置的节点上运行"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T00:56:59.000Z"><meta property="article:modified_time" content="2021-09-20T09:23:53.622Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络4：应用层与网络安全 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter6：Application Layer周炜
+ 6.1 域名系统DNS
+ 
+ 域名系统(Domain Name System)用于将主机名字转换成IP地址
+ 
+ DNS是一个分布式的域名系统，是一个联机的分布式数据库系统，并采用C&#x2F;S模式，大多数域名在本地解析而少量解析需要互联网上的通信
+ 域名到IP地址的解析是由分布在互联网上的许多域名服务程序共同完成的，域名服务器在专门设置的节点上运行"><meta name="keywords" content="计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/cn4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="计算机网络4：应用层与网络安全"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/cn4/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter6：Application Layer
+ 6.1 域名系统DNS
+ 
+ 域名系统(Domain Name System)用于将主机名字转换成IP地址
+ 
+ DNS是一个分布式的域名系统，是一个联机的分布式数据库系统，并采用C&#x2F;S模式，大多数域名在本地解析而少量解析需要互联网上的通信
+ 域名到IP地址的解析是由分布在互联网上的许多域名服务程序共同完成的，域名服务器在专门设置的节点上运行"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T00:56:59.000Z"><meta property="article:modified_time" content="2021-09-20T09:23:53.622Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -415,7 +427,7 @@ mjx-container[display="true"] + br {
 <li>防火墙内的是可信的网络，墙外面是不可信的网络</li>
 <li>防火墙的主要技术分为
 <ul>
-<li>分组过滤路由器：按照一定的规则进行分组过滤，对进出内部网络的分组执行转发或者丢弃</li>
+<li>分组过滤路由器：按照一定的规则进行分组过滤，对进出内部网络的分组执行转发或者丢弃</li>周炜
 <li>代理服务器，在应用层通信中扮演报文中继的角色，一种网络应用需要一个应用网关，所有的进出网络的应用程序都必须通过应用网关</li>
 <li>往往两种技术混合使用</li>
 </ul></li>

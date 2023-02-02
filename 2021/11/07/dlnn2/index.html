@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS231N-Assignment札记2：多层全连接神经网络与优化器 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Stanford2021年春季课程CS231N:Convolutional Neural Networks for Visual Recognition的一些作业笔记，这门课的作业围绕视觉相关的任务，需要从底层手动实现一大批经典机器学习算法和神经网络模型，本文是作业的第二部分，包含了全连接神经网络以及若干种梯度优化器(如Adam)的实现。     基本组件：全连接层和ReLU层 第"><meta name="keywords" content="人工智能,机器学习,深度学习,神经网络,计算机视觉"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/07/dlnn2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS231N-Assignment札记2：多层全连接神经网络与优化器"><meta property="og:url" content="http://zhang-each.github.io/2021/11/07/dlnn2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Stanford2021年春季课程CS231N:Convolutional Neural Networks for Visual Recognition的一些作业笔记，这门课的作业围绕视觉相关的任务，需要从底层手动实现一大批经典机器学习算法和神经网络模型，本文是作业的第二部分，包含了全连接神经网络以及若干种梯度优化器(如Adam)的实现。     基本组件：全连接层和ReLU层 第"><meta property="og:image" content="http://zhang-each.github.io/img/cover/7.jpg"><meta property="article:published_time" content="2021-11-07T08:25:12.000Z"><meta property="article:modified_time" content="2021-11-07T11:41:06.819Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stanford-CS231N-Assignment札记2：多层全连接神经网络与优化器 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Stanford2021年春季课程CS231N:Convolutional Neural Networks for Visual Recognition的一些作业笔记，这门课的作业围绕视觉相关的任务，需要从底层手动实现一大批经典机器学习算法和神经网络模型，本文是作业的第二部分，包含了全连接神经网络以及若干种梯度优化器(如Adam)的实现。周炜
+ 
+ 
+ 
+ 
+ 基本组件：全连接层和ReLU层
+ 第"><meta name="keywords" content="人工智能,机器学习,深度学习,神经网络,计算机视觉"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/11/07/dlnn2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Stanford-CS231N-Assignment札记2：多层全连接神经网络与优化器"><meta property="og:url" content="http://zhang-each.github.io/2021/11/07/dlnn2/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Stanford2021年春季课程CS231N:Convolutional Neural Networks for Visual Recognition的一些作业笔记，这门课的作业围绕视觉相关的任务，需要从底层手动实现一大批经典机器学习算法和神经网络模型，本文是作业的第二部分，包含了全连接神经网络以及若干种梯度优化器(如Adam)的实现。
+ 
+ 
+ 
+ 
+ 基本组件：全连接层和ReLU层
+ 第"><meta property="og:image" content="http://zhang-each.github.io/img/cover/7.jpg"><meta property="article:published_time" content="2021-11-07T08:25:12.000Z"><meta property="article:modified_time" content="2021-11-07T11:41:06.819Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -198,7 +210,7 @@ foreignObject[data-mjx-xml] {
   overflow: visible;
 }
 
-.MathJax path {
+.MathJax path {周炜
   stroke-width: 3;
 }
 
@@ -329,7 +341,7 @@ mjx-container[display="true"] + br {
 <h2 id="多层全连接网络过拟合带来的问题">多层全连接网络：过拟合带来的问题</h2>
 <p>按照上面两层神经网络的定义方式，我们可以比较容易地组装出新的多层全连接神经网络，作业2的notebook中对3层和5层的全连接神经网络在比较小的数据集上进行了实验，得到的结果却是：</p>
 <p><img src= "/img/loading.gif" data-src="image-20211106213131746.png" alt="image-20211106213131746" style="zoom:33%;"></p>
-<p>训练了几个epoch之后模型居然在训练集上准确率达到了100%而在验证集上却表现非常差，甚至不如上一篇中的kNN，问题就在于这个时候的神经网络模型因为<strong>参数太多数据量太小而导致出现了过拟合的问题</strong>，要解决这个问题，方法有很多种，比如增大数据量，进行数据增强，或者使用Normalization等trick，这些东西我们等下一篇作业笔记再介绍。</p>
+<p>训练了几个epoch之后模型居然在训练集上准确率达到了100%而在验证集上却表现非常差，甚至不如上一篇中的kNN，问题就在于这个时候的神经网络模型因为<strong>参数太多数据量太小而导致出现了过拟合的问题</strong>，要解决这个问题，方法有很多种，比如增大数据量，进行数据增强，或者使用Normalization等trick，这些东西我们等下一篇作业笔记再介绍。</p>周炜
 <p>下面我们尝试用不同的梯度更新方法来训练多层的全连接神经网络，我们采用普通的SGD，SGD+Momentum，Adam和RMSProp等多种优化器来训练一个六层的神经网络，并观察它们各自的训练效果和收敛速度，得到如下几个图表：</p>
 <figure>
 <img src= "/img/loading.gif" data-src="image-20211106215441270.png" alt="image-20211106215441270"><figcaption aria-hidden="true">image-20211106215441270</figcaption>

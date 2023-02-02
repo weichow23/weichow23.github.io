@@ -1,4 +1,24 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记12：PNS | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文阅读笔记12：PNS   论文《Enhancing KGE with Probabilistic Negative Sampling》的阅读笔记  论文发现的问题 该论文研究了一些公开的知识图谱数据集，发现很多数据集中的三元组分布是非常不均匀的，比如WN18中有18个关系，但是每个关系对应的三元组的数量分布情况如下图所示：    可以看到不同的关系所对应的三元组数量"><meta name="keywords" content="知识图谱,图机器学习,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/27/reading12/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记12：PNS"><meta property="og:url" content="http://zhang-each.github.io/2021/08/27/reading12/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文阅读笔记12：PNS   论文《Enhancing KGE with Probabilistic Negative Sampling》的阅读笔记  论文发现的问题 该论文研究了一些公开的知识图谱数据集，发现很多数据集中的三元组分布是非常不均匀的，比如WN18中有18个关系，但是每个关系对应的三元组的数量分布情况如下图所示：    可以看到不同的关系所对应的三元组数量"><meta property="og:image" content="http://zhang-each.github.io/img/cover/7.jpg"><meta property="article:published_time" content="2021-08-27T14:33:11.000Z"><meta property="article:modified_time" content="2021-08-27T14:40:06.123Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文阅读笔记12：PNS | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="论文阅读笔记12：PNS周炜
+ 
+ 
+ 论文《Enhancing KGE with Probabilistic Negative Sampling》的阅读笔记
+ 
+ 论文发现的问题
+ 该论文研究了一些公开的知识图谱数据集，发现很多数据集中的三元组分布是非常不均匀的，比如WN18中有18个关系，但是每个关系对应的三元组的数量分布情况如下图所示：
+ 
+ 
+ 
+ 可以看到不同的关系所对应的三元组数量"><meta name="keywords" content="知识图谱,图机器学习,表示学习"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/08/27/reading12/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="论文阅读笔记12：PNS"><meta property="og:url" content="http://zhang-each.github.io/2021/08/27/reading12/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="论文阅读笔记12：PNS
+ 
+ 
+ 论文《Enhancing KGE with Probabilistic Negative Sampling》的阅读笔记
+ 
+ 论文发现的问题
+ 该论文研究了一些公开的知识图谱数据集，发现很多数据集中的三元组分布是非常不均匀的，比如WN18中有18个关系，但是每个关系对应的三元组的数量分布情况如下图所示：
+ 
+ 
+ 
+ 可以看到不同的关系所对应的三元组数量"><meta property="og:image" content="http://zhang-each.github.io/img/cover/7.jpg"><meta property="article:published_time" content="2021-08-27T14:33:11.000Z"><meta property="article:modified_time" content="2021-08-27T14:40:06.123Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -190,7 +210,7 @@ mjx-status {
   font-size: 90%;
   background-color: #F8F8F8;
   color: black;
-}
+}周炜
 
 foreignObject[data-mjx-xml] {
   font-family: initial;
@@ -225,7 +245,7 @@ mjx-container[display="true"] + br {
 <p>可以看到不同的关系所对应的三元组数量差距悬殊，而知识图谱嵌入学习过程中进行负采样的时候往往是通过按概率替换head和tail的方式来进行的，没有考虑到数据的实际分布情况，这就会导致训练过程中采样出一些没什么用的负样本(太好分辨，即打分函数的值过大)，而不会对模型的训练提供任何帮助。</p>
 <p>同时论文也发现，对于一些出现频率非常高的关系，模型在训练较少的epoch之后就可以达到很好的效果，而对于一些比较冷门的关系，需要更多的epoch来训练模型。</p>
 <p>因此论文针对这些问题提出了对应的解决方案，使用基于概率的负采样。</p>
-<h2 id="论文提出的算法">论文提出的算法</h2>
+<h2 id="论文提出的算法">论文提出的算法</h2>周炜
 <ul>
 <li>论文提出首先对训练数据进行处理，用列表的形式来保存每个关系可能对应的head和tail</li>
 <li>设定一个调整参数<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex" xmlns="http://www.w3.org/2000/svg" width="1.281ex" height="2.034ex" role="img" focusable="false" viewBox="0 -705 566 899"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D6FD" d="M29 -194Q23 -188 23 -186Q23 -183 102 134T186 465Q208 533 243 584T309 658Q365 705 429 705H431Q493 705 533 667T573 570Q573 465 469 396L482 383Q533 332 533 252Q533 139 448 65T257 -10Q227 -10 203 -2T165 17T143 40T131 59T126 65L62 -188Q60 -194 42 -194H29ZM353 431Q392 431 427 419L432 422Q436 426 439 429T449 439T461 453T472 471T484 495T493 524T501 560Q503 569 503 593Q503 611 502 616Q487 667 426 667Q384 667 347 643T286 582T247 514T224 455Q219 439 186 308T152 168Q151 163 151 147Q151 99 173 68Q204 26 260 26Q302 26 349 51T425 137Q441 171 449 214T457 279Q457 337 422 372Q380 358 347 358H337Q258 358 258 389Q258 396 261 403Q275 431 353 431Z"></path></g></g></g></svg></mjx-container></span>(也叫做训练偏差)，这个参数在0-0.4的范围内逐渐增大，并且用来表示模型在负采样阶段对训练数据的bias，比如<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex" xmlns="http://www.w3.org/2000/svg" width="7.189ex" height="2.034ex" role="img" focusable="false" viewBox="0 -705 3177.6 899"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D6FD" d="M29 -194Q23 -188 23 -186Q23 -183 102 134T186 465Q208 533 243 584T309 658Q365 705 429 705H431Q493 705 533 667T573 570Q573 465 469 396L482 383Q533 332 533 252Q533 139 448 65T257 -10Q227 -10 203 -2T165 17T143 40T131 59T126 65L62 -188Q60 -194 42 -194H29ZM353 431Q392 431 427 419L432 422Q436 426 439 429T449 439T461 453T472 471T484 495T493 524T501 560Q503 569 503 593Q503 611 502 616Q487 667 426 667Q384 667 347 643T286 582T247 514T224 455Q219 439 186 308T152 168Q151 163 151 147Q151 99 173 68Q204 26 260 26Q302 26 349 51T425 137Q441 171 449 214T457 279Q457 337 422 372Q380 358 347 358H337Q258 358 258 389Q258 396 261 403Q275 431 353 431Z"></path></g><g data-mml-node="mo" transform="translate(843.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(1899.6,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(500,0)"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(778,0)"></path></g></g></g></svg></mjx-container></span>就表示负采样阶段有20%的概率会去从预处理得到的关系-实体对应表中选择当前关系对应的实体并进行替换</li>

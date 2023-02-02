@@ -1,4 +1,30 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络3：网络层和运输层 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter 5：Network Layer 5.1 网络层的设计  网络层  关注的是如何将源端的数据包发送到接收方 可以通过中间路由器进行转发，数据链路层只负责将线路从一边传送到另一边，而网络层是处理端到端数据传输的最底层 因此网络层必须知道网络的拓扑结构，并选择适当的路径进行传输   image-20201027100044982   网络层提供给传输层的服务"><meta name="keywords" content="计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/cn3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="计算机网络3：网络层和运输层"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/cn3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter 5：Network Layer 5.1 网络层的设计  网络层  关注的是如何将源端的数据包发送到接收方 可以通过中间路由器进行转发，数据链路层只负责将线路从一边传送到另一边，而网络层是处理端到端数据传输的最底层 因此网络层必须知道网络的拓扑结构，并选择适当的路径进行传输   image-20201027100044982   网络层提供给传输层的服务"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T00:43:16.000Z"><meta property="article:modified_time" content="2021-09-20T09:23:50.045Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络3：网络层和运输层 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter 5：Network Layer周炜
+ 5.1 网络层的设计
+ 
+ 网络层
+ 
+ 关注的是如何将源端的数据包发送到接收方
+ 可以通过中间路由器进行转发，数据链路层只负责将线路从一边传送到另一边，而网络层是处理端到端数据传输的最底层
+ 因此网络层必须知道网络的拓扑结构，并选择适当的路径进行传输
+ 
+ 
+ image-20201027100044982
+ 
+ 
+ 网络层提供给传输层的服务"><meta name="keywords" content="计算机网络,计算机系统"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/cn3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="计算机网络3：网络层和运输层"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/cn3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter 5：Network Layer
+ 5.1 网络层的设计
+ 
+ 网络层
+ 
+ 关注的是如何将源端的数据包发送到接收方
+ 可以通过中间路由器进行转发，数据链路层只负责将线路从一边传送到另一边，而网络层是处理端到端数据传输的最底层
+ 因此网络层必须知道网络的拓扑结构，并选择适当的路径进行传输
+ 
+ 
+ image-20201027100044982
+ 
+ 
+ 网络层提供给传输层的服务"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T00:43:16.000Z"><meta property="article:modified_time" content="2021-09-20T09:23:50.045Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -184,7 +210,7 @@ mjx-status {
   position: fixed;
   left: 1em;
   bottom: 1em;
-  min-width: 25%;
+  min-width: 25%;周炜
   padding: .2em .4em;
   border: 1px solid #888;
   font-size: 90%;
@@ -620,7 +646,7 @@ mjx-container[display="true"] + br {
 <li>IP地址+端口号就可以构成一个socket，每条TCP连接由两个socket来确定，一个IP地址可以有多个套接字</li>
 <li>berkerley socket是在操作系统内核中实现的socket封装库，提供如下操作</li>
 </ul>
-<p><img src= "/img/loading.gif" data-src="image-20201112144634224.png" alt="image-20201112144634224" style="zoom: 50%;"></p></li>
+<p><img src= "/img/loading.gif" data-src="image-20201112144634224.png" alt="image-20201112144634224" style="zoom: 50%;"></p></li>周炜
 <li><p>TCP段的头</p>
 <ul>
 <li>TCP每个段的起始部分是固定格式的20字节的头部，而IP头也有20个字节，因此数据段的最大长度是65535-20-20=65495</li>

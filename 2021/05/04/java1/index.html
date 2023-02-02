@@ -1,4 +1,40 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java应用技术1：基础语法 | 那颗名为现在的星</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Java应用技术1：基础语法 RandomStar 成绩组成  平时分70%+期末考试30%  包含出勤，PTA作业，编程小作业，大作业，期中考试   Chapter 1：Introduction 1.1 Java语言的特性  简洁  没有C&#x2F;C++中的指针，没有多重继承和运算符重载的语法特性  面向对象  Java设计的核心是如何复用代码，并且支持继承封装多态"><meta name="keywords" content="Java,编程语言,浙江大学"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/java1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Java应用技术1：基础语法"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/java1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Java应用技术1：基础语法 RandomStar 成绩组成  平时分70%+期末考试30%  包含出勤，PTA作业，编程小作业，大作业，期中考试   Chapter 1：Introduction 1.1 Java语言的特性  简洁  没有C&#x2F;C++中的指针，没有多重继承和运算符重载的语法特性  面向对象  Java设计的核心是如何复用代码，并且支持继承封装多态"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T01:11:33.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:38.956Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java应用技术1：基础语法 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Java应用技术1：基础语法周炜
+ RandomStar
+ 成绩组成
+ 
+ 平时分70%+期末考试30%
+ 
+ 包含出勤，PTA作业，编程小作业，大作业，期中考试
+ 
+ 
+ Chapter 1：Introduction
+ 1.1 Java语言的特性
+ 
+ 简洁
+ 
+ 没有C&#x2F;C++中的指针，没有多重继承和运算符重载的语法特性
+ 
+ 面向对象
+ 
+ Java设计的核心是如何复用代码，并且支持继承封装多态"><meta name="keywords" content="Java,编程语言,浙江大学"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/2021/05/04/java1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Java应用技术1：基础语法"><meta property="og:url" content="http://zhang-each.github.io/2021/05/04/java1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Java应用技术1：基础语法
+ RandomStar
+ 成绩组成
+ 
+ 平时分70%+期末考试30%
+ 
+ 包含出勤，PTA作业，编程小作业，大作业，期中考试
+ 
+ 
+ Chapter 1：Introduction
+ 1.1 Java语言的特性
+ 
+ 简洁
+ 
+ 没有C&#x2F;C++中的指针，没有多重继承和运算符重载的语法特性
+ 
+ 面向对象
+ 
+ Java设计的核心是如何复用代码，并且支持继承封装多态"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T01:11:33.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:38.956Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -174,7 +210,7 @@ mjx-tool > mjx-tip {
   color: black;
   box-shadow: 2px 2px 5px #AAAAAA;
 }
-
+周炜
 g[data-mml-node="maction"][data-toggle] {
   cursor: pointer;
 }
@@ -522,7 +558,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>Java数组和C++数组的<strong>区别</strong>
 <ul>
-<li>Java的数组定义在<strong>堆</strong>上，C++中直接声明大小的数组分配在栈上，动态分配的数组在堆上</li>
+<li>Java的数组定义在<strong>堆</strong>上，C++中直接声明大小的数组分配在栈上，动态分配的数组在堆上</li>周炜
 <li>Java的[ ]运算符被会检查数组边界，防止下标溢出，并且没有指针运算</li>
 <li>Java中命令行参数是<code>String[] args</code>，其中<code>args[0]</code>是第一个参数，<strong>程序名没有存储</strong>在args中需要在启动Java程序的时候就输入</li>
 </ul></li>
