@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>那颗名为现在的星 - 个人博客</title><meta name="description"><meta name="author" content="Zhang-Each"><meta name="copyright" content="Zhang-Each"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhang-each.github.io/page/6/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="website"><meta property="og:title" content="那颗名为现在的星"><meta property="og:url" content="http://zhang-each.github.io/page/6/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description"><meta property="og:image" content="http://zhang-each.github.io/img/1.jpg"><meta property="article:published_time" content="2022-12-31T13:28:20.068Z"><meta property="article:modified_time" content="2022-12-31T13:28:20.068Z"><meta name="twitter:card" content="summary"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2022-12-31 21:28:20'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">151</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="full_page" id="page-header" style="background-image: url(/img/cover.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">那颗名为现在的星</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">那颗名为现在的星</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Zhang-Each" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:22221092@zju.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/08/22/ml8/" title="统计机器学习8：聚类">统计机器学习8：聚类</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-22 10:49:31"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">统计机器学习</a></span></div><div class="content">
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end -->统计机器学习08：聚类Clustering
+聚类的基本概念
+聚类是一种无监督学习，就是在给定的数据集中根据特征的相似度或者距离，将数据集中的对象归并到若干个类中(事先并不知道，即数据集是没有label的)，因此解决聚类问题的关键是要先定义距离的度量方式，因为很多时候数据点并没有物理意义上的"距离"(地图上的不同点拥有的是物理距离)，比如社交网络中人和人之间的关系就是一种广义上的距离，对于不同的场景，我们需要寻找不同的方式来定义数据样本中的"距离"
+相似度和距离
+用于聚类的样本数据集D或者样本集合，假设有n个样本，每个样本的有n个属性，那么样本的集合就可以用一个大小为的矩阵来表示，矩阵的每一列表示一个样本的m个特征，常见的距离定义方法有
+
+闵可夫斯基距离：对于两个向量，定义其闵可夫斯基距离为
+
+
+闵可夫斯基距离中，当p=1时就是曼哈顿距离，p=2时就是欧式距离，p=为时就是切比雪夫距离，等价于各个坐标数值差的绝对值
+
+马哈拉诺比斯距离：假设样本矩阵X的协方差矩阵是S，则马哈拉诺比斯的距离共识可以表示为
+
+
+马哈拉诺比斯距离考虑了各个特征之间的相关性，通 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/08/22/ml7/" title="统计机器学习7：决策树">统计机器学习7：决策树</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-22 10:47:08"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">统计机器学习</a></span></div><div class="content">
+
+统计机器学习07：决策树DecisionTree
+基本概念
+决策树(Decision Tree)实际上是通过树形的结构来进行分类或者回归，在分类问题中可以根据样本的不同特征属性的不同属性值来进行多次分类的决策最终确定输入样本的类别，也就相当于执行了一连串嵌套的if-else语句，也可以被认为是定义在特征空间和类空间上的条件概率分布。决策树的优点是模型具有较好的可读性，分类的速度比较快。
+决策树中有一系列节点和有向边，节点又分为内部节点和也节点，内部节点表示一个特征或者属性，叶节点表示一种类别。
+决策树模型的建立
+决策树主要依靠训练数据，采取损失函数最小化的原则来建立决策树模型，分为特征选择、决策树的生成和剪枝三个步骤。建立决策树的过程用的特点主要有：
+
+采用递归的方法构建决策树
+当所有的样本都属于同一类或者在这一层已经对所有的特征都进行了分类，决策树的建立就停止
+在决策树的每一层选取一个最优的特征并用这个特征来进行分类，这也是决策树算法最关键的地方
+一般而言我们希望，随着划分过程的不断进行，决策树的分支节点所包含的样本尽可能属于同一类别，也就是节点的纯度越来 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/08/22/ml6/" title="统计机器学习6：kNN算法">统计机器学习6：kNN算法</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-22 10:46:05"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">统计机器学习</a></span></div><div class="content">
+
+统计机器学习06：kNN
+基本概念
+kNN的基本思路
+kNN：k-Nearest Neighbor算法是一种分类算法，其核心想法是根据给定的训练集，对于需要判别的测试集中的样本，在训练集中找到与之最接近的k个样本，并统计这k个样本的分类情况，将出现次数最多的类别作为测试集中的样本的分类结果。如果将k个最近的样本用来表示，那么kNN的分类决策用公式表示就是：  kNN的基本思路其实就是：如果一个东西看起来像鸭子，走路像鸭子，吃饭也像鸭子，那么它很可能就是一只鸭子。而"最接近"这个概念是有待商榷的，因为我们没有统一的距离度量法则，因此需要确定一种度量距离的方法。此外k也需要自己选择，k=1的时候这个算法被称为最近邻算法
+距离度量的选择
+我们需要在n维的特征空间中度量两个点之间的距离，对于n维空间中的两个向量，我们定义距离：  上面的公式中p=2的时候称为欧几里得距离，而p=1的时候称为曼哈顿距离，当p为无穷大的时候，L就是每个坐标中距离最大值.
+k的选择
+k的选择也对最终的结果有比较大的影响，k选择太小的话学习时的误差会减小，但是估计误差会增大，预测结果会对样本的位置 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/08/22/ml5/" title="统计机器学习5：支持向量机SVM">统计机器学习5：支持向量机SVM</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-22 10:45:01"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">统计机器学习</a></span></div><div class="content">
+
+统计机器学习05：支持向量机SVM和Kernel方法
+支持向量的引入
+对于一个分类问题，我们如果可以找到一个向量，使得对于数据集D中的任何样本x，如果x是正例(用+1表示)就有，如果x是反例(用-1表示)就有，那么我们就可以很好地对数据集进行分类，判断依据就是
+我们也可以这样来考虑，将数据集D中的每个样本x投射到d维的空间上，如果我们可以找到一个d维空间里的超平面(hyperplane)，将这个空间划分成两个部分，其中一个部分里的样本x全是正例，另一个空间里的样本x全是反例，那么这个数据集的分类问题就解决了，但是实际情况并不会这么好，对于d维空间里的点x，其到超平面的距离可以表示为：  又为了能正确地进行分类，对于训练集中的数据，需要有：  并且存在一些样本使得上面的等号成立，我们就称这些使得等号取到的点称为支持向量(support machine)，每个支持向量到超平面的距离是：  则超平面两侧的两个支持向量到超平面的距离之和就是：  这个量也被称为间隔(margin)，为了使得分类效果尽可能地好，我们应该让这个间隔尽可能地大，因此我们的目标可以转化为求的最小值，即   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/08/22/ml4/" title="统计机器学习4：感知机">统计机器学习4：感知机</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-22 10:43:13"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">统计机器学习</a></span></div><div class="content">
+
+统计机器学习04：感知机
+感知机模型的基本概念
+定义
+感知机模型是一种二分类的线性分类模型，输入k维线性空间中的向量，输出一个实例的类别(正反类别分别用+1和-1来表示)，可以将这个分类过程用一个函数来表示：  这里的参数和就是感知机的模型参数，其中，而实数b是一个偏置(bias)，这里的sign函数是一个特殊的函数，当输入的x是正数或者0的时候函数值就是1，输入的x是负数的时候函数值就是-1.
+基于超平面的理解
+可以把样本集里面的N个k维的向量看成是k维线性空间中的点，感知机的目标就是找到一个划分这个点集的超平面S，使得平面S的两侧分别是两种类型的点，后面的测试集的分类就基于测试集中数据所对应的点和超平面的位置关系来划分，在正例的一侧，反例的一侧则小于0.因此感知机的学习目标就是根据样本数据学习出超平面的方程
+基于神经元的理解
+其实感知机可以看成是一种非常简单的二层神经网络，输入层的内容是k维向量的k个特征，输出层的结果就是向量的分类情况(分为+1和-1)两种，而输出层的神经元存在一个阈值，如果超过了这个阈值，神经元就会被激活，神经元存在一个激活函数，因此这个二 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/08/22/ml3/" title="统计机器学习3：线性模型">统计机器学习3：线性模型</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-22 10:39:40"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">统计机器学习</a></span></div><div class="content">
+
+统计机器学习03：线性模型
+前面说到机器学习中的任务主要是分类和回归，分类如前面的贝叶斯定理所展现的那样是输出一个类别(有限的离散数值)，而回归的任务则是输出一个real value
+线性回归的基本思路
+对于n维的样本找到一系列线性函数使得，这个问题可以变形为n+1维使得其中而，这样一来表达式的形式更加统一了，而我们的目标就是训练出这个函数f，使得对于训练数据，有，我们要求解的对象就是这个n+1维的向量
+线性回归的loss函数和解
+线性回归常见的loss函数定义是最小平方误差(MSE) 
+也会使用残差平方和(RSS)，其形式如下：  我们对RSS的表达式求梯度有：  因此可以得到使得RSS最小的线性回归的解是: 
+我们需要注意到，每一个样本x是维的向量，因此X是维的矩阵，而y也是维的向量，所以当样本数n小于特征数d的时候，是不满秩的，求不出逆矩阵，此时的线性回归有多个解
+其实这也很好理解，因为要求解的是n+1维的向量，有n+1个变量，因此至少需要n+1个样本才能确定n+1个参数，出现上述情况的时候所有可能的解都可以使得均方误差最小化，此时可以考虑引入正则化项来筛 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/08/22/ml2/" title="统计机器学习2：贝叶斯定理">统计机器学习2：贝叶斯定理</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-22 10:37:01"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">统计机器学习</a></span></div><div class="content">
+
+统计机器学习02：贝叶斯定理
+
+统计机器学习公式推导Revisiting，第二部分贝叶斯定理
+
+贝叶斯理论是非常经典的分类算法，我们一般用表示样本，用表示可能的分类类别，则表示属于这一类别的概率。 贝叶斯决策论是在概率框架下实施决策的基本方法，本质上是如何基于概率和误判损失来选择最优的类别标记.
+贝叶斯公式的推导
+根据条件概率公式，我们有 
+这就是贝叶斯公式最简单的基本形式，其中
+
+ 是先验概率(prior),指的是样本中各种情况出现的概率
+ 是似然(likelihood),表示A发生的条件下，B出现的概率
+ 是后验概率(posterior)
+
+现在我们假设有若干个特征,对于数据集D中的一个样本x，有
+
+贝叶斯定理可以用于分类问题的决策，而用贝叶斯定理进行决策的实质是通过概率分布 情况来使得分类错误的可能性最小化，上面提到的公式事实上是基于后验概率来进行分类决策 的，也称为Optimal Bayes Decision Rule
+贝叶斯决策也可能会碰到一些特殊情况，比如当先验概率相等的时候，只需要比较likelihood 就可以，当likeliho ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/08/22/ml1/" title="统计机器学习1：机器学习中的基本概念">     <img class="post_bg" data-src="/true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="统计机器学习1：机器学习中的基本概念"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/22/ml1/" title="统计机器学习1：机器学习中的基本概念">统计机器学习1：机器学习中的基本概念</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><time class="post-meta__date" title="发表于 2021-08-22 10:15:35"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">统计机器学习</a></span></div><div class="content">
+
+统计机器学习01：机器学习中的基本概念
+
+统计机器学习公式推导Revisiting
+
+什么是Machine Learning？
+机器学习(Machine Learning)实际上就是计算机系统的自我学习，通过输入的数据集来学习出一个"函数(或者说映射)"，机器学习的三大问题是：
+
+监督学习Supervised Learning：学习已经存在的结构和规则，也就是学习一个映射，即对于有标注数据的学习，常见的有分类和回归
+非监督学习Unsupervised Learning：学习过程中由计算机自己发现新的规则和结构，即对于无标注数据的学习，常见的有聚类和降维
+强化学习：有反馈的学习，但是只会反馈对和错，在机器人中比较常见
+
+监督学习的数据都是有标注的，而非监督学习的数据是没有标注的，需要在学习过程中自己发现数据中存在的一些结构和特征。
+机器学习问题中最重要并需要花最多时间的事情就是定义模型，机器学习的三个要素是模型的表示、度量和优化。
+几个机器学习中的基本概念
+
+Sample，example，pattern 问题案例，样本
+Features，predi ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/08/20/dm3/" title="海量数据挖掘3：计算广告学和流数据挖掘">     <img class="post_bg" data-src="/img/cover/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="海量数据挖掘3：计算广告学和流数据挖掘"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/20/dm3/" title="海量数据挖掘3：计算广告学和流数据挖掘">海量数据挖掘3：计算广告学和流数据挖掘</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-20 16:20:15"><i class="far fa-calendar-alt"></i>2021-08-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a></span></div><div class="content">计算广告学
+早期广告算法
+互联网中的广告是非常常见的，而广告也可以使用推荐算法进行推荐，常见的广告算法往往都是“在线算法”，即算法不是直接获得所有的输入数据，而是逐渐接受输入数据并作出及时的决策，一次性得到所有数据并建立模型的是离线算法。
+传统的广告算法可以看成是一个图匹配的问题，一个图中一部分节点是广告商而另一部节点是投放广告的时机，我们需要给每个广告商X找到合适的时机来投放广告，这是一个在线问题，我们需要对出现的查询结果进行针对性的广告投放，并且不知道下一个用户会查询什么东西。
+
+在线二部图匹配
+我们可以进一步将问题转化成一个二部图的匹配问题，举个例子就比如相亲网站上的男女嘉宾匹配(这也可以看成是一种广告)，我们假设男的只能和女的匹配，这样一来图就被分成了男节点和女节点两部分，俗称构成了一个二部图，我们需要找到尽可能合适的匹配，让更多的男女嘉宾牵手。关于二部图的匹配有如下几个定义：
+
+完美匹配：图中的所有节点都被匹配了
+最大匹配：包含了最多可能数量节点的匹配
+
+广告推荐的目标可以认为是找到给定二部图的最大匹配，对于这个问题已经有多项式复杂度的算法被提出了，但如 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/08/20/dm2/" title="海量数据挖掘2：推荐系统">     <img class="post_bg" data-src="/img/cover/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="海量数据挖掘2：推荐系统"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/20/dm2/" title="海量数据挖掘2：推荐系统">海量数据挖掘2：推荐系统</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-20 16:16:12"><i class="far fa-calendar-alt"></i>2021-08-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a></span></div><div class="content">推荐系统RecSys
+
+这一部分内容主要讲推荐系统的相关知识，但是感觉讲的比较基础，后续进一步学习应该看看王喆写的《深度学习推荐系统》，听说是本不错的书
+
+推荐系统的一般形式
+
+推荐的方式可以分成：编辑和手工策划、简单的聚合统计和为用户量身定制三种不同的类型
+
+​ 一般来说推荐系统是给一些特定的用户来推荐特定的商品，如果我们用X来表示客户的集合，S表示商品组成的集合，那么推荐系统实际上就是寻找一个函数u满足，这里的R是一个由各个用户对每个商品可能购买概率(rating)的评级(比如使用0-1的实数或者0-5🌟来表示)，这个函数也被称为Utility Function，推荐系统的关键问题在于：
+
+如何获得已知的rating
+如何根据已知的rating推断未知的rating
+如何评估一个推断方法的好坏
+
+一般来说Utility矩阵比较稀疏，很多商品对于用户而言根本不会接触到，因此也就没有对应的rating，一种方法是冷启动cold start，也就是新的商品和用户没有相关的数据，从0开始一步步增加，而另外的方式还有：
+
+基于内容的推荐Content-bas ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/08/14/dm1/" title="海量数据挖掘1：局部敏感性哈希">     <img class="post_bg" data-src="/img/cover/21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="海量数据挖掘1：局部敏感性哈希"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/14/dm1/" title="海量数据挖掘1：局部敏感性哈希">海量数据挖掘1：局部敏感性哈希</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-14 23:13:08"><i class="far fa-calendar-alt"></i>2021-08-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a></span></div><div class="content">局部敏感哈希
+局部敏感性哈希算法(LSH)
+问题背景
+​ 我们时常会碰到一些比较大量样本相似性，并选择出和输入的内容最相似的样本，淘宝提供的拍照识别商品功能，可以找到和拍摄照片最相似的商品推荐给用户，事实上这一类问题都可以归结为找到最相似的集合这一目标上，也就是在高维空间中找到相近的邻居，常见的例子有：
+
+文本查重，找文档之间的相似度
+图像的识别
+推荐系统和搜索引擎
+
+一般来说，在给定一些高维数据点和距离度量函数的情况下找到和输入q比较接近的数据点满足(即邻居)的时间复杂度是线性的，而找到这些样本中所有满足的点对的时间复杂度是平方级别的，一旦数据量大起来，算法就会消耗大量时间，而这门课的重点内容就是“挖掘海量数据集”(课程名)，因此我们需要想办法将“找相似样本”的时间复杂度降低。
+算法的描述
+​ 局部敏感性哈希就是用来解决上面这个问题的，事实上这是一大类算法，这类算法的基本思想是将一系列item映射到一个个bucket中去，然后将需要判别的数据也进行映射，同一个bucket里的样本存在比较高的相似性，但是这样的方法也会产生false negative的情况，也就是 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/08/14/reading11/" title="论文阅读笔记11：StructureAwareNS">     <img class="post_bg" data-src="/img/cover/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文阅读笔记11：StructureAwareNS"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/14/reading11/" title="论文阅读笔记11：StructureAwareNS">论文阅读笔记11：StructureAwareNS</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-14 23:08:00"><i class="far fa-calendar-alt"></i>2021-08-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="content">论文阅读笔记11：StructureAwareNS
+
+论文《Structure Aware Negative Sampling in Knowledge graph》的阅读笔记，该论文提出了一种基于图结构的负采样方法
+
+Introduction&amp;Contribution
+论文开头还是介绍了一通知识图谱相关的东西，然后说到知识图谱是不完整的，其数据具有稀疏性和不完整性的特点，并且在训练的过程中需要用负样本进行对比，而传统的负采样方法获得的样本太“naive”了，对知识图谱嵌入模型带来的性能提升不够显著，基于对抗学习生成负样本计算代价又太高
+因此本论文提出了一种结构感知的负采样(Structure Aware Negative Sampling, SANS)方法，利用知识图谱作为“图”的结构来找到合适的负样本。该算法会用一个三元组中的head或者tail的K跳以内的邻居来替换对应部分产生有效的负样本。作者假设和待替换的实体相邻但是没有直接关系的实体有更高的概率成为一个好的替换对象来产生负样本，并使用一系列实验进行了对比。
+SANS算法
+对于一个给定的三元组，负样本可 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/08/14/reading10/" title="论文阅读笔记10：AffinityDependentNS">     <img class="post_bg" data-src="/img/cover/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文阅读笔记10：AffinityDependentNS"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/14/reading10/" title="论文阅读笔记10：AffinityDependentNS">论文阅读笔记10：AffinityDependentNS</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-14 23:05:16"><i class="far fa-calendar-alt"></i>2021-08-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="content">论文阅读笔记10：AffinityDependentNS
+
+论文《Affinity Dependent Negative Sampling for KGE》的阅读笔记，论文中提出了一种亲和力机制进行负采样。
+
+Introduction
+知识图谱由一系列主语-谓语-宾语(Subject-Predicate-Object)三元组组成的，这是和其他的文章中的提法稍微有些不同，以往的提法都是实体和关系，后面还是一律用实体和关系来代称。
+这篇论文认为我们之所以需要负样本是为了在学习的过程中和正样本形成对比，让模型具有更强的辨别能力，它同样也提到了随机的负采样只在训练刚开始的时候效果比较好，并且应该根据知识图谱中的实体之间存在的亲密度/吸引力 "Affinity" 来进行合适的负采样。
+Contribution&amp;Related Work
+本文的主要贡献是提出了一种通过计算不同实体之间的affinity来进行负采样的策略，这种策略在每次负采样的时候需要根据已有的实体嵌入计算不同实体之间的affinity来确定最合适的负采样样本，但很明显这种方式的计算量非常大，效率非常低，因此 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/08/08/reading9/" title="论文阅读笔记9：GAN&amp;KBGAN">     <img class="post_bg" data-src="/img/cover/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文阅读笔记9：GAN&amp;KBGAN"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/08/reading9/" title="论文阅读笔记9：GAN&amp;KBGAN">论文阅读笔记9：GAN&amp;KBGAN</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-08 23:57:10"><i class="far fa-calendar-alt"></i>2021-08-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="content">论文阅读笔记9：GAN4KGE&amp;KBGAN
+
+论文《Incorporating GAN for Negative Sampling in Knowledge Representation Learning》和《KBGAN》的阅读笔记，第一篇论文提出了将GAN引入到知识图谱嵌入学习的负采样中，而第二篇论文也独立地提出了这种使用对抗学习的方法来进行负采样的方式，并采用基于对数概率的KGE模型进行负采样来训练基于Margin的知识图谱嵌入模型的算法框架，因为两篇论文的方法比较相近因此放在一起看。
+
+Introduction
+​ 这次将两篇主题相关的论文结合起来一起读，第一篇是《Incorporating GAN for Negative Sampling in Knowledge Representation Learning》第二篇是《KBGAN: Adversarial Learning for Knowledge Graph Embeddings》，这两篇论文都在提出一些训练GAN模型进行知识图谱负采样的想法和工作，因此放在一起写一些论文的阅读笔记，也方便将两篇论文形 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/08/08/reading8/" title="论文阅读笔记8：RotatE">     <img class="post_bg" data-src="/img/cover/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文阅读笔记8：RotatE"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/08/reading8/" title="论文阅读笔记8：RotatE">论文阅读笔记8：RotatE</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-08 23:53:25"><i class="far fa-calendar-alt"></i>2021-08-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="content">论文阅读笔记8：RotatE
+
+知识图谱嵌入相关的论文RotateE的阅读笔记，这次的阅读笔记尝试按照和论文叙述方式不同的逻辑顺序进行记录。
+
+本文的Contribution
+​ 该论文是发表在2019年的ICLR上的一篇论文，提出了在复数空间中表示知识图谱中的实体和关系的方法，并且解决了已有的知识图谱嵌入算法不能完全表示对成/反对称/可逆/组合等关系模式的问题。
+RotatE的提出
+知识图谱的关系模式
+​ 知识图谱三元组中存在一些比较特殊的关系模式，包括对称/反对称/可逆和组合等等，用形式化的方法表示如下：
+
+对称性：
+反对称性：
+可逆性：
+组合性：
+
+不同KGE算法的比较
+​ 而已有的基于Translation的方法可能对于上述一些情况的处理能力比较好，而在一些情况中有所欠缺，而RotatE采用复数嵌入表示，对于对称性/反对称性/可逆性/组合性的关系等各种情况，不同算法的对于各种关系模式的处理能力总结如下：
+
+image-20210729234959213
+
+​ 我们发现TransE可以处理对称关系以外的所有一对一关系，这是因为根据Trans ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/08/07/mtml4/" title="多任务学习和元学习4：高级话题">     <img class="post_bg" data-src="/img/cover/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多任务学习和元学习4：高级话题"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/07/mtml4/" title="多任务学习和元学习4：高级话题">多任务学习和元学习4：高级话题</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-07 10:55:17"><i class="far fa-calendar-alt"></i>2021-08-07</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%85%83%E5%AD%A6%E4%B9%A0/">多任务学习和元学习</a></span></div><div class="content">CS330：多任务学习和元学习4
+
+这一部分笔记对应CS330课程中的Lecture7，主题是Advanced Meta Learning，主要讲了元学习中一些比较高级的topic
+
+元学习中的Memorization
+如何处理互斥的任务
+先回忆了一下元学习中几种已有的模型，包括黑盒模型，优化模型和非参数化的模型。我们在元学习的过程中要对数据集进行适当的划分，将已有的样本和标签划分成若干个任务并进行训练，如果划分出的若干个任务是非互斥的，那么可以用一个函数“解决”所有的任务，而如果这些任务中存在一些互斥的任务，这个时候只用一个函数就不能解决所有的任务了，元学习模型训练的效果也会受到影响。
+现在有两种解决办法，我们假设其中一个和其他任务互斥的任务的数据集是，两种可选的解决方案是：
+
+让模型“记住”这个任务中所有的结果和模式，然后忽略这个数据集，实际上这种方式是让模型对这个互斥数据集过拟合
+将分离出来单独训练模型，不把这个任务放到总体的元学习模型训练中，而是单独训练一个模型
+
+选用哪种方法实际上取决于信息的流动情况
+元正则化
+元学习模型也可以进行正则化，我们假设 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/08/07/mtml3/" title="多任务学习和元学习3：非参数化和少样本学习">     <img class="post_bg" data-src="/img/cover/13.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多任务学习和元学习3：非参数化和少样本学习"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/07/mtml3/" title="多任务学习和元学习3：非参数化和少样本学习">多任务学习和元学习3：非参数化和少样本学习</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-07 10:50:35"><i class="far fa-calendar-alt"></i>2021-08-07</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%85%83%E5%AD%A6%E4%B9%A0/">多任务学习和元学习</a></span></div><div class="content">CS330：Multi-task Learning&amp;Meta Learning3
+
+Stanford CS330课程的Lecture6学习笔记，主要讲了少样本学习和度量学习的基本概念。
+
+非参数化的少样本学习
+​ 黑盒元学习方法本质上是将学习器用一个神经网络来进行参数化的表示，虽然笔记expressive但是会优化起来比较困难。基于优化的元学习方法本质上是对内部学习过程进行优化，将优化的结构嵌入到元学习器中，但是需要计算二阶梯度。这两种方法都是参数化的方法，即模型用一系列参数进行表示。本节课主要介绍的内容是少数据的(Low Data Regimes)的非参数化方法。
+
+image-20210727152831097
+
+​ 非参数化的方法的核心思想是使用非参数化的学习器，比如图像分类问题可以使用将测试集和训练集图片进行比较的方法来完成图片的分类，而怎么确定比较的度量方式(metric)就成了关键的问题，我们常用的距离度量有L2距离，而元学习的方法可以让模型学习到如何比较不同图片之间的distance
+Siamese网络
+一种Siamese网络的架构如下：
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/08/01/mtml2/" title="多任务学习和元学习2：元学习">     <img class="post_bg" data-src="/img/cover/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多任务学习和元学习2：元学习"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/01/mtml2/" title="多任务学习和元学习2：元学习">多任务学习和元学习2：元学习</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-01 23:59:36"><i class="far fa-calendar-alt"></i>2021-08-01</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%85%83%E5%AD%A6%E4%B9%A0/">多任务学习和元学习</a></span></div><div class="content">CS330：Multi-task Learning&amp;Meta Learning2
+
+本章笔记的内容主要是原课程的Lecture3和4，主要讲元学习问题的定义和黑盒元学习，以及基于优化的元学习
+
+元学习问题
+​ 前面已经说到多任务学习和迁移学习的定义和区别，这里再复习一下，多任务学习是训练模型一次性解决多个任务，而迁移学习是将一个任务上的模型迁移到另一个任务上，主要是通过训练+微调的pipeline来完成迁移学习，这也是两种学习模式的主要区别。而元学习问题的目标是“学习如何学习”，可以从两种不同的视角来看待。
+
+从机械的视角来看，深度网络可以将整个数据集读入并且可以预测新数据点的结果，那么就可以使用一个元数据集来训练网络，这个元数据集中包含很多的数据集，每一个数据集对应的任务各不相同
+从概率的视角来看，元学习需要从一些任务中抽取出有效的先验知识用于解决新的任务，并且使用这些先验的知识来和新的训练数据集来学习一个新的任务的后验参数
+
+也就是说元学习是给定多个任务和对应的数据集进行训练，并在新的任务和新的测试集上验证效果。
+​ 元学习的一个关键假设是，所有的任务 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Zhang-Each</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">文章</div><div class="length_num">151</div></a></div><div class="card-info-data-item is-center">      <a href="/tags"><div class="headline">标签</div><div class="length_num">60</div></a></div><div class="card-info-data-item is-center">     <a href="/categories"><div class="headline">分类</div><div class="length_num">17</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" type="button" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Zhang-Each" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:22221092@zju.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">本博客使用的主题为hexo-blog-lionkk，不定期更新一些自己的学习笔记。</div></div></div><div class="card-widget card-pixiv"><div class="card-content"><div class="item-headline"><i class="fa fa-image" aria-hidden="true"></i><span>Pixiv日榜Top50</span><iframe src="https://cloud.mokeyjay.com/pixiv" frameborder="0" style="width:99%;height:380px;margin:0;"></iframe></div></div></div><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>写作日历</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget card-map"><div class="card-content"><div class="item-headline"><i class="fa fa-globe-asia" aria-hidden="true"></i><span>访客地图</span></div><script id="clstr_globe" type="text/javascript" defer="defer" src="//clustrmaps.com/globe.js?d=QXAUn7a1zmV720XLTFBQ4ihAmOcUWG0QtA3xa9jfevg"></script></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2022/12/31/my2022/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/cover/10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="我的2022年度总结" alt="我的2022年度总结"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/12/31/my2022/" title="我的2022年度总结">我的2022年度总结</div><time class="aside-post_meta post-meta__date" title="发表于 2022-12-31 19:14:27">2022-12-31</time></div></a></div><div class="aside-recent-post"><a href="/2022/12/25/cmu-dis-sys6/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/cover/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="CMU-15/440 Distributed Systems 6：DFS" alt="CMU-15/440 Distributed Systems 6：DFS"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/12/25/cmu-dis-sys6/" title="CMU-15/440 Distributed Systems 6：DFS">CMU-15/440 Distributed Systems 6：DFS</div><time class="aside-post_meta post-meta__date" title="发表于 2022-12-25 18:11:46">2022-12-25</time></div></a></div><div class="aside-recent-post"><a href="/2022/11/21/advnlp/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/cover/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="NLP与对抗学习" alt="NLP与对抗学习"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/11/21/advnlp/" title="NLP与对抗学习">NLP与对抗学习</div><time class="aside-post_meta post-meta__date" title="发表于 2022-11-21 22:49:32">2022-11-21</time></div></a></div><div class="aside-recent-post"><a href="/2022/11/04/dmreview/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/cover/3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="浙江大学研究生课程《数据挖掘》考前速成" alt="浙江大学研究生课程《数据挖掘》考前速成"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/11/04/dmreview/" title="浙江大学研究生课程《数据挖掘》考前速成">浙江大学研究生课程《数据挖掘》考前速成</div><time class="aside-post_meta post-meta__date" title="发表于 2022-11-04 13:05:16">2022-11-04</time></div></a></div><div class="aside-recent-post"><a href="/2022/09/05/linux-sys-admin/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/cover/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="UCB-LinuxSysAdminDecal学习记录" alt="UCB-LinuxSysAdminDecal学习记录"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/09/05/linux-sys-admin/" title="UCB-LinuxSysAdminDecal学习记录">UCB-LinuxSysAdminDecal学习记录</div><time class="aside-post_meta post-meta__date" title="发表于 2022-09-05 22:48:24">2022-09-05</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CS%E6%A0%B8%E5%BF%83%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">CS核心课程</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%9E%E8%B7%B5/"><span class="card-category-list-name">代码实践</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9B%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">图机器学习</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%85%83%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">多任务学习和元学习</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">多模态机器学习</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AE%9E%E4%B9%A0-%E5%B7%A5%E4%BD%9C/"><span class="card-category-list-name">实习/工作</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/"><span class="card-category-list-name">数据库系统的设计与实现</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"><span class="card-category-list-name">数据挖掘</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9D%82%E8%B0%88%E4%B8%8E%E6%80%BB%E7%BB%93/"><span class="card-category-list-name">杂谈与总结</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%A6%82%E7%8E%87%E5%9B%BE%E6%A8%A1%E5%9E%8B/"><span class="card-category-list-name">概率图模型</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">统计机器学习</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/"><span class="card-category-list-name">编程语言与编译器</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"><span class="card-category-list-name">自然语言处理</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">计算机系统</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">计算机网络</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="card-category-list-name">论文阅读</span><span class="card-category-list-count">33</span></a></li>
+                       
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href='/tags/C/' style='font-size:21px; color:rgb(100, 37, 176)'>C++</a><a href='/tags/Java/' style='font-size:16px; color:rgb(27, 112, 156)'>Java</a><a href='/tags/Linux/' style='font-size:16px; color:rgb(138, 20, 89)'>Linux</a><a href='/tags/PyTorch/' style='font-size:16px; color:rgb(199, 101, 56)'>PyTorch</a><a href='/tags/Python/' style='font-size:19px; color:rgb(171, 134, 9)'>Python</a><a href='/tags/React/' style='font-size:17px; color:rgb(63, 104, 144)'>React</a><a href='/tags/SQL/' style='font-size:19px; color:rgb(82, 90, 114)'>SQL</a><a href='/tags/Spring-Boot/' style='font-size:18px; color:rgb(118, 59, 2)'>Spring Boot</a><a href='/tags/TCP-IP/' style='font-size:19px; color:rgb(106, 166, 122)'>TCP/IP</a><a href='/tags/Web%E5%BC%80%E5%8F%91/' style='font-size:16px; color:rgb(160, 196, 32)'>Web开发</a><a href='/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/' style='font-size:16px; color:rgb(68, 37, 175)'>人工智能</a><a href='/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E8%B7%B5/' style='font-size:17px; color:rgb(191, 171, 41)'>代码实践</a><a href='/tags/%E4%BF%9D%E7%A0%94/' style='font-size:19px; color:rgb(21, 30, 159)'>保研</a><a href='/tags/%E5%85%83%E5%AD%A6%E4%B9%A0/' style='font-size:21px; color:rgb(17, 69, 49)'>元学习</a><a href='/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/' style='font-size:21px; color:rgb(41, 10, 42)'>分布式系统</a><a href='/tags/%E5%9B%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/' style='font-size:17px; color:rgb(82, 199, 4)'>图机器学习</a><a href='/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/' style='font-size:18px; color:rgb(37, 70, 151)'>图神经网络</a><a href='/tags/%E5%9B%BE%E8%AE%BA/' style='font-size:20px; color:rgb(189, 72, 122)'>图论</a><a href='/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0/' style='font-size:20px; color:rgb(170, 176, 186)'>多任务学习</a><a href='/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AD%A6%E4%B9%A0/' style='font-size:16px; color:rgb(20, 162, 172)'>多模态学习</a><a href='/tags/%E5%AE%9E%E4%B9%A0/' style='font-size:18px; color:rgb(168, 118, 114)'>实习</a><a href='/tags/%E5%AF%B9%E6%8A%97%E5%AD%A6%E4%B9%A0/' style='font-size:18px; color:rgb(160, 23, 31)'>对抗学习</a><a href='/tags/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/' style='font-size:18px; color:rgb(190, 77, 49)'>对比学习</a><a href='/tags/%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/' style='font-size:17px; color:rgb(141, 181, 85)'>少样本学习</a><a href='/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/' style='font-size:19px; color:rgb(147, 37, 38)'>推荐系统</a><a href='/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/' style='font-size:16px; color:rgb(110, 140, 43)'>操作系统</a><a href='/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/' style='font-size:16px; color:rgb(107, 73, 176)'>数据存储</a><a href='/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/' style='font-size:20px; color:rgb(134, 142, 115)'>数据库</a><a href='/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/' style='font-size:20px; color:rgb(187, 41, 28)'>数据库系统</a><a href='/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/' style='font-size:20px; color:rgb(1, 15, 35)'>数据挖掘</a><a href='/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/' style='font-size:17px; color:rgb(183, 78, 39)'>数据清洗</a><a href='/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/' style='font-size:21px; color:rgb(160, 89, 144)'>数据结构</a><a href='/tags/%E6%9C%AC%E7%A7%91%E6%95%99%E5%AD%A6/' style='font-size:21px; color:rgb(110, 138, 26)'>本科教学</a><a href='/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/' style='font-size:20px; color:rgb(143, 169, 124)'>机器学习</a><a href='/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F/' style='font-size:19px; color:rgb(111, 162, 137)'>机器学习系统</a><a href='/tags/%E6%A6%82%E7%8E%87%E5%9B%BE%E6%A8%A1%E5%9E%8B/' style='font-size:17px; color:rgb(110, 141, 146)'>概率图模型</a><a href='/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6/' style='font-size:17px; color:rgb(91, 149, 23)'>浙江大学</a><a href='/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/' style='font-size:18px; color:rgb(74, 19, 32)'>深度学习</a><a href='/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/' style='font-size:21px; color:rgb(199, 198, 103)'>知识图谱</a><a href='/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/' style='font-size:18px; color:rgb(33, 102, 200)'>知识蒸馏</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/archives">
+              <span>查看更多</span><i class="fas fa-angle-right"  ></i></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章数目 :</div><div class="webinfo-article-count">151</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">已运行时间 :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" publish_date="2021/05/01">     </div></div><div class="webinfo-item"><div class="webinfo-site-wordcount-name">本站总字数 :</div><div class="webinfo-site-wordcount">418.3k</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站访客数 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站总访问量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022  <i id="heartbeat" class="fa fas fa-heartbeat"></i> Zhang-Each</div><div class="framework-info"><span>驱动 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleEffect = true
+if (subtitleEffect) { 
+  var typed = new Typed("#subtitle", {
+    strings: "分享一些自己的学习笔记和心得体会。".split(","),
+    startDelay: 300,
+    typeSpeed: 150,
+    loop: true,
+    backSpeed: 50
+  })
+} else {
+  document.getElementById("subtitle").innerHTML = '分享一些自己的学习笔记和心得体会。'
+}</script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
