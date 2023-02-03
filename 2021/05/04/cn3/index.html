@@ -1,0 +1,717 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络3：网络层和运输层 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter 5：Network Layer周炜
+ 5.1 网络层的设计
+ 
+ 网络层
+ 
+ 关注的是如何将源端的数据包发送到接收方
+ 可以通过中间路由器进行转发，数据链路层只负责将线路从一边传送到另一边，而网络层是处理端到端数据传输的最底层
+ 因此网络层必须知道网络的拓扑结构，并选择适当的路径进行传输
+ 
+ 
+ image-20201027100044982
+ 
+ 
+ 网络层提供给传输层的服务"><meta name="keywords" content="计算机网络,计算机系统"><meta name="author" content="zhou_wei"><meta name="copyright" content="zhou_wei"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhou_wei.github.io/2021/05/04/cn3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="计算机网络3：网络层和运输层"><meta property="og:url" content="http://zhou_wei.github.io/2021/05/04/cn3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter 5：Network Layer
+ 5.1 网络层的设计
+ 
+ 网络层
+ 
+ 关注的是如何将源端的数据包发送到接收方
+ 可以通过中间路由器进行转发，数据链路层只负责将线路从一边传送到另一边，而网络层是处理端到端数据传输的最底层
+ 因此网络层必须知道网络的拓扑结构，并选择适当的路径进行传输
+ 
+ 
+ image-20201027100044982
+ 
+ 
+ 网络层提供给传输层的服务"><meta property="og:image" content="http://zhou_wei.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-04T00:43:16.000Z"><meta property="article:modified_time" content="2021-09-20T09:23:50.045Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="计算机网络4：应用层与网络安全" href="http://zhou_wei.github.io/2021/05/04/cn4/"><link rel="next" title="计算机网络2：物理层，数据链路层与MAC子层" href="http://zhou_wei.github.io/2021/05/04/cn2/"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-09-20 17:23:50'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;周炜
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">151</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-5network-layer"><span class="toc-number">1.</span> <span class="toc-text">Chapter 5：Network Layer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">5.1 网络层的设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">5.2 路由算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ip%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.3.</span> <span class="toc-text">5.3 IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ipv4%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.3.1.</span> <span class="toc-text">5.3.1 IPv4协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80"><span class="toc-number">1.3.2.</span> <span class="toc-text">5.3.2 IP地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#internet%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text">5.3.3 Internet控制协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#internet-%E8%B7%AF%E7%94%B1"><span class="toc-number">1.4.</span> <span class="toc-text">5.4 Internet 路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-number">1.5.</span> <span class="toc-text">5.5 拥塞控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E8%B4%A8%E9%87%8F"><span class="toc-number">1.6.</span> <span class="toc-text">5.6 服务质量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ipv6%E6%A0%87%E5%87%86"><span class="toc-number">1.7.</span> <span class="toc-text">5.7 IPv6标准</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-6transmission-layer"><span class="toc-number">2.</span> <span class="toc-text">Chapter 6：Transmission Layer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%BE%93%E5%B1%82%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">6.1 运输层的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%BE%93%E5%B1%82%E7%9A%84%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.2.</span> <span class="toc-text">6.2 运输层的协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AE-udp"><span class="toc-number">2.3.</span> <span class="toc-text">6.3 用户数据报协议 UDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">2.4.</span> <span class="toc-text">6.4 应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AEtcp%E4%B8%8Esocket"><span class="toc-number">2.5.</span> <span class="toc-text">6.4 传输控制协议TCP与socket</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(/img/cover/9.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">那颗名为现在的星</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">计算机网络3：网络层和运输层</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-05-04 08:43:16"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-05-04</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-09-20 17:23:50"><i class="fas fa-history fa-fw"></i> 更新于 2021-09-20</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/CS%E6%A0%B8%E5%BF%83%E8%AF%BE%E7%A8%8B/">CS核心课程</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">6.8k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 20 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>评论数:</span><a href="/2021/05/04/cn3/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2021/05/04/cn3/" itemprop="commentCount"></span></a></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="chapter-5network-layer">Chapter 5：Network Layer</h2>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><h3 id="网络层的设计">5.1 网络层的设计</h3>
+<ul>
+<li><p>网络层</p>
+<ul>
+<li>关注的是如何将源端的数据包发送到接收方</li>
+<li>可以通过中间路由器进行转发，数据链路层只负责将线路从一边传送到另一边，而网络层是<strong>处理端到端数据传输的最底层</strong></li>
+<li>因此网络层必须知道网络的拓扑结构，并选择适当的路径进行传输</li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201027100044982.png" alt="image-20201027100044982"><figcaption aria-hidden="true">image-20201027100044982</figcaption>
+</figure>
+<ul>
+<li>网络层提供给传输层的服务
+<ul>
+<li>应该独立于路由器技术，向传输层屏蔽网络拓扑结构的具体内容</li>
+<li>传输层可用的网络地址应该有一个统一的编地址方案</li>
+</ul></li>
+</ul></li>
+<li><p>网络层提供的服务</p>
+<ul>
+<li><p>无连接服务：</p>
+<ul>
+<li>每个数据包独立路由，不需要任何预先的设置</li>
+<li>此时的数据包通常也称为数据报datagram，对应的网络称为数据报网络</li>
+<li>每个路由器中都有一个内部表，指明了针对每一个可能的目标地址应该将数据包送到哪里去。
+<ul>
+<li>表中的每一项由两个部分组成：目标地址和通往目标地址所使用的出境线路</li>
+<li>管理路由表更新的算法称为路由算法</li>
+</ul></li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201027102548025.png" alt="image-20201027102548025"><figcaption aria-hidden="true">image-20201027102548025</figcaption>
+</figure></li>
+<li><p>面向连接的服务：</p>
+<ul>
+<li>在发送数据包之前需要先建立起一条虚电路，对应的网络称为虚电路网络</li>
+<li>一个例子是多协议标签交换 MPLS</li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201027103350204.png" alt="image-20201027103350204"><figcaption aria-hidden="true">image-20201027103350204</figcaption>
+</figure></li>
+</ul></li>
+</ul>
+<h3 id="路由算法">5.2 路由算法</h3>
+<ul>
+<li><p>是<strong>网络层软件</strong>的一部分，负责确定一个入境数据包应该被发送到哪条线路上</p>
+<ul>
+<li>路由算法需要有一定的鲁棒性和稳定性，能够处理拓扑结构和流量的各种变化</li>
+<li>功能：路由routing和转发forwarding</li>
+<li>可以分为自适应算法和非自适应算法
+<ul>
+<li>非自适应算法不会根据流量和拓扑结构来调整路由决策，也叫做<strong>静态路由</strong></li>
+<li>自适应算法会根据拓扑结构和流量来改变路由策略，也叫做<strong>动态路由</strong></li>
+</ul></li>
+</ul></li>
+<li><p>最优化原则</p>
+<ul>
+<li>最优化原则的表述：最优路径上的子路径一定是最优路径</li>
+<li>从所有源到制定目标的最优路径构成的集合构成了一棵以目标节点为根的树，称为汇集树<code>sink tree</code></li>
+</ul></li>
+<li><p>几种常用的算法</p>
+<ul>
+<li><p>最短路径算法：用跳数hop或者网线长度等指标来标识拓扑图中的边长</p>
+<ul>
+<li>可以使用数据结构基础中学过的Dijkstra算法</li>
+</ul></li>
+<li><p>泛洪算法：</p>
+<ul>
+<li>每个路由器必须根据本地的知识而不是网络的全貌做决策，一个简单的技术是泛洪，这种技术将每一个入境的数据包发送到了除了到达线路以外的每条出境线路</li>
+<li>问题使会产生大量的重复数据包，需要用措施来抑制泛洪，一种方法是在数据包里放一个跳计数器，每跳一次减小1，如果计数器为0就丢弃这个数据包</li>
+</ul></li>
+<li><p>动态路由算法：距离矢量路由算法</p>
+<ul>
+<li>每个路由器维护一张表，表钟列出了当前已知的到每个目标的最佳距离和使用的链路，通过邻居之间相互交换信息而不断被更新，最终每个路由器都了解到了到达目标的最佳链路</li>
+<li>每个路由器维护一张路由表，以网络中的每个路由器作为索引，并且每个路由器作为表中的一项，该表包含两个部分——到达目标路由器的<strong>首选线路</strong>和<strong>距离的估计值</strong><br>
+</li>
+<li>每个路由器收到了相邻路由器发来的矢量之后会更新自己的路由表</li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201027113853141.png" alt="image-20201027113853141"><figcaption aria-hidden="true">image-20201027113853141</figcaption>
+</figure></li>
+<li><p>无穷计算问题：</p>
+<ul>
+<li>整个网络最佳路径的寻找过程称为收敛，距离矢量算法可以收敛到一条最短的路径，但是问题是速度太慢了</li>
+<li>距离矢量算法对好的结果反应特别迅速，对坏消息的反应非常迟钝</li>
+<li>某些情况下可能会让路由表的计算出现无限计算的情况，这就是无穷计数问题</li>
+<li><strong>Poisoned Reverse染毒逆转：</strong>在基于路由信息协议的网络中，当一条路径信息变为无效之后，路由器并不立即将它从路由表中删除，而是用无穷大，即不可达的度量值将它广播出去。但是它不能完全解决无穷计数问题</li>
+</ul></li>
+<li><p>链路状态路由算法：每一个路由器需要完成5个步骤，算法才能正常工作</p>
+<ul>
+<li>发现邻居节点，并了解网络地址</li>
+<li>设置每个邻居节点的距离或者成本度量值</li>
+<li>构造一个包含刚才所得的信息的链路信息包</li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201027120128225.png" alt="image-20201027120128225"><figcaption aria-hidden="true">image-20201027120128225</figcaption>
+</figure>
+<ul>
+<li>将包发送给所有的路由器，并接受所有来自其他路由器的信息包</li>
+<li>计算出到每个路由器的最短路径</li>
+</ul></li>
+<li><p>层次路由：</p>
+<ul>
+<li>路由器被划分成了不同的区域，每个路由器知道如何将数据包路由到自己所在的区域内的布标地址，但是对于其他区域的内部结构不知情，当不同的网络被相互连接在一起的时候，每个网络就会作为一个独立的区域，一个网络中的路由器不必直到其他网络的拓扑结构</li>
+<li>代价是增加了路径的长度</li>
+</ul></li>
+<li><p>广播路由：</p>
+<ul>
+<li>浪费带宽，并且需要源头拥有所有目标机器的完整地址列表，不够理想但是广泛使用</li>
+<li>多目标路由：每个数据包包含一组目标地址或者位图</li>
+<li>逆向路径转发</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="ip协议">5.3 IP协议</h3>
+<ul>
+<li>网际协议IP是TCP/IP体系中最重要的协议之一，用来连接计算机网络进行通信
+<ul>
+<li>互联以后的计算机网络都是由网际协议IP因此可以看成一个虚拟互联网络，因为物理介质之间的异构性是客观存在的</li>
+<li>而IP协议使得性能各异的网络在网络层中看起来就像上一个统一的网络</li>
+</ul></li>
+<li>为了连接不同的网络，需要一些中间设备
+<ul>
+<li>物理层的中间设备叫做转发器repeater</li>
+<li>数据链路层的中间设备叫做网桥或者桥接器bridge</li>
+<li>网络层使用的中间设备叫做路由器router</li>
+<li>网络层以上使用的中间设备叫做网关gateway，可以用来连接两个不兼容的系统，需要在高层进行协议的转换</li>
+</ul></li>
+<li>Internet的通信过程：
+<ul>
+<li>从传输层获取数据流，并将数据流拆分成段，以便作为IP数据包发送</li>
+<li>每个数据包理论上最大容量是64KB，但一般不超过1500bytes</li>
+<li>IP路由器转发每个数据包穿过Internet，沿着一条路径把数据包从一个路由器转发到下一个路由器，直到数据包到达目的地。</li>
+<li>在接受方，网络层将数据交给传输层，再由传输层交给接收进程</li>
+</ul></li>
+</ul>
+<h4 id="ipv4协议">5.3.1 IPv4协议</h4>
+<ul>
+<li><p>协议头</p>
+<ul>
+<li>每个IP数据报包含两个部分：头和正文，正文部分也叫做有效净荷</li>
+<li>每个IPv4协议头有20个字节的定长部分和一个可选的变长部分</li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103100249466.png" alt="image-20201103100249466"><figcaption aria-hidden="true">image-20201103100249466</figcaption>
+</figure>
+<ul>
+<li>组成部分
+<ul>
+<li>版本字段记录了协议属于哪个版本，目前用的比较多的依然是IPv4</li>
+<li>IHL指明了头到底有多长(以32位字长度为单位)，最小值是5表明没有可选项，最大值是15，因此可选项最多为40字节</li>
+<li>总长度包含了数据报中所有的内容即头和数据的总长度</li>
+<li>标识用来让目标主机确定一个新到的分段属于哪一个数据报，同一个数据报的所有段包含相同的表示值</li>
+<li>后面还有一个空位</li>
+<li>DF表示不分段，MF表示更多的段，除了最后一段之外所有段都必须设置MF这个位置</li>
+<li>分段偏移量表示当前段在数据报中的位置，该字段有13位，所有段的长度必须是8的倍数，因此<strong>最多可以有8192个段</strong></li>
+<li>生存期是一个计数器，每一跳后计数器都会减小，减小到0的时候数据包就会被丢弃</li>
+<li>协议表明了数据包需要被交给哪个传输进程，可能是TCP,UDP等等</li>
+<li>头校验和用来校验和保护地址</li>
+<li>源地址和目标地址是源网络接口和目标网络接口的IP地址</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="ip地址">5.3.2 IP地址</h4>
+<ul>
+<li><p>IPv4协议中的IP地址是一个<strong>32位的地址</strong>，网络中的每一台主机和路由器都有一个IP地址</p>
+<ul>
+<li><p>IP地址是一种逻辑地址，因为是软件实现的，而物理层和数据链路层的协议用的是物理地址</p>
+<ul>
+<li>IP数据报一旦交给了数据链路层就被封装成MAC帧，MAC帧传送的时候使用的都是硬件地址</li>
+</ul></li>
+<li><p>IP地址并不真正指向一台主机，而是一个<strong>网络接口</strong>，所以如果一台主机在两个网络上，它就必须有两个IP地址，路由器有多个网络接口，所以一个路由器有多个IP地址</p></li>
+<li><p>IP一般由网络号和主机号构成，分为ABCDE五类(这里的网络号就是下面说的前缀)</p>
+<ul>
+<li>A类的网络号有8位且第一位是0，B类有16位且前两位是10，C类地址的网络号有24位且前两位是110</li>
+<li>D类地址是1110开头的多播地址，E类地址前四位1111有待开发</li>
+</ul></li>
+<li><p>IP地址的<strong>前缀</strong>：IP地址具有层次性，每个32位地址由高位的可变长网络号和低位的主机两部分组成，同一个网络上所有主机其地址的网络值都是相同的，这一段就是前缀</p></li>
+<li><p>子网掩码：也标注了前缀的长度，比如128.208.101.21/24表示32位的IP地址中前缀长度是24位，后面8位是主机地址</p>
+<ul>
+<li>层次化的地址使得路由规模化了，但是也造成了地址的浪费</li>
+</ul></li>
+<li><p>子网：在内部将一个网络块分成几个部分供多个内部网络使用，但是对外部世界仍然像单个网络一样，这样的划分得到的结果就是子网</p>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103103620142.png" alt="image-20201103103620142"><figcaption aria-hidden="true">image-20201103103620142</figcaption>
+</figure></li>
+</ul></li>
+<li><p>CIDR 无类域间路由(构造超网)</p>
+<ul>
+<li>按块分配依然解决不了路由表爆炸的问题，尤其是位于默认自由区的骨干路由器，其路由表的规模非常大</li>
+<li>路由聚合Route Aggregation：可以运用和子网划分相同的方法，不同地点的路由器可以知道一个给定IP地址的不同大小的前缀，然而不是将一块地址分割成为若干子网，而是将<strong>多个小前缀的地址合并成一个大前缀</strong>，此时产生的大块前缀地址称为超网</li>
+<li>有了地址聚合，IP地址可以包含大小不等的前缀，同一个IP地址，可以作为不同长度的前缀被多个路由器使用，这个设计称为无类域间路由 <code>Classless Inter-Domain Routing</code></li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103105435313.png" alt="image-20201103105435313"><figcaption aria-hidden="true">image-20201103105435313</figcaption>
+</figure></li>
+<li><p>NAT 网络地址转换</p>
+<ul>
+<li>因为IP地址非常有限，因此可以采取动态分配IP的策略，在主机不活跃的时候回收IP地址，然后分配给别人，但是也有局限性</li>
+<li>NAT的基本思想是给每个家庭或者公司分配一个IP地址用来传输流量，但是在客户网络的内部，每台计算机有唯一的IP地址，该地址主要用来路由内部流量，然而当一个数据包离开客户网络发送到其他的地方的时候，必须进行一个地址转换，<strong>把内部IP转换成公共IP地址</strong></li>
+<li>三个保留的地址范围：已经被私有化，任何网络可以内部随意使用这些地址，不允许包含这些地址的数据包出现在Internet上面</li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103112225810.png" alt="image-20201103112225810"><figcaption aria-hidden="true">image-20201103112225810</figcaption>
+</figure>
+<ul>
+<li>NAT带来的问题：
+<ul>
+<li>违反了IP的结构模型，即一台机器对应一个IP</li>
+<li>NAT打破了端到端的连接模型</li>
+<li>NAT将因特网从无连接网络变成了面向连接的网络</li>
+<li>违反了最基本的协议分层规则</li>
+<li>进程并不一定只有TCP和UDP</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="internet控制协议">5.3.3 Internet控制协议</h4>
+<ul>
+<li><p>ICMP 控制消息协议</p>
+<ul>
+<li>是路由器监视Internet的协议，当路由器处理数据包的时候发生了意外，就可以用ICMP向数据包的源端报告有关事件，所有的ICMP都被<strong>封装在一个IP数据包中</strong></li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103114037900.png" alt="image-20201103114037900"><figcaption aria-hidden="true">image-20201103114037900</figcaption>
+</figure></li>
+<li><p>ARP 地址解析协议</p>
+<ul>
+<li>以太网网卡并不能理解IP地址，每一块NIC根据48位的以太网地址来发送和接收帧</li>
+<li>ARP协议的作用就是将IP地址映射到以太网的地址(硬件地址)，优点是简单，比配置文件更加简单，属于网络层的协议</li>
+<li>ARP协议解决转换问题的方法是在主机ARPcache中存放一个从IP地址到硬件地址的映射表，并进行动态更新，每一台主机上都设有一个ARP高速缓存，里面有本局域网上的各台主机和路由器的IP到硬件地址映射表</li>
+<li>当一台主机A要向本局域网上的主机B发送IP数据报的时候就先在缓存中查看有无主机B的IP地址，如果有就在ARP高速缓存中查出其对应的硬件地址写入MAC帧然后进行发送，否则就需要再进行一系列的操作</li>
+<li>ARP解决的是同一个局域网上的主机或者路由器IP到硬件地址的映射问题</li>
+</ul></li>
+<li><p>DHCP 动态主机配置协议</p>
+<ul>
+<li>每个网络必须有一个DHCP服务器负责地址的配置，为发送请求的主机分配一个空闲的IP地址，并通过DHCP的OFFER包返回给主机</li>
+<li>动态分配的IP地址只能使用一段固定的时间，到期之前主机必须请求DHCP续订否则IP地址就失效了</li>
+</ul></li>
+<li><p>标签交换和MPLS</p>
+<ul>
+<li>多协议标签交换 MOLS在每个数据包前面增加一个标签，路由器根据数据包标签进行转发，用标签作为内部表的一个索引，快速查找出正确的输出线路</li>
+<li>通用的MPLS有4个字节，并且包含四个字段，标签存放的是索引，QoS表明服务类别，S表示在层次网络中叠加多个标签的做法，TTL字段指出该数据包还可以被转发多少次，美经过一个路由器被减小1，降为0的时候数据包将被丢弃</li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103135011630.png" alt="image-20201103135011630"><figcaption aria-hidden="true">image-20201103135011630</figcaption>
+</figure></li>
+</ul>
+<h3 id="internet-路由">5.4 Internet 路由</h3>
+<ul>
+<li><p>OSPF：内部网关路由协议</p>
+<ul>
+<li><p>因特网由大量的独立网络或者自治系统(AS)构成，在一个网络的内部，一个组织可以使用自己的内部路由算法，也叫做域内路由算法</p></li>
+<li><p>开放最短路径优先 Open Shortest Path First 协议借鉴了ISIS(中间系统到中间系统)协议，已经成为了ISO的标准</p>
+<ul>
+<li>使用了分布式的链路状态协议(link state protocol)和最短路径算法</li>
+<li>动态算法，支持多种距离度量</li>
+<li>实现<strong>负载均衡</strong>，使用层次化的系统</li>
+<li>同时支持点到点的链路和广播网络</li>
+</ul></li>
+<li><p>OSPF的工作方式本质上是对一张图进行操作，将一组实际网络、路由器和线路抽象到一个有向图中，两个路由器之间的点到点连接可以用两条有向的弧来表示</p>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103141528228.png" alt="image-20201103141528228"><figcaption aria-hidden="true">image-20201103141528228</figcaption>
+</figure></li>
+<li><p>OSPF协议做了两件事情：</p>
+<ul>
+<li>用一个有向图来表示实际的网络，计算出各条最短的任务</li>
+<li>OSPF记住最短的路径集合，并在报文转发阶段把流量分摊到多条路径上，实现负载均衡，这种方法称为等价成本多路径(ECMP)</li>
+</ul></li>
+<li><p>OSPF可以将AS划分成若干个area，每一个都是一个网络，或者一组互连的网络，区域不能相互重叠，每个AS有一个骨干区域</p>
+<ul>
+<li>路由器也分为区域边界路由器和内部路由器，AS边界路由器，骨干路由器等等</li>
+<li>AS边界路由器把通往其他AS的外部路由注入到本区域</li>
+</ul>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103142446582.png" alt="image-20201103142446582"><figcaption aria-hidden="true">image-20201103142446582</figcaption>
+</figure></li>
+<li><p>OSPF协议需要在邻接的路由器之间相互交换信息才能工作，OSPF要求每个LAN中选出一台指定路由器，该指定路由器和本LAN上所有的路由器都是邻接的，并且和它们进行信息的交互</p></li>
+<li><p>OSPF有五类消息，在邻接路由器之间进行传递：看xxr的计网教材</p>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20201103143538027.png" alt="image-20201103143538027"><figcaption aria-hidden="true">image-20201103143538027</figcaption>
+</figure></li>
+</ul></li>
+<li><p>BGP 外部网关路由协议</p>
+<ul>
+<li>BGP的全称是边界网关协议 Border Gateway Protocol</li>
+<li>在一个AS的内部推荐使用的是OSPF和ISIS协议，而在AS之间用BGP比较好，这是因为域内协议和域间协议的目标不同，域内协议所需要做的只是尽可能有效地将数据包从源端发送到接收方，而域间的路由协议则必须要考虑大量的选择策略</li>
+<li>BGP只能力求寻找一条能够达到目的的网络且比较好的路由，采用了<strong>路径向量路由选择协议</strong></li>
+</ul></li>
+<li><p>Internet 组播</p>
+<ul>
+<li>普通的IP通信发生在一个发送方和一个接收方之间，而IP用D类IP地址来支持<strong>一对多的通信</strong>或者组播，每个D类地址标识了一组主机<br>
+</li>
+<li>Internet 组管理协议 IGMP用来解决广播成员分布在不同网络上的情况</li>
+<li>在AS中主要是使用协议独立组播协议PIM，在系数模式PIM中，使用特定源组播PIM可用来优化只有一个发送方的情况，当成员分布不知一个AS的时候，需要BGP的组播扩展来创建组播路由</li>
+</ul></li>
+</ul>
+<h3 id="拥塞控制">5.5 拥塞控制</h3>
+<ul>
+<li>拥塞：网络中存在太多的数据包导致数据包被延迟传输和丢失，导致网络的性能下降
+<ul>
+<li>控制拥塞是网络层和传输层共同承担的责任</li>
+<li>因为拥塞是出现在网络中的，但又是由于传输层发送出太多的数据包儿导师网络的过载，因此需要网络层和传输层共同承担责任</li>
+<li>根据拥塞发生的原因，可以将解决方案分为：增加资源或者减少负载</li>
+</ul></li>
+<li>准入控制：在虚电路网络中，如果太拥堵了就拒绝建立新的连接</li>
+<li>流量感知路由：了解到网络流量之后定制路由</li>
+<li>负载脱落：一切努力都失败了，不得不丢弃一些数据包</li>
+</ul>
+<h3 id="服务质量">5.6 服务质量</h3>
+<ul>
+<li>评价标准：可靠性、延迟、抖动(jitter)、带宽。抖动是延迟的方差，也代表了到达时间的变化</li>
+</ul>
+<p>隧道技术</p>
+<h3 id="ipv6标准">5.7 IPv6标准</h3>
+<ul>
+<li>IPv6依然是无连接的，并且分为头部和有效载荷，IPv6的地址变成了128位，采用冒号十六进制记法，每个16位的值用十六进制来表示，并用冒号来分隔
+<ul>
+<li>比如FF05:0:0:0:0:0:0:B3是一个冒号十六进制写法的IPv6地址
+<ul>
+<li>零压缩：连续的一串0可以用两个冒号代替，一个IP地址只能使用一次</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="chapter-6transmission-layer">Chapter 6：Transmission Layer</h2>
+<h3 id="运输层的作用">6.1 运输层的作用</h3>
+<ul>
+<li>运输层向上面的应用层提供通信服务，是用户功能中的最底层，也属于面向通信部分的最高层
+<ul>
+<li>通信的真正端点并不是主机而是主机中的进程，也就是说端到端的通信是应用进程之间的通信</li>
+<li>运输层的重要功能是复用和分用
+<ul>
+<li>复用是指发送方不同的进程都可以用同一个传输层协议传输数据</li>
+<li>分用是接收方的运输层在处理报文之后可以把数据交付给正确的进程</li>
+<li>也就是说运输层提供了运输层之间的逻辑通信，而网络层是为主机提供了逻辑通信</li>
+</ul></li>
+<li>运输层的两个重要的运输协议是面向连接的TCP和无连接的UDP</li>
+</ul></li>
+</ul>
+<h3 id="运输层的协议">6.2 运输层的协议</h3>
+<ul>
+<li>TCP和UDP协议
+<ul>
+<li>UDP的全称是用户数据报协议，TCP的全称是传输控制协议</li>
+<li>两个peer在通信时候传送的数据单位叫做运输协议数据单元 TPDU，但是在TCP/IP体系中，TCP传输的被称为TCP报文段，UDP传输的被称为UDP用户数据报</li>
+<li>TCP提供的是面向连接的服务，在传输之前必须先建立连接，传输结束之后需要释放连接，并且不提供多播和广播的服务，SMTP、HTTP、FTP等应用层协议用的是TCP</li>
+<li>UDP则是无连接的协议，远程的主机的运输层在收到UDP之后，不需要给出任何的确认</li>
+</ul></li>
+<li>端口：
+<ul>
+<li>传输层的端口指的是软件端口，指的是应用层的各种协议进程和运输实体层之间进行交互的一种地址</li>
+<li>TCP/IP的运输层用16位的端口号，最多支持65535个不同的端口，这里的端口号是一种虚拟端口</li>
+<li>也叫做传输服务访问点TSAP</li>
+<li>已经分配的一些端口号：
+<ul>
+<li>20/21 FTP</li>
+<li>22 SSH</li>
+<li>25 STMP</li>
+</ul></li>
+</ul></li>
+<li>协议的要素：
+<ul>
+<li>寻址：建立通信的时候指定连接到哪个应用进程上面，用一个端口映射器的进程来处理端口和服务的映射关系</li>
+<li>连接建立：拥有建立连接的一套算法，最常见的就是<strong>三次握手</strong></li>
+<li>连接的释放：非对称释放和对称释放，非对称释放类似于挂电话，对称释放是两段建立的连接都释放</li>
+<li>差错控制和流量控制：使用动态缓冲区，对于低带宽的突发流量可以不设置缓冲区，对于文件传输和高带宽流量需要使用缓冲区</li>
+<li>多路复用：到达的数据报段必须用某种方式告知把它交给哪个进程处理。“逆向多路复用”</li>
+<li>崩溃恢复：在路由器或者主机崩溃的时候重新发送</li>
+</ul></li>
+</ul>
+<h3 id="用户数据报协议-udp">6.3 用户数据报协议 UDP</h3>
+<ul>
+<li>用户数据报协议UDP只在IP协议上面增加了复用和分用的功能，其主要特点是：
+<ul>
+<li>无连接，即发送数据不需要建立连接，减小了开销和延迟</li>
+<li>尽最大努力交付，即不保证可靠交付，因此主机不需要维持复杂的连接状态</li>
+<li>面向报文：一次交付一个报文，对应用层的报文既不合并也不拆分，而是保留这些报文的边界</li>
+<li>没有拥塞控制，因此网络中出现的拥塞不会导致主机的发送速率降低，允许拥塞时候丢数据但是不允许数据有太大的延迟
+<ul>
+<li>可能会引发网络的严重拥堵</li>
+</ul></li>
+<li>支持一对一、一对多、多对多的交互通信</li>
+<li>header开销小，只有8个字节</li>
+</ul></li>
+</ul>
+<h3 id="应用">6.4 应用</h3>
+<ul>
+<li>实时传输
+<ul>
+<li>实时传输协议RTP</li>
+<li>实时传输控制协议RTCP</li>
+<li>防抖动和缓冲的播放</li>
+</ul></li>
+</ul>
+<h3 id="传输控制协议tcp与socket">6.4 传输控制协议TCP与socket</h3>
+<ul>
+<li><p>TCP是一个非常复杂的传输层协议，其特点是：</p>
+<ul>
+<li>面向连接：使用之前必须建立连接，使用完之后必须释放</li>
+<li>每一条TCP连接只能有两个端点，每一条TCP连接只能是点对点的</li>
+<li>可靠交付，用TCP协议传输的数据无差错、不丢失、不重复并且按顺序到达</li>
+<li>提供全双工通信，用缓存来存放双向通信的数据</li>
+<li>面向字节流：将应用层传下来的数据看成无结构的数据流</li>
+</ul></li>
+<li><p>TCP的连接：</p>
+<ul>
+<li>连接是TCP最基本的抽象，每条TCP的连接都有两个端点，成为socket(套接字)</li>
+<li>IP地址+端口号就可以构成一个socket，每条TCP连接由两个socket来确定，一个IP地址可以有多个套接字</li>
+<li>berkerley socket是在操作系统内核中实现的socket封装库，提供如下操作</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="image-20201112144634224.png" alt="image-20201112144634224" style="zoom: 50%;"></p></li>周炜
+<li><p>TCP段的头</p>
+<ul>
+<li>TCP每个段的起始部分是固定格式的20字节的头部，而IP头也有20个字节，因此数据段的最大长度是65535-20-20=65495</li>
+<li>源端口和目标端口字段表示了连接的本地端点，各占2字节，TCP端口+IP头中的IP地址组成了48位的唯一端点</li>
+<li>序号和确认好都是4字节，确认号制定的是下一个期待的字节，而不是已经正确接收到的最后1字节</li>
+<li>TCP的头长度表明了TCP头包含<strong>几个32位的字</strong>，因为后面的选项option是变长的，实际上指明了数据段的起始地址，接着有四位空位</li>
+<li>8个1bit的标志位，有CWR、ECE、URG、ACK、PSH、RST、SYN、FIN</li>
+<li>窗口大小、校验和、紧急指针的长度都是1字节
+<ul>
+<li>窗口大小指定了滑动窗口的大小，表明从被确认的字节算起可以发送多少个字节，可以是0</li>
+<li>选项字段提供了一种添加额外设施的途径，主要针对常规头覆盖不到的方面，长度必须是32的倍数</li>
+</ul></li>
+</ul></li>
+<li><p>TCP连接的建立：三次握手，即发送请求、收到确认、确认收到确认三个步骤</p></li>
+<li><p>TCP的滑动窗口</p>
+<ul>
+<li>TCP协议的窗口管理方式是将正确接收段和确认和接受段的接受缓冲区分配分开的</li>
+<li>当窗口变成0的时候，发送端不能像往常一样发送数据段了，有两种处理办法：一种是杀死进程来存储紧急的数据，或者发送窗口探测的长度为1字节的段，以便强制接受段重新宣告下一个期望的字节的窗口大小，可以放置窗口更新之后死锁</li>
+</ul></li>
+<li><p>TCP的拥塞控制</p>
+<ul>
+<li>TCP维持了一个拥塞窗口，窗口的大小是任何时候发送端可以往网络中发送的字节数，相应的速率则是窗口大小/连接的往返时间，TCP根据AIMD规则来调整窗口的大小</li>
+<li>东西太多了，讲不完，回去看xxr教材</li>
+</ul></li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">zhou_wei</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zhou_wei.github.io/2021/05/04/cn3/">http://zhou_wei.github.io/2021/05/04/cn3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhou_wei.github.io" target="_blank">那颗名为现在的星</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">计算机系统</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/05/04/cn4/"><img class="prev-cover" data-src="/img/cover/8.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机网络4：应用层与网络安全</div></div></a></div><div class="next-post pull-right"><a href="/2021/05/04/cn2/"><img class="next-cover" data-src="/img/cover/10.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机网络2：物理层，数据链路层与MAC子层</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2022/07/10/cmu-dis-sys1/" title="CMU-15/440 分布式系统1：Introduction"><img class="relatedPosts_cover" data-src="/cover/2.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-10</div><div class="relatedPosts_title">CMU-15/440 分布式系统1：Introduction</div></div></a></div><div class="relatedPosts_item"><a href="/2022/08/21/cmu-dis-sys3/" title="CMU-15/440 Distributed Systems 3：Golang and Synchronization"><img class="relatedPosts_cover" data-src="/cover/4.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-21</div><div class="relatedPosts_title">CMU-15/440 Distributed Systems 3：Golang and Synchronization</div></div></a></div><div class="relatedPosts_item"><a href="/2022/08/23/cmu-dis-sys4/" title="CMU-15/440 Distributed Systems 4：Mutex"><img class="relatedPosts_cover" data-src="/cover/5.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-23</div><div class="relatedPosts_title">CMU-15/440 Distributed Systems 4：Mutex</div></div></a></div><div class="relatedPosts_item"><a href="/2022/07/21/cmu-dis-sys2/" title="CMU-15/440 Distributed Systems 2：Networking Communication"><img class="relatedPosts_cover" data-src="/cover/3.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-21</div><div class="relatedPosts_title">CMU-15/440 Distributed Systems 2：Networking Communication</div></div></a></div><div class="relatedPosts_item"><a href="/2022/08/28/cmu-dis-sys5/" title="CMU-15/440 Distributed Systems 5：RPC"><img class="relatedPosts_cover" data-src="/img/cover/8.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="relatedPosts_title">CMU-15/440 Distributed Systems 5：RPC</div></div></a></div><div class="relatedPosts_item"><a href="/2021/05/04/cn1/" title="计算机网络1：OSI七层模型"><img class="relatedPosts_cover" data-src="/img/cover/5.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-04</div><div class="relatedPosts_title">计算机网络1：OSI七层模型</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'b6BpXpwUq5wyUMcLtbnNMD8N-gzGzoHsz',
+      appKey: 'Qtl7JkpdLDat2Niacks6SyT5',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022  <i id="heartbeat" class="fa fas fa-heartbeat"></i> zhou_wei</div><div class="framework-info"><span>驱动 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

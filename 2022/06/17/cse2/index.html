@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MIT6.033系统设计2：计算机网络 | 周炜</title><meta name="description" content="MIT6.033这门课程的主题是Computer System Engineering，即计算机系统工程，这门课程主要教授计算机系统设计相关的知识，内容涵盖了操作系统、计算机网络和分布式系统等多个计算机系统的子方向，内容比较全面。虽然这门课没有公开的作业，但还是值得一学，由于每节课的PPT内容较少，我们将内容按照操作系统、计算机网络和分布式系统三个大块进行记录。现在是第二部分计算机网络的内容。"><meta name="keywords" content="操作系统,计算机网络,计算机系统,系统设计"><meta name="author" content="zhou_wei"><meta name="copyright" content="zhou_wei"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhou_wei.github.io/2022/06/17/cse2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="MIT6.033系统设计2：计算机网络"><meta property="og:url" content="http://zhou_wei.github.io/2022/06/17/cse2/"><meta property="og:site_name" content="周炜"><meta property="og:description" content="MIT6.033这门课程的主题是Computer System Engineering，即计算机系统工程，这门课程主要教授计算机系统设计相关的知识，内容涵盖了操作系统、计算机网络和分布式系统等多个计算机系统的子方向，内容比较全面。虽然这门课没有公开的作业，但还是值得一学，由于每节课的PPT内容较少，我们将内容按照操作系统、计算机网络和分布式系统三个大块进行记录。现在是第二部分计算机网络的内容。"><meta property="og:image" content="http://zhou_wei.github.io/img/4.png"><meta property="article:published_time" content="2022-06-17T15:18:59.000Z"><meta property="article:modified_time" content="2022-08-21T02:24:50.576Z"><meta name="twitter:card" content="summary"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="一个Python助教的学期总结" href="http://zhou_wei.github.io/2022/06/24/python-ta/"><link rel="next" title="MIT6.033系统设计1：导言与操作系统层面的设计" href="http://zhou_wei.github.io/2022/05/10/cse1/"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-08-21 10:24:50'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">151</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9A%84%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">网络的层级结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E8%B7%AF%E7%94%B1%E7%AE%A1%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">网络层：路由管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82tcp%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.</span> <span class="toc-text">传输层：TCP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">网络中的资源管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">5.</span> <span class="toc-text">应用层</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(/img/4.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">周炜</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">MIT6.033系统设计2：计算机网络</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2022-06-17 23:18:59"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2022-06-17</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2022-08-21 10:24:50"><i class="fas fa-history fa-fw"></i> 更新于 2022-08-21</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">计算机系统</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">1.7k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 4 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>评论数:</span><a href="/2022/06/17/cse2/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2022/06/17/cse2/" itemprop="commentCount"></span></a></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><blockquote>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>MIT6.033这门课程的主题是Computer System Engineering，即计算机系统工程，这门课程主要教授计算机系统设计相关的知识，内容涵盖了操作系统、计算机网络和分布式系统等多个计算机系统的子方向，内容比较全面。虽然这门课没有公开的作业，但还是值得一学，由于每节课的PPT内容较少，我们将内容按照操作系统、计算机网络和分布式系统三个大块进行记录。现在是第二部分计算机网络的内容。</p>
+</blockquote>
+<span id="more"></span>
+<!-- excerpt -->
+<!-- toc -->
+<h2 id="网络的层级结构">网络的层级结构</h2>
+<p>很多时候，一台机器承载不了一个完成的系统，这时候我们需要将一个系统部署在多台机器上，而计算机网络中的各种通信协议就是为了完成机器 之间的交流而设置的。</p>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20220514101058436.png" alt="image-20220514101058436"><figcaption aria-hidden="true">image-20220514101058436</figcaption>
+</figure>
+<p>网络是对计算机之间连接的一种抽象，网络由一系列端点(即计算机设备)和交换机通过一系列的网络链接组成。网络系统中，各种各样的网络协议在机器通信时起到非常关键的作用，并且各种各样的网络协议被分成了若干层，自上而下依次有应用层、传输层、网络层和链接层(相当于OSI七层体系中的下四层，在TCP/IP体系中也叫做网络接口层)，每个层都是对网络协议具体功能的抽象，并且有特定的网络协议在每一层起作用。</p>
+<p>下面的一些内容会按照网络协议栈的分层来逐一介绍(实际上是复习一些)</p>
+<h2 id="网络层路由管理">网络层：路由管理</h2>
+<p>首先是网络层，网络层的作用主要有三个，没别事Naming，Addressing和Routing，Naming和Addressing是指给网络中的每一台设备分配名字和IP地址，而Routing则是让交换机感知网络中的拓扑结构和交换机到网络中各个节点的距离，便于在交换的过程中做出最优的决策，这个过程实际上就是路由。</p>
+<p>一般来说，网络中的每个节点会各自维护一个路由表，通过定期向周围邻居发送HELLO协议来感知邻居和自己的距离，再通过广告的方式得知自己到网络中其他节点的距离，然后做出代价最小的决策，并将消息转发出去。这些过程会在网络中定期发生，每个节点上的路由表也会不断更新，同时，路由表是分布式的，节点需要通过各种路由算法实现路由决策。常见的路由算法有链接状态算法和距离向量算法，具体的就不多说了，链接状态算法需要保存完整的网络拓扑信息，然后用最短路径算法进行路由规划，距离向量算法通过维护当前的cost信息，并使用邻居信息不断更新cost表来实现路由决策，相比于链接状态算法，这种方法不需要全局拓扑结构信息。</p>
+<p>根据不同的算法有诞生了不同的路由协议，如BGP，OSPF等等，这些协议可以负责一个局域网内、跨局域网等场景下的路由，最终将路由扩展到整个互联网上。</p>
+<h2 id="传输层tcp协议">传输层：TCP协议</h2>
+<p>网络层的更上面一层是传输层，传输层的作用是分享网络层的流量，提供可信或者不可信的网络传输，而TCP就是最经典的可信传输协议。</p>
+<p>TCP协议往往基于滑动窗口，通过seqno, ack, timeout等参数来控制滑动窗口的大小，并且有超时重传，拥塞控制等机制。TCP在拥塞控制的时候需要兼顾效率和公平，首先要提高效率，最小化传输数据drop的次数和延迟，提高网络带宽的利用率，其次还要保证公平，在有限的网络负载下，通过分割贷款提高利用率。</p>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20220515150351433.png" alt="image-20220515150351433"><figcaption aria-hidden="true">image-20220515150351433</figcaption>
+</figure>
+<p>如上图所示，两个程序同时进行数据传输，网络的总负载量是B，也就是对应了红线，红线的下侧网络带宽利用率不高，而红线上侧会产生网络拥塞，要保证较高的利用率，应该将网络的负载控制在红线左右。再看下面这幅图，蓝线代表了两个程序公平地使用网络带宽，蓝线上下侧分别表示S1和S2两个程序分别占用了较多的带宽，TCP为了兼顾效率和公平，应该让两个程序的传输速度保持在红蓝线的交点附近。</p>
+<figure>
+<img src= "/img/loading.gif" data-src="image-20220515150835164.png" alt="image-20220515150835164"><figcaption aria-hidden="true">image-20220515150835164</figcaption>
+</figure>
+<h2 id="网络中的资源管理">网络中的资源管理</h2>
+<p>TCP的拥塞控制都是在事后进行的，也就是网络中发生了拥塞，TCP协议才会去出手进行控制，那么有没有什么方法可以让发送端提前预估网络的情况，保证拥塞不会产生呢？答案是肯定的，这些方法被统称为In-network Resource Management，主要有这样几种：</p>
+<ul>
+<li>Queue Management，通过队列存储并管理数据，控制drop的数量</li>
+<li>Delay-based Scheduling，使用优先队列，根据待传输数据的延迟敏感性控制传输数据的顺序，优先传输延迟较高的数据</li>
+<li>Bandwidth-based Scheduling</li>
+</ul>
+<h2 id="应用层">应用层</h2>
+<p>应用层包含了网络系统中真实发生的各种操作，以数据的分发传播为例，在应用层我们有以下三种常见的数据传输和分发的方式：</p>
+<ul>
+<li>C/S体系，通过中心化的服务器存储数据文件并提供分发服务，客户端可以访问服务器来获取数据，系统的scale-up能力比较差，但是实现起来非常简单</li>
+<li>CDN，即内容分发网络，使用多个分布式的服务器管理数据和内容的分发，在客户端访问的时候才去就近服务，不过需要对边缘服务器进行良好的管理</li>
+<li>P2P模式，去中心化的模式，每台计算机既可以是客户端，也需要对外提供数据下载服务，P2P模式的难点在于需要更好的内容组织，并且每个Peer需要能发现附近的Peer，同时需要鼓励用户自发上传数据，系统的scale-up的能力取决于用户的数量</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="image-20220513174526245.png" alt="image-20220513174526245" style="zoom:50%;"></p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">zhou_wei</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zhou_wei.github.io/2022/06/17/cse2/">http://zhou_wei.github.io/2022/06/17/cse2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhou_wei.github.io" target="_blank">周炜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">计算机系统</a><a class="post-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/24/python-ta/"><img class="prev-cover" data-src="/cover/1.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">一个Python助教的学期总结</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/10/cse1/"><img class="next-cover" data-src="/img/cover/21.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MIT6.033系统设计1：导言与操作系统层面的设计</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2022/05/10/cse1/" title="MIT6.033系统设计1：导言与操作系统层面的设计"><img class="relatedPosts_cover" data-src="/img/cover/21.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-10</div><div class="relatedPosts_title">MIT6.033系统设计1：导言与操作系统层面的设计</div></div></a></div><div class="relatedPosts_item"><a href="/2022/07/10/cmu-dis-sys1/" title="CMU-15/440 分布式系统1：Introduction"><img class="relatedPosts_cover" data-src="/cover/2.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-10</div><div class="relatedPosts_title">CMU-15/440 分布式系统1：Introduction</div></div></a></div><div class="relatedPosts_item"><a href="/2022/08/21/cmu-dis-sys3/" title="CMU-15/440 Distributed Systems 3：Golang and Synchronization"><img class="relatedPosts_cover" data-src="/cover/4.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-21</div><div class="relatedPosts_title">CMU-15/440 Distributed Systems 3：Golang and Synchronization</div></div></a></div><div class="relatedPosts_item"><a href="/2022/08/23/cmu-dis-sys4/" title="CMU-15/440 Distributed Systems 4：Mutex"><img class="relatedPosts_cover" data-src="/cover/5.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-23</div><div class="relatedPosts_title">CMU-15/440 Distributed Systems 4：Mutex</div></div></a></div><div class="relatedPosts_item"><a href="/2022/07/21/cmu-dis-sys2/" title="CMU-15/440 Distributed Systems 2：Networking Communication"><img class="relatedPosts_cover" data-src="/cover/3.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-21</div><div class="relatedPosts_title">CMU-15/440 Distributed Systems 2：Networking Communication</div></div></a></div><div class="relatedPosts_item"><a href="/2022/08/28/cmu-dis-sys5/" title="CMU-15/440 Distributed Systems 5：RPC"><img class="relatedPosts_cover" data-src="/img/cover/8.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="relatedPosts_title">CMU-15/440 Distributed Systems 5：RPC</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'b6BpXpwUq5wyUMcLtbnNMD8N-gzGzoHsz',
+      appKey: 'Qtl7JkpdLDat2Niacks6SyT5',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022  <i id="heartbeat" class="fa fas fa-heartbeat"></i> zhou_wei</div><div class="framework-info"><span>驱动 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

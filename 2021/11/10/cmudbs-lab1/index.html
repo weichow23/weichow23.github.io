@@ -1,0 +1,366 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CMU15-445数据库系统Project0&amp;1：Storage&amp;Buffer | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="这是CMU的15-445数据库系统课程的Project记录，记录一些写Project时候的想法，感悟和收获，首先是Project0和Project1周炜
+ 
+ 
+ 
+ 
+ CMU15-445-Project0
+ CMU15-445的课程Project是用cpp实现一个关系型数据库Bustub中的关键代码，但是这个数据库好像就是一个底层引擎，并没有前端系统(即SQL解析器)，不过无伤大雅(大概)，总"><meta name="keywords" content="操作系统,计算机系统,数据库系统,数据存储"><meta name="author" content="zhou_wei"><meta name="copyright" content="zhou_wei"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhou_wei.github.io/2021/11/10/cmudbs-lab1/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="CMU15-445数据库系统Project0&amp;1：Storage&amp;Buffer"><meta property="og:url" content="http://zhou_wei.github.io/2021/11/10/cmudbs-lab1/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="这是CMU的15-445数据库系统课程的Project记录，记录一些写Project时候的想法，感悟和收获，首先是Project0和Project1
+ 
+ 
+ 
+ 
+ CMU15-445-Project0
+ CMU15-445的课程Project是用cpp实现一个关系型数据库Bustub中的关键代码，但是这个数据库好像就是一个底层引擎，并没有前端系统(即SQL解析器)，不过无伤大雅(大概)，总"><meta property="og:image" content="http://zhou_wei.github.io/img/cover/10.jpg"><meta property="article:published_time" content="2021-11-10T14:58:22.000Z"><meta property="article:modified_time" content="2021-11-13T11:21:41.218Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="Stanford-CS231N-Assignment札记6：模型可视化和GAN" href="http://zhou_wei.github.io/2021/11/13/dlnn6/"><link rel="next" title="Stanford-CS231N-Assignment5：RNN/LSTM与图片描述" href="http://zhou_wei.github.io/2021/11/09/dlnn5/"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-11-13 19:21:41'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {周炜
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">151</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cmu15-445-project0"><span class="toc-number">1.</span> <span class="toc-text">CMU15-445-Project0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cmu15-445-project1"><span class="toc-number">2.</span> <span class="toc-text">CMU15-445-Project1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#start-up"><span class="toc-number">2.1.</span> <span class="toc-text">Start Up</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step1-lru%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5"><span class="toc-number">2.2.</span> <span class="toc-text">Step1-LRU读写策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E7%9B%AE%E6%A0%87"><span class="toc-number">2.2.1.</span> <span class="toc-text">总体目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#victim%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.2.</span> <span class="toc-text">Victim的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pin%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.3.</span> <span class="toc-text">Pin的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unpin%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.4.</span> <span class="toc-text">Unpin的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step2-%E7%BC%93%E5%86%B2%E5%8C%BA%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">2.3.</span> <span class="toc-text">Step2-缓冲区管理器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step3-parallel-buffer-pool-manager"><span class="toc-number">2.4.</span> <span class="toc-text">Step3-Parallel Buffer Pool Manager</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(/img/cover/10.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">那颗名为现在的星</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">CMU15-445数据库系统Project0&amp;1：Storage&amp;Buffer</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-11-10 22:58:22"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-11-10</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-11-13 19:21:41"><i class="fas fa-history fa-fw"></i> 更新于 2021-11-13</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">数据库系统的设计与实现</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">3.4k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 13 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>评论数:</span><a href="/2021/11/10/cmudbs-lab1/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2021/11/10/cmudbs-lab1/" itemprop="commentCount"></span></a></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><blockquote>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>这是CMU的15-445数据库系统课程的Project记录，记录一些写Project时候的想法，感悟和收获，首先是Project0和Project1</p>
+</blockquote>
+<span id="more"></span>
+<!-- excerpt -->
+<!-- toc -->
+<h1 id="cmu15-445-project0">CMU15-445-Project0</h1>
+<p>CMU15-445的课程Project是用cpp实现一个关系型数据库Bustub中的关键代码，但是这个数据库好像就是一个底层引擎，并没有前端系统(即SQL解析器)，不过无伤大雅(大概)，总之首先从lab0开始。</p>
+<p>lab的初始代码被放在一个GitHub的公开仓库中，首先git clone一下然后按照要求运行一下安装脚本就算配置好环境了，应该说第一步配置环境算是比较简单的，而lab0的主要目的是复习C/cpp的基本语法和Cmake等工具的使用方式。</p>
+<p>Project0主要是写几个和矩阵相关的类，首先是矩阵类<code>Matrix</code>，然后是行矩阵类<code>RowMatrix</code>和矩阵运算类<code>RowMatrixOperations</code>，这里要实现的内容主要就是：将矩阵首先用一维数组来表示，然后在行矩阵中用二维数组表示一个矩阵，然后实现矩阵的加法和乘法等各种操作。</p>
+<p>大部分代码都是没啥含金量的，Project0主要就是带你熟悉一下cpp的基本语法和项目管理工具(比如Cmake，GTest的使用)，值得一提的是，第三部分写RowMatrixOperations类的若干函数时用到了智能指针，具体的代码是： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> std::unique_ptr&lt;RowMatrix&lt;T&gt;&gt; <span class="built_in">Add</span>(<span class="keyword">const</span> RowMatrix&lt;T&gt; *matrixA, <span class="keyword">const</span> RowMatrix&lt;T&gt; *matrixB) {</span><br><span class="line">        <span class="comment">// TODO(P0): Add implementation</span></span><br><span class="line">        <span class="keyword">if</span> (matrixA-&gt;<span class="built_in">GetRowCount</span>() != matrixB-&gt;<span class="built_in">GetRowCount</span>() || matrixA-&gt;<span class="built_in">GetColumnCount</span>() != matrixB-&gt;<span class="built_in">GetColumnCount</span>()) {</span><br><span class="line">        <span class="keyword">return</span> std::unique_ptr&lt;RowMatrix&lt;T&gt;&gt;(<span class="literal">nullptr</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">int</span> row = matrixA-&gt;<span class="built_in">GetRowCount</span>();</span><br><span class="line">        <span class="keyword">int</span> col = matrixA-&gt;<span class="built_in">GetColumnCount</span>();</span><br><span class="line">        std::unique_ptr&lt;RowMatrix&lt;T&gt;&gt; <span class="built_in">result</span>(<span class="keyword">new</span> RowMatrix&lt;T&gt;(row, col));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; ++i) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; ++j) {</span><br><span class="line">            result-&gt;<span class="built_in">SetElement</span>(i, j, matrixA-&gt;<span class="built_in">GetElement</span>(i, j) + matrixB-&gt;<span class="built_in">GetElement</span>(i, j));</span><br><span class="line">        }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure></p>
+<p>这里的参数是两个行矩阵RowMatrix，而返回值的类型是一个RowMatrix的智能指针，我一开始写的时候已经把智能指针的用法忘记掉了，查了一下才知道要怎么样声明一个智能指针。</p>
+<p>同时整个项目使用的代码规范是Google的cpp Style，并且提供了check-lint和check-clang-tidy两个小工具对代码进行格式化，当然我个人不是很喜欢这种风格(主要是指空格只有一个space，我比较喜欢空两格)</p>
+<h1 id="cmu15-445-project1">CMU15-445-Project1</h1>
+<h2 id="start-up">Start Up</h2>
+<p>Project1算是正式开始了，CMU15-445的这门课的教学安排和学校里的同类型课程《数据库系统》差别较大，学校里的课程是先讲了SQL的语法，范式开始讲，这门课除了前面复习一下SQL的高级用法剩下的课程内容都在讲数据库系统的设计原理，从数据库存储开始讲，然后又讲了缓冲池的设计和索引。Project1主要包含的内容就是文件存储和缓冲池的实现，需要分别实现以下几个模块：</p>
+<ul>
+<li>LRU替换算法</li>
+<li>缓冲区管理器的各项功能</li>
+<li>并行的缓冲区管理器</li>
+</ul>
+<p>同时已经提供的代码中封装好了页的数据结构<code>Page</code>，磁盘的<strong>读写操作API</strong><code>Disk Manager</code>可以使用，Page类的关键属性和函数定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Page</span> {</span></span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> *<span class="title">GetData</span><span class="params">()</span> </span>{ <span class="keyword">return</span> data_; }</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">page_id_t</span> <span class="title">GetPageId</span><span class="params">()</span> </span>{ <span class="keyword">return</span> page_id_; }</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">IsDirty</span><span class="params">()</span> </span>{ <span class="keyword">return</span> is_dirty_; }</span><br><span class="line">        <span class="keyword">char</span> data_[PAGE_SIZE]{};</span><br><span class="line">        <span class="keyword">page_id_t</span> page_id_ = INVALID_PAGE_ID;</span><br><span class="line">        <span class="keyword">int</span> pin_count_ = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> is_dirty_ = <span class="literal">false</span>;</span><br><span class="line">        ReaderWriterLatch rwlatch_;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<p>可以看到代码中已有的页类可以修改页中的数据，获得页号和是否为脏页等信息，同时可以修改<code>pin_count</code>，而</p>
+<p><code>Disk Manager</code> 可以管理一个数据库系统中页的分配和回收，并提供了在内存和磁盘之间对页进行读写的API，为数据库系统提供了一个逻辑意义上的文件层，它提供的关键函数有：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DiskManager</span> {</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">WritePage</span><span class="params">(<span class="keyword">page_id_t</span> page_id, <span class="keyword">const</span> <span class="keyword">char</span> *page_data)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ReadPage</span><span class="params">(<span class="keyword">page_id_t</span> page_id, <span class="keyword">char</span> *page_data)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">WriteLog</span><span class="params">(<span class="keyword">char</span> *log_data, <span class="keyword">int</span> size)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">ReadLog</span><span class="params">(<span class="keyword">char</span> *log_data, <span class="keyword">int</span> size, <span class="keyword">int</span> offset)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">page_id_t</span> <span class="title">AllocatePage</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">DeallocatePage</span><span class="params">(<span class="keyword">page_id_t</span> page_id)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">GetNumFlushes</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">GetFlushState</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">GetNumWrites</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">SetFlushLogFuture</span><span class="params">(std::future&lt;<span class="keyword">void</span>&gt; *f)</span> </span>{ flush_log_f_ = f; }</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">HasFlushLogFuture</span><span class="params">()</span> </span>{ <span class="keyword">return</span> flush_log_f_ != <span class="literal">nullptr</span>; }</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<p>后面缓冲区管理器的实现非常依赖这些已有的读写API，事实上基本都是对DiskManager中函数的一些调用和包装。</p>
+<p>此外，已有的代码中对一些常见的数据类型进行了包装，比如表示页号/物理帧号的<code>page_id_t， frame_id_t</code></p>
+<h2 id="step1-lru读写策略">Step1-LRU读写策略</h2>
+<h3 id="总体目标">总体目标</h3>
+<p>首先我们先来实现一个LRU的页管理和替换策略，Bustub中定义了一个类<code>LRUReplacer</code>继承了<code>Replacer</code>专门来实现LRU的替换算法，并在<code>BufferManager</code>中进行调用，其实质是维护了一个由<code>page_id</code>组合成的双向链表，然后实现和页/页表管理有关各种操作，同时<code>BufferManager</code>中还有物理块和页表，这里的<code>LRUReplacer</code>只研究页号，具体的块的置换操作要在<code>BufferManager</code>中进行，这些操作包括：</p>
+<ul>
+<li>Victim：从Replacer中移除最近最早访问的页号，即双向链表的最后面一个位置</li>
+<li>Pin：当一个页被pin的时候调用，这表明这个数据帧已经被某个进程调用了，不能参与LRU的替换，必须要保留，因此需要将这个页从<code>Replacer</code>中移除</li>
+<li>Unpin：当一个页的pin_count变成0的时候调用，这个时候这个页已经没有进程使用了，需要将这个页加入双向链表的最前面，即最近刚访问过</li>
+<li>Size：获得参与LRU的页的数量</li>
+</ul>
+<p>因此<code>LRUReplacer</code>中我使用这样几个自定义的属性： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num_pages;</span><br><span class="line">std::list&lt;<span class="keyword">frame_id_t</span>&gt; frames;</span><br><span class="line">std::unordered_map&lt;<span class="keyword">frame_id_t</span>, std::list&lt;<span class="keyword">frame_id_t</span>&gt;::iterator&gt; mp;</span><br><span class="line">std::mutex mutex;</span><br></pre></td></tr></table></figure></p>
+<p>两个关键的STL分别表示用于LRU替换的双向链表和一个记录帧号-链表迭代器的map用于快速获取元素，而mutex是一个互斥锁，用于保证并发访问时的一致性</p>
+<h3 id="victim的实现">Victim的实现</h3>
+<p>Victim就是替换掉双向链表中处于最后的块，然后将这个frame_id记录下来就可以：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">LRUReplacer::Victim</span><span class="params">(<span class="keyword">frame_id_t</span> *frame_id)</span> </span>{</span><br><span class="line">        <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mutex)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (frames.<span class="built_in">empty</span>()) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        *frame_id = frames.<span class="built_in">back</span>();</span><br><span class="line">        frames.<span class="built_in">pop_back</span>();</span><br><span class="line">        mp.<span class="built_in">erase</span>(*frame_id);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<h3 id="pin的实现">Pin的实现</h3>
+<p>Pin就是将某个frame_id暂时从双向链表中踢出，供进程访问和使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LRUReplacer::Pin</span><span class="params">(<span class="keyword">frame_id_t</span> frame_id)</span> </span>{</span><br><span class="line">        <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mutex)</span></span>;</span><br><span class="line">        <span class="comment">// find the index of the frame</span></span><br><span class="line">        std::unordered_map&lt;<span class="keyword">frame_id_t</span>, std::list&lt;<span class="keyword">frame_id_t</span>&gt;::iterator&gt;::iterator mp_iter = mp.<span class="built_in">find</span>(frame_id);</span><br><span class="line">        <span class="keyword">if</span> (mp_iter != mp.<span class="built_in">end</span>()) {</span><br><span class="line">            <span class="comment">// clear the existing frame information</span></span><br><span class="line">            std::list&lt;<span class="keyword">frame_id_t</span>&gt;::iterator frame_iter = mp_iter-&gt;second;</span><br><span class="line">            frames.<span class="built_in">erase</span>(frame_iter);</span><br><span class="line">            mp.<span class="built_in">erase</span>(mp_iter);</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<h3 id="unpin的实现">Unpin的实现</h3>
+<p>Unpin就是将一个块加入LRU双向链表中，因为是最近刚访问的所以要放在链表的头部：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LRUReplacer::Unpin</span><span class="params">(<span class="keyword">frame_id_t</span> frame_id)</span> </span>{</span><br><span class="line">        <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mutex)</span></span>;</span><br><span class="line">        std::unordered_map&lt;<span class="keyword">frame_id_t</span>, std::list&lt;<span class="keyword">frame_id_t</span>&gt;::iterator&gt;::iterator mp_iter = mp.<span class="built_in">find</span>(frame_id);</span><br><span class="line">        <span class="keyword">if</span> (mp_iter == mp.<span class="built_in">end</span>()) {</span><br><span class="line">            frames.<span class="built_in">push_front</span>(frame_id);</span><br><span class="line">            mp[frame_id] = frames.<span class="built_in">begin</span>();</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<h2 id="step2-缓冲区管理器">Step2-缓冲区管理器</h2>
+<p>下一步是要实现缓冲区的管理，Bustub的starter code中已经给出了<code>BufferManager,BufferManagerInstance</code>的定义其中<code>BufferManager</code>是一个抽象类，我们需要实现的是<code>BufferManagerInstance</code> ，这个类需要借助<code>DiskManager</code>和<code>LRUReplacer</code>完成对缓冲区的管理，其中<code>DiskManager</code>负责实际的磁盘块读写，而LRUReplacer可以进行LRU规则的块替换，此外我们还可以使用如下几个数据结构：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Array of buffer pool pages. */</span></span><br><span class="line">    Page *pages_;</span><br><span class="line">    <span class="comment">/** Page table for keeping track of buffer pool pages. */</span></span><br><span class="line">    std::unordered_map&lt;<span class="keyword">page_id_t</span>, <span class="keyword">frame_id_t</span>&gt; page_table_;</span><br><span class="line">    <span class="comment">/** List of free pages. */</span></span><br><span class="line">    std::list&lt;<span class="keyword">frame_id_t</span>&gt; free_list_;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>pages_</code>是存放了各个page的物理帧</li>
+<li><code>page_table_</code>是页表，用于将页号转换成物理帧号</li>
+<li><code>free_list_</code>是一个双向链表，用于存放空的物理帧</li>
+</ul>
+<p>在实现具体的功能的时候就需要结合这些数据结构一起考虑，缓冲区管理器需要实现的功能包括：</p>
+<ul>
+<li><code>FetchPgImp(page_id)</code> 获得一个页的使用权，如果这个页在缓冲区中不存在，那么就从磁盘中读取新的页到缓冲区，这中间可能会发生页的替换</li>
+<li><code>UnpinPgImp(page_id, is_dirty)</code> 将某个页unpin，即取消对该页的引用</li>
+<li><code>FlushPgImp(page_id)</code> 将一个页的信息写回磁盘中</li>
+<li><code>NewPgImp(page_id)</code> 在磁盘上新增一个页</li>
+<li><code>DeletePgImp(page_id)</code> 删除某个页</li>
+<li><code>FlushAllPagesImpl()</code> 将所有页的信息都写回磁盘中</li>
+</ul>
+<p>同时所有的操作都要加锁保证一致性，具体的操作其实就是在每个函数最前面写上：</p>
+<pre><code>std::lock_guard&lt;std::mutex&gt; lock(latch_);</code></pre>
+<p>虽然看起来要写的东西很多，但是这些任务都有一个基本的pipeline，首先需要根据页号去查询对应的帧号，然后从缓冲区拿到对应的页进行某些操作，比如修改页的某些元数据，调用DiskManager和LRUReplacer，修改页表等等，以Fetch操作为例，我们需要先判断要找的页在不在缓冲区，如果在就直接把对应的引用返回就可以，如果不在就需要从磁盘去读取这个页(调用DiskManager)，如果缓冲区没有满就拿出一个空的帧来存放页，如果满了就需要调用LRU置换来换走某个帧上的页，做完之后我感觉这个功能是第二部分最复杂的，综合性也是最强的，其具体的实现代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Page *<span class="title">BufferPoolManagerInstance::FetchPgImp</span><span class="params">(<span class="keyword">page_id_t</span> page_id)</span> </span>{</span><br><span class="line">        <span class="comment">// 1.     Search the page table for the requested page (P).</span></span><br><span class="line">        <span class="comment">// 1.1    If P exists, pin it and return it immediately.</span></span><br><span class="line">        <span class="comment">// 1.2    If P does not exist, find a replacement page (R) from either the free list or the replacer.</span></span><br><span class="line">        <span class="comment">//        Note that pages are always found from the free list first.</span></span><br><span class="line">        <span class="comment">// 2.     If R is dirty, write it back to the disk.</span></span><br><span class="line">        <span class="comment">// 3.     Delete R from the page table and insert P.</span></span><br><span class="line">        <span class="comment">// 4.     Update P's metadata, read in the page content from disk, and then return a pointer to P.</span></span><br><span class="line">        <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(latch_)</span></span>;</span><br><span class="line">        <span class="keyword">auto</span> page = page_table_.<span class="built_in">find</span>(page_id);</span><br><span class="line">        <span class="keyword">frame_id_t</span> frame_id = INVALID_PAGE_ID;</span><br><span class="line">        <span class="comment">// find the page and pin it</span></span><br><span class="line">        <span class="keyword">if</span> (page != page_table_.<span class="built_in">end</span>()) {</span><br><span class="line">            frame_id = page_table_[page_id];</span><br><span class="line">            pages_[frame_id].pin_count_ ++;</span><br><span class="line">            replacer_-&gt;<span class="built_in">Pin</span>(frame_id);</span><br><span class="line">            <span class="keyword">return</span> &amp;pages_[frame_id];</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// not find the page and find a replacement</span></span><br><span class="line">        <span class="keyword">if</span> (!free_list_.<span class="built_in">empty</span>()) {</span><br><span class="line">            <span class="comment">// the free list is not empty</span></span><br><span class="line">            frame_id = free_list_.<span class="built_in">front</span>();</span><br><span class="line">            free_list_.<span class="built_in">pop_front</span>();</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="comment">// victim the page</span></span><br><span class="line">            <span class="keyword">if</span> (replacer_-&gt;<span class="built_in">Victim</span>(&amp;frame_id)) {</span><br><span class="line">            <span class="comment">// write back the dirty page</span></span><br><span class="line">            <span class="keyword">if</span> (pages_[frame_id].<span class="built_in">IsDirty</span>()) {</span><br><span class="line">                pages_[frame_id].is_dirty_ = <span class="literal">false</span>;</span><br><span class="line">                disk_manager_-&gt;<span class="built_in">WritePage</span>(pages_[frame_id].<span class="built_in">GetPageId</span>(), pages_[frame_id].<span class="built_in">GetData</span>());</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">// clear the page in the page table</span></span><br><span class="line">            page_table_.<span class="built_in">erase</span>(pages_[frame_id].<span class="built_in">GetPageId</span>());</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">            }</span><br><span class="line">            pages_[frame_id].<span class="built_in">ResetMemory</span>();</span><br><span class="line">            disk_manager_-&gt;<span class="built_in">ReadPage</span>(page_id, pages_[frame_id].<span class="built_in">GetData</span>());</span><br><span class="line">            pages_[frame_id].page_id_ = page_id;</span><br><span class="line">            pages_[frame_id].pin_count_ ++;</span><br><span class="line">            page_table_[page_id] = frame_id;</span><br><span class="line">            <span class="keyword">return</span> &amp;pages_[frame_id];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其他的几个功能也都是类似的写法，不过没有Fetch那么复杂</li>
+</ul>
+<h2 id="step3-parallel-buffer-pool-manager">Step3-Parallel Buffer Pool Manager</h2>
+<p>第三步是实现具有<strong>多个Buffer Pool的Manager</strong>以支持多线程的访问，这一部分的主要任务就是创建多个缓冲区管理器的实例用来并发访问，并通过一定的规则建立起页和缓冲池的映射关系，然后在缓冲池中进行对应页的操作。需要实现的功能包括：</p>
+<ul>
+<li><code>ParallelBufferPoolManager(num_instances, pool_size, disk_manager, log_manager)</code></li>
+<li><code>~ParallelBufferPoolManager()</code></li>
+<li><code>GetPoolSize()</code></li>
+<li><code>GetBufferPoolManager(page_id)</code></li>
+<li><code>FetchPgImp(page_id)</code></li>
+<li><code>UnpinPgImp(page_id, is_dirty)</code></li>
+<li><code>FlushPgImp(page_id)</code></li>
+<li><code>NewPgImp(page_id)</code></li>
+<li><code>DeletePgImp(page_id)</code></li>
+<li><code>FlushAllPagesImpl()</code></li>
+</ul>
+<p>实际上这部分作业就是在原本的Buffer Pool Manager上包装一层API，我们应该要注意到初始代码中每个Buffer Pool Manager中就有这样两个变量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** How many instances are in the parallel BPM (if present, otherwise just 1 BPI) */</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">uint32_t</span> num_instances_ = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">/** Index of this BPI in the paral周炜(if present, otherwise just 0) */</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">uint32_t</span> instance_index_ = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Each BPI maintains its own counter for page_ids to hand out,</span></span><br><span class="line"><span class="comment">   * must ensure they mod back to its instance_index_</span></span><br><span class="line"><span class="comment">   * */</span></span><br><span class="line">  std::atomic&lt;<span class="keyword">page_id_t</span>&gt; next_page_id_ = instance_index_;</span><br></pre></td></tr></table></figure>
+<p>实际上这几个变量已经告诉我们怎么样写出一个并行缓冲区管理器了，<code>num_instances_</code>代表了并行缓冲区中Buffer的个数，而<code>instance_index_</code>表示了当前缓冲区的id编号，<code>next_page_id</code>是一个页号管理器，在实现的时候我们每次新增页之后都会有<code>next_page_id += num_instances</code>的操作，这是因为在并行缓冲区的设计中，页号和缓冲区id的映射关系是<code>buffer_id = page_id % num_instances_</code></p>
+<p>所以我们在实现的时候也应该遵循这种设计模式，我们可以使用一个<code>vector</code>来存储所有的缓冲区实例，并将他们的id和下标相对应，而上面要实现的这些操作中，除了<code>NewPageImp()</code>以外，剩下的操作其实都是先增加一步查询到<code>buffer_id</code>的操作之后到对应的缓冲区执行相应的操作，如下面的代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Page *<span class="title">ParallelBufferPoolManager::FetchPgImp</span><span class="params">(<span class="keyword">page_id_t</span> page_id)</span> </span>{</span><br><span class="line">  <span class="comment">// Fetch page for page_id from responsible BufferPoolManagerInstance</span></span><br><span class="line">  <span class="keyword">page_id_t</span> buffer_id = page_id % num_ins_;</span><br><span class="line">  Page *result = buffers_[buffer_id]-&gt;<span class="built_in">FetchPage</span>(page_id);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>这一部分task唯一有难度的地方就在于<code>NewPageImp()</code>这个函数的实现上，我们要实现的逻辑是：</p>
+<ol type="1">
+<li>每次新建Page的时候，要从一个<code>starter_index</code>开始一个个缓冲区申请过去，直到在某个缓冲区中创建成功，或者遍历所有的缓冲区之后发现都满了无法创建为止，之后一次创建结束</li>
+<li>创建结束之后<code>starter_index += 1</code>，下一次从后一个位置开始申请新建Page，起到一个时间片轮转的作用。</li>
+</ol>
+<p>因此最后我实现的代码是：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Page *<span class="title">ParallelBufferPoolManager::NewPgImp</span><span class="params">(<span class="keyword">page_id_t</span> *page_id)</span> </span>{</span><br><span class="line">  <span class="comment">// create new page. We will request page allocation in a round robin manner from the underlying</span></span><br><span class="line">  <span class="comment">// BufferPoolManagerInstances</span></span><br><span class="line">  <span class="comment">// 1.   From a starting index of the BPMIs, call NewPageImpl until either</span></span><br><span class="line">  <span class="comment">// 1) success and return 2) looped around to starting index and return nullptr</span></span><br><span class="line">  <span class="comment">// 2.   Bump the starting index (mod number of instances) to start search at a different BPMI each time this function</span></span><br><span class="line">  <span class="comment">// is called</span></span><br><span class="line">  <span class="comment">//size_t i = start_index_;</span></span><br><span class="line">  Page* result = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; num_ins_; i ++) {</span><br><span class="line">    <span class="keyword">size_t</span> index = (i + start_index_) % num_ins_;</span><br><span class="line">    result = buffers_[index]-&gt;<span class="built_in">NewPage</span>(page_id);</span><br><span class="line">    <span class="keyword">if</span> (result != <span class="literal">nullptr</span>) {</span><br><span class="line">      <span class="built_in">LOG_DEBUG</span>(<span class="string">"Buffer ID = %zu, page id = %d"</span>, index, *page_id);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (result == <span class="literal">nullptr</span>) {</span><br><span class="line">    <span class="built_in">LOG_DEBUG</span>(<span class="string">"No new page created!"</span>);</span><br><span class="line">  }</span><br><span class="line">  start_index_ = (start_index_ + <span class="number">1</span>) % num_ins_;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>要注意的是下标不能越界，及时取余数保证下标在可访问的范围内，代码主体其实就是一个for循环。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">zhou_wei</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zhou_wei.github.io/2021/11/10/cmudbs-lab1/">http://zhou_wei.github.io/2021/11/10/cmudbs-lab1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhou_wei.github.io" target="_blank">那颗名为现在的星</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">计算机系统</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">数据库系统</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/11/13/dlnn6/"><img class="prev-cover" data-src="/img/cover/4.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Stanford-CS231N-Assignment札记6：模型可视化和GAN</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/09/dlnn5/"><img class="next-cover" data-src="/img/cover/13.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Stanford-CS231N-Assignment5：RNN/LSTM与图片描述</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/11/28/cmudbs-lab2/" title="CMU15-445数据库系统Project2：Hash Index"><img class="relatedPosts_cover" data-src="/img/cover/3.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-28</div><div class="relatedPosts_title">CMU15-445数据库系统Project2：Hash Index</div></div></a></div><div class="relatedPosts_item"><a href="/2021/12/12/cmudbs-lab3/" title="CMU15-445数据库系统Project3：Query Execution"><img class="relatedPosts_cover" data-src="/img/cover/5.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-12</div><div class="relatedPosts_title">CMU15-445数据库系统Project3：Query Execution</div></div></a></div><div class="relatedPosts_item"><a href="/2021/12/01/cmudbs4/" title="CMU15-445数据库系统4：查询优化"><img class="relatedPosts_cover" data-src="/img/cover/20.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-01</div><div class="relatedPosts_title">CMU15-445数据库系统4：查询优化</div></div></a></div><div class="relatedPosts_item"><a href="/2021/12/20/cmudbs5/" title="CMU15-445数据库系统5：事务和并发控制"><img class="relatedPosts_cover" data-src="/img/cover/16.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-20</div><div class="relatedPosts_title">CMU15-445数据库系统5：事务和并发控制</div></div></a></div><div class="relatedPosts_item"><a href="/2022/02/17/simpledb1/" title="MIT6.830数据库系统-lab1：SimpleDB Overview"><img class="relatedPosts_cover" data-src="/img/cover/13.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-17</div><div class="relatedPosts_title">MIT6.830数据库系统-lab1：SimpleDB Overview</div></div></a></div><div class="relatedPosts_item"><a href="/2022/02/26/simpledb2/" title="MIT6.830数据库系统-lab2：SimpleDB Operators"><img class="relatedPosts_cover" data-src="/img/cover/17.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-26</div><div class="relatedPosts_title">MIT6.830数据库系统-lab2：SimpleDB Operators</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'b6BpXpwUq5wyUMcLtbnNMD8N-gzGzoHsz',
+      appKey: 'Qtl7JkpdLDat2Niacks6SyT5',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022  <i id="heartbeat" class="fa fas fa-heartbeat"></i> zhou_wei</div><div class="framework-info"><span>驱动 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

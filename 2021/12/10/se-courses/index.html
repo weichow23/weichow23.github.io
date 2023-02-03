@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>对我校软件工程专业本科课程设置的一些意见 | 周炜</title><meta name="description" content="lz是软件工程专业的一个普通本科生，三年多时间的本科学习过程中，我深感我们专业本科教学中存在诸多问题，最近花了一点时间简单总结了一下软件工程培养方案的专业课程中存在的问题，同时也提出了一些自己的意见，准备反馈给学院相关的领导老师。 事实上有的问题你知道，我知道，他们知道，他们知道我们知道，我们也知道他们知道，但就是没人愿意做出改变。我也清楚，这些意见大概率不会被学院所接受和采纳，但我依然想把我"><meta name="keywords" content="浙江大学,本科教学,软件工程"><meta name="author" content="zhou_wei"><meta name="copyright" content="zhou_wei"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhou_wei.github.io/2021/12/10/se-courses/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="对我校软件工程专业本科课程设置的一些意见"><meta property="og:url" content="http://zhou_wei.github.io/2021/12/10/se-courses/"><meta property="og:site_name" content="周炜"><meta property="og:description" content="lz是软件工程专业的一个普通本科生，三年多时间的本科学习过程中，我深感我们专业本科教学中存在诸多问题，最近花了一点时间简单总结了一下软件工程培养方案的专业课程中存在的问题，同时也提出了一些自己的意见，准备反馈给学院相关的领导老师。 事实上有的问题你知道，我知道，他们知道，他们知道我们知道，我们也知道他们知道，但就是没人愿意做出改变。我也清楚，这些意见大概率不会被学院所接受和采纳，但我依然想把我"><meta property="og:image" content="http://zhou_wei.github.io/img/cover/17.jpg"><meta property="article:published_time" content="2021-12-10T11:40:23.000Z"><meta property="article:modified_time" content="2021-12-10T11:43:54.503Z"><meta name="twitter:card" content="summary"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="CMU15-445数据库系统Project3：Query Execution" href="http://zhou_wei.github.io/2021/12/12/cmudbs-lab3/"><link rel="next" title="CMU15-445数据库系统4：查询优化" href="http://zhou_wei.github.io/2021/12/01/cmudbs4/"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-12-10 19:43:54'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">151</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E8%AF%84%E4%BB%B7"><span class="toc-number">2.</span> <span class="toc-text">总体评价</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E6%80%BB%E4%BD%93%E5%AE%89%E6%8E%92"><span class="toc-number">2.1.</span> <span class="toc-text">课程总体安排</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E5%B0%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%85%A5%E9%97%A8%E8%AF%BE%E7%A8%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">缺少计算机入门课程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E5%B0%91%E5%AF%B9%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%9A%84%E6%95%99%E5%AD%A6"><span class="toc-number">2.1.2.</span> <span class="toc-text">缺少对基本工具使用的教学</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92%E4%B8%8D%E5%90%88%E7%90%86"><span class="toc-number">2.1.3.</span> <span class="toc-text">课程时间安排不合理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%86%97%E4%BD%99%E5%AD%A6%E5%88%86%E5%8E%8B%E5%8A%9B%E8%BF%87%E5%A4%A7"><span class="toc-number">2.1.4.</span> <span class="toc-text">课程冗余，学分压力过大</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%AE%9E%E9%99%85%E6%95%99%E5%AD%A6"><span class="toc-number">2.2.</span> <span class="toc-text">课程实际教学</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9%E4%BD%9C%E4%B8%9A%E8%80%81%E6%97%A7"><span class="toc-number">2.2.1.</span> <span class="toc-text">课程内容&#x2F;作业老旧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%BB%E8%A7%86%E4%BB%A3%E7%A0%81%E8%AE%AD%E7%BB%83%E6%B3%A8%E9%87%8D%E6%8A%A5%E5%91%8A%E7%BE%8E%E8%A7%82"><span class="toc-number">2.2.2.</span> <span class="toc-text">轻视代码训练，注重报告美观</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E9%9A%8F%E6%84%8F%E7%BC%BA%E5%B0%91%E6%9C%89%E6%95%88%E6%8C%87%E5%AF%BC"><span class="toc-number">2.2.3.</span> <span class="toc-text">作业&#x2F;实验内容随意，缺少有效指导</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E5%B0%91%E5%8F%AF%E9%9D%A0%E7%9A%84%E5%8A%A9%E6%95%99%E5%9B%A2%E9%98%9F%E8%BE%85%E5%8A%A9%E6%95%99%E5%AD%A6"><span class="toc-number">2.2.4.</span> <span class="toc-text">缺少可靠的助教团队辅助教学</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%81%8F%E9%87%8D%E7%90%86%E8%AE%BA%E8%80%83%E8%AF%95%E5%AF%BC%E8%87%B4%E8%80%83%E8%AF%95%E5%91%A8%E5%8E%8B%E5%8A%9B%E5%A4%A7"><span class="toc-number">2.2.5.</span> <span class="toc-text">偏重理论考试导致考试周压力大</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E8%AF%84%E6%89%93%E5%88%86%E5%BC%95%E5%8F%91%E6%81%B6%E6%80%A7%E7%AB%9E%E4%BA%89"><span class="toc-number">2.2.6.</span> <span class="toc-text">互评打分引发恶性竞争</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9"><span class="toc-number">2.3.</span> <span class="toc-text">具体课程内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E5%B7%A5%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B%E5%AD%98%E5%9C%A8%E4%B8%A5%E9%87%8D%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.1.</span> <span class="toc-text">“软工”系列课程存在严重问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%91%E8%9E%8D%E8%AF%BE%E7%A8%8B%E6%97%A2%E4%B8%8D%E9%87%91%E8%9E%8D%E4%B9%9F%E4%B8%8D%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="toc-number">2.3.2.</span> <span class="toc-text">金融课程既不金融也不计算机</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93"><span class="toc-number">2.4.</span> <span class="toc-text">问题总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%84%8F%E8%A7%81"><span class="toc-number">3.</span> <span class="toc-text">具体意见</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E7%90%86%E8%A7%84%E5%88%92%E8%AF%BE%E7%A8%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">合理规划课程模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E5%87%8F%E5%9F%B9%E5%85%BB%E6%96%B9%E6%A1%88%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%BF%85%E8%A6%81%E5%AD%A6%E5%88%86"><span class="toc-number">3.1.1.</span> <span class="toc-text">删减培养方案中的不必要学分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%9B%BD%E5%A4%96%E5%90%8D%E6%A0%A1%E8%AF%BE%E7%A8%8B%E7%9A%84%E6%88%90%E5%8A%9F%E7%BB%8F%E9%AA%8C"><span class="toc-number">3.1.2.</span> <span class="toc-text">参考国外名校课程的成功经验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%9B%E5%8B%9F%E9%AB%98%E5%B9%B4%E7%BA%A7%E6%9C%AC%E7%A7%91%E7%94%9F%E7%BB%84%E5%BB%BA%E5%8A%A9%E6%95%99%E5%9B%A2%E9%98%9F"><span class="toc-number">3.1.3.</span> <span class="toc-text">招募高年级本科生组建助教团队</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E5%BC%BA%E5%92%8C%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%9A%E7%95%8C%E7%9A%84%E5%90%88%E4%BD%9C"><span class="toc-number">3.1.4.</span> <span class="toc-text">加强和互联网业界的合作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%BB%BA%E8%AF%BE%E7%A8%8B%E8%AF%84%E4%BB%B7%E4%BD%93%E7%B3%BB"><span class="toc-number">3.2.</span> <span class="toc-text">重建课程评价体系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E5%8F%98%E5%94%AF%E6%8A%A5%E5%91%8A%E8%AE%BA%E7%9A%84%E4%BD%9C%E4%B8%9A%E8%AF%84%E4%BB%B7%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.1.</span> <span class="toc-text">改变“唯报告论”的作业评价方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E6%88%96%E8%B0%83%E6%95%B4%E4%BA%92%E8%AF%84%E7%8E%AF%E8%8A%82"><span class="toc-number">3.2.2.</span> <span class="toc-text">取消或调整“互评”环节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E5%8D%A0%E6%AF%94%E5%B9%B6%E5%85%AC%E5%BC%80%E8%80%83%E8%AF%95%E7%A7%91%E7%9B%AE%E7%9A%84%E5%8E%86%E5%B9%B4%E5%8D%B7"><span class="toc-number">3.2.3.</span> <span class="toc-text">减少期末考试占比并公开考试科目的历年卷</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E7%89%B9%E5%AE%9A%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9"><span class="toc-number">3.3.</span> <span class="toc-text">调整特定课程内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E8%AE%BE%E9%9D%A2%E5%90%91%E5%A4%A7%E4%B8%80%E7%9A%84%E5%85%A5%E9%97%A8%E8%AF%BE%E7%A8%8B"><span class="toc-number">3.3.1.</span> <span class="toc-text">开设面向大一的入门课程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80"><span class="toc-number">3.3.2.</span> <span class="toc-text">离散数学和数据结构基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.3.3.</span> <span class="toc-text">数据库系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86"><span class="toc-number">3.3.4.</span> <span class="toc-text">计算机系统原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B"><span class="toc-number">3.3.5.</span> <span class="toc-text">软件工程系列课程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-number">3.3.6.</span> <span class="toc-text">计算机网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#java%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="toc-number">3.3.7.</span> <span class="toc-text">Java应用技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E6%8A%80%E6%9C%AF%E5%AF%BC%E8%AE%BA"><span class="toc-number">3.3.8.</span> <span class="toc-text">大规模信息系统构建技术导论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%91%E8%9E%8D%E7%9B%B8%E5%85%B3%E8%AF%BE%E7%A8%8B"><span class="toc-number">3.3.9.</span> <span class="toc-text">金融相关课程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E8%AE%BE%E4%B8%8D%E5%90%8C%E6%96%B9%E5%90%91%E7%9A%84%E5%AF%BC%E8%AE%BA%E6%80%A7%E8%AF%BE%E7%A8%8B"><span class="toc-number">3.3.10.</span> <span class="toc-text">开设不同方向的导论性课程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">4.</span> <span class="toc-text">后记</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(/img/cover/17.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">周炜</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">对我校软件工程专业本科课程设置的一些意见</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-12-10 19:40:23"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-12-10</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-12-10 19:43:54"><i class="fas fa-history fa-fw"></i> 更新于 2021-12-10</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E6%9D%82%E8%B0%88%E4%B8%8E%E6%80%BB%E7%BB%93/">杂谈与总结</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">10.7k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 30 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>评论数:</span><a href="/2021/12/10/se-courses/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2021/12/10/se-courses/" itemprop="commentCount"></span></a></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><blockquote>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>lz是软件工程专业的一个普通本科生，三年多时间的本科学习过程中，我深感我们专业本科教学中存在诸多问题，最近花了一点时间简单总结了一下软件工程培养方案的专业课程中存在的问题，同时也提出了一些自己的意见，准备反馈给学院相关的领导老师。 事实上有的问题你知道，我知道，他们知道，他们知道我们知道，我们也知道他们知道，但就是没人愿意做出改变。我也清楚，这些意见大概率不会被学院所接受和采纳，但我依然想把我想说的东西说出来。知其不可为而为之，也未尝不可。全文共计11000字，可能需要花一点时间阅读。</p>
+</blockquote>
+<span id="more"></span>
+<!-- excerpt -->
+<!-- toc -->
+<h2 id="前言">前言</h2>
+<p>各位计算机学院的领导，老师，你们好！我是计算机学院软件工程专业18级的一名普通学生。我们学院的计算机科学与技术和软件工程都是教育部认证的A+专业，一般情况下可以认为在全国范围内属于顶尖水平，但是我接下来要说的内容，可能和A+专业这个名头没什么关系。</p>
+<p>我想说的是，这两个专业在本科教学这方面仍然存在很多问题，尤其是软件工程专业，和世界一流大学的目标仍然有很大的差距。我自己是软件工程专业的，所以我对CS专业的情况不做任何评论，但是两个专业有很多课程是相通的，所以两者的情况我相信不会相差太多。有人说国内的本科生教育不是处于奔溃的边缘，而是已经崩溃，相比之下，我们的情况或许没那么糟糕，还不至于崩溃，非要说的话就像是人走到了悬崖边上，不知道什么时候就会突然向前迈出一大步。</p>
+<p>我想根据自身这几年的学习经历来谈谈我认为软件工程专业本科课程中存在的一些问题和我的一些意见，希望能给学院的教学改革提供一个不同角度的观点。</p>
+<p>下面我将从总体评价和具体意见两个部分来具体阐述我的一些看法。</p>
+<h2 id="总体评价">总体评价</h2>
+<p>对比世界范围内的CS名校(MIT，Stanford，CMU，UCB)等学校的课程设置，软件工程专业的核心课程设置应该还是和世界接轨的，从大一春夏的《离散数学》开始，到大二的《数据结构基础》，《面向对象程序设计》，《高级数据结构与算法分析》，《数据库系统》，再到大三的《操作系统》，《计算机网络》，应该说计算机专业所需的核心课程基本都开设了，此外还有比较多的选修课程，应该说课程的广度还是有的，但是我认为在课程的设置和课程的内容上，<strong>软件工程专业</strong>仍然存在以下问题，我将从多个角度切入来陈述我认为存在的问题。</p>
+<h3 id="课程总体安排">课程总体安排</h3>
+<h4 id="缺少计算机入门课程">缺少计算机入门课程</h4>
+<p>我们学校工信大类在大一的时候必须要修《C语言程序设计》和《程序设计专题》两门课程，以C语言为第一门编程语言进行计算机的入门，但是<strong>对于没有基础的人来说通过C语言入门是非常不友好的</strong>。</p>
+<p>同时，我们学校的C语言课程教学停留在只学语法的浅层(这一点对于任何编程语言课都一样)，同学们往往只能学到一堆奇奇怪怪的语法用来通过理论题考试，另外《程序设计专题》使用C语言制作一个GUI程序的合理性也有待商榷。</p>
+<p>我们可以对比以下外国名校的同类课程，以UCB的计算机专业入门课程《CS61A Structure and Interpretation of Computer Programs》为例，他们采用Python作为入门的编程语言，在学习通用的编程语法之外，这门课还介绍了一些简单的<strong>数据结构，SQL语法，正则表达式，面向对象的特性和编译原理</strong>的基本常识，最后甚至还需要自己动手实现一个编程语言的解释器。这样的课程作为入门的第一门课程显然比两门C语言课程学到的东西多很多，除了学习编程语法外(<strong>事实上这是最不需要老师讲的东西，而我们的老师们上课和考试最注重这些东西</strong>)，还能建立起对计算机专业的总体认识。</p>
+<p>因此我认为，我们需要更好的计算机入门课程。</p>
+<h4 id="缺少对基本工具使用的教学">缺少对基本工具使用的教学</h4>
+<p>计算机专业的学生肯定需要熟练掌握各种计算机中的基本工具的使用，比如Git，vim，命令行和shell脚本，Makefile和CMake，这些东西的重要性相比不用我多说了。虽然它们很重要，但遗憾的是学校并没有对这些工具如何使用进行过专门的教学，只是在用到的时候由同学们自己进行艰难的摸索和适应，而更多的同学选择了直接寻找替代品，<strong>比如用QQ和钉钉代替Git，</strong>以至于很多同学<strong>到了大三还不会使用Git和Github与他人进行合作代码开发</strong>。</p>
+<p>遗憾的是，我们的老师似乎往往沉溺于陈旧的理论，而对具体工具的使用嗤之以鼻，因此也没有相关的课程教会学生使用这些东西。反观MIT，他们专门开设了一门《6.NULL The Missing Semester of Your CS Education》的课程专门用来介绍这些工具的使用，而其他学校的很多课程中，<strong>如果用到了某些新的工具，也会有详细的速成教程(tutorial/crash course)让学生能够快速上手这些东西并完成作业</strong>。</p>
+<p>因此我认为，对于基本工具使用的教学也是计算机教育中不可或缺的一环。</p>
+<h4 id="课程时间安排不合理">课程时间安排不合理</h4>
+<p>18级软工的培养方案的<strong>时间安排存在多处不合理的地方</strong>，导致某几个学期课程特别多，某几个学期课程特别少，具体表现为：</p>
+<ul>
+<li>大一春夏和大二秋冬专业必修课程少，一年内一共只有离散数学和数据结构两门课</li>
+<li>大二春夏课程核心课程过多，学生压力过大，绝大部分保研规则中的专业核心课程都集中在这个学期(高级数据结构与算法分析，数据库系统，计算机系统原理，面向对象程序设计，软件工程基础)，并且这些课不仅学分高，而且都有大作业和期末考试，给同学造成了极大的负担</li>
+</ul>
+<h4 id="课程冗余学分压力过大">课程冗余，学分压力过大</h4>
+<p>培养方案追求“大而全”，希望学生“面面俱到”，必修课和选修课学分都过多，并且需要修很多和软工完全没有关系的课程，这个问题具体包括以下几点：</p>
+<ul>
+<li>通识选修课学分要求太多，导致大二秋冬结束之前，同学们很难进入正轨学习专业课</li>
+<li><strong>大学物理I, II和大学物理实验与软工的培养目标完全没有关系</strong></li>
+<li>软工选修课<strong>要求的模块过多</strong>，并且每个模块都要修够学分，导致要修的选修课程学分非常多，同时各个模块的课程安排也存在一定问题，比如金融相关的课程完全没有必要学，“其他模块”的课程太杂太乱</li>
+<li>专业必修课的学分总的来说比较合理，但是以上几点造成了软工毕业要求的总学分太多，既没有起到培养学生的目的，也消耗了学生大量无所谓的时间</li>
+</ul>
+<h3 id="课程实际教学">课程实际教学</h3>
+<h4 id="课程内容作业老旧">课程内容/作业老旧</h4>
+<p>软工培养方案上的课程中，有一大批陈旧的课程，使用的教学材料/作业/考试/实验都使用了年代久远的旧版本，而没有做到与时俱进，定期更新，同时课程内容脱离实际，和科研、实际生产都有不同程度的脱轨，缺少较为前沿的导论性课程。</p>
+<h4 id="轻视代码训练注重报告美观">轻视代码训练，注重报告美观</h4>
+<p>软工的大部分课程的作业都是需要写代码的，同时也有一大批课程需要提交各类文档和报告，包括但不限于实验报告，项目文档，心得体会，阅读报告，课程论文等等，但是这些代码和文档类型的作业存在以下问题：</p>
+<ul>
+<li>轻视代码，老师从不会看学生的代码，也从来不会教学生如何写代码</li>
+<li>重视各类文档和报告的格式/排版/字数，而忽略实际的报告内容，实际上<strong>各类报告中充斥着不必要，没营养，纯灌水的内容</strong>，浪费了学生大量时间来撰写各种报告</li>
+<li><strong>代码缺乏有效评分依据</strong>，因为老师不会看代码而只关注文档，所以学生也不会认真写代码，而是花费更多时间把报告写好看，不能确定文档中所说的各项功能是否已经在代码中实现</li>
+</ul>
+<h4 id="作业实验内容随意缺少有效指导">作业/实验内容随意，缺少有效指导</h4>
+<p>此外，许多课程中还充斥着随意布置的作业和实验，内容完全根据老师自己的喜好来决定，这一点在很多新开或者刚进行教学改革的课程中尤为常见，这些作业大多全凭诸位同学闭门造车来完成。很多作业和实验的要求以及<strong>指导书可能只有几页PPT或者Word文档</strong>，<strong>内容空泛，没有提供给学生任何有效信息</strong>，完全看不出老师布置作业时候的诚意和作业本身科学性。</p>
+<p>这样随意布置的作业不仅使得教学质量降低，而且给同学们完成作业造成了非常大的困难，同学们在闭门造车的过程中浪费了大量时间，又不能和课堂所学知识充分结合。</p>
+<h4 id="缺少可靠的助教团队辅助教学">缺少可靠的助教团队辅助教学</h4>
+<p>很多课程的助教难以发挥助教的作用，大多数时候都只是一个帮老师批改作业的工具人。一些课程可能助教自己本科阶段也没有学过或者学的很精通，或者助教们作为研究生本身就很忙，因此就出现了以下问题：</p>
+<ul>
+<li>助教不能及时回应学生们的问题</li>
+<li>助教自己没做过课程大作业，对大作业内容不熟悉，不能对同学形成有效指导</li>
+<li>助教权力不够大，无法对老师导致的一些教学问题进行及时纠偏</li>
+</ul>
+<h4 id="偏重理论考试导致考试周压力大">偏重理论考试导致考试周压力大</h4>
+<p>软工的很多课程都有平时作业+实验+大作业+期末考试，但是考试以外的作业成绩在总评中占比仍然不高，依然是期末考试占大头，导致同学们在考试周期间需要兼顾各个课程的大作业和期末考试，复习压力非常大，虽然平时作业和大作业工作量也花费很多时间，但是因为<strong>占总评不高且大家没什么区分度，导致大家异常重视期末考试</strong>。</p>
+<h4 id="互评打分引发恶性竞争">互评打分引发恶性竞争</h4>
+<p>不少课程需要同学之间互评作业，但是这种做法在别有用心的人的操纵下逐渐变成了同学之间互相攻讦，挑刺，打低分，挖掘个人信息，钻评分规则空子的恶性竞争，其带来的影响之恶劣，我认为远超过上面所说的其他任何问题。互评成绩计入课程总评严重影响了教学成绩评定的合理性和公正性，同时在大内卷的环境下，也导致了同学之间剑拔弩张，互相算计，对学生未来发展没有任何利好。</p>
+<p>互评的本意是让同学们互相评价作业代码和文档，但是实际互评中大部分同学都不会仔细看代码和文档中的内容，而是利用规则漏洞，抓住一些细节死咬不放，想尽办法给人打低分，比如挑语法错误，数代码注释，找个人信息，完全失去了互评所谓的“本意”</p>
+<h3 id="具体课程内容">具体课程内容</h3>
+<h4 id="软工系列课程存在严重问题">“软工”系列课程存在严重问题</h4>
+<p>作为软件工程的特色之一，软工的同学都需要学不少软件工程相关的课程，包括软件工程基础，软件工程管理，软件需求工程，软件质量保证与测试，这些课程<strong>饱受软工同学们的诟病，却始终没有做出令人满意的改变</strong>，我认为这几门课程至少存在以下几个非常严重的问题：</p>
+<ul>
+<li>四门课程内容严重重复，占用大量无效课时，软件工程基础已经基本覆盖了软件工程理论的核心知识，而这些内容要在软件工程管理，软件需求工程，软件质量保证与测试中翻来覆去再讲一遍，没有任何实际意义</li>
+<li>课程作业的载体雷同，除了做网站就是做网站，除了写文档就是写更多的文档，严重缺乏新意，文档中同质化的内容非常多，有价值的东西很少，老师根本不会仔细看学生提交的文档，而是通过页数来评估工作量，有的课程对网站的开发也没有任何实际意义上的检查，整门课程下来如同儿戏。</li>
+<li>负责上课的教师大多已多年未接触实际的代码开发和实践，讲课内容局限于书本理论而无任何实际价值，同时很多内容老师自己也未必了解，只能念PPT或者一通即兴乱讲，对学生没有任何帮助甚至有害</li>
+</ul>
+<h4 id="金融课程既不金融也不计算机">金融课程既不金融也不计算机</h4>
+<p>软工的培养方案需要学生修很多“金融”课程，包括国际证券市场导论，共同基金概论，外汇交易系统，股票交易系统等等。<strong>据说上这些金融课程的目的是培养计算机和金融交叉人才</strong>，让学生掌握金融信息技术，但实际上这些课程既不金融，又不计算机，一方面作为金融课讲的比较浅显，考试也停留在背ppt的层次，另一方面完全没有体现出这是一门计算机课程。</p>
+<p>这些课程有一个共同特点：整个课程下来基本都是在讲一些概念性的东西，然后考试和写课程论文，而没有任何代码开发的实践，对软件工程专业的学生来说，更适合作为通识课而不是专业课。</p>
+<h3 id="问题总结">问题总结</h3>
+<p>我认为以上所有问题可以归结为，当前软件工程本科生培养的主要矛盾，是<strong>软工学生日益增长的计算机专业知识学习需要和软件工程这个一流学科的本科培养方案设计不科学不合理之间的矛盾</strong>。</p>
+<p>我们不妨和CS领域的国际名校(MIT/Stanford/CMU/UCB)进行一个简单的对比，我将我的一些调研情况做成了下面的表格仅供参考：</p>
+<table>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 46%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>我校</th>
+<th>国际名校</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>课程设置</td>
+<td>培养方案课程繁多，大而全，什么都需要学，却什么都学不深</td>
+<td>需要上的课程数量较少，但是课程大多比较硬核，难度高，工作量大，学习收获多</td>
+</tr>
+<tr class="even">
+<td>课程内容</td>
+<td>很多课程多年没有修改课程内容，部分老师尸位素餐，在教学方面不思进取</td>
+<td>课程内容会随着相关领域的发展每年进行更新</td>
+</tr>
+<tr class="odd">
+<td>作业内容</td>
+<td>代码训练被花式写报告取代，要写的报告名目繁多且工作量十分饱满，各类文档和报告代代相传，基本不会变</td>
+<td>更注重代码和课程Project，<strong>很多课程的作业围绕一个Project展开，并由学生分多次完成</strong>，组合成一个完整的项目，大部分时候不需要学生写大量文档和报告，同时会调整作业内容防止学生互相抄袭</td>
+</tr>
+<tr class="even">
+<td>作业指导</td>
+<td>很多作业/实验的指导聊胜于无，全靠学生自己探索</td>
+<td>作业和实验都大多提供详细的指导和操作步骤，并给出明确的目标，<strong>提供详细的指导书和说明文档，很多作业提供初始代码，学生需要按照要求写最为核心的部分</strong></td>
+</tr>
+<tr class="odd">
+<td>作业评分</td>
+<td>主要通过老师和助教<strong>人工审核</strong>作业打分，有的课甚至有互评等荒唐现象，部分代码作业可以通过PAT网站提交并自动评分</td>
+<td>很多代码作业都提供了比较翔实的测试数据，同时会使用一些GradeScope</td>
+</tr>
+<tr class="even">
+<td>助教团队</td>
+<td>大部分课只有一个助教甚至没有，助教对学生可以起到的帮助较少，主要负责批改老师布置的作业</td>
+<td>很多课程有3-5个助教，一些课程甚至有数十人的助教团队，助教需要负责布置作业，写初始代码和实验指导，有专门的时间用来给同学答疑</td>
+</tr>
+<tr class="odd">
+<td>考试</td>
+<td>考试占总成绩比例高，复习压力大，<strong>没有公开的复习资料</strong>，<strong>不同教学班级对“透露”期末考题的情况不一致</strong>。</td>
+<td>会提前公开最近几年的考试题和答案供学生复习</td>
+</tr>
+<tr class="even">
+<td>开源情况</td>
+<td>绝大部分课程都对外开放，少量入门级课程在中国大学MOOC这样的平台上</td>
+<td>网络上可以找到很多名校公开课程，不仅开放课件，还开放课程视频/课程作业/课程项目</td>
+</tr>
+<tr class="odd">
+<td>学费</td>
+<td>享受国家补贴，但是软工学费相比于计算机和信安贵很多，但正常情况下低于2万人民币</td>
+<td>数万到数十万美元不等</td>
+</tr>
+</tbody>
+</table>
+<h2 id="具体意见">具体意见</h2>
+<h3 id="合理规划课程模式">合理规划课程模式</h3>
+<h4 id="删减培养方案中的不必要学分">删减培养方案中的不必要学分</h4>
+<p>现有的软工培养方案依然存在学分过多，学生负担大的情况，在思政课和通识选修课的学分无法压缩的情况下，我认为应该删减培养方案中专业选修课的所需学分，减少课程的内容重合度，将内容重复的课程剔除，我认为可以尝试的方式有：</p>
+<ul>
+<li>减少软件工程系列课程</li>
+<li>减少小学期，尤其是大三暑假的小学期</li>
+<li>减少金融和网安模块的学分要求</li>
+<li>减少“其他选修课”模块的学分要求</li>
+<li>减少沟通技巧等主干课程</li>
+</ul>
+<h4 id="参考国外名校课程的成功经验">参考国外名校课程的成功经验</h4>
+<p>计算机领域的国际名校(如MIT/CMU/Stanford)有大量公开的计算机教育课程，很多课程广受好评，和我们的部分课程形成鲜明对比。在世界一流大学们已有的大量成功经验下，我们也可以尝试参考他们的教学模式进行改进。</p>
+<h4 id="招募高年级本科生组建助教团队">招募高年级本科生组建助教团队</h4>
+<p>我们学校的助教制度存在这样几个问题：</p>
+<ul>
+<li>助教作为研究生有自己的研究方向，不一定跟课程契合，可能因为时间久了对课程不够熟悉</li>
+<li>考试周和项目验收等时间点，同学们对答疑的需求比较大，一个助教忙不过来</li>
+<li>助教拿到的补助不够多，导致很多助教难以用心完成助教工作</li>
+<li>助教拥有的权利不够大，<strong>可以将布置课程作业/课程项目的权力交给助教</strong>，让助教负责每年更新课程的作业内容，但是这样一来一个助教很显然无法完成工作，因此我们需要更多的助教，以助教团队的形式来服务课程教学</li>
+</ul>
+<h4 id="加强和互联网业界的合作">加强和互联网业界的合作</h4>
+<p>据说计算机学科是一门强调实践，和业界结合比较紧密的工程性学科，杭州的互联网业界资源应该也可以算比较丰富，我认为可以利用这些资源优势，聘用校外的一些深耕技术和相关工作的从业者来执教一些实践性质较强的课程，比如软件工程系列课程，让拥有较多业界实践经验的人带同学们尽早了解计算机产业界真实的工作情况和氛围，这么做可以帮助同学们尽早建立职业观，了解自己专业真实的就业情况，同时也可以改善部分课程的实践教学非常糟糕的现状。</p>
+<p>同时，也可以在一些课程中引入一系列Guest Lecture，邀请相关领域从业人员介绍课程相关内容在业界的技术发展现状和前沿领域的研究成果，让同学们对业界前沿有更好的了解。</p>
+<h3 id="重建课程评价体系">重建课程评价体系</h3>
+<h4 id="改变唯报告论的作业评价方式">改变“唯报告论”的作业评价方式</h4>
+<p>前面已经提到过，我们学院大部分课程的大部分作业都需要写各式各样的实验报告/文档，撰写这些繁文缛节的文档不仅浪费了学生大量的时间，也无益于学生掌握更多的知识，而是为了拿到更高的分数将心思都花在写出好看的报告上。同时通过报告评分，很大程度上依赖于老师和助教的主观感受，很多时候并不能正确反应同学们实际做实验的情况和代码运行的结果(因为老师并不会盯着学生做实验，也不会去运行学生提交的代码)</p>
+<p>参考世界名校的成功案例，对于需要写代码的作业的评分方式，应该往基于自动化测试的方向改进，比如<strong>老师给出作业的框架代码，由学生完成其中的关键部分</strong>，然后通过教学网站(本地运行也可以)和已经准备好的测试点来自动化评估作业的结果。这就需要学院拥有一套自己的在线自动测试系统(国外很多课程都用的是GradeScope)，PTA网站或许可以起到部分类似的功能，但目前来看PTA还是只能运行一些单文件编程题，而不能对一个工程项目进行测试。</p>
+<p>同时对于一些没有固定测试标准的作业(比如开放式的大作业)，也不应该让同学们写长篇大论的报告，而是应该采取尽可能精练的格式，比如外国一些名校的Project提交的报告一般是用Latex学术论文模版写的短文，一般在5页左右，非常锻炼同学的写作能力，同时又能控制“水报告长度”的现象。</p>
+<p>总的来说，就是作业不应该只用报告作为评价依据，更应该注重其具体的实现过程，以代码的功能而不是报告的词藻和格式作为评价作业质量的依据。</p>
+<h4 id="取消或调整互评环节">取消或调整“互评”环节</h4>
+<p>以我个人的观点来看，计入总成绩的互评是无论如何都不应该出现在正常的教学过程中的，因为学生的成绩是以学校的信用来背书的，而同学之间相互评分很明显是对学校信用和公信力的毁灭性打击，因为同学之间是存在竞争关系的，并非利益无关，GPA的竞争导致互评必然会出现同学之间相互攻讦，倾轧，恶性竞争等现象，显然这无益于教学和培养。</p>
+<p>我认为应该取消课堂教学中所有需要计入成绩的互评，不应该以学生之间互相评价作为课程成绩评定的依据。</p>
+<h4 id="减少期末考试占比并公开考试科目的历年卷">减少期末考试占比并公开考试科目的历年卷</h4>
+<p>考试周爆炸似乎是计算机学院一贯以来的传统，在大作业，课程论文，项目答辩，期末考试多重压力使同学们往往难以兼顾，“爆肝”“刷夜”等行为也无益于同学们的成长和身心健康，所以我认为学院应该想办法减轻同学们在考试周时候的压力，比如减少考试课程数量，减少考试的成绩占比。</p>
+<p>另一个很重要的问题是，我们学院现在的课程考试历年卷往往是不公布的，这就造成了班级和班级之间严重的不平衡，<strong>有的老师会在考试前有意无意的“指导”同学们“复习”考试“重点”</strong>，而有的老师则不会，这就造成了非常严重的信息不对称，同时，因为不公布历年卷，老师们往往懒于更新考试题库，总是在几张历年卷里固步自封，考试跳脱不出历年卷的桎梏，这会导致拥有历年卷信息的人在考试中具有极大优势，严重影响考试的公平性。反观世界一流大学，他们的很多课程会主动开放往年考试的题目甚至答案，这么做<strong>不仅可以减轻同学们的复习压力，减少不同人之间的信息差，同时可以倒逼老师推陈出新</strong>，让考试更能考查学生对知识的理解而不是对刷题套路的钻研和雕琢。</p>
+<p>另外公开历年卷也可以<strong>遏制学校文印店老板对教学资源的盗印和窃取行为</strong>。</p>
+<h3 id="调整特定课程内容">调整特定课程内容</h3>
+<p>这一部分主要讲一些我个人对特定课程的看法和意见。</p>
+<h4 id="开设面向大一的入门课程">开设面向大一的入门课程</h4>
+<p>前面我已经提到培养方案中，大一的专业入门课程太少了，和本专业相关的只有C语言程序设计/程序设计专题/离散数学三门课程，而前两门课程是工信大类共通的课程，离散数学则是一门彻头彻尾的理论课，缺少代码实践，并且离散数学中的很多知识其实在高中数学里就有所涉及。因此我认为我们的培养方案中缺少真正的，属于计算机学院的入门课程。</p>
+<p>我认为开设面向大一的入门课程是非常迫切而且有必要的，面向计算机专业的入门课程应该要包含以下内容：</p>
+<ul>
+<li>教会学生程序设计的基本原理<strong>而不是面向考试的，佶屈聱牙的，老师自己也没写过代码只是对着ppt念的语法细节</strong>，并且使用类似于Java/Python之类更容易入门的编程语言进行教学</li>
+<li>教会学生使用各种计算机中的基本工具，比如Linux命令行，Shell脚本，git等等，帮助学生建立好一套自己的代码开发工具链</li>
+<li>提供一些难度不高但是工作量较大的Project帮助没有编程基础的同学快速掌握基本的编程能力</li>
+<li>让同学们能够对计算机尤其是编程语言的工作原理有初步的认识</li>
+</ul>
+<p>这些东西不一定要在一门课里全部讲完，但是非常有必要传达给一个计算机的初学者。</p>
+<h4 id="离散数学和数据结构基础">离散数学和数据结构基础</h4>
+<p>离散数学这门课的作用感觉非常尴尬，一方面，它的很多内容比如集合论，组合计数等等在高中数学里已经有所涉及，另一方面里面的树，图等内容又和数据结构基础有所重叠，虽然离散数学课上讲过但是数据结构基础还会翻出来再讲一遍。所以这门课的内容显得有些重复，同时作为现有培养方案的第一门专业课，离散数学的内容在接下来的专业课中用到的说实话比较少，因此可以适当删减里面的部分内容，或者针对某一章节开设新的课(如图论)让有兴趣的同学选修。</p>
+<p>总的来说以一门纯理论课开启计算机专业课的学习这一做法的合理性有待商榷。</p>
+<h4 id="数据库系统">数据库系统</h4>
+<p>这门课被“誉为”计院大二下的三驾马车之一，因为它是专业核心课程，学分高，工作量大，考试难，但我认为这门课程有这样几个问题：</p>
+<ul>
+<li>内容割裂，前半个学期讲的SQL语法和后半个学期讲的数据库系统设计原理内容比较割裂(据说之前是两门课程合并而来的)，并且内容太多，作为4学分的课完全塞不下这么多东西，导致老师上课也只能讲个大概，囫囵吞枣，同时SQL部分的预修要求不是很高，只要学生会基本的编程就可以，而后半部分系统设计实际上需要同学对计算机底层有比较清楚的认识才能学，而大二的时候培养方案上还没学过操作系统一类的课，实际上<strong>以当时大部分同学对计算机底层的认知是不适合学这部分内容的</strong>。</li>
+<li>作业太多，我印象里学这门课的时候每周都有理论题作业，还有5个实验，期中期末各有一个Project，放在大二下这种学业压力特别繁重的学期很明显负担过重</li>
+<li>课程大作业是写一个miniSQL，但是老师基本除了几页说明文档以外给不出任何有效的指导，全看学生自己摸索，并且从头开始写一个miniSQL工作量极大，说实话，大部分人<strong>很难真的实现其中的一些关键设计</strong>比如Buffer模块和Index模块</li>
+</ul>
+<p>针对上述问题，我认为可行的解决方案是：</p>
+<ul>
+<li>将数据库系统重新拆分成两门课程，一门主要讲数据库基本概念和SQL语法，另一门讲数据库系统的设计，同时应该将前半部分的内容提早修读，这是因为Web开发需要用到SQL，而软工同学大二下就会碰到若干门需要做Web开发的课程，比如软件工程基础，所以应该早一点学习SQL和Web开发相关的技能</li>
+<li>miniSQL课程项目进行调整，调整的方式具体可以包括：
+<ul>
+<li>对整个项目进行拆分，将关键模块进行解耦，并且将大作业分散成若干次完成，每一次由同学实现miniSQL中的一个关键模块</li>
+<li>课程组提供miniSQL项目的总体框架代码，让学生去补充其中的关键代码，而不是在没有任何指导的情况下从头开始写，关于这一点，可以参考CMU15-445，UCB CS186等课程的Project</li>
+<li>在项目提供代码减轻学生负担少做一些dirty work的前提下，将大作业改成单人完成</li>
+<li>提供每个模块的单元测试供学生debug，同时用测试点通过情况作为打分依据而不是课程项目报告</li>
+</ul></li>
+</ul>
+<h4 id="计算机系统原理">计算机系统原理</h4>
+<p>这门课早已超出了软件工程专业同学们对低质量课程的忍耐底线，在软工同学之间的评价也早就已经是不能更烂了，虽然我听说前几届一直有同学对该课程提出强烈抗议，不过至今为止楼老师还是一直活跃在软件工程专业的讲台上，因此我对这门课也就没什么意见了，希望楼老师生活愉快，万事如意，享受作为大学教师的每一分每一秒。</p>
+<h4 id="软件工程系列课程">软件工程系列课程</h4>
+<p>软件工程系列课程(包括软件工程基础，软件需求工程，软件工程管理和软件质量保证与测试)存在的问题我在前面已经说过了，这里就不再重复。我认为可以改进的地方有</p>
+<ul>
+<li>删减培养方案中需要修读的软工课程数量，合并几门课程中完全重复的内容，减少每门课的工作量和学时</li>
+<li>减少课程中对软件文档的要求，少写莫名其妙的文档，更加关注小组的代码合作实现，建议<strong>用小组项目代码仓库的commit记录作为评价每个同学工作量的依据</strong>。少写无聊报告，多合作开发代码</li>
+<li>聘用长期活跃在开发一线的从业者来授课，让同学们能尽可能贴近实际的生产环境开发代码。关于这一点，更简单的方法是取消所有软件工程课程，改成每个同学去企业实习，用实践经验代替抽象授课。当然这一点实行起来难度较大。</li>
+<li>在开设软件工程相关课程之前，<strong>先开设Web前后端开发相关的课程(比如可以将B/S体系软件设计放到大二上学期)</strong>，因为这些课程都需要用到Web开发，很多同学都是快要提交代码了才临时抱佛脚学一学Web开发，更有甚者只负责写各类文档而没有任何代码贡献，这很明显是背离软件工程初衷的。另一方面Web开发课程并不需要很多先修知识，只需要一定的编程能力和SQL语法知识，完全可以放到大二先上，掌握Web开发的相关技术对同学们后期的实习和工作也有一定的帮助。</li>
+</ul>
+<h4 id="计算机网络">计算机网络</h4>
+<p>计算机网络作为培养方案里的核心课程，其课程内容也饱受诟病，这门课存在的问题包括：</p>
+<ul>
+<li>计算机网络作为一个需要大量知识点堆砌的课，老师上课时的效果非常糟糕，基本就等于朗读一个个知识点，同学们去上课的效果聊胜于无</li>
+<li>我们学院的计算机网络课程理念存在问题，是从最底下的物理层开始讲逐渐讲到应用层的，这种底层逻辑对于计算机专业来说是非常劝退的，因为计算机专业没有学过相关课程，对底层并不了解，不一定清楚信号在物理层是怎么传播的，从物理层开始学容易让同学们怀疑人生。国内外名校的课程一般采用的是<strong>自顶向下</strong>的逻辑讲课(即从应用层开始讲)，相比之下更容易让学生接受</li>
+<li>实验设计存在严重问题，实验室接设备、GNS3模拟组间路由器网络等实验并不适合计算机专业的学生，不仅需要花费大量时间，而且实验器材存在较多缺陷(比如实验室里的交换机是坏的，GNS3模拟软件会出现莫名其妙的崩溃)，同时实验内容主要是拼接若干网络设备并在终端输入指令(其中有大量指令是重复的操作)，给学生的观感和体验非常糟糕，同时也对掌握上课讲的大量堆砌的知识点毫无益处。另一方面，编程实验太少，完全<strong>不注重对网络编程能力的培养</strong>。
+<ul>
+<li>关于这一点，据我了解外国名校的计算机网络课程的Project和实验往往更偏向于编程项目，比如Stanford的计算机网络课程是8个实验实现一套TCP/IP通信协议栈</li>
+</ul></li>
+<li>期末考试复习的工作量巨大，考试题层次止步于背诵大量知识点，且班级和班级之间的信息差较为严重</li>
+</ul>
+<p>针对上述问题，我认为可以改进的地方有：</p>
+<ul>
+<li>改变整个课程的教学体系，改成自顶向下的方式进行授课</li>
+<li>修改课程实验内容，删除或删减GNS3的实验，参考国外课程的做法，将课程实验改成以编程为主的Project，比如实现一个简单的TCP/IP协议栈。</li>
+<li>公开期末考试历年卷等资料，做到班级之间信息透明，而不是部分班级老师针对性的泄题</li>
+</ul>
+<h4 id="java应用技术">Java应用技术</h4>
+<p>这门课的内容偏向于讲Java的语法细节，同时内容局限在JavaSE中而不涉及Java Web的东西(比如Spring框架)，除了作业量比较大以外和C程序设计并无太大差别，因此我认为<strong>这门课或许可以提早到大二上半学期</strong>，这个时候软工的专业课比较少，而这门课本身也没有很高的预修要求。对于课程内容本身我也没什么别的意见，只能说这样的课对于大三同学来说学了也意思不大。</p>
+<h4 id="大规模信息系统构建技术导论">大规模信息系统构建技术导论</h4>
+<p>这门课程在我们修读的时候刚好碰上了课程改革，我们这一届的作业是实现一个分布式的miniSQL，而上课主要讲了一些分布式系统和大数据相关的东西，虽然看起来目标很宏大，理想很丰满，但是这门课程依然存在许多问题：</p>
+<ul>
+<li>上课内容和课程项目不沾边，讲课内容比较枯燥乏味</li>
+<li>课程项目没有有效指导，和miniSQL一样也是通过几页文档和PPT下达要求，之后就让同学们自身自灭等待验收，实际体验非常糟糕，所有东西都要自己摸索，最后做出来的东西符不符合规范，大家也都很难说</li>
+<li>在原本的miniSQL上进行扩展这一要求不是很合理，因为这受到原本miniSQL的完成质量影响太大，如果全部从头重写又太花时间，导致这一作业非常尴尬。</li>
+</ul>
+<p>我认为可以改进的地方有：</p>
+<ul>
+<li>讲课内容可以更注重一些分布式系统的内容，可以参考MIT的分布式系统课程6.824</li>
+<li>作业内容应该降低Project的难度和学习曲线，减轻大作业的工作量，降低难度，提供代码框架和测试数据</li>
+<li>同时提供一些平时的编程作业供同学们练习和实践</li>
+<li>课程使用的编程语言可以考虑go</li>
+</ul>
+<h4 id="金融相关课程">金融相关课程</h4>
+<p>软工培养方案中金融相关的课程存在的问题我前面也已经说过了，这些课程既不金融也不计算机，金融类课程的改进方向应该是让它们看起来更像是一门计算机课程，至少应该让学生接触到金融行业中和软件/代码/编程有关的一些东西，我认为可以改进的地方有：</p>
+<ul>
+<li>课程应该更加注重金融相关的代码开发实战，股票交易系统，外汇交易系统等课程可以带领学生接触和尝试开发简单的金融交易系统，当然也可以讲金融数据分析之类的，总之不应该是一门只有背书，论文和考试的理论课</li>
+<li>纯理论式的金融课建议取消，不适合软件工程专业的同学学习</li>
+</ul>
+<h4 id="开设不同方向的导论性课程">开设不同方向的导论性课程</h4>
+<p>我们学院的本科生同学未来会有很大一部分选择继续深造，也有同学会对某一方向的技术和发展特别感兴趣，因此学院应该开设一些计算机各个研究方向的导论性课程，让同学们了解这个方向的发展过程，<strong>最近几年的学术/业界的理论和技术发展现状</strong>，帮助同学们对自己感兴趣的方向尽早建立有效的认知，也能更好的选择未来的路。</p>
+<h2 id="后记">后记</h2>
+<p>以上内容算是我的一家之言，我作为一个大四本科生的眼界和见识也不会比诸位领导老师来的宽，姑且算是我的一番妄言。我不知道写了这么多东西，学院的领导老师看到之后会不会有所反应，会不会在以后做出一定的改进，但是我希望学院的领导老师可以更多的倾听来自同学们的声音，对本科教学中存在的不足之处及时改进。最后也祝愿计算机学院以及计算机学院的本科生教育越办越好！</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">zhou_wei</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zhou_wei.github.io/2021/12/10/se-courses/">http://zhou_wei.github.io/2021/12/10/se-courses/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhou_wei.github.io" target="_blank">周炜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6/">浙江大学</a><a class="post-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E6%95%99%E5%AD%A6/">本科教学</a><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/12/12/cmudbs-lab3/"><img class="prev-cover" data-src="/img/cover/5.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CMU15-445数据库系统Project3：Query Execution</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/01/cmudbs4/"><img class="next-cover" data-src="/img/cover/20.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CMU15-445数据库系统4：查询优化</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/12/31/my2021/" title="我的2021年终总结"><img class="relatedPosts_cover" data-src="/img/cover/17.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-31</div><div class="relatedPosts_title">我的2021年终总结</div></div></a></div><div class="relatedPosts_item"><a href="/2021/05/04/java1/" title="Java应用技术1：基础语法"><img class="relatedPosts_cover" data-src="/img/cover/3.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-04</div><div class="relatedPosts_title">Java应用技术1：基础语法</div></div></a></div><div class="relatedPosts_item"><a href="/2021/05/04/java3/" title="Java应用技术3：高级语法"><img class="relatedPosts_cover" data-src="/img/cover/8.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-04</div><div class="relatedPosts_title">Java应用技术3：高级语法</div></div></a></div><div class="relatedPosts_item"><a href="/2021/05/03/os3/" title="操作系统3：内存管理"><img class="relatedPosts_cover" data-src="/img/cover/1.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="relatedPosts_title">操作系统3：内存管理</div></div></a></div><div class="relatedPosts_item"><a href="/2021/05/03/os4/" title="操作系统4：磁盘与I/O"><img class="relatedPosts_cover" data-src="/img/cover/111.svg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="relatedPosts_title">操作系统4：磁盘与I/O</div></div></a></div><div class="relatedPosts_item"><a href="/2022/06/24/python-ta/" title="一个Python助教的学期总结"><img class="relatedPosts_cover" data-src="/cover/1.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-24</div><div class="relatedPosts_title">一个Python助教的学期总结</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'b6BpXpwUq5wyUMcLtbnNMD8N-gzGzoHsz',
+      appKey: 'Qtl7JkpdLDat2Niacks6SyT5',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022  <i id="heartbeat" class="fa fas fa-heartbeat"></i> zhou_wei</div><div class="framework-info"><span>驱动 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

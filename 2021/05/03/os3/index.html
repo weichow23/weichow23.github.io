@@ -1,0 +1,558 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统3：内存管理 | 周炜</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Chapter 8：主存 Main Memory周炜
+ 8.1 基本知识
+ 
+ 程序一定要从磁盘装载进入内存才能运行，内存和寄存器是CPU可以直接访问的存储部分
+ 
+ cache位于内存和CPU寄存器之间
+ 
+ 
+ 逻辑地址和物理地址
+ 
+ 逻辑地址也叫相对地址和虚地址，由CPU生成，用户程序汇编之后生成的目标代码通常采用相对地址的形式
+ 
+ 首地址作为0，其他指令都用相对于首地址来编址
+ 不用能逻辑"><meta name="keywords" content="操作系统,计算机系统,浙江大学,Linux"><meta name="author" content="zhou_wei"><meta name="copyright" content="zhou_wei"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://zhou_wei.github.io/2021/05/03/os3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="操作系统3：内存管理"><meta property="og:url" content="http://zhou_wei.github.io/2021/05/03/os3/"><meta property="og:site_name" content="那颗名为现在的星"><meta property="og:description" content="Chapter 8：主存 Main Memory
+ 8.1 基本知识
+ 
+ 程序一定要从磁盘装载进入内存才能运行，内存和寄存器是CPU可以直接访问的存储部分
+ 
+ cache位于内存和CPU寄存器之间
+ 
+ 
+ 逻辑地址和物理地址
+ 
+ 逻辑地址也叫相对地址和虚地址，由CPU生成，用户程序汇编之后生成的目标代码通常采用相对地址的形式
+ 
+ 首地址作为0，其他指令都用相对于首地址来编址
+ 不用能逻辑"><meta property="og:image" content="http://zhou_wei.github.io/img/1.jpg"><meta property="article:published_time" content="2021-05-03T14:55:54.000Z"><meta property="article:modified_time" content="2021-11-03T15:17:11.284Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="操作系统4：磁盘与I/O" href="http://zhou_wei.github.io/2021/05/03/os4/"><link rel="next" title="操作系统2：CPU调度，同步和死锁" href="http://zhou_wei.github.io/2021/05/03/os2/"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-11-03 23:17:11'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"><meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;周炜
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">151</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-8%E4%B8%BB%E5%AD%98-main-memory"><span class="toc-number">1.</span> <span class="toc-text">Chapter 8：主存 Main Memory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text">8.1 基本知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E6%8A%80%E6%9C%AF"><span class="toc-number">1.2.</span> <span class="toc-text">8.2 交换技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="toc-number">1.3.</span> <span class="toc-text">8.3 连续分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">8.4 页式存储管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.</span> <span class="toc-text">8.5 分段管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-9%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98virtual-memory"><span class="toc-number">2.</span> <span class="toc-text">Chapter 9：虚拟内存Virtual Memory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">9.1 基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%9C%80%E8%B0%83%E9%A1%B5"><span class="toc-number">2.2.</span> <span class="toc-text">9.2 按需调页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-number">2.3.</span> <span class="toc-text">9.3 进程创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="toc-number">2.4.</span> <span class="toc-text">9.4 页面置换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A7%E5%88%86%E9%85%8D"><span class="toc-number">2.5.</span> <span class="toc-text">9.5 帧分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%96%E5%8A%A8thrashing"><span class="toc-number">2.6.</span> <span class="toc-text">9.6 抖动Thrashing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="toc-number">2.7.</span> <span class="toc-text">9.7 内存映射文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="toc-number">2.8.</span> <span class="toc-text">9.8 内核内存分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">2.9.</span> <span class="toc-text">9.9 其他</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(/img/cover/1.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">那颗名为现在的星</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">操作系统3：内存管理</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-05-03 22:55:54"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-05-03</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-11-03 23:17:11"><i class="fas fa-history fa-fw"></i> 更新于 2021-11-03</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/CS%E6%A0%B8%E5%BF%83%E8%AF%BE%E7%A8%8B/">CS核心课程</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">3.5k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 10 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>评论数:</span><a href="/2021/05/03/os3/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2021/05/03/os3/" itemprop="commentCount"></span></a></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="chapter-8主存-main-memory">Chapter 8：主存 Main Memory</h2>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><h3 id="基本知识">8.1 基本知识</h3>
+<ul>
+<li><p>程序一定要从磁盘装载进入内存才能运行，内存和寄存器是CPU可以直接访问的存储部分</p>
+<ul>
+<li>cache位于内存和CPU寄存器之间</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="image-20201130140737037.png" alt="image-20201130140737037" style="zoom:50%;"></p></li>
+<li><p>逻辑地址和物理地址</p>
+<ul>
+<li>逻辑地址也叫相对地址和虚地址，由CPU生成，用户程序汇编之后生成的目标代码通常采用相对地址的形式
+<ul>
+<li>首地址作为0，其他指令都用相对于首地址来编址</li>
+<li>不用能逻辑地址在内存中读取信息</li>
+</ul></li>
+<li>物理地址：实地址，绝对地址，可以直接寻址</li>
+</ul></li>
+<li><p>基地址寄存器和限长寄存器</p>
+<ul>
+<li>一对基地址寄存器和限长寄存器定义了逻辑地址空间</li>
+<li>基地址寄存器存放地址的首地址，限长存储长度</li>
+</ul></li>
+<li><p>地址映射</p>
+<ul>
+<li>在编译、装在和执行三个阶段都有发生</li>
+<li>编译阶段，如果预先知道内存的location就可以生成absolute code，一旦起始位置变了就需要重新编译</li>
+<li>装载阶段，如果内存的location未知，必须生成可以重定位的代码</li>
+<li>执行阶段，如果进程可以移动那么绑定会延迟到运行的时候，需要硬件支持地址映射</li>
+</ul></li>
+<li><p>内存管理单元</p></li>
+<li><p>动态装载和动态链接</p></li>
+</ul>
+<h3 id="交换技术">8.2 交换技术</h3>
+<ul>
+<li>交换技术是指一个进程可以暂时被移出内存并保存在backing store中，然后再次装载进入内存执行
+<ul>
+<li>backing store是后备存储器，是一个可以存储所有内存映像的快速磁盘，可以提供对这些内存映像的直接访问
+<ul>
+<li>在Linux系统中表现为交换区，Windows中表现为pagefile.sys</li>
+</ul></li>
+<li>调出和调入：优先级低的进程被调出，优先级高的被调入，使用交换变量，交换的主要耗时是transfer time</li>
+<li>系统会维护一个准备队列来存放准备运行的进程，其内存映像都存储在disk上面</li>
+<li>正常情况下是不会交换的，在内存低于一个阈值的时候会启动交换，在内存增加到一定数量的时候停止换出</li>
+<li>移动操作系统不支持交换，因为是基于闪存的，有写的次数限制</li>
+</ul></li>
+</ul>
+<h3 id="连续分配">8.3 连续分配</h3>
+<ul>
+<li><p>主存往往被分为两个单独的分区：</p>
+<ul>
+<li>常驻操作系统：保存在具有中断向量的低内存中</li>
+<li>用户进程被保存在高内存中</li>
+</ul></li>
+<li><p>浮动寄存器relocation register被用来保护用户进程，将进程之间隔离，并防止其改变操作系统的数据和代码</p>
+<ul>
+<li>基寄存器保存最小的物理地址的值</li>
+<li>有限寄存器包含了逻辑地址的区间，每个逻辑地址必须比有限寄存器要小</li>
+<li>MMU动态映射逻辑地址</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="image-20201130143550998.png" alt="image-20201130143550998" style="zoom: 33%;"></p></li>
+<li><p>分区式管理的基本思想是将内存划分成若干个连续的区域，称为分区，每个分区只能存放一个进程，分为固定分区和动态分区</p>
+<ul>
+<li>固定分区：分成若干块固定长度的分区，区域和区域之间存在着未使用的内存空间</li>
+<li>动态分区：
+<ul>
+<li>动态划分内存，在程序装入内存的时候把可以使用的内存划分出一个连续的区域分配给该进程，并且分区的大小正好适合进程的需要</li>
+<li>三种动态的分配算法
+<ul>
+<li>First-Fit 分配第一个可以用的足够大的内存分区给进程</li>
+<li>Best-Fit 分配最小的足够大的内存分区给进程</li>
+<li>Worst-Fit 分配最大的一个分区给进程，必须搜索整个记录表</li>
+<li>Next-Fit 类似于First-Fit，每次分区的时候总是从上次查找结束的地方开始，找到一个够大的区域就分配</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>内存碎片 Fragmentation</p>
+<ul>
+<li>内存会浪费，产生很多的fragmentation，内部碎片是进程内存空间内部的fragmentation，外部碎片是进程内存空间之间的碎片，会减少可运行的进程个数</li>
+<li>可以通过拼接和压紧来进行，但是消灭fragmentation需要非常大的cost</li>
+</ul></li>
+</ul>
+<h3 id="页式存储管理">8.4 页式存储管理</h3>
+<ul>
+<li><p>分页管理使得一个进程内部的逻辑地址所处的物理空间可以是不连续的，进程在有空的地方就被分配物理内存</p>
+<ul>
+<li>物理内存被分成许多固定大小的frame(帧、物理块)，一般大小都是4k</li>
+<li>逻辑地址被分成了若干块相同大小的block，称为页，运行一个n页的程序需要找到n个空闲的帧</li>
+<li>页表用于将逻辑地址转化成物理地址，页表中列出了进程的逻辑页和其在主存中的物理帧之间的对应关系</li>
+</ul></li>
+<li><p>地址的转换：</p>
+<ul>
+<li>由CPU生成的地址被分为页号p和偏移d，页号被作为页表的索引，包含每一页的在物理内存中的基地址，偏移表示在物理地址相对于基地址的偏移量</li>
+<li>对于<strong>逻辑地址空间大小</strong>为<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="2.724ex" height="1.528ex" role="img" focusable="false" viewBox="0 -675.5 1203.8 675.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container></span>，页的大小是<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="2.279ex" height="1.528ex" role="img" focusable="false" viewBox="0 -675.5 1007.3 675.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container></span>的情况，页号p有m-n位，偏移量有n位</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="image-20201130153619598.png" alt="image-20201130153619598" style="zoom:33%;"></p></li>
+<li><p>页表page table</p>
+<ul>
+<li>页表位于内存中，有PTBR和PTLR分别存储页表号和页表的长度</li>
+<li>页表的cache：TLB也叫联想寄存器，快表，工作原理如下图所示</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="image-20201203142041351.png" alt="image-20201203142041351" style="zoom:33%;"></p>
+<ul>
+<li><p>有效访问时间</p>
+<p><img src= "/img/loading.gif" data-src="image-20201203142252118.png" alt="image-20201203142252118" style="zoom: 25%;"></p></li>
+<li><p>内存的保护：用一位来表示数据是否有效</p></li>
+</ul></li>
+<li><p>共享页：没仔细讲</p></li>
+<li><p>页表的类型</p>
+<ul>
+<li>分级页表：x86的逻辑地址32位，页的大小是4kb，则页表项最多有1M个，这就需要每个进程的页表需要连续的4MB，这很明显是不现实的，因此需要分级的页表</li>
+<li>哈希页表：虚拟页号通过一个hash函数在页表中查找</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="image-20201203145152612.png" alt="image-20201203145152612" style="zoom:33%;"></p>
+<ul>
+<li>反向页表：逻辑地址由pid+页表号+偏移量组成</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="image-20201203145708082.png" alt="image-20201203145708082" style="zoom:33%;"></p></li>
+</ul>
+<h3 id="分段管理">8.5 分段管理</h3>
+<ul>
+<li><p>一个进程有若干个部分组成，包括</p>
+<p><img src= "/img/loading.gif" data-src="image-20201203151440744.png" alt="image-20201203151440744" style="zoom:50%;"></p>
+<ul>
+<li>将逻辑地址分为段号+段内地址</li>
+</ul></li>
+</ul>
+<h2 id="chapter-9虚拟内存virtual-memory">Chapter 9：虚拟内存Virtual Memory</h2>
+<h3 id="基本概念">9.1 基本概念</h3>
+<ul>
+<li>虚拟内存的基本思路：只将一部分正在运行的程序放入内存中，将逻辑内存和物理内存分开
+<ul>
+<li>请求调页Demand Paging 按需要调取页，请求页式管理</li>
+<li>请求段式管理 Demand Segmentation</li>
+<li>局部性原理：空间局部性和时间局部性</li>
+<li>虚拟内存的空间比物理地址的空间要大</li>
+</ul></li>
+<li>一个进程的地址空间中，从高到低依次是栈、堆、数据和代码区，再往外的高地址空间是操作系统的内核和环境变量和参数</li>
+</ul>
+<h3 id="按需调页">9.2 按需调页</h3>
+<ul>
+<li>基本的想法是只在需要的时候将一个页调度内存，可以减少I/O次数和内存使用，相应更快，支持更多用户</li>
+<li>页表的结构
+<ul>
+<li>有效位：每个页表的项目需要一位来表示该页是否有效，如果页表中显示这个页表项是无效的，就说明存在page fault，说明这一页在内存中不存在</li>
+<li>在请求分页系统中，每个页表项的页号对应有如下内容：
+<ul>
+<li>物理块号</li>
+<li>状态位P，表示该页是否已经调入内存中，供程序访问的时候参考</li>
+<li>访问字段A，用于记录本页在一段时间内被访问的次数，或者最近已经有多长时间没有被访问</li>
+<li>修改位R/W，表示页在调入内存后是否被修改过</li>
+<li>外存地址：用于指出该页在外存上面的地址</li>
+</ul></li>
+</ul></li>
+<li>缺页Page Fault
+<ul>
+<li>第一次访问页表中的某一项肯定会导致缺页(因为还没有调入内存，这一页无效)，会使得操作系统进入缺页中断，此时操作系统会把页调入内存中并修改表项，然后重新运行上一条指令(因为没有访问到)</li>
+<li>缺页率p在0-1之间，内存访问有效时间EAT的计算方式是：(1-p)*物理内存访问效率+p*缺页中断服务的时间
+<ul>
+<li>缺页服务的时间包括发现缺页、换入和换出、重新启动所需要的时间之和</li>
+<li>PPT上有一个比较具体的时间统计过程，但是太细了，记不住</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="进程创建">9.3 进程创建</h3>
+<ul>
+<li>虚拟内存允许进程创建的时候进行写时拷贝(copy-on-write)
+<ul>
+<li>COW允许父进程和子进程一开始的时候共享一些页，如果有进程需要改变页的内容，才会copy一份该页，这样可以让进程的创建更加有效率</li>
+<li>Windows和Linux都使用该技术</li>
+</ul></li>
+</ul>
+<h3 id="页面置换">9.4 页面置换</h3>
+<ul>
+<li>当内存没有空闲帧的时候，就需要进行页面的置换，即找到一些内存中的页将其换出
+<ul>
+<li>目标是要尽可能减小page fault的概率</li>
+<li>使用一个修改位来减少过多的页置换，只将修改过的页写入磁盘中</li>
+<li>页面置换算法的过程：
+<ul>
+<li>找到磁盘上需要换入的页面</li>
+<li>然后去内存中找一个空闲的帧或者选出一个淘汰帧，将这个淘汰帧写入磁盘，然后修改页表</li>
+<li>将需要换入的帧换入内存中并修改页表</li>
+<li>启动进程</li>
+</ul></li>
+<li>我们希望置换之后得到最小的page fault率，因此可以使用引用串来表示一系列对页的访问，引用串由一系列页号组成</li>
+<li>常见的页面置换算法
+<ul>
+<li>FIFO先进先出算法
+<ul>
+<li>会引发Belady's Anomaly 更多的帧导致更多的缺页</li>
+</ul></li>
+<li>OPT最佳页面置换算法：选择未来不再使用的或者在离当前最远位置上出现的页被替换</li>
+<li>LRU最近最久未使用算法：选择最久没有引用的页面来替换，但是要记录页面使用时间，硬件开销太大
+<ul>
+<li>该算法的关键问题在于怎么计算多长时间没有被引用
+<ul>
+<li>使用计数器：每个页有一个计数器，每次页被使用就将时钟拷贝到计数器中，当页中的内容需要改变的时候，通过计数器来决定把哪一页换出去</li>
+<li>使用栈：使用一个双向链表来维护一个页号的栈，当页被引用的时候就将对应的页号移动到栈顶，好处是确定替换页面的时候不需要进行搜索</li>
+</ul></li>
+</ul></li>
+<li>近似LRU算法
+<ul>
+<li>使用引用位，初始化为0，被引用就变成1，优先替换引用位是0的页</li>
+<li>附加引用位算法：每页使用一个8bit的引用位，被访问的时候左边最高位为1，定期右移并且最高位补0，寄存器数值最小的就是最久未使用的页面</li>
+<li>二次机会算法：也叫clock算法，需要引用位，如果被替换的页的引用位是1，那么就设置引用位为0，然后保留这一页，将时钟顺序的下一页作为替换</li>
+<li>增强二次机会算法</li>
+</ul></li>
+<li>LFU最不经常使用算法</li>
+<li>MFU最多引用算法</li>
+<li>Page Buffering页面缓冲算法</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="帧分配">9.5 帧分配</h3>
+<ul>
+<li>固定分配Fixed Allocation
+<ul>
+<li>平均分配算法：顾名思义，平均分所有的帧</li>
+<li>按比例分配：按照进程的size来分配</li>
+</ul></li>
+<li>优先级分配Priority Allocation
+<ul>
+<li>如果一个进程发生了缺页，可以置换自己的帧，也可以置换一个更低优先级进程的帧</li>
+<li>置换策略有全局置换和局部置换，全局置换就是可以置换所有的帧，而局部置换只能置换该进程拥有的帧</li>
+<li>分配策略有固定分配和可变分配，和置换策略组合之后产生了三种分配和置换策略
+<ul>
+<li>固定分配局部置换</li>
+<li>可变分配全局置换</li>
+<li>可变分配局部置换</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="抖动thrashing">9.6 抖动Thrashing</h3>
+<ul>
+<li>如果有一个进程没有足够的页数，会导致缺页率非常高，导致低的CPU使用率，抖动就是一个进程频繁换进换出页的行为
+<ul>
+<li>按需掉页的基本原理是计算机的两个局部性，当局部性失效的时候就会出现抖动的现象</li>
+</ul></li>
+<li>工作集模型
+<ul>
+<li>工作集WS是最近被引用的页的集合</li>
+<li>后面慢慢看</li>
+</ul></li>
+</ul>
+<h3 id="内存映射文件">9.7 内存映射文件</h3>
+<ul>
+<li>内存映射文件的读写允许文件读写被作为一个routine memory access来进行，将一个磁盘块映射到内存中的一页
+<ul>
+<li>一个文件一开始用按需调页的方法读入</li>
+<li>文件子序列的读写被作为内存访问来进行</li>
+<li>允许多个进程将同一个文件映射到内存中</li>
+</ul></li>周炜
+</ul>
+<h3 id="内核内存分配">9.8 内核内存分配</h3>
+<ul>
+<li>和用户内存不同，通常使用一个空闲内存池
+<ul>
+<li>内核需要多种不同size的内存大小</li>
+<li>一些内核内存需要是连续的</li>
+</ul></li>
+<li>Buddy-System
+<ul>
+<li>用一些物理地址连续的定长段分配内存</li>
+<li>内存的分配以2的幂为单位</li>
+</ul></li>
+<li>Slab Allocator</li>
+</ul>
+<h3 id="其他">9.9 其他</h3>
+<ul>
+<li>预调页：
+<ul>
+<li>可以减少一开始会产生的大量缺页</li>
+<li>预先将一些页调入内存中，但是如果没有被引用，就会导致内存和I/O的浪费</li>
+</ul></li>
+<li>页的大小：需要综合考虑帧的大小、页表的大小、I/O设备的性能</li>
+<li>TLB的范围</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">zhou_wei</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zhou_wei.github.io/2021/05/03/os3/">http://zhou_wei.github.io/2021/05/03/os3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhou_wei.github.io" target="_blank">那颗名为现在的星</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">计算机系统</a><a class="post-meta__tags" href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6/">浙江大学</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/05/03/os4/"><img class="prev-cover" data-src="/img/cover/111.svg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">操作系统4：磁盘与I/O</div></div></a></div><div class="next-post pull-right"><a href="/2021/05/03/os2/"><img class="next-cover" data-src="/img/cover/13.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">操作系统2：CPU调度，同步和死锁</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/05/03/os4/" title="操作系统4：磁盘与I/O"><img class="relatedPosts_cover" data-src="/img/cover/111.svg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="relatedPosts_title">操作系统4：磁盘与I/O</div></div></a></div><div class="relatedPosts_item"><a href="/2021/05/03/os1/" title="操作系统1：导论，进程和线程"><img class="relatedPosts_cover" data-src="/img/cover/20.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="relatedPosts_title">操作系统1：导论，进程和线程</div></div></a></div><div class="relatedPosts_item"><a href="/2021/05/03/os2/" title="操作系统2：CPU调度，同步和死锁"><img class="relatedPosts_cover" data-src="/img/cover/13.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="relatedPosts_title">操作系统2：CPU调度，同步和死锁</div></div></a></div><div class="relatedPosts_item"><a href="/2022/09/05/linux-sys-admin/" title="UCB-LinuxSysAdminDecal学习记录"><img class="relatedPosts_cover" data-src="/img/cover/2.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-05</div><div class="relatedPosts_title">UCB-LinuxSysAdminDecal学习记录</div></div></a></div><div class="relatedPosts_item"><a href="/2021/05/03/dbs/" title="浙江大学《数据库系统》课程笔记"><img class="relatedPosts_cover" data-src="/img/cover/19.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="relatedPosts_title">浙江大学《数据库系统》课程笔记</div></div></a></div><div class="relatedPosts_item"><a href="/2022/07/10/cmu-dis-sys1/" title="CMU-15/440 分布式系统1：Introduction"><img class="relatedPosts_cover" data-src="/cover/2.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-10</div><div class="relatedPosts_title">CMU-15/440 分布式系统1：Introduction</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'b6BpXpwUq5wyUMcLtbnNMD8N-gzGzoHsz',
+      appKey: 'Qtl7JkpdLDat2Niacks6SyT5',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022  <i id="heartbeat" class="fa fas fa-heartbeat"></i> zhou_wei</div><div class="framework-info"><span>驱动 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
