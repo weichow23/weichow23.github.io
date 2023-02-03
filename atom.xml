@@ -6,10 +6,29 @@
   <link href="http://zjuerme.github.io/atom.xml" rel="self"/>
   
   <link href="http://zjuerme.github.io/"/>
-  <updated>2023-02-03T10:09:01.302Z</updated>
+  <updated>2023-02-03T14:18:55.913Z</updated>
   <id>http://zjuerme.github.io/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模糊函数相关性质证明</title>
+    <link href="http://zjuerme.github.io/2023/02/03/mo-hu-han-shu-xiang-guan-xing-zhi-zheng-ming/"/>
+    <id>http://zjuerme.github.io/2023/02/03/mo-hu-han-shu-xiang-guan-xing-zhi-zheng-ming/</id>
+    <published>2023-02-03T14:16:07.718Z</published>
+    <updated>2023-02-03T14:18:55.913Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;  在陈伯孝的《现代雷达系统分析与设计》中给出了模糊函数的若干性质，但书上缺少了详细证明，此处给出这些性质的详细证明。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="信号处理" scheme="http://zjuerme.github.io/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
+    
+    
+    <category term="信号处理" scheme="http://zjuerme.github.io/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>心</title>
