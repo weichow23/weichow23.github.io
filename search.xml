@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>历史</title>
+      <link href="/2023/02/03/li-shi/"/>
+      <url>/2023/02/03/li-shi/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>语文</title>
       <link href="/2023/02/03/yu-wen/"/>
       <url>/2023/02/03/yu-wen/</url>
@@ -11,6 +24,18 @@
         <content type="html"><![CDATA[]]></content>
       
       
+      <categories>
+          
+          <category> 语文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
       
     </entry>
     
