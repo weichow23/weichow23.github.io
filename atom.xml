@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>周炜的blog</title>
+  
+  <subtitle>Hello!</subtitle>
+  <link href="http://zjuerme.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://zjuerme.github.io/"/>
+  <updated>2023-02-03T07:50:37.626Z</updated>
+  <id>http://zjuerme.github.io/</id>
+  
+  <author>
+    <name>周炜</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>语文</title>
+    <link href="http://zjuerme.github.io/2023/02/03/yu-wen/"/>
+    <id>http://zjuerme.github.io/2023/02/03/yu-wen/</id>
+    <published>2023-02-03T07:50:37.626Z</published>
+    <updated>2023-02-03T07:50:37.626Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数学</title>
+    <link href="http://zjuerme.github.io/2023/02/03/shu-xue/"/>
+    <id>http://zjuerme.github.io/2023/02/03/shu-xue/</id>
+    <published>2023-02-03T07:40:11.321Z</published>
+    <updated>2023-02-03T07:49:43.207Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;$i=\alpha</summary>
+        
+      
+    
+    
+    
+    <category term="数学" scheme="http://zjuerme.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
+    
+    
+    <category term="git" scheme="http://zjuerme.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>math</title>
+    <link href="http://zjuerme.github.io/2023/02/03/math/"/>
+    <id>http://zjuerme.github.io/2023/02/03/math/</id>
+    <published>2023-02-03T07:37:50.305Z</published>
+    <updated>2023-02-03T07:38:35.245Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>asd</title>
+    <link href="http://zjuerme.github.io/2023/02/03/asd/"/>
+    <id>http://zjuerme.github.io/2023/02/03/asd/</id>
+    <published>2023-02-03T07:15:30.547Z</published>
+    <updated>2023-02-03T07:37:27.186Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;123123123213&lt;/p&gt;
+&lt;p&gt;123123123&lt;/p&gt;
+&lt;p&gt;123213&lt;/p&gt;
+&lt;p&gt;撒2112这是我写得&lt;/p&gt;
+&lt;script type=&quot;math/tex;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://zjuerme.github.io/2023/02/02/hello-world/"/>
+    <id>http://zjuerme.github.io/2023/02/02/hello-world/</id>
+    <published>2023-02-02T14:19:12.098Z</published>
+    <updated>2023-02-02T14:18:13.726Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
