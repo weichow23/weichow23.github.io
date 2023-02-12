@@ -6,10 +6,35 @@
   <link href="http://zjuerme.github.io/atom.xml" rel="self"/>
   
   <link href="http://zjuerme.github.io/"/>
-  <updated>2023-02-09T02:36:10.921Z</updated>
+  <updated>2023-02-12T01:38:45.229Z</updated>
   <id>http://zjuerme.github.io/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>合成孔径雷达的RD成像算法及距离矫正</title>
+    <link href="http://zjuerme.github.io/2023/02/12/he-cheng-kong-jing-lei-da-de-rd-cheng-xiang-suan-fa-ji-ju-chi-jiao-zheng/"/>
+    <id>http://zjuerme.github.io/2023/02/12/he-cheng-kong-jing-lei-da-de-rd-cheng-xiang-suan-fa-ji-ju-chi-jiao-zheng/</id>
+    <published>2023-02-12T01:32:37.501Z</published>
+    <updated>2023-02-12T01:38:45.229Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="信号处理" scheme="http://zjuerme.github.io/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
+    
+    
+    <category term="信号处理" scheme="http://zjuerme.github.io/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>模糊函数相关性质证明</title>
