@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>A Survey of Large Language Models | 周炜的Blog</title><meta name="author"><meta name="copyright"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="A Survey of Large Language Models论文地址 解读 该论文不包含早期的PLMs，比如GPT2，BERT 背景 LLM将会是一种全新的生态，而META提出的LLaMA就像UNIX, 而GPT4就是Windows  近些年，研究人员通过在大规模语料库上预训练 Transformer 模型产生了预训练语言模型（PLMs），并在解决各类 &#x2F;images&#x2F;nlp 任务上展现出了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Survey of Large Language Models">
+<meta property="og:url" content="http://zjuerme.github.io/2023/04/28/a-survey-of-large-language-models/index.html">
+<meta property="og:site_name" content="周炜的Blog">
+<meta property="og:description" content="A Survey of Large Language Models论文地址 解读 该论文不包含早期的PLMs，比如GPT2，BERT 背景 LLM将会是一种全新的生态，而META提出的LLaMA就像UNIX, 而GPT4就是Windows  近些年，研究人员通过在大规模语料库上预训练 Transformer 模型产生了预训练语言模型（PLMs），并在解决各类 &#x2F;images&#x2F;nlp 任务上展现出了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zjuerme.github.io/images/nlp01.png">
+<meta property="article:published_time" content="2023-04-28T06:04:04.992Z">
+<meta property="article:modified_time" content="2023-04-28T06:10:17.907Z">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zjuerme.github.io/images/nlp01.png"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://zjuerme.github.io/2023/04/28/a-survey-of-large-language-models/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'A Survey of Large Language Models',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-28 14:10:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="周炜的Blog" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/loading.gif" data-original="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-file"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/nlp01.png')"><nav id="nav"><span id="blog-info"><a href="/" title="周炜的Blog"></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-file"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">A Survey of Large Language Models</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-28T06:04:04.992Z" title="发表于 2023-04-28 14:04:04">2023-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-28T06:10:17.907Z" title="更新于 2023-04-28 14:10:17">2023-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="A Survey of Large Language Models"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="A-Survey-of-Large-Language-Models"><a href="#A-Survey-of-Large-Language-Models" class="headerlink" title="A Survey of Large Language Models"></a>A Survey of Large Language Models</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.18223#">论文地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/b2ZlEKBtqFn5vDhOuw9hoQ">解读</a></p>
+<p>该论文不包含早期的PLMs，比如<code>GPT2</code>，<code>BERT</code></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><blockquote>
+<p>LLM将会是一种全新的生态，而META提出的LLaMA就像UNIX, 而GPT4就是Windows</p>
+</blockquote>
+<p>近些年，研究人员通过在大规模语料库上预训练 Transformer 模型产生了<strong>预训练语言模型</strong>（<strong>PLMs</strong>），并在解决各类 /images/nlp 任务上展现出了强大的能力。并且研究人员发现模型缩放可以带来性能提升，因此他们通过将模型规模增大进一步研究缩放的效果。有趣的是，<strong>当参数规模超过一定水平时，这个更大的语言模型实现了显著的性能提升，并出现了小模型中不存在的能力，比如上下文学习</strong>。为了区别于 <strong>PLMs</strong>，这类模型被称为大型语言模型（<strong>LLMs</strong>）</p>
+<blockquote>
+<p>2019 年以来出现的各种大语言模型（百亿参数以上）时间轴，其中标黄的大模型已开源</p>
+</blockquote>
+<p><img src="/images/loading.gif" data-original="/images/nlp01.png" style="zoom:67%;"></p>
+<p>LLM采用与小语言模型类似的模型架构（即 Transformer）和预训练目标（即语言建模）</p>
+<p>但是，LLM 在很大程度上扩展了模型大小、预训练数据和总计算量（扩大倍数）。</p>
+<p>可以更好地理解自然语言，并根据给定的上下文（例如 prompt）生成高质量的文本</p>
+<p>然而根据标度律，某些能力（例如，上下文学习）是不可预测的，只有当模型大小超过某个水平时才能观察到（这种能力被称为 <strong>涌现能力</strong>）</p>
+<p><strong>上下文学习</strong>。GPT-3 正式引入了上下文学习能力：假设语言模型已经提供了自然语言指令和多个任务描述，它可以通过完成输入文本的词序列来生成测试实例的预期输出，而无需额外的训练或梯度更新。</p>
+<p><strong>指令遵循</strong>。通过对自然语言描述（即指令）格式化的多任务数据集的混合进行微调，LLM 在微小的任务上表现良好，这些任务也以指令的形式所描述。这种能力下，指令调优使 LLM 能够在不使用显式样本的情况下通过理解任务指令来执行新任务，这可以大大提高泛化能力。</p>
+<p><strong>循序渐进的推理</strong>。对于小语言模型，通常很难解决涉及多个推理步骤的复杂任务，例如数学学科单词问题。同时，通过思维链推理策略，LLM 可以通过利用涉及中间推理步骤的 prompt 机制来解决此类任务得出最终答案。<strong>据推测，这种能力可能是通过代码训练获得的</strong>。</p>
+<h2 id="LLM的关键技术"><a href="#LLM的关键技术" class="headerlink" title="LLM的关键技术"></a>LLM的关键技术</h2><h4 id="Scaling-缩放"><a href="#Scaling-缩放" class="headerlink" title="Scaling  缩放"></a>Scaling  缩放</h4><p>模型参数量的增加，最开始 GPT-3 将模型参数增至 1750 亿，随后 PaLM 进一步将模型参数增至 5400 亿。</p>
+<h4 id="Training-训练"><a href="#Training-训练" class="headerlink" title="Training 训练"></a>Training 训练</h4><p>由于规模巨大，成功训练一个具备强大能力的 LLMs 非常具有挑战性。因此需要<strong>分布式训练算法</strong>来学习 LLMs 的网络参数，经常联合使用各种<strong>并行策略</strong>。为了支持分布式训练，DeepSpeed 和 Megatron-LM 等优化框架被用来促进并行算法的实现和部署。此外，优化技巧对训练稳定性和模型性能也很重要，例如重新启动训练损失尖峰和混合精度训练。最近的 GPT-4 开发了特殊的基础设施和优化方法，从而利用小得多的模型来预测大模型的性能。</p>
+<h4 id="Ability-eliciting-能力激发"><a href="#Ability-eliciting-能力激发" class="headerlink" title="Ability eliciting 能力激发"></a>Ability eliciting 能力激发</h4><p>在大规模语料库上经过预训练后，LLMs 被赋予了解决一般任务的潜在能力。然而当 LLMs 执行某个特定任务时，这些能力可能不会显式地表现出来。因此设计适合的任务指令或特定的上下文策略来激发这些能力非常有用，比如思维链 prompt 有助于通过中间推理步骤等解决复杂推理任务。此外还可以进一步对具有自然语言任务描述的 LLMs 进行指令调优，以提高对未见过任务的泛化能力。</p>
+<h4 id="Alignment-tuning-对齐调优"><a href="#Alignment-tuning-对齐调优" class="headerlink" title="Alignment tuning  对齐调优"></a>Alignment tuning  对齐调优</h4><p>由于 LLMs 被训练用来捕获预训练语料库的数据特征（包括高质量和低质量的数据），它们很可能生成对<strong>有毒、有偏见和有害</strong>的文本内容。为了使 LLMs 与人类价值观保持一致，InstructGPT 设计了一种利用强化学习和人类反馈的高效调优方法，使得 LLMs 能够遵循预期指令。ChatGPT 是在类似 InstructGPT 的技术上开发的，在<strong>产生高质量、无害的响应方面表现出了强大的对齐能力</strong>。</p>
+<h4 id="Tools-manipulation-工具利用"><a href="#Tools-manipulation-工具利用" class="headerlink" title="Tools manipulation 工具利用"></a>Tools manipulation 工具利用</h4><p>LLMs 本质上是基于大规模纯文本语料库训练的文本生成器，因此在数值计算等文本表达不佳的任务上表现没那么好。此外 LLMs 的能力受限于预训练数据，无法捕获最新信息。针对这些问题，人们提出使用外部工具来弥补 LLMs 的不足，比如可以利用计算器进行精确计算，使用搜索引擎检索未知信息。ChatGPT 更是<strong>利用外部插件来联网学习新知识</strong>，这种机制可以广泛扩展 LLMs 的能力范围。</p>
+<h2 id="可以利用的LLM资源"><a href="#可以利用的LLM资源" class="headerlink" title="可以利用的LLM资源"></a>可以利用的LLM资源</h2><blockquote>
+<p>近年来百亿参数以上大模型的统计数据</p>
+</blockquote>
+<p><img src="/images/loading.gif" data-original="/images/nlp02.png" style="zoom:67%;"></p>
+<blockquote>
+<p>常用数据资源</p>
+</blockquote>
+<p><img src="/images/loading.gif" data-original="/images/nlp03.png" style="zoom:67%;"></p>
+<h2 id="Pre-Traing"><a href="#Pre-Traing" class="headerlink" title="Pre-Traing"></a>Pre-Traing</h2><p>预训练起着十分关键的作用，它将一般知识从大规模语料库编码到大规模模型参数中。对于训练 LLMs，有语言建模和去噪自编码两个常用的预训练任务</p>
+<h3 id="数据的收集和处理"><a href="#数据的收集和处理" class="headerlink" title="数据的收集和处理"></a>数据的收集和处理</h3><blockquote>
+<p>数据清洗流程图</p>
+</blockquote>
+<p><img src="/images/loading.gif" data-original="/images/nlp04.png" alt=""></p>
+<h3 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h3><p>现有 LLMs 的主流架构大致可以分为三大类，即编码器 - 解码器 <strong>Encoder-Decoder</strong>、临时解码器 <strong>Casual Decoder</strong> 和前缀解码器 <strong>Prefix Decoder</strong> 。 由于出色的并行化性和容量，Transformer 架构已成为开发各种 LLM 的 backbone。</p>
+<ul>
+<li>Encoder-Decoder Architecture</li>
+</ul>
+<p>比如<code>T5</code>和<code>BART</code>。由两个Transformer模型组成，编码器采用堆叠的多头自我注意层对输入序列进行编码，以生成其潜在的表征，而解码器对这些表征进行交叉注意，并自动生成目标序列。到目前为止，只有少量的LLM是基于编码器-解码器架构建立的</p>
+<ul>
+<li>Causal Decoder Architecture 因果解码器架构</li>
+</ul>
+<p>比如<code>GPT系列</code>和<code>LLaMa</code>为代表。因果解码器的结构包含了单向注意屏蔽，以保证每个输入标记只能注意到过去的标记和自己。输入和输出标记通过解码器以同样的方式处理。请注意，接下来讨论的因果解码器和前缀解码器都属于纯解码器的架构。而在提到 “纯解码器架构 “时，除非特别说明，否则主要是指现有文献中的因果解码器架构。</p>
+<p>在2022年末，chatgpt诞生后开始成为火热的时代风口。在此之前，主流研究人员都不研究Encoder only，因为其最简单，可解释性最差，效果也不好，直到chatgpt一鸣惊人</p>
+<ul>
+<li>Prefix Decoder Architecture.</li>
+</ul>
+<p>前缀解码器架构（又称非因果解码器）修改了因果解码器的掩蔽机制，以便能够对前缀tokens]进行双向关注，而只对生成的tokens进行单向关注。这样，像Encoder-Decoder Architecture一样，前缀解码器可以对前缀序列进行双向编码，并逐一自动预测输出标记，在编码和解码期间共享相同的参数。与其从头开始预训练，一个实用的建议是不断训练因果解码器，然后将其转换为前缀解码器，以加速收敛</p>
+<blockquote>
+<p>下图为常用的模型架构</p>
+</blockquote>
+<p><img src="/images/loading.gif" data-original="/images/nlp05.png" alt=""></p>
+<h4 id="Transformer-四个主要部分的相应配置"><a href="#Transformer-四个主要部分的相应配置" class="headerlink" title="Transformer 四个主要部分的相应配置"></a>Transformer 四个主要部分的相应配置</h4><h5 id="Normalization-归一化"><a href="#Normalization-归一化" class="headerlink" title="Normalization  归一化"></a>Normalization  归一化</h5><p>目的是为了解决训练不稳定的问题。层归一化layer normalization (Layer Norm, <strong>LN</strong>)在Transformer架构中被广泛使用</p>
+<h5 id="Activation-Functions-激活函数"><a href="#Activation-Functions-激活函数" class="headerlink" title="Activation Functions  激活函数"></a>Activation Functions  激活函数</h5><p>GeLU的使用最为广泛。此外，在最新的LLMs（如PaLM和LaMDA）中，GLU激活的变体也被利用，特别是SwiGLU和GeGLU变体，它们在实践中往往能取得更好的性能，但是它们在前馈网络中需要额外的参数（大约50%）</p>
+<h5 id="Position-Embeddings-位置编码"><a href="#Position-Embeddings-位置编码" class="headerlink" title="Position Embeddings  位置编码"></a>Position Embeddings  位置编码</h5><p>由于Transformer中的自我关注模块是包络等价的，因此位置嵌入被用来为建模序列注入绝对或相对位置信息。在vanilla Transformer中，有两种绝对位置嵌入的变体，即正弦波和学习位置嵌入，其中后者通常被用于LLMs。与绝对位置嵌入不同，相对位置编码根据键和查询之间的偏移量生成嵌入，因此它可以在比它在训练期间看到的序列更长的序列上表现良好，即外推法。ALiBi使用基于键和查询之间的距离的惩罚来偏重注意分数。经验结果表明，与其他位置嵌入相比，它具有更好的零点泛化能力，外推能力更强。此外，通过设置基于绝对位置的特定旋转矩阵，RoPE中的键和查询之间的分数可以用相对位置信息来计算，这对长序列的建模非常有用。因此，RoPE已经在几个最新的LLM中被广泛采用</p>
+<h5 id="Attention-and-Bias-注意力机制和偏置"><a href="#Attention-and-Bias-注意力机制和偏置" class="headerlink" title="Attention and Bias 注意力机制和偏置"></a>Attention and Bias 注意力机制和偏置</h5><p>除了原始Transformer中的完全自我注意外，<code>GPT3</code>中还采用了计算复杂度较低的稀疏注意（即Factorized Attention）。为了有效地对较长的序列进行建模，人们进行了更多的尝试，要么引入特殊的注意力模式，要么考虑GPU内存访问（即FlashAttention）。此外，按照最初的Transformer，大多数LLM都保留了每个密集核和Layer Norm中的偏置。然而，在<code>PaLM</code>和<code>Galactica</code>中，偏置被移除。这表明，没有偏置可以提高LLM的训练稳定性。</p>
+<h4 id="预训练任务"><a href="#预训练任务" class="headerlink" title="预训练任务"></a>预训练任务</h4><p>预训练起着关键作用，它将大规模语料库中的一般知识编码到大规模的模型参数中。对于训练LLMs，有两个常用的预训练任务，即语言建模和去噪自动编码</p>
+<h5 id="语言建模"><a href="#语言建模" class="headerlink" title="语言建模"></a>语言建模</h5><script type="math/tex; mode=display">
+\mathcal{L}_{LM}(x)=\sum\limits_{i=1}^{n}logP(x_i|x_{<i})</script><h5 id="去噪编码"><a href="#去噪编码" class="headerlink" title="去噪编码"></a>去噪编码</h5><script type="math/tex; mode=display">
+\mathcal{L}_{DAE}(x)=logP(\widetilde{x}|x_{\ \widetilde{x}})</script><h3 id="稳定和有效优化-LLMs-的训练技术"><a href="#稳定和有效优化-LLMs-的训练技术" class="headerlink" title="稳定和有效优化 LLMs 的训练技术"></a>稳定和有效优化 LLMs 的训练技术</h3><h4 id="Optimization-Setting"><a href="#Optimization-Setting" class="headerlink" title="Optimization Setting"></a>Optimization Setting</h4><h5 id="Batch-Training-批量训练"><a href="#Batch-Training-批量训练" class="headerlink" title="Batch Training 批量训练"></a>Batch Training 批量训练</h5><p>对于语言模型的预训练，现有的工作通常将批处理量设置为一个很大的数字（例如，8196个例子或16M个标记），以提高训练的稳定性和吞吐量。对于GPT-3和PaLM这样的LLM，他们引入了一种新的策略，在训练过程中动态地增加批处理规模，最终达到百万规模。具体来说，GPT-3的批处理规模从32K逐渐增加到320万个tokens。实证结果表明，批量大小的动态安排可以有效地稳定LLM的训练过程</p>
+<h5 id="Learning-Rate-学习率"><a href="#Learning-Rate-学习率" class="headerlink" title="Learning Rate 学习率"></a>Learning Rate 学习率</h5><p>现有的LLMs通常在预训练期间采用类似的学习率计划与预热和衰减策略。具体来说，在最初的0.1%到0.5%的训练步骤中，采用线性预热计划，逐渐增加学习率到最大值，范围大约在$5×10^{-5}$到$1×10^{-4}$之间（例如，<code>GPT-3</code>为$6×10^{-5}$）。然后，在随后的步骤中采用余弦衰减策略，逐渐将学习率降低到其最大值的大约10%，直到训练损失收敛</p>
+<h5 id="Optimizer-优化器"><a href="#Optimizer-优化器" class="headerlink" title="Optimizer 优化器"></a>Optimizer 优化器</h5><p>Adam和AdamW，梯度加速下降算法被广泛利用</p>
+<h5 id="Stabilizing-the-Training-稳定训练"><a href="#Stabilizing-the-Training-稳定训练" class="headerlink" title="Stabilizing the Training 稳定训练"></a>Stabilizing the Training 稳定训练</h5><p>在LLMs的预训练过程中，经常会出现训练不稳定的问题，这可能会导致模型崩溃。为了解决这个问题，权重衰减和梯度剪裁被广泛利用，现有研究普遍将梯度剪裁的阈值设置为1.0，权重衰减率设置为0.1。然而，随着LLMs的缩放，训练损失尖峰也更容易发生，导致训练不稳定。为了缓解这个问题，PaLM和OPT使用了一个简单的策略，从尖峰发生前的一个较早的检查点重新启动训练过程，并跳过可能导致问题的数据。此外，GLM发现嵌入层的异常梯度通常会导致尖峰，并提出缩小嵌入层的梯度来缓解它</p>
+<h4 id="Scalable-Training-Techniques"><a href="#Scalable-Training-Techniques" class="headerlink" title="Scalable Training Techniques"></a>Scalable Training Techniques</h4><p>随着模型和数据规模的增加，在有限的计算资源下有效地训练LLM已经成为挑战。特别是需要解决两个主要的技术问题，即提高训练吞吐量和将更大的模型加载到GPU内存中。在这一部分，我们回顾了现有工作中广泛使用的几种方法来解决上述两个挑战，即三维并行3D Parallelism、ZeRO混合精度训练Mixed Precision Training，同时也给出了关于如何利用它们进行训练的一般建议</p>
+<h5 id="3D-Parallelism"><a href="#3D-Parallelism" class="headerlink" title="3D Parallelism"></a>3D Parallelism</h5><p>3D并行实际上是三种常用的并行训练技术的结合，即数据并行、管道并行和张量并行</p>
+<h5 id="ZeRO"><a href="#ZeRO" class="headerlink" title="ZeRO"></a>ZeRO</h5><p>ZeRO，主要是针对数据并行中的内存冗余问题。如前所述，数据并行要求每个GPU存储相同的LLM副本，包括模型参数、模型梯度和优化器参数。而不是所有的上述数据都需要保留在每个GPU上，这将导致内存冗余的问题。为了解决这个问题，ZeRO技术旨在每个GPU上只保留一部分数据，而其余的数据在需要时可以从其他GPU上获取。具体来说，ZeRO提供了三种解决方案，取决于如何存储这三部分数据，即优化器状态分区、梯度分区和参数分区。经验结果表明，前两种解决方案不增加通信开销，第三种解决方案增加了约50%的通信开销，但节省的内存与GPU数量成正比。PyTorch实现了一个与ZeRO类似的技术，称为FSDP</p>
+<h5 id="Mixed-Precision-Training"><a href="#Mixed-Precision-Training" class="headerlink" title="Mixed Precision Training"></a>Mixed Precision Training</h5><p>在以前的PLM中（如<code>BERT</code>），32位浮点数，也称为FP32，主要用于预训练。近年来，为了预训练极其庞大的语言模型，一些研究开始利用16位浮点数（FP16），这样可以减少内存用量和通信开销。此外，由于流行的NVIDIAtion单元为FP32，FP16的计算效率可以进一步提高。然而，现有的工作发现，FP16可能会导致计算精度的损失，这影响了最终的模型性能。为了缓解这一问题，一种被称为脑浮点（BF16）的替代方案被用于训练，它比FP16分配了更多的指数位和更少的有效位。对于预训练，BF16在表示精度上通常比FP16更好GPU（如A100）的计算量是FP16的两倍</p>
+<h3 id="ADAPTATION-TUNING-OF-LLMS-适应性调优"><a href="#ADAPTATION-TUNING-OF-LLMS-适应性调优" class="headerlink" title="ADAPTATION TUNING OF LLMS  适应性调优"></a>ADAPTATION TUNING OF LLMS  适应性调优</h3><p>经过预训练，LLMs 可以获得解决各种任务的通用能力。然而越来越多的研究表明，LLMs 的能力可以根据具体目标进一步调整。而调整的方法主要有以下两种</p>
+<h4 id="指令调优（Instruction-Tuning）"><a href="#指令调优（Instruction-Tuning）" class="headerlink" title="指令调优（Instruction Tuning）"></a>指令调优（Instruction Tuning）</h4><blockquote>
+<p>目的是为了提高或解锁 LLMs 的能力</p>
+</blockquote>
+<p>从本质上讲，指令调整是在自然语言形式的格式化实例集合上对预训练的LLM进行微调的方法，这与有监督的微调和多任务提示训练高度相关。为了进行指令调优，我们首先需要收集或构建指令格式化的实例。然后，我们采用这些格式化的实例，以监督学习的方式对LLM进行微调（例如，用序列到序列损失进行训练）。经过指导调整后，LLMs可以表现出卓越的能力，将其推广到未曾见过的任务中，甚至在多语言环境中</p>
+<p>实例格式化的说明以及构建指令格式化实例的两种不同方法:</p>
+<p><img src="/images/loading.gif" data-original="/images/nlp06.png" style="zoom:80%;"></p>
+<h4 id="对齐调优（Alignment-Tuning）"><a href="#对齐调优（Alignment-Tuning）" class="headerlink" title="对齐调优（Alignment Tuning）"></a>对齐调优（Alignment Tuning）</h4><blockquote>
+<p>为了使 LLMs 的行为与人类的价值观或偏好一致</p>
+</blockquote>
+<p>LLMs在广泛的/images/nlp任务中表现出卓越的能力。然而，这些模型有时会表现出非预期的行为，例如，编造虚假信息，追求不准确的目标，以及产生有害的、误导性的和有偏见的表达。对于LLMs，语言建模目标通过单词预测预先训练模型参数，而缺乏对人类价值或偏好的考虑。为了避免这些意想不到的行为，人们提出了人类对齐，使LLMs的行为符合人类的期望。然而，与原来的预训练和适应性调谐（如指令调谐）不同，这种调谐需要考虑非常不同的标准（如帮助性、诚实性和无害性）</p>
+<p>主要的校准标准有：</p>
+<ul>
+<li>Helpfulness</li>
+<li>Honesty</li>
+<li>Harmlessness</li>
+</ul>
+<p>正如我们所看到的，这些标准是相当主观的，并且是基于人类的认知而制定的。因此，很难将它们直接表述为LLMs的优化目标。在现有的工作中，有许多方法可以在对齐LLM时满足这些标准, 具体可以见论文</p>
+<h3 id="UTILIZATION-使用"><a href="#UTILIZATION-使用" class="headerlink" title="UTILIZATION 使用"></a>UTILIZATION 使用</h3><h4 id="In-Context-Learning-上下文学习"><a href="#In-Context-Learning-上下文学习" class="headerlink" title="In-Context Learning 上下文学习"></a>In-Context Learning 上下文学习</h4><p>作为一种特殊的提示形式，上下文学习（ICL）与GPT-3一起被首次提出，这已经成为利用LLM的典型方法。</p>
+<h4 id="Chain-of-Thought-Prompting-思维链提示"><a href="#Chain-of-Thought-Prompting-思维链提示" class="headerlink" title="Chain-of-Thought Prompting 思维链提示"></a>Chain-of-Thought Prompting 思维链提示</h4><p>思维链（CoT）是一种改进的提示策略，用于提高LLM在复杂推理任务中的表现，如算术推理、常识推理和符号推理。CoT不是像ICL那样简单地用输入-输出对来构建提示，而是将能够导致最终输出的中间推理步骤纳入提示。在下文中，我们将详细说明CoT与ICL的用法，并讨论CoT提示在什么时候和为什么有效</p>
+<p>语境中学习（ICL）和思维链（CoT）提示的比较说明。ICL用一个自然语言描述、几个示范和一个测试查询来提示LLM。而CoT提示涉及一系列的中间推理步骤的提示：</p>
+<p><img src="/images/loading.gif" data-original="/images/nlp07.png" alt=""></p>
+<h3 id="CAPACITY-EVALUATION-能力评估"><a href="#CAPACITY-EVALUATION-能力评估" class="headerlink" title="CAPACITY EVALUATION 能力评估"></a>CAPACITY EVALUATION 能力评估</h3><h4 id="Basic-Evaluation-Tasks基本评估"><a href="#Basic-Evaluation-Tasks基本评估" class="headerlink" title="Basic Evaluation Tasks基本评估"></a>Basic Evaluation Tasks基本评估</h4><p>在这一部分中，我们主要关注LLMs的三类评估任务，即语言生成、知识利用和复杂推理。需要指出的是，我们并不打算完全覆盖所有的相关任务，而是只关注最广泛讨论或研究的LLMs的任务</p>
+<h5 id="Language-Generation"><a href="#Language-Generation" class="headerlink" title="Language Generation"></a>Language Generation</h5><p>根据任务定义，现有的关于语言生成的任务可以大致分为语言建模、条件文本生成和代码合成任务。请注意，代码合成不是一个典型的/images/nlp任务，我们把它列入讨论，因为它可以由一些LLMs（在代码数据上训练的）以类似于自然语言文本的生成方式直接解决</p>
+<h5 id="Knowledge-Utilization"><a href="#Knowledge-Utilization" class="headerlink" title="Knowledge Utilization"></a>Knowledge Utilization</h5><p>知识利用是智能系统在支持事实证据的基础上完成知识密集型任务（如常识性问题回答和事实完成）的一种重要能力。具体来说，它要求LLM正确利用预训练语料库中丰富的事实知识，或者在必要时检索外部数据。</p>
+<p>根据测试任务（回答问题或完成知识）和评价设置（有无外部资源），我们将现有的知识利用任务分为三种类型，即<strong>闭卷QA</strong>、<strong>开卷QA</strong>和<strong>知识完成</strong></p>
+<h5 id="Complex-Reasoning"><a href="#Complex-Reasoning" class="headerlink" title="Complex Reasoning"></a>Complex Reasoning</h5><p>复杂推理是指理解和利用支持性证据或逻辑来推导结论或做出决定的能力。根据推理过程中涉及的逻辑和证据类型，我们考虑将现有的评价任务分为三大类，即<strong>知识推理</strong>、<strong>符号推理</strong>和<strong>数学推理</strong></p>
+<h4 id="Advanced-Ability-Evaluation高级评估"><a href="#Advanced-Ability-Evaluation高级评估" class="headerlink" title="Advanced Ability Evaluation高级评估"></a>Advanced Ability Evaluation高级评估</h4><h5 id="Human-Alignment"><a href="#Human-Alignment" class="headerlink" title="Human Alignment"></a>Human Alignment</h5><p>希望 LLMs 能够很好地符合人类的价值观和需求，即人类对齐，这是在现实世界应用程序中广泛使用 LLM 的关键能力。 为了评估这种能力，现有研究考虑了人类一致性的多个标准，例如乐于助人、诚实和安全（具体如上Alignment tuning部分）。</p>
+<h5 id="Interaction-with-External-Environment"><a href="#Interaction-with-External-Environment" class="headerlink" title="Interaction with External Environment"></a>Interaction with External Environment</h5><p>LLMs 还能够从外部环境接收反馈并根据行为指令执行操作，例如，用自然语言生成操作计划来操纵代理 </p>
+<h5 id="Tool-Manipulation"><a href="#Tool-Manipulation" class="headerlink" title="Tool Manipulation"></a>Tool Manipulation</h5><p>通过使用 API 调用封装可用工具，现有工作涉及各种外部工具，例如搜索引擎 、计算器 和编译器，以增强 LLM 在几个特定任务上的性能。 最近，OpenAI 支持在 ChatGPT  中使用插件，这可以为 LLM 提供语言建模之外更广泛的能力。例如，网络浏览器插件使 ChatGPT 能够访问新鲜信息。 此外，<strong>合并第三方插件对于创建基于 LLM 的繁荣应用程序生态系统尤为关键</strong>。并且，有消息称，最新的GPT已经具备了自己写插件再自己调用的能力</p>
+<h4 id="Public-Benchmarks-and-Empirical-Analysis-评测榜单"><a href="#Public-Benchmarks-and-Empirical-Analysis-评测榜单" class="headerlink" title="Public Benchmarks and Empirical Analysis  评测榜单"></a>Public Benchmarks and Empirical Analysis  评测榜单</h4><p>论文中分一般和复杂（分通用能力和特定领域能力），详细见论文</p>
+<h3 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h3><h4 id="Theory-and-Principle"><a href="#Theory-and-Principle" class="headerlink" title="Theory and Principle"></a>Theory and Principle</h4><p>为了理解LLM的基础工作机制，其中最大的谜团之一是信息如何在非常大的深度神经网络中分布、组织和利用。揭示建立LLM能力基础的基本原则或要素是很重要的。特别地，扩展似乎在增加LLM容量方面起到了重要作用。已经证明，当语言模型的参数规模增加到临界大小（<strong>例如10B</strong>）时，一些突发能力会以意想不到的方式（突然性能飞跃）出现，通常包括上下文学习、指令遵循和逐步推理。这些突发能力既令人着迷又令人困惑：它们何时以及如何被LLM获得尚不清楚。最近的研究要么进行大量实验来调查突发能力的影响和这些能力的贡献因素，要么用现有理论框架解释一些特定能力。虽然如此，更正式的理论和原则来理解、描述和解释LLM的能力或行为仍然缺失。由于突发能力与自然界中的相变密切相关，跨学科理论或原则（例如，是否可以将LLM视为某种复杂系统）可能有助于解释和理解LLM的行为。这些基本问题值得研究界探索，对于开发下一代LLM非常重要</p>
+<h4 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h4><p>由于可扩展性和有效性，由堆叠的多头自注意层组成的Transformer已成为构建LLM的事实上的架构。已经提出了各种策略来提高这种架构的性能，例如神经网络配置和可扩展并行训练。为了增强模型容量（例如多轮对话能力），现有的LLM通常保持一个长的上下文窗口，例如GPT-4-32k具有极大的32,768个令牌的上下文长度。因此，一个实际考虑是减少标准自注意机制所带来的时间复杂度（原本为二次代价）。研究更有效的Transformer变体在构建LLM中的效果是很重要的，例如稀疏注意力已经在GPT3中使用。此外，灾难性遗忘一直是神经网络面临的长期挑战，它也对LLM产生负面影响。当使用新数据调整LLM时，原先学到的知识很可能会受到损害，例如根据一些特定任务对LLM进行微调会影响LLM的通用能力。类似情况发生在LLM与人类价值观相一致时。因此，有必要考虑用更灵活的机制或模块扩展现有架构，以有效支持数据更新和任务专业化</p>
+<h4 id="Model-Utilization"><a href="#Model-Utilization" class="headerlink" title="Model Utilization"></a>Model Utilization</h4><p>由于微调在实际应用中非常昂贵，提示已成为使用LLM的主要方法。通过将任务描述和演示示例结合到提示中，上下文学习（提示的一种特殊形式）赋予了LLM在新任务上表现良好的能力，甚至在某些情况下超过了全数据微调模型。此外，为了增强复杂推理能力，已经提出了先进的提示技术，例如思维链（CoT）策略，它将中间推理步骤包含在提示中。然而，现有的提示方法仍然存在一些缺陷。首先，它涉及到设计提示时的大量人力。自动生成有效的提示来解决各种任务将非常有用。其次，一些复杂任务（例如正式证明和数值计算）需要特定知识或逻辑规则，这些可能无法用自然语言很好地表达或通过示例演示。因此，开发更多信息化、灵活的任务格式化方法对于提示是很重要的。第三，现有的提示策略主要关注单轮性能。开发交互式提示机制（例如通过自然语言对话）来解决复杂任务是很有用的，这已经被ChatGPT证明非常有用</p>
+<h4 id="Safety-and-Alignment"><a href="#Safety-and-Alignment" class="headerlink" title="Safety and Alignment"></a>Safety and Alignment</h4><p>尽管具有能力，LLM也与小型语言模型一样，存在类似的安全挑战。例如，LLM表现出产生幻觉的倾向，这些文本看起来似乎可信，但可能在事实上是不正确的。更糟糕的是，LLM可能被故意指示产生有害、有偏见或有毒的文本，导致滥用的潜在风险。为了详细讨论LLM的安全问题（例如隐私、过度依赖、虚假信息和影响操作），读者可以参考GPT3/4技术报告。作为避免这些问题的主要方法，人类反馈强化学习已被广泛用于将人类纳入训练循环中，以开发良好对齐的LLM。为了提高模型安全性，在人类反馈强化学习期间包括与安全相关的提示也很重要。然而，人类反馈强化学习严重依赖专业标注者的高质量人类反馈数据，使其在实践中难以正确实施。因此，有必要改进人类反馈强化学习框架，减少人类标注者的努力，并寻求一种保证数据质量的更有效的注释方法，例如可以使用LLM来协助标注工作。最近，红队已被采用来提高LLM的模型安全性，它利用收集到的对抗性提示来完善LLM（即避免红队攻击）。此外，建立适当的学习机制，使LLM通过聊天获得人类反馈并直接利用它进行自我改进也是有意义的</p>
+<h4 id="Application-and-Ecosystem"><a href="#Application-and-Ecosystem" class="headerlink" title="Application and Ecosystem"></a>Application and Ecosystem</h4><p>由于LLM在解决各种任务方面表现出强大的能力，它们可以应用于广泛的实际应用（即遵循特定任务的自然语言指令）。作为一项显著的进展，ChatGPT可能改变了人类获取信息的方式，这已经在New Bing的发布中实现。在不久的将来，可以预见LLM将对信息检索技术产生重大影响，包括搜索引擎和推荐系统。此外，随着LLM技术的升级，智能信息助手的开发和使用将得到极大推广。在更广泛的范围内，这波技术创新将导致一个LLM支持应用的生态系统（例如，ChatGPT支持插件），与人类生活密切相关。最后，LLM的崛起为人工通用智能（AGI）的探索提供了启示，有希望开发比以往更智能的智能系统（可能具有多模态信号）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://zjuerme.github.io"></a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zjuerme.github.io/2023/04/28/a-survey-of-large-language-models/">http://zjuerme.github.io/2023/04/28/a-survey-of-large-language-models/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zjuerme.github.io" target="_blank">周炜的Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NLP/">NLP</a></div><div class="post_share"><div class="social-share" data-image="/images/nlp01.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/28/bi-zhang-gui-hua/" title="避障规划"><img class="cover" src="/images/loading.gif" data-original="/images/p008.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">避障规划</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/12/he-cheng-kong-jing-lei-da-de-rd-cheng-xiang-suan-fa-ji-ju-chi-jiao-zheng/" title="合成孔径雷达的RD成像算法及距离矫正"><img class="cover" src="/images/loading.gif" data-original="/images/6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">合成孔径雷达的RD成像算法及距离矫正</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Survey-of-Large-Language-Models"><span class="toc-number">1.</span> <span class="toc-text">A Survey of Large Language Models</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLM%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="toc-number">1.2.</span> <span class="toc-text">LLM的关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Scaling-%E7%BC%A9%E6%94%BE"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">Scaling  缩放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Training-%E8%AE%AD%E7%BB%83"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">Training 训练</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ability-eliciting-%E8%83%BD%E5%8A%9B%E6%BF%80%E5%8F%91"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">Ability eliciting 能力激发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Alignment-tuning-%E5%AF%B9%E9%BD%90%E8%B0%83%E4%BC%98"><span class="toc-number">1.2.0.4.</span> <span class="toc-text">Alignment tuning  对齐调优</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tools-manipulation-%E5%B7%A5%E5%85%B7%E5%88%A9%E7%94%A8"><span class="toc-number">1.2.0.5.</span> <span class="toc-text">Tools manipulation 工具利用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E5%88%A9%E7%94%A8%E7%9A%84LLM%E8%B5%84%E6%BA%90"><span class="toc-number">1.3.</span> <span class="toc-text">可以利用的LLM资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pre-Traing"><span class="toc-number">1.4.</span> <span class="toc-text">Pre-Traing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E6%94%B6%E9%9B%86%E5%92%8C%E5%A4%84%E7%90%86"><span class="toc-number">1.4.1.</span> <span class="toc-text">数据的收集和处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="toc-number">1.4.2.</span> <span class="toc-text">模型架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Transformer-%E5%9B%9B%E4%B8%AA%E4%B8%BB%E8%A6%81%E9%83%A8%E5%88%86%E7%9A%84%E7%9B%B8%E5%BA%94%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">Transformer 四个主要部分的相应配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Normalization-%E5%BD%92%E4%B8%80%E5%8C%96"><span class="toc-number">1.4.2.1.1.</span> <span class="toc-text">Normalization  归一化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Activation-Functions-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.2.1.2.</span> <span class="toc-text">Activation Functions  激活函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Position-Embeddings-%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-number">1.4.2.1.3.</span> <span class="toc-text">Position Embeddings  位置编码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Attention-and-Bias-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E5%92%8C%E5%81%8F%E7%BD%AE"><span class="toc-number">1.4.2.1.4.</span> <span class="toc-text">Attention and Bias 注意力机制和偏置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">预训练任务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.4.2.2.1.</span> <span class="toc-text">语言建模</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%BB%E5%99%AA%E7%BC%96%E7%A0%81"><span class="toc-number">1.4.2.2.2.</span> <span class="toc-text">去噪编码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E5%92%8C%E6%9C%89%E6%95%88%E4%BC%98%E5%8C%96-LLMs-%E7%9A%84%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.3.</span> <span class="toc-text">稳定和有效优化 LLMs 的训练技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Optimization-Setting"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">Optimization Setting</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Batch-Training-%E6%89%B9%E9%87%8F%E8%AE%AD%E7%BB%83"><span class="toc-number">1.4.3.1.1.</span> <span class="toc-text">Batch Training 批量训练</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Learning-Rate-%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="toc-number">1.4.3.1.2.</span> <span class="toc-text">Learning Rate 学习率</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Optimizer-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">1.4.3.1.3.</span> <span class="toc-text">Optimizer 优化器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Stabilizing-the-Training-%E7%A8%B3%E5%AE%9A%E8%AE%AD%E7%BB%83"><span class="toc-number">1.4.3.1.4.</span> <span class="toc-text">Stabilizing the Training 稳定训练</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalable-Training-Techniques"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">Scalable Training Techniques</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3D-Parallelism"><span class="toc-number">1.4.3.2.1.</span> <span class="toc-text">3D Parallelism</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ZeRO"><span class="toc-number">1.4.3.2.2.</span> <span class="toc-text">ZeRO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Mixed-Precision-Training"><span class="toc-number">1.4.3.2.3.</span> <span class="toc-text">Mixed Precision Training</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ADAPTATION-TUNING-OF-LLMS-%E9%80%82%E5%BA%94%E6%80%A7%E8%B0%83%E4%BC%98"><span class="toc-number">1.4.4.</span> <span class="toc-text">ADAPTATION TUNING OF LLMS  适应性调优</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E8%B0%83%E4%BC%98%EF%BC%88Instruction-Tuning%EF%BC%89"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">指令调优（Instruction Tuning）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E9%BD%90%E8%B0%83%E4%BC%98%EF%BC%88Alignment-Tuning%EF%BC%89"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">对齐调优（Alignment Tuning）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTILIZATION-%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.5.</span> <span class="toc-text">UTILIZATION 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#In-Context-Learning-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.4.5.1.</span> <span class="toc-text">In-Context Learning 上下文学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Chain-of-Thought-Prompting-%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA"><span class="toc-number">1.4.5.2.</span> <span class="toc-text">Chain-of-Thought Prompting 思维链提示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAPACITY-EVALUATION-%E8%83%BD%E5%8A%9B%E8%AF%84%E4%BC%B0"><span class="toc-number">1.4.6.</span> <span class="toc-text">CAPACITY EVALUATION 能力评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Basic-Evaluation-Tasks%E5%9F%BA%E6%9C%AC%E8%AF%84%E4%BC%B0"><span class="toc-number">1.4.6.1.</span> <span class="toc-text">Basic Evaluation Tasks基本评估</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Language-Generation"><span class="toc-number">1.4.6.1.1.</span> <span class="toc-text">Language Generation</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Knowledge-Utilization"><span class="toc-number">1.4.6.1.2.</span> <span class="toc-text">Knowledge Utilization</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Complex-Reasoning"><span class="toc-number">1.4.6.1.3.</span> <span class="toc-text">Complex Reasoning</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Advanced-Ability-Evaluation%E9%AB%98%E7%BA%A7%E8%AF%84%E4%BC%B0"><span class="toc-number">1.4.6.2.</span> <span class="toc-text">Advanced Ability Evaluation高级评估</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Human-Alignment"><span class="toc-number">1.4.6.2.1.</span> <span class="toc-text">Human Alignment</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Interaction-with-External-Environment"><span class="toc-number">1.4.6.2.2.</span> <span class="toc-text">Interaction with External Environment</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Tool-Manipulation"><span class="toc-number">1.4.6.2.3.</span> <span class="toc-text">Tool Manipulation</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Public-Benchmarks-and-Empirical-Analysis-%E8%AF%84%E6%B5%8B%E6%A6%9C%E5%8D%95"><span class="toc-number">1.4.6.3.</span> <span class="toc-text">Public Benchmarks and Empirical Analysis  评测榜单</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-number">1.4.7.</span> <span class="toc-text">未来展望</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-and-Principle"><span class="toc-number">1.4.7.1.</span> <span class="toc-text">Theory and Principle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-Architecture"><span class="toc-number">1.4.7.2.</span> <span class="toc-text">Model Architecture</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-Utilization"><span class="toc-number">1.4.7.3.</span> <span class="toc-text">Model Utilization</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Safety-and-Alignment"><span class="toc-number">1.4.7.4.</span> <span class="toc-text">Safety and Alignment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Application-and-Ecosystem"><span class="toc-number">1.4.7.5.</span> <span class="toc-text">Application and Ecosystem</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/images/nlp01.png')"><div id="footer-wrap"><div class="copyright">&copy;undefined - 2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> null</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator"></span></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

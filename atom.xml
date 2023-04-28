@@ -6,10 +6,116 @@
   <link href="http://zjuerme.github.io/atom.xml" rel="self"/>
   
   <link href="http://zjuerme.github.io/"/>
-  <updated>2023-02-12T01:38:45.229Z</updated>
+  <updated>2023-04-28T06:31:27.516Z</updated>
   <id>http://zjuerme.github.io/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>路径规划</title>
+    <link href="http://zjuerme.github.io/2023/04/28/lu-jing-gui-hua/"/>
+    <id>http://zjuerme.github.io/2023/04/28/lu-jing-gui-hua/</id>
+    <published>2023-04-28T06:12:37.378Z</published>
+    <updated>2023-04-28T06:31:27.516Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;5-8周， 授课内容主要为规划&lt;/p&gt;
+&lt;p&gt;仍然和1-4周的思路一直，前2周在python上实现基本的算法，后两周将算法部署到ROS上&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/images/p008.png&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="课程笔记" scheme="http://zjuerme.github.io/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="ROS" scheme="http://zjuerme.github.io/tags/ROS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>轮式机器人建模与仿真</title>
+    <link href="http://zjuerme.github.io/2023/04/28/lun-shi-ji-qi-ren-jian-mo-yu-fang-zhen/"/>
+    <id>http://zjuerme.github.io/2023/04/28/lun-shi-ji-qi-ren-jian-mo-yu-fang-zhen/</id>
+    <published>2023-04-28T06:12:37.375Z</published>
+    <updated>2023-04-28T06:31:04.209Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Introduction-to-Ros&quot;&gt;&lt;a href=&quot;#Introduction-to-Ros&quot; class=&quot;headerlink&quot; title=&quot;Introduction to Ros&quot;&gt;&lt;/a&gt;Introduction to Ros&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="课程笔记" scheme="http://zjuerme.github.io/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="ROS" scheme="http://zjuerme.github.io/tags/ROS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>避障规划</title>
+    <link href="http://zjuerme.github.io/2023/04/28/bi-zhang-gui-hua/"/>
+    <id>http://zjuerme.github.io/2023/04/28/bi-zhang-gui-hua/</id>
+    <published>2023-04-28T06:12:37.373Z</published>
+    <updated>2023-04-28T06:30:59.743Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/p008.png&quot; style=&quot;zoom:60%;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/p025.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;避障规划&quot;&gt;&lt;a href=&quot;#避障规划&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="课程笔记" scheme="http://zjuerme.github.io/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="ROS" scheme="http://zjuerme.github.io/tags/ROS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>A Survey of Large Language Models</title>
+    <link href="http://zjuerme.github.io/2023/04/28/a-survey-of-large-language-models/"/>
+    <id>http://zjuerme.github.io/2023/04/28/a-survey-of-large-language-models/</id>
+    <published>2023-04-28T06:04:04.992Z</published>
+    <updated>2023-04-28T06:10:17.907Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;A-Survey-of-Large-Language-Models&quot;&gt;&lt;a href=&quot;#A-Survey-of-Large-Language-Models&quot; class=&quot;headerlink&quot; title=&quot;A Survey of Large</summary>
+        
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://zjuerme.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+    <category term="NLP" scheme="http://zjuerme.github.io/tags/NLP/"/>
+    
+  </entry>
   
   <entry>
     <title>合成孔径雷达的RD成像算法及距离矫正</title>
