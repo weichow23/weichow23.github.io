@@ -11,9 +11,9 @@ redirect_from:
 
 Education
 ======
-<img src="../images/zju.png" alt="" style="zoom: 14%;" />  | B.S. in **Computer Science and Technology** , **Zhejiang University**, 2025 (expected)
+<img src="../images/zju.png" alt="" style="zoom: 14%;" />  B.S. in **Computer Science and Technology** , **Zhejiang University**, 2025 (expected)
 
-<img src="../images/ckc.png" alt="" style="zoom: 3%;" />  | Minior in **ACEE** , CKC **Zhejiang University**, 2025 (expected)
+ <img src="../images/ckc.png" alt="" style="zoom: 3%;" />   Minior in **ACEE** , CKC **Zhejiang University**, 2025 (expected)
 
 
 
