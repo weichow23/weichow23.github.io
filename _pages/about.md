@@ -9,13 +9,9 @@ redirect_from:
 ---
 
 
-
 ## About ME
 
-- I'm zjuerme
-  -  an undergraduate student in Zhejiang University, major in Computer Science
-- Blog: [link here](https://zjuerme.github.io/)
-- CV: [link here](CV.pdf)
+- I'm an undergraduate student in Zhejiang University, major in Computer Science
 
 ## Skill & Interest
 
@@ -46,5 +42,3 @@ redirect_from:
 
 <a href="https://github.com/zjuerme">
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=zjuerme&show_icons=true&line_height=27&count_private=true&title_color=6aa6f8" alt="Haofei Yu's GitHub Stats" /></a>
-
-![nothing](https://visitor-badge.laobi.icu/badge?page_id=zjuerme)
