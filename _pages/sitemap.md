@@ -7,31 +7,11 @@ author_profile: true
 
 {% include base_path %}
 
-A list of all the posts and pages found on the site. For you robots out there is an [XML version]({{ base_path }}/sitemap.xml) available for digesting as well.
 
-<h2>Pages</h2>
-{% for post in site.pages %}
-  {% include archive-single.html %}
-{% endfor %}
 
-<h2>Posts</h2>
-{% for post in site.posts %}
-  {% include archive-single.html %}
-{% endfor %}
+Where am I now
 
-{% capture written_label %}'None'{% endcapture %}
+<iframe width="100%" height="1000px" frameborder="0" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=-122.4194,37.7749,-122.4073,37.7849&layer=mapnik"></iframe>
 
-{% for collection in site.collections %}
-{% unless collection.output == false or collection.label == "posts" %}
-  {% capture label %}{{ collection.label }}{% endcapture %}
-  {% if label != written_label %}
-  <h2>{{ label }}</h2>
-  {% capture written_label %}{{ label }}{% endcapture %}
-  {% endif %}
-{% endunless %}
-{% for post in collection.docs %}
-  {% unless collection.output == false or collection.label == "posts" %}
-  {% include archive-single.html %}
-  {% endunless %}
-{% endfor %}
-{% endfor %}
+Source: [OpenStreetMap](https://www.openstreetmap.org/copyright)
+
