@@ -22,6 +22,7 @@ Work Experience
 
 <img src="../images/hku.png" alt="" style="zoom: 10%;" />   **Research Assistant** in **HongKong University** [MMLab](https://mmlab.ie.cuhk.edu.hk/people.html)
 
+- 2023.6 - 2023.9
 - Supervisor: Professor [Luo Ping](http://luoping.me/)
 
 
