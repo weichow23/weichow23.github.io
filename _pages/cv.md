@@ -15,17 +15,18 @@ Education
 
  <img src="../images/ckc.png" alt="" style="zoom: 3.3%;" />  <img src="../images/acee.png" alt="" style="zoom: 8%;" /> Minior in Advanced Class of Engineering Education(**ACEE**) , Chu Kochen Honors College, **Zhejiang University**, 2025 (expected)
 
-
-
 Work Experience
 ======
+
+<img src="../images/xihu.png" alt="" style="zoom: 10.5%;" />   **WeSearch Student** in **Westlake University** 
+
+- 2023.2- 2023.5
+- Supervisor: Professor [Zhang Yue](https://scholar.google.com/citations?hl=zh-CN&user=6hA7WmUAAAAJ)
 
 <img src="../images/hku.png" alt="" style="zoom: 10%;" />   **Research Assistant** in **HongKong University** [MMLab](https://mmlab.ie.cuhk.edu.hk/people.html)
 
 - 2023.6 - 2023.9
 - Supervisor: Professor [Luo Ping](http://luoping.me/)
-
-
 
 # Other experience
 
