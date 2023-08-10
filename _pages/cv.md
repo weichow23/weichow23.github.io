@@ -31,6 +31,8 @@ Work Experience
 
 <img src="../images/erzhong.png" alt="" style="zoom: 7%;" />  Yunxian No. 2 Middle School, Yunnan Province Supporting Teaching
 
+<img src="../images/citadel.png" alt="" style="zoom: 11%;" />  Citadel and Citadel Security ACPC Visiting Student
+
 # Honors
 
 - 2021-2022 Undergraduate Students **National Scholarships**
