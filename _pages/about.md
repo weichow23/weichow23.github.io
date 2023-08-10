@@ -34,11 +34,3 @@ redirect_from:
     <a href="https://reactjs.org/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
     <a href="https://cn.vuejs.org/" target="_blank"> <img src="https://www.svgrepo.com/show/354528/vue.svg" alt="vue" width="40" height="40"/> </a>
 </p>
-
-## Stats
-
-<a href="https://github.com/zjuerme/zjuerme">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zjuerme&langs_count=10&layout=compact&exclude_repo=zjuerme.github.io,g22_learning_in_zju" alt="zjuerme's GitHub Stats" /></a>
-
-<a href="https://github.com/zjuerme">
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=zjuerme&show_icons=true&line_height=27&count_private=true&title_color=6aa6f8" alt="Haofei Yu's GitHub Stats" /></a>
