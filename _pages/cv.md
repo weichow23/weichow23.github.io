@@ -29,7 +29,7 @@ Work Experience
 
 # Other experience
 
-
+<img src="../images/erzhong.png" alt="" style="zoom: 7%;" />  Yunxian No. 2 Middle School, Yunnan Province Supporting Teaching
 
 # Honors
 
@@ -39,4 +39,4 @@ Work Experience
 
 
 
-样例：https://www.xiameng.org/， https://zzh2000.github.io/
+https://www.xiameng.org/
