@@ -30,16 +30,14 @@ Work Experience
 
 # Other experience
 
+<img src="../images/korea.png" alt="" style="zoom: 12%;" />  **Korea University** Summer Course Introduction to Computer Science
+
 <img src="../images/erzhong.png" alt="" style="zoom: 7%;" />  Yunxian No. 2 Middle School, Yunnan Province Supporting Teaching
 
-<img src="../images/citadel.png" alt="" style="zoom: 11%;" />  Citadel and Citadel Security ACPC Visiting Student
+<img src="../images/citadel.png" alt="" style="zoom: 11%;" />  **Citadel and Citadel Security** ACPC Visiting Student
 
 # Honors
 
 - 2021-2022 Undergraduate Students **National Scholarships**
 
 - 2023 Interdisciplinary Contest In Modeling  (**ICM**) Meritorious Winner
-
-
-
-https://www.xiameng.org/
