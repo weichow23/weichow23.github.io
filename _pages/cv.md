@@ -32,4 +32,10 @@ Work Experience
 
 # Honors
 
+- 2021-2022 Undergraduate Students **National Scholarships**
+
+- 2023 Interdisciplinary Contest In Modeling  (**ICM**) Meritorious Winner
+
+
+
 样例：https://www.xiameng.org/， https://zzh2000.github.io/
