@@ -11,7 +11,7 @@ redirect_from:
 
 ## About ME
 
-- I'm an undergraduate student in Zhejiang University, major in Computer Science
+- I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE
 
 ## Skill & Interest
 
