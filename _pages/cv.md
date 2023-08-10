@@ -17,7 +17,7 @@ Education
 
 
 
-Work experience
+Work Experience
 ======
 
 <img src="../images/hku.png" alt="" style="zoom: 10%;" />   **Research Assistant** in **HongKong University** [MMLab](https://mmlab.ie.cuhk.edu.hk/people.html)
@@ -26,35 +26,10 @@ Work experience
 
 
 
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+# Other experience
 
-Publications
-======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
 
-Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
 
-Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+# Honors
 
 样例：https://www.xiameng.org/， https://zzh2000.github.io/
