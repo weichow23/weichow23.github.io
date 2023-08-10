@@ -13,7 +13,7 @@ Education
 ======
 <img src="../images/zju.png" alt="" style="zoom: 14%;" />  B.S. in **Computer Science and Technology** , **Zhejiang University**, 2025 (expected)
 
- <img src="../images/ckc.png" alt="" style="zoom: 3%;" />   Minior in **ACEE** , CKC **Zhejiang University**, 2025 (expected)
+ <img src="../images/ckc.png" alt="" style="zoom: 3%;" />   Minior in Advanced Class of Engineering Education(**ACEE**) , Chu Kochen Honors College, **Zhejiang University**, 2025 (expected)
 
 
 
@@ -56,3 +56,5 @@ Teaching
 Service and leadership
 ======
 * Currently signed in to 43 different slack teams
+
+样例：https://www.xiameng.org/， https://zzh2000.github.io/
