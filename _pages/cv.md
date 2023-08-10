@@ -20,7 +20,7 @@ Education
 Work experience
 ======
 
-<img src="../images/hku.png" alt="" style="zoom: 10%;" />  | **Research Assistant** in **HongKong University**
+<img src="../images/hku.png" alt="" style="zoom: 10%;" />  | **Research Assistant** in **HongKong University** [MMLab](https://mmlab.ie.cuhk.edu.hk/people.html)
 
 - Supervisor: Professor [Luo Ping](http://luoping.me/)
 
