@@ -13,7 +13,7 @@ Education
 ======
 <img src="../images/zju.png" alt="" style="zoom: 14%;" />  B.S. in **Computer Science and Technology** , **Zhejiang University**, 2025 (expected)
 
- <img src="../images/ckc.png" alt="" style="zoom: 3%;" />   Minior in Advanced Class of Engineering Education(**ACEE**) , Chu Kochen Honors College, **Zhejiang University**, 2025 (expected)
+ <img src="../images/ckc.png" alt="" style="zoom: 3.3%;" />  <img src="../images/acee.png" alt="" style="zoom: 8%;" /> Minior in Advanced Class of Engineering Education(**ACEE**) , Chu Kochen Honors College, **Zhejiang University**, 2025 (expected)
 
 
 
