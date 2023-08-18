@@ -34,3 +34,8 @@ redirect_from:
     <a href="https://reactjs.org/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
     <a href="https://cn.vuejs.org/" target="_blank"> <img src="https://www.svgrepo.com/show/354528/vue.svg" alt="vue" width="40" height="40"/> </a>
 </p>
+
+
+
+
+<i class="fa-regular fa-face-thinking"></i> could be even more in future ...
