@@ -7,28 +7,6 @@
       // 获取经纬度
       const latitude = data.latitude;
       const longitude = data.longitude;
-    
-      // 使用获取到的经纬度更新 OpenStreetMap iframe 的 src 属性，并添加一个标记
-      const iframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.1},${latitude-0.1},${longitude+0.1},${latitude+0.1}&layer=mapnik&marker=${latitude},${longitude}`;
-      document.getElementById("mapIframe").src = iframeSrc;
-    
-    })
-    .catch(error => console.error('Error fetching IP data:', error));
-</script>
-
-<iframe id="mapIframe" width="80%" frameborder="0" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=104.0894,22.2020,104.2930,22.3086&layer=mapnik"></iframe>
-
-
-
-<script type="text/javascript">
-  fetch('https://api.ipstack.com/check?access_key=2c71855d088846151aee42fe8ca1d536')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-
-      // 获取经纬度
-      const latitude = data.latitude;
-      const longitude = data.longitude;
 
       // 定义一个bbox，其大小固定为0.1（你可以根据需要调整这个值）
       const delta = 0.1;
