@@ -50,4 +50,4 @@ who have visit the web
 [查看地图](location.html)
 
 
-<script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script>
+<script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=viAfb_n-Z7dDyvH8p34mNNNqfc9VJ0srCPPTncTiQGA"></script>
