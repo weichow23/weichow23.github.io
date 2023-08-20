@@ -21,3 +21,5 @@ author_profile: true
 ##### who have visit the web
 
 <a href="https://clustrmaps.com/site/1bw4s"  title="Visit tracker"><img src="//www.clustrmaps.com/map_v2.png?d=viAfb_n-Z7dDyvH8p34mNNNqfc9VJ0srCPPTncTiQGA&cl=ffffff" /></a>
+
+<a href='https://clustrmaps.com/site/1bw4s'  title='Visit tracker'><img src='//clustrmaps.com/map_v2.png?cl=ffffff&w=700&t=n&d=viAfb_n-Z7dDyvH8p34mNNNqfc9VJ0srCPPTncTiQGA&co=deeaee&ct=808080'/></a>
