@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   fetch('https://api.ipstack.com/check?access_key=2c71855d088846151aee42fe8ca1d536')
     .then(response => response.json())
     .then(data => {
@@ -20,6 +20,38 @@
 
     })
     .catch(error => console.error('Error fetching IP data:', error));
+</script> -->
+
+<script type="text/javascript">
+  fetch('https://api.ipstack.com/check?access_key=2c71855d088846151aee42fe8ca1d536')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      // 获取经纬度
+      const latitude = data.latitude;
+      const longitude = data.longitude;
+
+      // 设置边界框，使得访问者的位置处于地图中心
+      const bboxLeft = longitude - 0.1;
+      const bboxBottom = latitude - 0.1;
+      const bboxRight = longitude + 0.1;
+      const bboxTop = latitude + 0.1;
+    
+      // 使用获取到的经纬度创建 OpenStreetMap iframe
+      const iframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bboxLeft},${bboxBottom},${bboxRight},${bboxTop}&layer=mapnik&mlat=${latitude}&mlon=${longitude}`;
+      
+      const iframe = document.createElement('iframe');
+      iframe.id = "mapIframe";
+      iframe.width = "80%";
+      iframe.frameBorder = "0";
+      iframe.allowFullscreen = true;
+      iframe.src = iframeSrc;
+      document.body.appendChild(iframe);
+
+    })
+    .catch(error => console.error('Error fetching IP data:', error));
 </script>
+
 
 <iframe id="mapIframe" width="80%" frameborder="0" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=104.0894,22.2020,104.2930,22.3086&layer=mapnik"></iframe>
