@@ -8,8 +8,8 @@
       const latitude = data.latitude;
       const longitude = data.longitude;
     
-      // 使用获取到的经纬度更新 OpenStreetMap iframe 的 src 属性
-      const iframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.1},${latitude-0.1},${longitude+0.1},${latitude+0.1}&layer=mapnik`;
+      // 使用获取到的经纬度更新 OpenStreetMap iframe 的 src 属性，并添加一个标记
+      const iframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.1},${latitude-0.1},${longitude+0.1},${latitude+0.1}&layer=mapnik&marker=${latitude},${longitude}`;
       document.getElementById("mapIframe").src = iframeSrc;
     
     })
