@@ -12,3 +12,31 @@ author_profile: true
 Where am I now
 
 <iframe width="80%" frameborder="0" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=114.0894,22.2020,114.2930,22.3086&layer=mapnik"></iframe>
+
+
+
+
+
+
+who have visit the web
+
+
+<script type="text/javascript">
+  fetch('https://api.ipstack.com/check?access_key=2c71855d088846151aee42fe8ca1d536')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      // 获取经纬度
+      const latitude = data.latitude;
+      const longitude = data.longitude;
+    
+      // 使用获取到的经纬度更新 OpenStreetMap iframe 的 src 属性
+      const iframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.1},${latitude-0.1},${longitude+0.1},${latitude+0.1}&layer=mapnik`;
+      document.getElementById("mapIframe").src = iframeSrc;
+    
+    })
+    .catch(error => console.error('Error fetching IP data:', error));
+</script>
+
+<iframe id="mapIframe" width="80%" frameborder="0" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=114.0894,22.2020,114.2930,22.3086&layer=mapnik"></iframe>
