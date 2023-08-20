@@ -48,3 +48,6 @@ who have visit the web
 
 
 [查看地图](location.html)
+
+
+<script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script>
