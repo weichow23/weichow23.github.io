@@ -20,10 +20,6 @@ Where am I now
 
 who have visit the web
 
-
-[查看地图](location.html)
-
-
 <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=viAfb_n-Z7dDyvH8p34mNNNqfc9VJ0srCPPTncTiQGA"></script>
 
 <a href="https://clustrmaps.com/site/1bw4s"  title="Visit tracker"><img src="//www.clustrmaps.com/map_v2.png?d=viAfb_n-Z7dDyvH8p34mNNNqfc9VJ0srCPPTncTiQGA&cl=ffffff" /></a>
