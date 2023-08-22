@@ -38,4 +38,6 @@ redirect_from:
 
 
 
-<i class="fa-regular fa-face-thinking"></i> could be even more in future ...
+:thinking: could be even more in future ...
+
+<a href="https://www.flaticon.com/free-icons/korea" title="korea icons"></a>
