@@ -22,7 +22,7 @@ Work Experience
 
 <img src="../images/zju.png" alt="" style="zoom: 14%;" />   **Teaching Assistant** in **Zhejiang University**
 
-[211G0239]  **Introduction to Computer Science**  lectured by Prof.[Jiangming Ji](https://person.zju.edu.cn/11111)  2023.9 - 2024.1 
+[211G0239]  **Introduction to Computer Science** (for international students) lectured by Prof.[Jiangming Ji](https://person.zju.edu.cn/11111)  2023.9 - 2024.1 
 
 [211G0300]  **Fundamentals of Computer Science (B)** lectured by Prof.[Duanqing Xu](https://person.zju.edu.cn/0092050/584384.html)  2023.9 - 2024.1
 
