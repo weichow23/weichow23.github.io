@@ -30,12 +30,12 @@ Work Experience
 
 <img src="../images/xihu.png" alt="" style="zoom: 10.5%;" />   **WeSearch Student** in **Westlake University**  <img src="../images/westnlp.png" style="zoom:23%;" />
 
-- 2023.2 - 2023.5
+- 2022.11 - 2023.5
 - Supervisor: Professor [Zhang Yue](https://scholar.google.com/citations?hl=zh-CN&user=6hA7WmUAAAAJ)
 
 <img src="../images/hku.png" alt="" style="zoom: 10%;" />   **Research Assistant** in **HongKong University** [MMLab](https://mmlab.ie.cuhk.edu.hk/people.html)
 
-- 2023.6 - 2023.9
+- 2023.6 - now
 - Supervisor: Professor [Luo Ping](http://luoping.me/)
 
 # Other experience
