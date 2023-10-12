@@ -48,7 +48,7 @@ Work Experience
 
 # Honors
 
-- 2021-2022，  2022-2023 Undergraduate Students **National Scholarships** <font color="#dd0000">**×2**</font>
+- 2021-2022，  2022-2023 Undergraduate Students **National Scholarship** **<font color="#dd0000">×2</font>**
 
 - 2021-2022 Undergraduate Students  Zhejiang University **First Class** Scholarship
 
