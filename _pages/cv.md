@@ -50,4 +50,6 @@ Work Experience
 
 - 2021-2022 Undergraduate Students **National Scholarships**
 
+- 2021-2022 Undergraduate Students  Zhejiang University **First Class** Scholarship
+
 - 2023 Interdisciplinary Contest In Modeling  (**ICM**) Meritorious Winner
