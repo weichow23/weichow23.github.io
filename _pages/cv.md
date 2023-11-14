@@ -52,4 +52,6 @@ Work Experience
 
 - 2022,2023 Undergraduate Students  Zhejiang University **First Class** Scholarship **<font color="#dd0000">×2</font>**
 
+- [Learnings](https://learnings.com.cn/) Research and Innovation Scholarship
+
 - 2023 The International Mathematical Contest in Modeling  (**ICM**) Meritorious Winner
