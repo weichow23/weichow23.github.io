@@ -11,11 +11,7 @@ redirect_from:
 
 ## About ME
 
-- I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE
-
-## Skill & Interest
-
-- New hand in Machine Learning & Deep Learning
+I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE            <img src="../images/curve.png" style="zoom: 33%;" />
 
 <h3 align="left">Languages and Tools</h3>
 <p align="left"> <a href="https://www.arduino.cc/" target="_blank"> <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="arduino" width="40" height="40"/> </a> 
@@ -34,10 +30,10 @@ redirect_from:
     <a href="https://reactjs.org/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
     <a href="https://cn.vuejs.org/" target="_blank"> <img src="https://www.svgrepo.com/show/354528/vue.svg" alt="vue" width="40" height="40"/> </a>
 </p>
-
-
-
-
 :thinking: could be even more in future ...
 
 <a href="https://www.flaticon.com/free-icons/korea" title="korea icons"></a>
+
+### Hobby
+
+In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and taking photography 📷
