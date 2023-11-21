@@ -11,7 +11,9 @@ redirect_from:
 
 ## About ME
 
-I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE            <img src="../images/curve.png" style="zoom: 33%;" />
+I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE        
+
+<img src="../images/curve.png" style="display: block; margin: auto; zoom: 33%;" />
 
 <h3 align="left">Languages and Tools</h3>
 <p align="left"> <a href="https://www.arduino.cc/" target="_blank"> <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="arduino" width="40" height="40"/> </a> 
