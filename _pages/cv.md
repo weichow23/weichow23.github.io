@@ -33,7 +33,7 @@ Work Experience
 - 2022.11 - 2023.5
 - Supervisor: Professor [Zhang Yue](https://scholar.google.com/citations?hl=zh-CN&user=6hA7WmUAAAAJ)
 
-<img src="../images/hku.png" alt="" style="zoom: 10%;" />   **Research Assistant** in **HongKong University** [MMLab](https://mmlab.ie.cuhk.edu.hk/people.html)
+<img src="../images/hku.png" alt="" style="zoom: 10%;" />   **Research Assistant** in **University of HongKong** [MMLab](https://mmlab.ie.cuhk.edu.hk/people.html)
 
 - 2023.6 - now
 - Supervisor: Professor [Luo Ping](http://luoping.me/)
