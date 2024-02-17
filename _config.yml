@@ -86,7 +86,7 @@ author:
   location         : # "Hong Kong"
   employer         :
   pubmed           : 
-  googlescholar    : 
+  googlescholar    : "https://scholar.google.com/citations?user=br7-IGkAAAAJ"
   email            : "zhouwei@hku.hk"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
