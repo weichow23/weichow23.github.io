@@ -21,6 +21,10 @@ author_profile: true
         Xuanwen Huang<sup>*</sup>
         <strong>Wei Chow<sup>*</sup></strong>,
         Yize Zhu,
+        Yang Wang,
+        Ziwei Chai,
+        Chunping Wang,
+        Lei Chen,
         Yang Yang,
     </div>
     <div>
