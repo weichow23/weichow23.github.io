@@ -49,10 +49,16 @@ author_profile: true
         vertical-align: middle;
     }
     .first-column {
+        width: 25%;
+        padding:5pt;
         text-align: center;
+        vertical-align:middle
     }
     .second-column {
+        width: 75%;
+        padding:5pt;
         text-align: left;
+        vertical-align:middle
     }
     /* 隐藏表格边框 */
     table, th, td {
@@ -62,10 +68,10 @@ author_profile: true
 
 <table>
     <tr>
-        <td style="padding:5pt; width:25%;vertical-align:middle">
+        <td class="first-column">
                 <img src="../images/paper1.png" width="100%"/>
         </td>
-        <td style="padding:5pt; width:75%;vertical-align:middle">
+        <td class="second-column">
             One Graph Model for Cross-domain Dynamic Link Prediction
             <div>
                 Xuanwen Huang<sup>*</sup>
