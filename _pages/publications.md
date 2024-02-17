@@ -7,7 +7,9 @@ author_profile: true
 
 <tr>
     <td style="padding:5pt; width:25%;vertical-align:middle">
-        <img src="../images/paper1.png" width="25%"/>
+        <div style="width:100%; text-align:center;">
+            <img src="../images/paper1.png" width="25%"/>
+        </div>
     </td>
     <td style="padding:5pt; width:75%;vertical-align:middle">
         One Graph Model for Cross-domain Dynamic Link Prediction
