@@ -29,7 +29,7 @@ author_profile: true
         <div>
             <a href="https://oppo-us-research.github.io/OpenIllumination/">Project Page</a>
             /
-            <a href="https://arxiv.org/pdf/2309.07921.pdf">Paper</a>
+            <a href="https://arxiv.org/pdf/2402.02168.pdf}{link}"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
             /
             <a href="https://github.com/One-2-3-45/One-2-3-45">Code </a>
             <img src="https://img.shields.io/github/stars/One-2-3-45/One-2-3-45?style=social&amp;logo=github" width="75pt">
@@ -37,7 +37,6 @@ author_profile: true
     </td>
 </tr>
 
-<a href="https://arxiv.org/pdf/2209.11135.pdf}{link}"><img src="https://img.shields.io/badge/arXiv-2209.11135-b31b1b.svg" alt="arXiv"></a>
 <a href="https://openreview.net/forum?id=1GVpwr2Tfdg"><img src="https://img.shields.io/badge/NeurIPS-OpenReview-red" alt="NeurIPS"></a>
 <a href="http://fpour.github.io/files/NeurIPS_2022_D_&amp;_B_poster.pdf"><img src="https://img.shields.io/badge/NeurIPS-poster-ff69b4" alt="Poster"></a>
 <a href="https://tgb.complexdatalab.com"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
