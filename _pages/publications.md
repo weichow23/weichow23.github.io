@@ -9,7 +9,7 @@ author_profile: true
 <td style="padding:5pt; width:25%;vertical-align:middle">
     <div class="one">
         <div class="two" id="OpenIllumination_image">
-        <img src="../images/zju.png" width="100%"/>
+        <img src="../images/zju.png" width="10%"/>
         </div>
     </div>
 </td>
