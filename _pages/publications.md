@@ -9,7 +9,7 @@ author_profile: true
     <td style="padding:5pt; display: flex; align-items: center;">
         <div class="one">
             <div class="two" id="OpenIllumination_image">
-                <img src="../images/paper1.png" width="1%" />
+                <img src="../images/paper1.png" width="10%" />
             </div>
         </div>
         <div style="margin-left: 10px;"> <!-- 适当调整间距 -->
