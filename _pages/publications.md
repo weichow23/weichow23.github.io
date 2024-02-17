@@ -4,7 +4,7 @@ title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
-
+{% 下面这样一块是一栏 ， 直接用html代码写就行了%}
 <tr>
 <td style="padding:5pt; width:25%;vertical-align:middle">
     <div class="one">
@@ -15,7 +15,7 @@ author_profile: true
 </td>
 <td style="padding:5pt; width:75%;vertical-align:middle">
     <a href="https://one-2-3-45.github.io/">
-        <papertitle>OpenIllumination: A Multi-Illumination Dataset for Inverse Rendering Evaluation on Real Objects</papertitle>
+        <papertitle> A Multi-Illumination Dataset for Inverse Rendering Evaluation on Real Objects</papertitle>
     </a>
     <div>
     <a href="https://www.liuisabella.com/">Isabella Liu<sup>*</sup></a>,
