@@ -17,13 +17,10 @@ author_profile: true
                 <papertitle> A Real Objects</papertitle>
             </a>
             <div>
-                Isabella Liu<sup>*</sup>
+                Xuanwen Huang<sup>*</sup>
                 <strong>Wei Chow<sup>*</sup></strong>,
-                Ziyang Fu,
-                Liwen Wu,
-                Zhong Li,
-                Chin Ming Ryan Wong,
-                Yi Xu,
+                Yize Zhu,
+                Yang Yang,
             </div>
             <div>
                 <em>NeurIPS 2023 Datasets and Benchmarks</em>
