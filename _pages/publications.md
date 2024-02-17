@@ -15,7 +15,7 @@ author_profile: true
 </td>
 <td style="padding:5pt; width:75%;vertical-align:middle">
     <a href="https://one-2-3-45.github.io/">
-        <papertitle> A Multi-Illumination Dataset for Inverse Rendering Evaluation on Real Objects</papertitle>
+        <papertitle> A Real Objects</papertitle>
     </a>
     <div>
     <a href="https://www.liuisabella.com/">Isabella Liu<sup>*</sup></a>,
