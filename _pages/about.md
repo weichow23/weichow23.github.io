@@ -8,9 +8,6 @@ redirect_from:
   - /about.html
 ---
 
-
-## About ME
-
 I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE        
 
 <img src="../images/curve.png" style="display: block; margin: auto; zoom: 33%;" />
