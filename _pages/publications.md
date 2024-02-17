@@ -44,20 +44,16 @@ author_profile: true
         width: 100%;
         border-collapse: collapse;
     }
-
     td {
         padding: 5pt;
         vertical-align: middle;
     }
-
     .first-column {
         text-align: center;
     }
-
     .second-column {
         text-align: left;
     }
-
     /* 隐藏表格边框 */
     table, th, td {
         border: none;
@@ -66,15 +62,11 @@ author_profile: true
 
 <table>
     <tr>
-        <td class="first-column">
-            <img src="../images/paper1.png" width="25%" />
+        <td style="padding:5pt; width:25%;vertical-align:middle">
+                <img src="../images/paper1.png" width="100%"/>
         </td>
-        <td class="second-column">
-            <div>
-                <a href="https://one-2-3-45.github.io/">
-                    One Graph Model for Cross-domain Dynamic Link Prediction
-                </a>
-            </div>
+        <td style="padding:5pt; width:75%;vertical-align:middle">
+            One Graph Model for Cross-domain Dynamic Link Prediction
             <div>
                 Xuanwen Huang<sup>*</sup>
                 <strong>Wei Chow<sup>*</sup></strong>,
@@ -86,16 +78,14 @@ author_profile: true
                 Yang Yang
             </div>
             <div>
-                <em>NeurIPS 2023 Datasets and Benchmarks</em>
+                <em>ICML 2024 under review</em>
             </div>
             <div>
-                <a href="https://oppo-us-research.github.io/OpenIllumination/">Project Page</a>
-                /
-                <a href="https://arxiv.org/pdf/2402.02168.pdf"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
+                <a href="https://arxiv.org/pdf/2402.02168.pdf}{link}"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
                 /
                 <a href="https://github.com/One-2-3-45/One-2-3-45">Code </a>
                 <img src="https://img.shields.io/github/stars/One-2-3-45/One-2-3-45?style=social&amp;logo=github" width="75pt">
-            </div>
+            </div> 
         </td>
     </tr>
 </table>
