@@ -25,8 +25,6 @@ author_profile: true
             <em>NeurIPS 2023 Datasets and Benchmarks</em>
         </div>
         <div>
-            <a href="https://oppo-us-research.github.io/OpenIllumination/">Project Page</a>
-            /
             <a href="https://arxiv.org/pdf/2402.02168.pdf}{link}"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
             /
             <a href="https://github.com/One-2-3-45/One-2-3-45">Code </a>
