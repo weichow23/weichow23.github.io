@@ -29,6 +29,7 @@ author_profile: true
     .blue-bold {
         color: navy; /* 使用深蓝色 */
         font-weight: bold; /* 加粗 */
+        font-size: 16px;
     }
     /* 隐藏表格边框 */
     table, th, td {
@@ -65,7 +66,6 @@ author_profile: true
         </td>
     </tr>
 </table>
-
 
 
 <a href="https://openreview.net/forum?id=1GVpwr2Tfdg"><img src="https://img.shields.io/badge/NeurIPS-OpenReview-red" alt="NeurIPS"></a>
