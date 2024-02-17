@@ -81,9 +81,9 @@ analytics:
 # Site Author
 author:
   name             : "Wei Chow"
-  avatar           : "head.png"
+  avatar           : "head.jpg"
   bio              : 
-  location         : "Hong Kong"
+  location         : # "Hong Kong"
   employer         :
   pubmed           : 
   googlescholar    : 
