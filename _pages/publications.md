@@ -63,18 +63,7 @@ author_profile: true
     /
     <a href="https://arxiv.org/pdf/2309.07921.pdf">Paper</a>
 
-    </div>
-    <!-- <div id="method_highlights">
-        <a href=javascript:showPaperMessage("One-2-3-45_message")>👉Brief summary:</a>
-        <div id="One-2-3-45_message" style="display: none;">
-            <ul id="method_highlights_ul">
-                Many existing image-to-3D methods optimizes a neural radiance field under the guidance of 2D diffusion models but suffer from lengthy optimization time, 3D inconsistency results, 
-                and poor geometry. In this work, we propose a novel method that takes a single image of any object as input and generates a full 360-degree 3D textured mesh in a single feed-forward pass. 
-                Without costly optimizations, our method reconstructs 3D shapes in significantly less time than existing methods. Moreover, our method favors better geometry, generates more 3D consistent results, and adheres more closely to the input image.
-                In addition, our approach can seamlessly support the text-to-3D task by integrating with off-the-shelf text-to-image diffusion models.
-        </ul> 
-        </div>  -->
-    
+    </div> 
 </td>
 
 </tr>
