@@ -4,7 +4,7 @@ title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
-<table style="width:100%">
+
 <tr>
     <td style="padding:5pt; width:25%;vertical-align:middle">
         <img src="../images/paper1.png" width="25%"/>
@@ -32,7 +32,6 @@ author_profile: true
         </div> 
     </td>
 </tr>
-</table>
 
 <a href="https://openreview.net/forum?id=1GVpwr2Tfdg"><img src="https://img.shields.io/badge/NeurIPS-OpenReview-red" alt="NeurIPS"></a>
 <a href="http://fpour.github.io/files/NeurIPS_2022_D_&amp;_B_poster.pdf"><img src="https://img.shields.io/badge/NeurIPS-poster-ff69b4" alt="Poster"></a>
