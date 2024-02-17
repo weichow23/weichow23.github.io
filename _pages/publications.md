@@ -7,15 +7,11 @@ author_profile: true
 
 <tr>
 <td style="padding:5pt; width:25%;vertical-align:middle">
-    <div class="one">
-        <div class="two" id="OpenIllumination_image">
-        <img src="../images/paper1.png" width="20%"/>
-        </div>
-    </div>
+    <img src="../images/paper1.png" width="20%"/>
 </td>
 <td style="padding:5pt; width:75%;vertical-align:middle">
     <a href="https://one-2-3-45.github.io/">
-        <papertitle> A Real Objects</papertitle>
+        <papertitle> One Graph Model for Cross-domain Dynamic Link Prediction </papertitle>
     </a>
     <div>
         Xuanwen Huang<sup>*</sup>
