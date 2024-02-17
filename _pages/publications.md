@@ -14,7 +14,7 @@ author_profile: true
         </div>
         <div style="margin-left: 10px;"> <!-- 适当调整间距 -->
             <a href="https://one-2-3-45.github.io/">
-                <papertitle> A Real Objects</papertitle>
+                <papertitle> One Graph Model for Cross-domain Dynamic Link Prediction </papertitle>
             </a>
             <div>
                 Xuanwen Huang<sup>*</sup>
