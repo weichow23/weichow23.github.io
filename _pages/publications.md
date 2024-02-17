@@ -18,17 +18,13 @@ author_profile: true
         <papertitle> A Real Objects</papertitle>
     </a>
     <div>
-    <a href="https://www.liuisabella.com/">Isabella Liu<sup>*</sup></a>,
-    <a href="https://ootts.github.io//">Linghao Chen<sup>*</sup></a>,
+    Isabella Liu<sup>*</sup>
+    <strong>Wei Chow<sup>*</sup></strong>,
     Ziyang Fu,
     Liwen Wu,
-    <strong>Haian Jin</strong>,
     Zhong Li,
     Chin Ming Ryan Wong,
     Yi Xu,
-    <a href="https://cseweb.ucsd.edu/~ravir/">Ravi Ramamoorthi</a>,
-    <a href="https://cseweb.ucsd.edu/~zex014/">Zexiang Xu</a>,
-    <a href="http://ai.ucsd.edu/~haosu/">Hao Su</a>
     </div>
     <div>
     <em>NeurIPS 2023 Datasets and Benchmarks</em>
