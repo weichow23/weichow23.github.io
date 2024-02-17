@@ -31,11 +31,10 @@ author_profile: true
 <td style="padding:5pt; width:25%;vertical-align:middle">
     <div class="one">
         <div class="two" id="OpenIllumination_image">
-        <img src="research/openillum.png" width="100%">
+        <img src="../images/zju.png" width="100%"/>
         </div>
     </div>
 </td>
-
 <td style="padding:5pt; width:75%;vertical-align:middle">
     <a href="https://one-2-3-45.github.io/">
         <papertitle>OpenIllumination: A Multi-Illumination Dataset for Inverse Rendering Evaluation on Real Objects</papertitle>
@@ -52,18 +51,14 @@ author_profile: true
     <a href="https://cseweb.ucsd.edu/~ravir/">Ravi Ramamoorthi</a>,
     <a href="https://cseweb.ucsd.edu/~zex014/">Zexiang Xu</a>,
     <a href="http://ai.ucsd.edu/~haosu/">Hao Su</a>
-
     </div>
     <div>
     <em>NeurIPS 2023 Datasets and Benchmarks</em>
     </div>
-
     <div id="paper_related">
     <a href="https://oppo-us-research.github.io/OpenIllumination/">Project Page</a>
     /
     <a href="https://arxiv.org/pdf/2309.07921.pdf">Paper</a>
-
     </div> 
 </td>
-
 </tr>
