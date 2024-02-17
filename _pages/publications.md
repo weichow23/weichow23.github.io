@@ -24,7 +24,7 @@ author_profile: true
             Yang Yang
         </div>
         <div>
-            <em>NeurIPS 2023 Datasets and Benchmarks</em>
+            <em>ICML 2024 under review</em>
         </div>
         <div>
             <a href="https://arxiv.org/pdf/2402.02168.pdf}{link}"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
