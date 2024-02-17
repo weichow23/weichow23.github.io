@@ -39,4 +39,4 @@ author_profile: true
 
 <a href="https://arxiv.org/pdf/2209.11135.pdf}{link}"><img src="https://img.shields.io/badge/arXiv-2209.11135-b31b1b.svg" alt="arXiv"></a>
 <a href="https://openreview.net/forum?id=1GVpwr2Tfdg"><img src="https://img.shields.io/badge/NeurIPS-OpenReview-red" alt="NeurIPS"></a>
-<a href="https://arxiv.org/pdf/2207.10128.pdf"><img src="https://img.shields.io/badge/arXiv-2205.12454-b31b1b.svg" alt="arXiv"></a>
+<a href="http://fpour.github.io/files/NeurIPS_2022_D_&amp;_B_poster.pdf"><img src="https://img.shields.io/badge/NeurIPS-poster-ff69b4" alt="Poster"></a>
