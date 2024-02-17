@@ -7,11 +7,11 @@ author_profile: true
 
 <tr>
     <td style="padding:5pt; width:25%;vertical-align:middle">
-        <img src="../images/paper1.png" width="20%"/>
+        <img src="../images/paper1.png" width="25%"/>
     </td>
     <td style="padding:5pt; width:75%;vertical-align:middle">
         <a href="https://one-2-3-45.github.io/">
-            <papertitle> One Graph Model for Cross-domain Dynamic Link Prediction </papertitle>
+            One Graph Model for Cross-domain Dynamic Link Prediction
         </a>
         <div>
             Xuanwen Huang<sup>*</sup>
@@ -21,7 +21,7 @@ author_profile: true
             Ziwei Chai,
             Chunping Wang,
             Lei Chen,
-            Yang Yang,
+            Yang Yang
         </div>
         <div>
             <em>NeurIPS 2023 Datasets and Benchmarks</em>
