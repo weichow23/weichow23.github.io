@@ -17,7 +17,7 @@ final update in *19/2/2024*
 </head>
 <body>
 
-<embed src="resume-zh_EN.pdf" width="100%" height="100%" />
+<embed src="../images/resume-zh_EN.pdf" width="100%" height="100%" />
 
 </body>
 </html>
