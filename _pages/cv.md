@@ -6,6 +6,7 @@ redirect_from:
   - /resume
 ---
 
+Education
 final update in *19/2/2024*
 
 <html lang="en">
