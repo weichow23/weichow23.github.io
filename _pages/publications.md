@@ -35,7 +35,6 @@ author_profile: true
         border: none;
     }
 </style>
-
 <table>
     <tr>
         <td class="first-column">
@@ -58,6 +57,46 @@ author_profile: true
             </div> 
         </td>
     </tr>
+    <tr>
+        <td class="first-column">
+                <img src="../images/paper2.png" width="80%"/>
+        </td>
+        <td class="second-column">
+            <span class="blue-bold">Exploring Correlations of Self-supervised Tasks for Graphs</span>
+            <div>
+                Taoran Fang,
+                <strong>Wei Chow</strong>,
+                Yifei Sun,
+                Kaiqiao Han,
+                Lvbin Ma,
+                Yang Yang
+            </div>
+            <div>
+                <a href="None for now"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
+            </div> 
+        </td>
+    </tr>
+    <tr>
+        <td class="first-column">
+                <img src="../images/paper3.png" width="80%"/>
+        </td>
+        <td class="second-column">
+            <span class="blue-bold">Auto-Encoding Morph-Tokens for Multimodal LLM</span>
+            <div>
+                Kaihang Pan,
+                Siliang Tang,
+                Juncheng Li,
+                Zhaoyu Fan,
+                <strong>Wei Chow</strong>,
+                Shuicheng Yan,
+                Tat-Seng Chua,
+                Yueting Zhuang,
+                Hanwang Zhang
+            </div>
+            <div>
+                <a href="None for now"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
+            </div> 
+        </td>
+    </tr>
 </table>
-
 
