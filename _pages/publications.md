@@ -72,7 +72,7 @@ author_profile: true
                 Yang Yang
             </div>
             <div>
-                <a href="https://arxiv.org/pdf/2405.01926"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
+                <a href="https://arxiv.org/pdf/2405.04245"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
             </div> 
         </td>
     </tr>
@@ -94,7 +94,7 @@ author_profile: true
                 Hanwang Zhang
             </div>
             <div>
-                <a href="https://arxiv.org/pdf/2405.04245"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
+                <a href="https://arxiv.org/pdf/2405.01926"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
             </div> 
         </td>
     </tr>
