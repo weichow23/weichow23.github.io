@@ -58,7 +58,7 @@ In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and 
         <td class="second-column">
             <a href="https://github.com/zjuerme/Second-hand_housing_transaction"><span class="blue-bold">Analysis on the relationship between second-hand housing transactions and business districts in Hangzhou's main urban area</span></a>
             <div>
-                [2024 Spring] Real Estate Finance and Economics
+                [2024 Spring in ZJU] Real Estate Finance and Economics
             </div>
         </td>
     </tr>
