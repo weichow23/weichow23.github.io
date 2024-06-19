@@ -14,7 +14,7 @@ redirect_from:
 </head>
 <body>
 
-<embed src="../images/resume-23_02_24.pdf#navpanes=0" width="100%" height="100%" />
+<embed src="../images/resume-24_06_19.pdf#navpanes=0" width="100%" height="100%" />
 
 </body>
 </html>
