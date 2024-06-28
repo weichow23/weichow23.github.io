@@ -26,7 +26,5 @@ author_profile: true
 <a href="https://github.com/shenyangHuang/TGB"><img src="https://img.shields.io/badge/Github-link-lightgrey" alt="Github Repo"></a>
 
 <a href="https://arxiv.org/pdf/2402.02168.pdf}{link}"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
-                /
-                <a href="https://github.com/One-2-3-45/One-2-3-45">Code </a>
-                <img src="https://img.shields.io/github/stars/One-2-3-45/One-2-3-45?style=social&amp;logo=github" width="75pt">
+               <a href="https://github.com/zjunet/GraphTCM"><img src="https://img.shields.io/github/stars/zjunet/GraphTCM?style=social&amp;logo=github" width="75pt"></a>
 

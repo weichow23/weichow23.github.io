@@ -73,6 +73,7 @@ author_profile: true
             </div>
             <div>
                 <a href="https://arxiv.org/pdf/2405.04245"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
+                <a href="https://github.com/zjunet/GraphTCM"><img src="https://img.shields.io/github/stars/zjunet/GraphTCM?style=social&amp;logo=github" width="75pt"></a>
             </div> 
         </td>
     </tr>
@@ -95,6 +96,8 @@ author_profile: true
             </div>
             <div>
                 <a href="https://arxiv.org/pdf/2405.01926"><img src="https://img.shields.io/badge/ICML 2024-spotlight-blue" alt="Spotlight"></a>
+                <a href="https://github.com/DCDmllm/MorphTokens"><img src="https://img.shields.io/github/stars/DCDmllm/MorphTokens?style=social&amp;logo=github" width="75pt"></a>
+            </div> 
             </div> 
         </td>
     </tr>
