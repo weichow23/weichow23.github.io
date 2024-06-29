@@ -98,7 +98,6 @@ author_profile: true
                 <a href="https://arxiv.org/pdf/2405.01926"><img src="https://img.shields.io/badge/ICML 2024-spotlight-blue" alt="Spotlight"></a>
                 <a href="https://github.com/DCDmllm/MorphTokens"><img src="https://img.shields.io/github/stars/DCDmllm/MorphTokens?style=social&amp;logo=github" width="75pt"></a>
             </div> 
-            </div> 
         </td>
     </tr>
 </table>

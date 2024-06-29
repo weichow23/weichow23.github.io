@@ -17,6 +17,12 @@ I'm an undergraduate student in Zhejiang University, major in Computer Science a
 
 In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and taking photography 📷
 
+### Academic Service
+
+##### Workshop Organizer
+
+[DEMON: Demonstrative Instruction Following Challenge](https://dcdmllm.github.io/DEMON-challenge/) (MM'2024)
+
 ### Course Project
 
 <style>
@@ -63,4 +69,3 @@ In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and 
         </td>
     </tr>
 </table>
-
