@@ -68,4 +68,16 @@ In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and 
             </div>
         </td>
     </tr>
+    <tr>
+        <td class="first-column">
+                <img src="../images/photo.png" width="100%"/>
+        </td>
+        <td class="second-column">
+            <a href="https://github.com/zjuerme/Computational-Photography"><span class="blue-bold">Interactive digital montage</span></a>
+            <div>
+                [2024 Spring in ZJU] Computational Photography
+            </div>
+        </td>
+    </tr>
 </table>
+
