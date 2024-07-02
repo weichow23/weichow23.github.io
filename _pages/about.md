@@ -79,5 +79,16 @@ In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and 
             </div>
         </td>
     </tr>
+    <tr>
+        <td class="first-column">
+                <img src="../images/mathm.png" width="100%"/>
+        </td>
+        <td class="second-column">
+            <a href="https://github.com/zjuerme/math-modeling-proj"><span class="blue-bold">Optimal matching of tutors and students</span></a>
+            <div>
+                [2022 Fall in ZJU] Math Modeling
+            </div>
+        </td>
+    </tr>
 </table>
 
