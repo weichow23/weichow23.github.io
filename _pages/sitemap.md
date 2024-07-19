@@ -28,3 +28,10 @@ author_profile: true
 <a href="https://arxiv.org/pdf/2402.02168.pdf}{link}"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
                <a href="https://github.com/zjunet/GraphTCM"><img src="https://img.shields.io/github/stars/zjunet/GraphTCM?style=social&amp;logo=github" width="75pt"></a>
 
+[![hf_space](https://img.shields.io/badge/🤗-LeaderBoard-blue.svg)](https://huggingface.co/spaces/BestWishYsh/ChronoMagic-Bench)
+[![hf_space](https://img.shields.io/badge/🤗-Paper%20In%20HF-red.svg)](https://huggingface.co/papers/2406.18522)
+[![arXiv](https://img.shields.io/badge/Arxiv-2406.18522-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2406.18522) 
+[![Home Page](https://img.shields.io/badge/Project-<Website>-blue.svg)](https://pku-yuangroup.github.io/ChronoMagic-Bench/) 
+[![Dataset](https://img.shields.io/badge/Dataset-ChronoMagicPro-green)](https://huggingface.co/datasets/BestWishYsh/ChronoMagic-Pro)
+[![Dataset Download](https://img.shields.io/badge/Download-Sampled_Videos-red)](https://huggingface.co/datasets/BestWishYsh/ChronoMagic-Bench/tree/main/Results)
+[![zhihu](https://img.shields.io/badge/-Twitter@Adina%20Yakup%20-black?logo=twitter&logoColor=1D9BF0)](https://twitter.com/AdeenaY8/status/1806409038743171191)
