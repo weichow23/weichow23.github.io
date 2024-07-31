@@ -19,7 +19,7 @@ In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and 
 
 ### Academic Service
 
-##### Workshop Organizer
+##### Challenge Organizer
 
 [DEMON: Demonstrative Instruction Following Challenge](https://dcdmllm.github.io/DEMON-challenge/) (MM'2024)
 
@@ -91,4 +91,3 @@ In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and 
         </td>
     </tr>
 </table>
-
