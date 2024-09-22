@@ -11,9 +11,9 @@ I'm an undergraduate student in Zhejiang University, major in Computer Science a
 
 My research focuses on **Vision-Language models** and extends in two directions:
 
-- **Foundational research** on Vision-Language models, including fundamental exploration of methods like Transformer applications.
+- **Foundational research** on `Vision-Language models`, including fundamental exploration of methods like Transformer and Graph Neuron Network.
 
-- **Applications** of Vision-Language models, primarily in two areas: embodied agents and web agents.
+- **Applications** of Vision-Language models, primarily in two areas: `embodied agents` and `web agents`.
 
 
 
@@ -118,7 +118,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
-
+$^*$equal contribution
 
 
 ### Course Project
@@ -195,6 +195,35 @@ My research focuses on **Vision-Language models** and extends in two directions:
 
 [DEMON: Demonstrative Instruction Following Challenge](https://dcdmllm.github.io/DEMON-challenge/) (MM'2024)
 
+### Experience
+
+<table style="width:100%; border:none; border-collapse:collapse;"> 
+  <tr>
+    <td style="width:10%; vertical-align:middle; text-align:center;">
+      <img src="E:/gitproject/zjuerme.github.io/images/zju.png" alt="" style="width:70px;" />
+    </td>
+    <td style="width:90%; vertical-align:top; font-size:12px;">
+      <span style="font-size:16px; font-weight:bold;">Zhejiang University</span><br>
+      2021.08 ~ 2025.06 (expected)<br>
+      First year GPA: 93.7/100 <strong>(rank 1/977)</strong> engerining department<br> 
+      Final GPA: GPA: 92.9/100 (rank 5/148)<br>
+      B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)
+    </td>
+  </tr>
+   <tr>
+    <td style="width:6%; vertical-align:middle; text-align:center;">
+      <img src="../images/hku.png" alt="" style="width:70px;" />
+    </td>
+    <td style="width:90%; vertical-align:top; font-size:12px;">
+   <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
+      2023.06 - 2023.12<br>
+      Research Assistant in <a href="https://mmlab.ie.cuhk.edu.hk/people.html">MMLab</a> supervisored by Professor <a href="http://luoping.me/">Luo Ping</a>
+    </td>
+  </tr> 
+</table>
+
+
 ### Misc.
 
 In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and taking photography 📷
+
