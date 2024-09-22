@@ -118,7 +118,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
-$^*$equal contribution
+<span style="text-transform:lowercase;">$^*$equal contribution</span>
 
 
 ### Course Project
