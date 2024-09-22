@@ -9,9 +9,15 @@ redirect_from:
 
 I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE
 
-:thinking: could be even more in future ...
+My research focuses on **Vision-Language models** and extends in two directions:
 
-# Publications
+- **Foundational research** on Vision-Language models, including fundamental exploration of methods like Transformer applications.
+
+- **Applications** of Vision-Language models, primarily in two areas: embodied agents and web agents.
+
+
+
+### Publications
 
 <a href="https://www.flaticon.com/free-icons/korea" title="korea icons"></a>
 
@@ -189,6 +195,6 @@ I'm an undergraduate student in Zhejiang University, major in Computer Science a
 
 [DEMON: Demonstrative Instruction Following Challenge](https://dcdmllm.github.io/DEMON-challenge/) (MM'2024)
 
-### Hobby
+### Misc.
 
 In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and taking photography 📷
