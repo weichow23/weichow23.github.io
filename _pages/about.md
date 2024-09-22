@@ -200,7 +200,7 @@ $^*$equal contribution
 <table style="width:100%; border:none; border-collapse:collapse;"> 
   <tr>
     <td style="width:10%; vertical-align:middle; text-align:center;">
-      <img src="E:/gitproject/zjuerme.github.io/images/zju.png" alt="" style="width:70px;" />
+      <img src="../images/zju.png" alt="" style="width:70px;" />
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
       <span style="font-size:16px; font-weight:bold;">Zhejiang University</span><br>
@@ -221,6 +221,7 @@ $^*$equal contribution
     </td>
   </tr> 
 </table>
+
 
 
 ### Misc.
