@@ -16,7 +16,6 @@ My research focuses on **Vision-Language models** and extends in two directions:
 - **Applications** of Vision-Language models, primarily in two areas: `embodied agents` and `web agents`.
 
 
-
 ### Publications
 
 <a href="https://www.flaticon.com/free-icons/korea" title="korea icons"></a>
@@ -53,6 +52,49 @@ My research focuses on **Vision-Language models** and extends in two directions:
     }
 </style>
 <table>
+    <tr>
+        <td class="first-column">
+                <img src="../images/sugar.png" width="100%"/>
+        </td>
+        <td class="second-column">
+            <span class="blue-bold">Unified Generative and Discriminative Training for Multi-modal Large Language Models</span>
+            <div>
+                <strong>Wei Chow</strong>,
+                Juncheng Li, 
+                Kaihang Pan, 
+                Qifan Yu, 
+                Hao Fei, 
+                Zhiqi Ge, 
+                Shuai Yang, 
+                Siliang Tang, 
+                Hanwang Zhang, 
+                Qianru Sun
+            </div>
+            <div>
+                <a href="coming soon"><img src="https://img.shields.io/badge/NeurIPS 2024-poster-blue" alt="Poster"></a>
+            </div> 
+        </td>
+    </tr>
+    <tr>
+        <td class="first-column">
+                <img src="../images/physbench.png" width="80%"/>
+        </td>
+        <td class="second-column">
+            <span class="blue-bold">PhysBench: Benchmarking and Enhancing Vision-Language Models for Physical World Understanding</span>
+            <div>
+                <strong>Wei Chow<sup>*</sup></strong>,
+                Jiageng Mao<sup>*</sup>, 
+                Boyi Li, 
+                Daniel Seita, 
+                Vitor Guizilini, 
+                Yue Wang
+            </div>
+            <div>
+                <a href="https://physbench.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
+                <a href="https://github.com/USC-GVL/PhysBench"><img src="https://img.shields.io/github/stars/USC-GVL/PhysBench?style=social&amp;logo=github" width="75pt"></a>
+            </div> 
+        </td>
+    </tr>
     <tr>
         <td class="first-column">
                 <img src="../images/paper1.png" width="100%"/>
@@ -118,6 +160,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
+
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
 
 
