@@ -50,31 +50,12 @@ My research focuses on **Vision-Language models** and extends in two directions:
     table, th, td {
         border: none;
     }
+    /* 去除链接下划线 */
+    a {
+        text-decoration: none; 
+    }
 </style>
 <table>
-    <tr>
-        <td class="first-column">
-                <img src="../images/sugar.png" width="100%"/>
-        </td>
-        <td class="second-column">
-            <span class="blue-bold">Unified Generative and Discriminative Training for Multi-modal Large Language Models</span>
-            <div>
-                <strong>Wei Chow</strong>,
-                Juncheng Li, 
-                Kaihang Pan, 
-                Qifan Yu, 
-                Hao Fei, 
-                Zhiqi Ge, 
-                Shuai Yang, 
-                Siliang Tang, 
-                Hanwang Zhang, 
-                Qianru Sun
-            </div>
-            <div>
-                <a href="coming soon"><img src="https://img.shields.io/badge/NeurIPS 2024-poster-blue" alt="Poster"></a>
-            </div> 
-        </td>
-    </tr>
     <tr>
         <td class="first-column">
                 <img src="../images/physbench.png" width="80%"/>
@@ -92,6 +73,33 @@ My research focuses on **Vision-Language models** and extends in two directions:
             <div>
                 <a href="https://physbench.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
                 <a href="https://github.com/USC-GVL/PhysBench"><img src="https://img.shields.io/github/stars/USC-GVL/PhysBench?style=social&amp;logo=github" width="75pt"></a>
+                <a href="https://huggingface.co/datasets/USC-GVL/PhysBench">
+    				<img src="https://img.shields.io/badge/🤗-Dataset-blue.svg"></a>  
+                <a href="https://eval.ai/web/challenges/challenge-page/2379/overview">
+                    <img src="https://img.shields.io/badge/🔺-EvalAI-gray.svg?"></a>
+            </div> 
+        </td>
+    </tr>
+    <tr>
+        <td class="first-column">
+                <img src="../images/sugar.png" width="80%"/>
+        </td>
+        <td class="second-column">
+            <span class="blue-bold">Unified Generative and Discriminative Training for Multi-modal Large Language Models</span>
+            <div>
+                <strong>Wei Chow</strong>,
+                Juncheng Li, 
+                Kaihang Pan, 
+                Qifan Yu, 
+                Hao Fei, 
+                Zhiqi Ge, 
+                Shuai Yang, 
+                Siliang Tang, 
+                Hanwang Zhang, 
+                Qianru Sun
+            </div>
+            <div>
+                <a href="coming soon"><img src="https://img.shields.io/badge/NeurIPS 2024-poster-blue" alt="Poster"></a>
             </div> 
         </td>
     </tr>
@@ -162,6 +170,8 @@ My research focuses on **Vision-Language models** and extends in two directions:
 </table>
 
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
+
+
 
 
 ### Course Project
