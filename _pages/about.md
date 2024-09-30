@@ -248,7 +248,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
 
 [DEMON: Demonstrative Instruction Following Challenge](https://dcdmllm.github.io/DEMON-challenge/) (MM'2024)
 
-**Reviewer**
+##### Reviewer
 
 ICLR'25
 
