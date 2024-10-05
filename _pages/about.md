@@ -277,7 +277,18 @@ ICLR'25
       Research Assistant in <a href="https://mmlab.ie.cuhk.edu.hk/people.html">MMLab</a> supervisored by Professor <a href="http://luoping.me/">Luo Ping</a>
     </td>
   </tr> 
+  <tr>
+    <td style="width:6%; vertical-align:middle; text-align:center;">
+      <img src="../images/usc.png" alt="" style="width:70px;" />
+    </td>
+    <td style="width:90%; vertical-align:top; font-size:12px;">
+   <span style="font-size:16px; font-weight:bold;">University of Southern California</span> <br>
+      2024.06 - Present<br>
+      Intern supervisored by Professor <a href="https://yuewang.xyz/">Yue Wang</a>
+    </td>
+  </tr> 
 </table>
+
 
 
 
