@@ -213,7 +213,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 <img src="../images/secondhand.png" width="100%"/>
         </td>
         <td class="second-column">
-            <a href="https://github.com/zjuerme/Second-hand_housing_transaction"><span class="blue-bold">Analysis on the relationship between second-hand housing transactions and business districts in Hangzhou's main urban area</span></a>
+            <a href="https://github.com/weichow23/Second-hand_housing_transaction"><span class="blue-bold">Analysis on the relationship between second-hand housing transactions and business districts in Hangzhou's main urban area</span></a>
             <div>
                 [2024 Spring in ZJU] Real Estate Finance and Economics
             </div>
@@ -224,7 +224,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 <img src="../images/photo.png" width="100%"/>
         </td>
         <td class="second-column">
-            <a href="https://github.com/zjuerme/Computational-Photography"><span class="blue-bold">Interactive digital montage</span></a>
+            <a href="https://github.com/weichow23/Computational-Photography"><span class="blue-bold">Interactive digital montage</span></a>
             <div>
                 [2024 Spring in ZJU] Computational Photography
             </div>
@@ -235,7 +235,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 <img src="../images/mathm.png" width="100%"/>
         </td>
         <td class="second-column">
-            <a href="https://github.com/zjuerme/math-modeling-proj"><span class="blue-bold">Optimal matching of tutors and students</span></a>
+            <a href="https://github.com/weichow23/math-modeling-proj"><span class="blue-bold">Optimal matching of tutors and students</span></a>
             <div>
                 [2022 Fall in ZJU] Math Modeling
             </div>
