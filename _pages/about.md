@@ -1,298 +1,49 @@
 ---
 permalink: /
-excerpt: "About me"
+title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE
+This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the respository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. You can fork [this repository](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and markdown files, add your own PDFs and other content, and have your own site for free, with no ads! An older version of this template powers my own personal website at [stuartgeiger.com](http://stuartgeiger.com), which uses [this Github repository](https://github.com/staeiou/staeiou.github.io).
 
-My research focuses on **Vision-Language models** and extends in two directions:
+A data-driven personal website
+======
+Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
 
-- **Foundational research** on `Vision-Language models`, including fundamental exploration of methods like Transformer and Graph Neuron Network.
+Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over -- just be sure to save the markdown files! Finally, you can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
 
-- **Applications** of Vision-Language models, primarily in two areas: `embodied agents` and `web agents`.
+Getting started
+======
+1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
+1. Fork [this repository](https://github.com/academicpages/academicpages.github.io) by clicking the "fork" button in the top right. 
+1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
+1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](http://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
+1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
+1. Check status by going to the repository settings, in the "GitHub pages" section
 
+Site-wide configuration
+------
+The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
 
-### Publications
+Create content & metadata
+------
+For site content, there is one markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
 
-<a href="https://www.flaticon.com/free-icons/korea" title="korea icons"></a>
+**Markdown generator**
 
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    td {
-        padding: 5pt;
-        vertical-align: middle;
-    }
-    .first-column {
-        width: 25%;
-        padding:5pt;
-        text-align: center;
-        vertical-align:middle
-    }
-    .second-column {
-        width: 75%;
-        padding:5pt;
-        text-align: left;
-        vertical-align:middle
-    }
-    .blue-bold {
-        color: navy; /* 使用深蓝色 */
-        font-weight: bold; /* 加粗 */
-        font-size: 16px;
-    }
-    /* 隐藏表格边框 */
-    table, th, td {
-        border: none;
-    }
-    /* 去除链接下划线 */
-    a {
-        text-decoration: none; 
-    }
-</style>
-<table>
-    <tr>
-        <td class="first-column">
-                <img src="../images/physbench.png" width="80%"/>
-        </td>
-        <td class="second-column">
-            <span class="blue-bold">PhysBench: Benchmarking and Enhancing Vision-Language Models for Physical World Understanding</span>
-            <div>
-                <strong>Wei Chow<sup>*</sup></strong>,
-                Jiageng Mao<sup>*</sup>, 
-                Boyi Li, 
-                Daniel Seita, 
-                Vitor Guizilini, 
-                Yue Wang
-            </div>
-            <div>
-                <a href="https://physbench.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
-                <a href="https://github.com/USC-GVL/PhysBench"><img src="https://img.shields.io/github/stars/USC-GVL/PhysBench?style=social&amp;logo=github" width="75pt"></a>
-                <a href="https://huggingface.co/datasets/USC-GVL/PhysBench">
-    				<img src="https://img.shields.io/badge/🤗-Dataset-blue.svg"></a>  
-                <a href="https://eval.ai/web/challenges/challenge-page/2379/overview">
-                    <img src="https://img.shields.io/badge/🔺-EvalAI-gray.svg?"></a>
-            </div> 
-        </td>
-    </tr>
-    <tr>
-        <td class="first-column">
-                <img src="../images/sugar.png" width="80%"/>
-        </td>
-        <td class="second-column">
-            <span class="blue-bold">Unified Generative and Discriminative Training for Multi-modal Large Language Models</span>
-            <div>
-                <strong>Wei Chow</strong>,
-                Juncheng Li, 
-                Kaihang Pan, 
-                Qifan Yu, 
-                Hao Fei, 
-                Zhiqi Ge, 
-                Shuai Yang, 
-                Siliang Tang, 
-                Hanwang Zhang, 
-                Qianru Sun
-            </div>
-            <div>
-                <a href="coming soon"><img src="https://img.shields.io/badge/NeurIPS 2024-poster-blue" alt="Poster"></a>
-            </div> 
-        </td>
-    </tr>
-    <tr>
-        <td class="first-column">
-                <img src="../images/paper1.png" width="100%"/>
-        </td>
-        <td class="second-column">
-            <span class="blue-bold">One Graph Model for Cross-domain Dynamic Link Prediction</span>
-            <div>
-                Xuanwen Huang<sup>*</sup>
-                <strong>Wei Chow<sup>*</sup></strong>,
-                Yize Zhu,
-                Yang Wang,
-                Ziwei Chai,
-                Chunping Wang,
-                Lei Chen,
-                Yang Yang
-            </div>
-            <div>
-                <a href="https://arxiv.org/pdf/2402.02168.pdf"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
-            </div> 
-        </td>
-    </tr>
-    <tr>
-        <td class="first-column">
-                <img src="../images/paper2.png" width="80%"/>
-        </td>
-        <td class="second-column">
-            <span class="blue-bold">Exploring Correlations of Self-supervised Tasks for Graphs</span>
-            <div>
-                Taoran Fang,
-                <strong>Wei Chow</strong>,
-                Yifei Sun,
-                Kaiqiao Han,
-                Lvbin Ma,
-                Yang Yang
-            </div>
-            <div>
-                <a href="https://arxiv.org/pdf/2405.04245"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
-                <a href="https://github.com/zjunet/GraphTCM"><img src="https://img.shields.io/github/stars/zjunet/GraphTCM?style=social&amp;logo=github" width="75pt"></a>
-            </div> 
-        </td>
-    </tr>
-    <tr>
-        <td class="first-column">
-                <img src="../images/paper3.png" width="80%"/>
-        </td>
-        <td class="second-column">
-            <span class="blue-bold">Auto-Encoding Morph-Tokens for Multimodal LLM</span>
-            <div>
-                Kaihang Pan,
-                Siliang Tang,
-                Juncheng Li,
-                Zhaoyu Fan,
-                <strong>Wei Chow</strong>,
-                Shuicheng Yan,
-                Tat-Seng Chua,
-                Yueting Zhuang,
-                Hanwang Zhang
-            </div>
-            <div>
-                <a href="https://arxiv.org/pdf/2405.01926"><img src="https://img.shields.io/badge/ICML 2024-spotlight-blue" alt="Spotlight"></a>
-                <a href="https://github.com/DCDmllm/MorphTokens"><img src="https://img.shields.io/github/stars/DCDmllm/MorphTokens?style=social&amp;logo=github" width="75pt"></a>
-            </div> 
-        </td>
-    </tr>
-</table>
+I have also created [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
+) that converts a CSV containing structured data about talks or presentations into individual markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the markdown files, then commit and push them to the GitHub repository.
 
-<span style="text-transform:lowercase;">$^*$equal contribution</span>
+How to edit your site's GitHub repository
+------
+Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
 
+Example: editing a markdown file for a talk
+![Editing a markdown file for a talk](/images/editing-talk.png)
 
-
-
-### Course Project
-
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    td {
-        padding: 5pt;
-        vertical-align: middle;
-    }
-    .first-column {
-        width: 25%;
-        padding:5pt;
-        text-align: center;
-        vertical-align:middle
-    }
-    .second-column {
-        width: 75%;
-        padding:5pt;
-        text-align: left;
-        vertical-align:middle
-    }
-    .blue-bold {
-        color: navy; /* 使用深蓝色 */
-        font-weight: bold; /* 加粗 */
-        font-size: 16px;
-    }
-    /* 隐藏表格边框 */
-    table, th, td {
-        border: none;
-    }
-</style>
-<table>
-    <tr>
-        <td class="first-column">
-                <img src="../images/secondhand.png" width="100%"/>
-        </td>
-        <td class="second-column">
-            <a href="https://github.com/zjuerme/Second-hand_housing_transaction"><span class="blue-bold">Analysis on the relationship between second-hand housing transactions and business districts in Hangzhou's main urban area</span></a>
-            <div>
-                [2024 Spring in ZJU] Real Estate Finance and Economics
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="first-column">
-                <img src="../images/photo.png" width="100%"/>
-        </td>
-        <td class="second-column">
-            <a href="https://github.com/zjuerme/Computational-Photography"><span class="blue-bold">Interactive digital montage</span></a>
-            <div>
-                [2024 Spring in ZJU] Computational Photography
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="first-column">
-                <img src="../images/mathm.png" width="100%"/>
-        </td>
-        <td class="second-column">
-            <a href="https://github.com/zjuerme/math-modeling-proj"><span class="blue-bold">Optimal matching of tutors and students</span></a>
-            <div>
-                [2022 Fall in ZJU] Math Modeling
-            </div>
-        </td>
-    </tr>
-</table>
-### Academic Service
-
-##### Challenge Organizer
-
-[DEMON: Demonstrative Instruction Following Challenge](https://dcdmllm.github.io/DEMON-challenge/) (MM'2024)
-
-##### Reviewer
-
-ICLR'25
-
-### Experience
-
-<table style="width:100%; border:none; border-collapse:collapse;"> 
-  <tr>
-    <td style="width:10%; vertical-align:middle; text-align:center;">
-      <img src="../images/zju.png" alt="" style="width:70px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-      <span style="font-size:16px; font-weight:bold;">Zhejiang University</span><br>
-      2021.08 ~ 2025.06 (expected)<br>
-      First year GPA: 93.7/100 <strong>(rank 1/977)</strong> engerining department<br> 
-      Final GPA: GPA: 92.9/100 (rank 5/148)<br>
-      B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)
-    </td>
-  </tr>
-   <tr>
-    <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/hku.png" alt="" style="width:70px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
-      2023.06 - 2023.12<br>
-      Research Assistant in <a href="https://mmlab.ie.cuhk.edu.hk/people.html">MMLab</a> supervisored by Professor <a href="http://luoping.me/">Luo Ping</a>
-    </td>
-  </tr> 
-  <tr>
-    <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/usc.png" alt="" style="width:70px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">University of Southern California</span> <br>
-      2024.06 - Present<br>
-      Intern supervisored by Professor <a href="https://yuewang.xyz/">Yue Wang</a>
-    </td>
-  </tr> 
-</table>
-
-
-
-
-### Misc.
-
-In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and taking photography 📷
-
+For more info
+------
+More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful.
