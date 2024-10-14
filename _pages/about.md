@@ -165,11 +165,14 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 <a href="https://arxiv.org/abs/2410.08261"><img src="https://img.shields.io/badge/arXiv-2410.08261-b31b1b.svg" alt="arXiv"></a>
                 <a href="https://github.com/viiika/Meissonic"><img src="https://img.shields.io/github/stars/viiika/Meissonic?style=social&amp;logo=github" width="75pt"></a>
                 <a href="https://huggingface.co/MeissonFlow/Meissonic">
-    				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>  
+    				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>
+                <a href="https://huggingface.co/spaces/MeissonFlow/meissonic">
+    				<img src="https://img.shields.io/badge/🤗-Space-purple.svg"></a>
             </div> 
         </td>
     </tr>
 </table>
+
 
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
 
