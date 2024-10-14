@@ -146,24 +146,26 @@ My research focuses on **Vision-Language models** and extends in two directions:
     </tr>
     <tr>
         <td class="first-column">
-                <img src="../images/paper3.png" width="80%"/>
+                <img src="../images/paper4.png" width="80%"/>
         </td>
         <td class="second-column">
-            <span class="blue-bold">Auto-Encoding Morph-Tokens for Multimodal LLM</span>
+            <span class="blue-bold">Meissonic: Revitalizing Masked Generative Transformers for Efficient High-Resolution Text-to-Image Synthesis</span>
             <div>
-                Kaihang Pan,
-                Siliang Tang,
-                Juncheng Li,
-                Zhaoyu Fan,
-                <strong>Wei Chow</strong>,
-                Shuicheng Yan,
-                Tat-Seng Chua,
-                Yueting Zhuang,
-                Hanwang Zhang
+                Jinbin Bai, 
+                Tian Ye, 
+                <strong>Wei Chow</strong>, 
+                Enxin Song, 
+                Qing-Guo Chen, 
+                Xiangtai Li,
+                Zhen Dong, 
+                Lei Zhu, 
+                Shuicheng Yan
             </div>
             <div>
-                <a href="https://arxiv.org/pdf/2405.01926"><img src="https://img.shields.io/badge/ICML 2024-spotlight-blue" alt="Spotlight"></a>
-                <a href="https://github.com/DCDmllm/MorphTokens"><img src="https://img.shields.io/github/stars/DCDmllm/MorphTokens?style=social&amp;logo=github" width="75pt"></a>
+                <a href="https://arxiv.org/abs/2410.08261"><img src="https://img.shields.io/badge/arXiv-2410.08261-b31b1b.svg" alt="arXiv"></a>
+                <a href="https://github.com/viiika/Meissonic"><img src="https://img.shields.io/github/stars/viiika/Meissonic?style=social&amp;logo=github" width="75pt"></a>
+                <a href="https://huggingface.co/MeissonFlow/Meissonic">
+    				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>  
             </div> 
         </td>
     </tr>
