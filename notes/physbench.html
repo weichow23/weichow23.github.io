@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmarking MLLM for Physical World Understanding</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="./../images/icon/icon1.png">
+</head>
+<body>
+
+<h1>Benchmarking MLLM for Physical World Understanding</h1>
+
+<h2>Motivation</h2>
+<p>
+    MLLMs are good at general vision QA, but it remains unclear whether they can understand physical properties and physical phenomena in the real world. 
+    Understanding the physical world is very important for many applications such as robotics and embodied AI, so it is necessary to build a benchmark 
+    to see whether MLLMs can really understand the physical world.
+</p>
+
+<h2>Resource</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Slides</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>20240705</td>
+            <td>Daily progress report</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EZdV--EqR6ZIuz1VBnsuy4wBr6UsfU3RbywvKxNS1KlCbw?e=fLP2Sf">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240712</td>
+            <td>Daily progress report</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/ET9wV7VSJHxDk-GUv3lTRe8BSRKqAskearCcWBQ4obrGRg?e=p41wqU">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240719</td>
+            <td>Daily progress report</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EXUBy-CwE4FCiplKiGMvSe4BBlLsdP6n6H9lWGNLISQxlQ?e=mcVbxj">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240726</td>
+            <td>Daily progress report</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/Ef8rekeg8cVPuGqnsdd7y8IBKXx072SfpTrHKEpQz-eAgQ?e=pOO77P">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240809</td>
+            <td>Daily progress report</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EQBRtV7FO25Km8sak4C7t3cBRe_VW3rT7U-ziP76clz-Ng?e=Jdlxq2">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240816</td>
+            <td>Daily progress report</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EaFJIstlughJkjcm25IooSgBpVPzzfdiIkj_MTMnCg021A?e=QlxJeH">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240823</td>
+            <td>Check the robotics experiment</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EaXNmAqWz39GtvxGJZAnctIBL6YUlVwtLZc2djxMXl-zug?e=fSD4j7">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240906</td>
+            <td>Shortly introduce the work</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EeYHiBLDapxGvO_eQBzehgoBjT-C75V2SG5fVn34mSayfw?e=0mmco5">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240913</td>
+            <td>First whole group meeting</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EbtanYORyvlAhH2DX5sXOZYBP1R-rLHlGkvlTIIhL4LVJA?e=J7loaw">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240920</td>
+            <td>Article check</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EXy0FxS6i6BHs4AmYuyLGfoBNswbUe36g-n1YW6hwm6Y7w?e=DBQrhg">Link</a></td>
+        </tr>
+        <tr>
+            <td>20240927</td>
+            <td>Article check</td>
+            <td><a href="https://1drv.ms/p/c/9dec1bdefe32521d/EcGLEl1zl1NMqHJUYWpC8k0B2IohKDHaw6gyrbBSFzqzSw?e=Hec6Y8">Link</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Related Works</h2>
+<p>
+    <a href="https://humane-cello-8b8.notion.site/Related-work-statics-122eb6007d2c8044b077f03f26a1d79b?pvs=25">Related work statics</a>
+</p>
+
+<h2>Goal</h2>
+<ul>
+    <li>Build a large-scale dataset for physical world question-answering (VQA-based dataset) in <strong>video</strong></li>
+    <li>Benchmarking performances of different MLLMs</li>
+    <li>Draw some observations and submit a paper to ICLR</li>
+</ul>
+
+<h2>Physical Understanding Dataset</h2>
+
+<h3>Question Types</h3>
+<p>
+    See in the <a href="https://docs.qq.com/sheet/DSEJkWHdESnVtamdZ?tab=BB08J2">Excel</a>
+</p>
+
+<h2>Other work</h2>
+<ul>
+    <li>Build website</li>
+    <li>Upload to hugging face</li>
+    <li><a href="https://eval.ai/web/challenges/challenge-page/2179/evaluation">Evaluation - EvalAI</a> test bench</li>
+    <li><a href="https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard">Leaderboard</a></li>
+</ul>
+
+<h2>Timeline</h2>
+
+<h3>Week 1</h3>
+<ul>
+    <li class="checked">Literature Review</li>
+    <li class="checked">Design specific question templates</li>
+    <li class="checked">Figure out what physical simulation platform we can use</li>
+</ul>
+
+<h3>Week 2</h3>
+<ul>
+    <li class="checked">Try to collect a wave of data for each process</li>
+    <li class="checked">Determine the format of the collected data</li>
+</ul>
+
+<h3>Week 3-4</h3>
+<ul>
+    <li class="checked">Write simulation code for data generation</li>
+    <li class="checked">Design questions and answers for the collected data</li>
+    <li class="checked">Finish building the simulated VQA datasets</li>
+</ul>
+
+<h3>Week 5-8</h3>
+<ul>
+    <li class="checked">Build a real-world experimental platform</li>
+    <li class="checked">Collect video data</li>
+    <li class="checked">Design questions and answers for the collected data</li>
+    <li class="checked">Finish building the real VQA datasets</li>
+</ul>
+
+<h3>Week 9-10</h3>
+<ul>
+    <li class="checked">Setup different MLLMs</li>
+    <li class="checked">Benchmarking MLLMs performances on the dataset</li>
+</ul>
+
+<h3>Week 11-12</h3>
+<ul>
+    <li class="checked">Explore possible improvements and findings</li>
+    <li class="checked">Write a paper and submit it to ICLR</li>
+    <li class="checked">Build website and upload to huggingface</li>
+</ul>
+
+</body>
+</html>

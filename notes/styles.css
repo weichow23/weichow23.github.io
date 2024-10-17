@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 20px 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Only apply checkboxes to items with 'checked' or 'unchecked' class */
+li.checked, li.unchecked {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+li.checked::before, li.unchecked::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 15px;  /* Reduced size */
+    height: 15px; /* Reduced size */
+    border: 2px solid #333;
+    border-radius: 3px;
+}
+
+/* Checked box with checkmark */
+li.checked::before {
+    content: '\2713'; /* Checkmark symbol */
+    color: white;
+    background-color: #2196F3;
+    text-align: center;
+    line-height: 15px;  /* Adjust to fit smaller box */
+    font-weight: bold;
+    border-color: #2196F3;
+}
+
+/* Checked items will be crossed out and greyed out */
+li.checked {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* Unchecked items keep the default styling */
+li.unchecked::before {
+    background-color: white;
+}
+
+/* Other list items (without checked or unchecked) won't have checkboxes */
+li:not(.checked):not(.unchecked) {
+    padding-left: 0;
+}
