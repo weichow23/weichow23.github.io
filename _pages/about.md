@@ -255,7 +255,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
 
 ##### Reviewer
 
-ICLR'25
+WWW'25
 
 ### Experience
 
