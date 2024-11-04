@@ -99,7 +99,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 Qianru Sun
             </div>
             <div>
-                <a href="coming soon"><img src="https://img.shields.io/badge/NeurIPS 2024-poster-blue" alt="Poster"></a>
+                <a href="http://arxiv.org/abs/2411.00304"><img src="https://img.shields.io/badge/NeurIPS 2024-poster-blue" alt="Poster"></a>
             </div> 
         </td>
     </tr>
@@ -172,6 +172,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
+
 
 
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
