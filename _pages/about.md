@@ -11,28 +11,27 @@ I'm an undergraduate student in Zhejiang University, major in Computer Science a
 
 My research focuses on **Vision-Language models** and extends in two directions:
 
-- diffusion (text2image, image edit)
-- robotics (vla)
+- Diffusion (text2image, image edit)
+- Robotics (vla)
 
 <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-  <svg width="500" height="400" style="border: 1px solid transparent;">
+  <svg width="500" height="330" style="border: 1px solid transparent;">
     <!-- VL Circle -->
-    <circle cx="250" cy="150" r="100" fill="rgba(244,143,177,0.2)" stroke="rgb(244,143,177)" stroke-width="4"/>
-    <text x="180" y="100" fill="rgb(244,143,177)" style="font-size: 18px; font-weight: bold;">Vision-Language</text>
-    <text x="210" y="130" fill="black" style="font-size: 10px;">Sugar, NeurIPS’21</text>
+    <circle cx="250" cy="120" r="100" fill="rgba(244,143,177,0.2)" stroke="rgb(244,143,177)" stroke-width="4"/>
+    <text x="180" y="70" fill="rgb(244,143,177)" style="font-size: 18px; font-weight: bold;">Vision-Language</text>
+    <text x="210" y="100" fill="black" style="font-size: 10px;">Sugar, NeurIPS’21</text>
     <!-- Robotics Circle -->
-    <circle cx="170" cy="250" r="100" fill="rgba(255,202,100,0.2)" stroke="rgb(255,202,100)" stroke-width="4"/>
-    <text x="100" y="250" fill="rgb(255,202,100)" style="font-size: 18px; font-weight: bold;">Robotics</text>
-    <text x="115" y="290" fill="black" style="font-size: 10px;">VLT</text>
+    <circle cx="170" cy="220" r="100" fill="rgba(255,202,100,0.2)" stroke="rgb(255,202,100)" stroke-width="4"/>
+    <text x="100" y="210" fill="rgb(255,202,100)" style="font-size: 18px; font-weight: bold;">Robotics</text>
+    <text x="115" y="250" fill="black" style="font-size: 10px;">VLT</text>
     <!-- Education Circle -->
-    <circle cx="330" cy="250" r="100" fill="rgba(129,212,250,0.2)" stroke="rgb(129,212,250)" stroke-width="4"/>
-    <text x="320" y="245" fill="rgb(129,212,250)" style="font-size: 18px; font-weight: bold;">Diffusion</text>
+    <circle cx="330" cy="220" r="100" fill="rgba(129,212,250,0.2)" stroke="rgb(129,212,250)" stroke-width="4"/>
+    <text x="320" y="205" fill="rgb(129,212,250)" style="font-size: 18px; font-weight: bold;">Diffusion</text>
     <!-- Intersection Text -->
-    <text x="325" y="270" fill="black" style="font-size: 10px;">AnyEdit</text>
-    <text x="320" y="285" fill="black" style="font-size: 10px;">Meissonic</text>
+    <text x="325" y="230" fill="black" style="font-size: 10px;">AnyEdit</text>
+    <text x="320" y="245" fill="black" style="font-size: 10px;">Meissonic</text>
   </svg>
 </div>
-
 
 ### Publications
 
