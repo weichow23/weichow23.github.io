@@ -19,7 +19,8 @@ My research focuses on **Vision-Language models** and extends in two directions:
     <!-- VL Circle -->
     <circle cx="250" cy="120" r="100" fill="rgba(244,143,177,0.2)" stroke="rgb(244,143,177)" stroke-width="4"/>
     <text x="180" y="70" fill="rgb(244,143,177)" style="font-size: 18px; font-weight: bold;">Vision-Language</text>
-    <text x="210" y="100" fill="black" style="font-size: 10px;">Sugar, NeurIPS’21</text>
+    <text x="210" y="100" fill="black" style="font-size: 10px;">Sugar, NeurIPS’24</text>
+    <text x="225" y="115" fill="black" style="font-size: 10px;">PhysBench</text>
     <!-- Robotics Circle -->
     <circle cx="170" cy="220" r="100" fill="rgba(255,202,100,0.2)" stroke="rgb(255,202,100)" stroke-width="4"/>
     <text x="100" y="210" fill="rgb(255,202,100)" style="font-size: 18px; font-weight: bold;">Robotics</text>
@@ -32,6 +33,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
     <text x="320" y="245" fill="black" style="font-size: 10px;">Meissonic</text>
   </svg>
 </div>
+
 
 ### Publications
 
