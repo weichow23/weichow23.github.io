@@ -147,6 +147,28 @@ My research focuses on **Vision-Language models** and extends in two directions:
     </tr>
     <tr>
         <td class="first-column">
+                <img src="../images/anyedit.png" width="80%"/>
+        </td>
+        <td class="second-column">
+            <span class="blue-bold">AnyEdit: Unified High-Quality Image Edit with Any Idea</span>
+            <div>
+                Qifan Yu<sup>*</sup>, 
+                <strong>Wei Chow<sup>*</sup></strong>, 
+                Zhongqi Yue, 
+                Yang Wu, 
+                Xiaoyang Wan, 
+                Juncheng Li, 
+                Siliang Tang, 
+                Hanwang Zhang, 
+                Yueting Zhuang
+            </div>
+            <div>
+                <a href="https://arxiv.org/abs/2411.08261"><img src="https://img.shields.io/badge/arXiv-2411.08261-b31b1b.svg" alt="arXiv"></a>
+            </div> 
+        </td>
+    </tr>
+    <tr>
+        <td class="first-column">
                 <img src="../images/paper4.png" width="80%"/>
         </td>
         <td class="second-column">
@@ -173,6 +195,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
+
 
 
 
