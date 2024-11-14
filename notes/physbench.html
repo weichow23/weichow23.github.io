@@ -85,10 +85,293 @@
     </tbody>
 </table>
 
-<h2>Related Works</h2>
+<h2>Related Benchmark</h2>
 <p>
     <a href="https://humane-cello-8b8.notion.site/Related-work-statics-122eb6007d2c8044b077f03f26a1d79b?pvs=25">Related work statics</a>
 </p>
+<p>
+    <a href="https://openreview.net/forum?id=cHroS8VIyN">Benchmarks for Physical Reasoning AI</a>  A good summary of all previous benchmarks, published on PMLR
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Domain & Annotation Method</th>
+            <th>Question Type</th>
+            <th>Time</th>
+            <th>Size (k)</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>NEWTON</td>
+            <td>
+                <span class="label language">language</span>
+                <span class="label human">human</span>
+            </td>
+            <td><span class="label property">property</span></td>
+            <td>2310</td>
+            <td>160</td>
+            <td>700 household manipulable objects across 8 physical attribute. 3 choice</td>
+        </tr>
+        <tr>
+            <td>Physics 101</td>
+            <td>
+                <span class="label vision">vision</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td><span class="label phenomena">phenomena</span></td>
+            <td>16xx</td>
+            <td>—</td>
+            <td>Learning Physical Object Properties from Unlabeled Videos</td>
+        </tr>
+        <tr>
+            <td>CLEVERR</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td>
+                <span class="label property">property</span>
+                <span class="label phenomena">phenomena</span>
+                <span class="label spatial-relation">spatial relation</span>
+            </td>
+            <td>1910</td>
+            <td>300</td>
+            <td>Cube and Sphere</td>
+        </tr>
+        
+        <tr>
+            <td>SuperCLEVR Physics</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td>
+                <span class="label property">property</span>
+                <span class="label phenomena">phenomena</span>
+            </td>
+            <td>2406</td>
+            <td>1.2</td>
+            <td>car and plane. Focus on the dynamic properties of objects, such as velocity, acceleration, and collisions. <b>PyBullet</b></td>
+        </tr>
+        
+        <tr>
+            <td>CATER</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td><span class="label phenomena">phenomena</span></td>
+            <td>1910</td>
+            <td>16.5</td>
+            <td>Cube and Sphere</td>
+        </tr>
+        
+        <tr>
+            <td>Physion</td>
+            <td>
+                <span class="label vision">vision</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td><span class="label phenomena">phenomena</span></td>
+            <td>21xx</td>
+            <td>2.2</td>
+            <td>8 scenarios <b>ThreeDWorld</b> Just predicting whether contact will occur</td>
+        </tr>
+        
+        <tr>
+            <td>Physion++</td>
+            <td>
+                <span class="label vision">vision</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td>
+                <span class="label property">property</span>
+                <span class="label phenomena">phenomena</span>
+            </td>
+            <td>23xx</td>
+            <td>8</td>
+            <td>9 scenarios covering four common mechanical properties of objects: mass, friction, elasticity, and deformability. <b>ThreeDWorld</b> simulator</td>
+        </tr>
+        
+        <tr>
+            <td>ContPhy</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td>
+                <span class="label property">property</span>
+                <span class="label phenomena">phenomena</span>
+            </td>
+            <td>2402</td>
+            <td>6.5</td>
+            <td>only benchmark that contains soft object; 4 scenarios (rope, fluid, cloth, ball). <b>Unity3D</b></td>
+        </tr>
+        
+        <tr>
+            <td>CRIPP-VQA</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td>
+                <span class="label property">property</span>
+                <span class="label phenomena">phenomena</span>
+            </td>
+            <td>2211</td>
+            <td>5</td>
+            <td>Cube and Sphere</td>
+        </tr>
+        <tr>
+            <td>ComPhy</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td>
+                <span class="label property">property</span>
+                <span class="label phenomena">phenomena</span>
+            </td>
+            <td>22xx</td>
+            <td>12</td>
+            <td>Cube and Sphere</td>
+        </tr>
+        <tr>
+            <td>EmbSpatial-Bench</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label human">human</span>
+            </td>
+            <td><span class="label spatial-relation">spatial relation</span></td>
+            <td>2406</td>
+            <td>3.6</td>
+            <td>image. QA for spatial relationship recognition and target object localization</td>
+        </tr>
+        <tr>
+            <td>Spatial VLM</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label synthetic">synthetic</span>
+            </td>
+            <td><span class="label spatial-relation">spatial relation</span></td>
+            <td>2401</td>
+            <td>10000</td>
+            <td>using 2D image create 3D cloud point for annotation the spatial relation. The spatial relation is synthetic (not dataset or benchmark, closed)</td>
+        </tr>
+        <tr>
+            <td>TaskMeAnything</td>
+            <td>
+                <span class="label vision-language">vision-language</span>
+                <span class="label human">human</span>
+            </td>
+            <td>
+                <span class="label property">property</span>
+                <span class="label spatial-relation">spatial relation</span>
+            </td>
+            <td>2406</td>
+            <td>123</td>
+            <td>the method of dataset generation is similar to me</td>
+        </tr>                
+    </tbody>
+</table>
+
+<h2>Related Paper</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Tags</th>
+            <th>Time</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>EDITWORLD</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>2405</td>
+        <td>using physical dynamics for image editing</td>
+    </tr>
+    
+    <tr>
+        <td>VIN</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>1706</td>
+        <td>learning physical dynamics in videos</td>
+    </tr>
+    
+    <tr>
+        <td>PIVOT</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>2402</td>
+        <td>robotics low level control as vqa</td>
+    </tr>
+    <tr>
+        <td>DeliGrasp</td>
+        <td><span class="label llm">LLM</span></td>
+        <td>2403</td>
+        <td>Using LLMs to infer the physical properties of objects, including mass (m), friction coefficient (μ) and repulsion constant (k), these properties are then transformed into strategies that minimize the deformation and adaptability of the material.</td>
+    </tr>
+    <tr>
+        <td>Exploring Failure Cases</td>
+        <td><span class="label llm">LLM</span></td>
+        <td>2402</td>
+        <td>world dynamic feasible</td>
+    </tr>
+    <tr>
+        <td>PhyGrasp</td>
+        <td><span class="label llm">LLM</span></td>
+        <td>2402</td>
+        <td>physical common sense for grasping. <b>PhyPartNet</b> dataset with 195K object</td>
+    </tr>
+    <tr>
+        <td>Vision-Language Model-based Physical Reasoning for Robot Liquid Perception</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>2404</td>
+        <td>For GPT4V progress liquid identification</td>
+    </tr>
+    <tr>
+        <td>PhyDreamer</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>2404</td>
+        <td>PhysDreamer matches this synthetic motion by generating a plausible video of the object's motion and then optimizing the material property field. 3D objects are represented using a 3D Gaussian, physical material fields are simulated via neural fields, and 3D dynamics are simulated using a differentiable material point method (MPM).</td>
+    </tr>
+    <tr>
+        <td>ChronoMagic-Bench</td>
+        <td></td>
+        <td>2406</td>
+        <td><b>T2V</b> four major categories: biological, man-made, atmospheric and physical phenomena, and further refine it into 75 individual categories.</td>
+    </tr>
+    <tr>
+        <td>BLINK</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>2407</td>
+        <td>A novel QA paradigm for MLLM</td>
+    </tr>
+    <tr>
+        <td>Physically Grounded Vision-Language Models for Robotic Manipulation</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>2309</td>
+        <td>Finetune VLM for robotics tasks. <span style="color: #ff1493;">New find!</span> ❤️</td>
+    </tr>
+    <tr>
+        <td>EgoPlan-Bench</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>2312</td>
+        <td>plan, from ego4D</td>
+    </tr>
+    <tr>
+        <td>PhyGenBench</td>
+        <td><span class="label vlm">VLM</span></td>
+        <td>2410</td>
+        <td>Measuring whether the generated video complies with the laws of physics</td>
+    </tr>        
+    <tbody>
+    </tbody>
+</table>
 
 <h2>Goal</h2>
 <ul>

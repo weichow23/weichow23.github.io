@@ -81,3 +81,66 @@ li.unchecked::before {
 li:not(.checked):not(.unchecked) {
     padding-left: 0;
 }
+
+.label {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 2px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+}
+/* physbench */
+.language {
+    background-color: #b5651d; /* 棕色 */
+}
+
+.human {
+    background-color: #c99f5d; /* 浅棕色 */
+}
+
+.vision {
+    background-color: #8fa8c8; /* 蓝色 */
+}
+
+.synthetic {
+    background-color: #e3acb3; /* 粉色 */
+}
+
+.property {
+    background-color: #9fb7b9; /* 浅蓝 */
+}
+
+.phenomena {
+    background-color: #c3999c; /* 浅棕色 */
+}
+
+.spatial-relation {
+    background-color: #e9d084; /* 黄色 */
+}
+.vlm {
+    background-color: #b5b5b5; /* 根据实际颜色调整 */
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-block;
+}
+.llm {
+    background-color: #d1b5d5; /* 根据实际颜色调整 */
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-block;
+}
+/* vlt */
+.flow {
+    background-color: #c3999c; /* 浅棕色 */
+}
+.threed {
+    background-color: #b5651d; /* 棕色 */
+}
+.vla {
+    background-color: #e9d084; /* 黄色 */
+}
