@@ -174,6 +174,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 Qifan Yu<sup>*</sup>, 
                 <strong>Wei Chow<sup>*</sup></strong>, 
                 Zhongqi Yue, 
+                Kaihang Pan,
                 Yang Wu, 
                 Xiaoyang Wan, 
                 Juncheng Li, 
@@ -214,6 +215,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
+
 
 
 
