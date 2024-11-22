@@ -90,11 +90,6 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 Yue Wang
             </div>
             <div>
-                <a href="https://openreview.net/forum?id=Q6a9W6kzv5&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2025%2FConference%2FAuthors%23your-submissions)"><img src="https://img.shields.io/badge/OpenReview-red" alt="ICLR"></a>
-                <a href="https://physbench.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
-                <a href="https://github.com/USC-GVL/PhysBench"><img src="https://img.shields.io/github/stars/USC-GVL/PhysBench?style=social&amp;logo=github" width="75pt"></a>
-                <a href="https://huggingface.co/datasets/USC-GVL/PhysBench">
-    				<img src="https://img.shields.io/badge/🤗-Dataset-blue.svg"></a>  
                 <a href="https://eval.ai/web/challenges/challenge-page/2379/overview">
                     <img src="https://img.shields.io/badge/🔺-EvalAI-gray.svg?"></a>
             </div> 
@@ -216,6 +211,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
+
 
 
 
