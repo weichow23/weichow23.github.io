@@ -301,7 +301,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
 
 ##### Reviewer
 
-WWW'25
+WWW'25, CVPR'25
 
 ### Experience
 
@@ -313,8 +313,7 @@ WWW'25
     <td style="width:90%; vertical-align:top; font-size:12px;">
       <span style="font-size:16px; font-weight:bold;">Zhejiang University</span><br>
       2021.08 ~ 2025.06 (expected)<br>
-      First year GPA: 93.7/100 <strong>(rank 1/977)</strong> engerining department<br> 
-      Final GPA: GPA: 92.9/100 (rank 8/157)<br>
+        GPA: GPA: 92.9/100 (rank <b>1/157</b>)<br>
       B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)
     </td>
   </tr>
@@ -339,6 +338,7 @@ WWW'25
     </td>
   </tr> 
 </table>
+
 
 
 
