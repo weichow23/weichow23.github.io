@@ -1,8 +1,5 @@
 ---
 layout: archive
-title: "Resume"
-permalink: /resume/
-author_profile: true
 ---
 <html lang="en">
 
@@ -23,6 +20,10 @@ author_profile: true
 加上下面这个恢复
 
 ```
+layout: archive
+title: "Resume"
+permalink: /resume/
+author_profile: true
 redirect_from: 
   - /resume/
 ```

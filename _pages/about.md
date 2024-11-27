@@ -335,7 +335,7 @@ WWW'25, CVPR'25
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">Nanyang Technological University</span> <br>
-      2023.12 - 2024.6<br>
+      2023.12 - 2024.06<br>
       Intern supervisored by Professor <a href="https://mreallab.github.io/index.html">Hanwang Zhang</a>
     </td>
   </tr> 
@@ -350,6 +350,7 @@ WWW'25, CVPR'25
     </td>
   </tr> 
 </table>
+
 
 
 
