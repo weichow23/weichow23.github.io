@@ -178,7 +178,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 Yueting Zhuang
             </div>
             <div>
-                <a href="https://arxiv.org/abs/2411.08261"><img src="https://img.shields.io/badge/arXiv-2411.08261-b31b1b.svg" alt="arXiv"></a>
+                <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/arXiv-2411.15738-b31b1b.svg" alt="arXiv"></a>
                 <a href="https://dcd-anyedit.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
         </td>
@@ -211,6 +211,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
+
 
 
 
