@@ -314,23 +314,34 @@ WWW'25, CVPR'25
     <td style="width:90%; vertical-align:top; font-size:12px;">
       <span style="font-size:16px; font-weight:bold;">Zhejiang University</span><br>
       2021.08 ~ 2025.06 (expected)<br>
-        GPA: GPA: 92.9/100 (rank <b>1/157</b>)<br>
-      B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)
-    </td>
+        GPA: GPA: 92.9/100 (rank <b>1/301</b>)<br>
+      B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)<br>
+    	supervisored by Professor <a href="https://person.zju.edu.cn/juncheng">Juncheng Li</a>
+      </td>
   </tr>
-   <tr>
+  <tr>
     <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/hku.png" alt="" style="width:70px;" />
+      <img src="../images/hku.png" alt="" style="width:60px;" />
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
       2023.06 - 2023.12<br>
       Research Assistant in <a href="https://mmlab.ie.cuhk.edu.hk/people.html">MMLab</a> supervisored by Professor <a href="http://luoping.me/">Luo Ping</a>
     </td>
+  </tr>
+   <tr>
+    <td style="width:3%; vertical-align:middle; text-align:center;">
+      <img src="../images/ntu.png" alt="" style="width:56px;" />
+    </td>
+    <td style="width:90%; vertical-align:top; font-size:12px;">
+   <span style="font-size:16px; font-weight:bold;">Nanyang Technological University</span> <br>
+      2023.12 - 2024.6<br>
+      Intern supervisored by Professor <a href="https://mreallab.github.io/index.html">Hanwang Zhang</a>
+    </td>
   </tr> 
   <tr>
     <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/usc.png" alt="" style="width:70px;" />
+      <img src="../images/usc.png" alt="" style="width:65px;" />
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">University of Southern California</span> <br>
@@ -339,6 +350,7 @@ WWW'25, CVPR'25
     </td>
   </tr> 
 </table>
+
 
 
 
