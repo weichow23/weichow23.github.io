@@ -183,6 +183,27 @@ My research focuses on **Vision-Language models** and extends in two directions:
             </div> 
         </td>
     </tr>
+        <tr>
+        <td class="first-column">
+                <img src="../images/hiedit.png" width="80%"/>
+        </td>
+        <td class="second-column">
+            <span class="blue-bold">Hi-Edit: A High-Quality Human-Annotated Dataset for Instruction-based Image Editing</span>
+            <div>
+                Jinbin Bai<sup>*</sup>, 
+                <strong>Wei Chow<sup>*</sup></strong>, 
+                Ling Yang, 
+                Juncheng Li,
+                Hanwang Zhang, 
+                Shuicheng Yan
+            </div>
+            <div>
+                <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/arXiv-2411.15738-b31b1b.svg" alt="arXiv"></a>
+                <a href="https://huggingface.co/MeissonFlow/Meissonic">
+    				<img src="https://img.shields.io/badge/🤗-Data-yellow.svg"></a>
+            </div> 
+        </td>
+    </tr>
     <tr>
         <td class="first-column">
                 <img src="../images/paper4.png" width="80%"/>
@@ -211,13 +232,6 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
-
-
-
-
-
-
-
 
 
 
