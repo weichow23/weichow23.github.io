@@ -164,7 +164,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 <img src="../images/anyedit.png" width="80%"/>
         </td>
         <td class="second-column">
-            <span class="blue-bold">AnyEdit: Unified High-Quality Image Edit with Any Idea</span>
+            <span class="blue-bold">AnyEdit: Mastering Unified High-Quality Image Editing for Any Idea</span>
             <div>
                 Qifan Yu<sup>*</sup>, 
                 <strong>Wei Chow<sup>*</sup></strong>, 
