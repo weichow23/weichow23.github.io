@@ -138,6 +138,8 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 <a href="https://arxiv.org/pdf/2402.02168.pdf"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
                 <a href="https://github.com/weichow23/CrossLink"><img src="https://img.shields.io/github/stars/weichow23/CrossLink?style=social&amp;logo=github" width="75pt"></a>
                 <a href="https://weichow23.github.io/CrossLink/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
+               <a href="https://huggingface.co/MeissonFlow/Meissonic">
+    				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>
             </div> 
         </td>
     </tr>
@@ -234,6 +236,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
+
 
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
 
