@@ -115,6 +115,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
             </div>
             <div>
                 <a href="https://neurips.cc/virtual/2024/poster/93174"><img src="https://img.shields.io/badge/NeurIPS 2024-poster-blue" alt="Poster"></a>
+                <a href="https://sugar-mllm.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
         </td>
     </tr>
@@ -235,10 +236,12 @@ My research focuses on **Vision-Language models** and extends in two directions:
     				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>
                 <a href="https://huggingface.co/spaces/MeissonFlow/meissonic">
     				<img src="https://img.shields.io/badge/🤗-Space-purple.svg"></a>
+                <a href="https://viiika.github.io/Meissonic/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
         </td>
     </tr>
 </table>
+
 
 
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
