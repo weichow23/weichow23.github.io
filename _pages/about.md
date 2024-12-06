@@ -192,7 +192,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 <img src="../images/hiedit.png" width="80%"/>
         </td>
         <td class="second-column">
-            <span class="blue-bold">Hi-Edit: A High-Quality Human-Annotated Dataset for Instruction-based Image Editing</span>
+            <span class="blue-bold">HumanEdit: A High-Quality Human-Rewarded Dataset for Instruction-based Image Editing</span>
             <div>
                 Jinbin Bai<sup>*</sup>, 
                 <strong>Wei Chow<sup>*</sup></strong>, 
@@ -202,9 +202,11 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 Shuicheng Yan
             </div>
             <div>
-                <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/arXiv-2411.15738-b31b1b.svg" alt="arXiv"></a>
+                <a href="https://arxiv.org/abs/2412.04280"><img src="https://img.shields.io/badge/arXiv-2412.04280-b31b1b.svg" alt="arXiv"></a>
                 <a href="https://huggingface.co/MeissonFlow/Meissonic">
     				<img src="https://img.shields.io/badge/🤗-Data-yellow.svg"></a>
+                <a href="https://github.com/viiika/HumanEdit"><img src="https://img.shields.io/github/stars/viiika/HumanEdit?style=social&amp;logo=github" width="75pt"></a>
+                <a href="https://viiika.github.io/HumanEdit/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
         </td>
     </tr>
@@ -236,7 +238,6 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
-
 
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
 
