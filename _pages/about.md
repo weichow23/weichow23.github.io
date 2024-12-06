@@ -197,6 +197,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
                 Jinbin Bai<sup>*</sup>, 
                 <strong>Wei Chow<sup>*</sup></strong>, 
                 Ling Yang, 
+                Xiangtai Li,
                 Juncheng Li,
                 Hanwang Zhang, 
                 Shuicheng Yan
@@ -238,6 +239,7 @@ My research focuses on **Vision-Language models** and extends in two directions:
         </td>
     </tr>
 </table>
+
 
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
 
