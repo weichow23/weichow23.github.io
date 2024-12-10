@@ -7,12 +7,13 @@ redirect_from:
   - /about.html
 ---
 
-I'm an undergraduate student in Zhejiang University, major in Computer Science and minor in ACEE
+I'm an undergraduate student in Zhejiang University.
 
-My research focuses on **Vision-Language models** and extends in two directions:
+My research focuses on achieving **understanding and perception of the physical world** and extends in three directions:
 
-- Diffusion (text2image, image edit)
-- Robotics (vla)
+- Enhancing VLMs' physical perception capabilities to enable their effective functioning as intelligent agents in the physical world
+- Establishing interactions with the physical world through robotics, particularly leveraging VLMs for robotic control
+- Synthesizing virtual environments through image/video generation models (world models)
 
 <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
   <svg width="500" height="330" style="border: 1px solid transparent;">
