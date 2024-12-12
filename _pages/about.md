@@ -185,6 +185,8 @@ My research focuses on achieving **understanding and perception of the physical 
             </div>
             <div>
                 <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/arXiv-2411.15738-b31b1b.svg" alt="arXiv"></a>
+               <a href="https://huggingface.co/Bin1117/anyedit-datasets">
+    				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
                 <a href="https://dcd-anyedit.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
         </td>
@@ -207,7 +209,7 @@ My research focuses on achieving **understanding and perception of the physical 
             <div>
                 <a href="https://arxiv.org/abs/2412.04280"><img src="https://img.shields.io/badge/arXiv-2412.04280-b31b1b.svg" alt="arXiv"></a>
                 <a href="https://huggingface.co/MeissonFlow/Meissonic">
-    				<img src="https://img.shields.io/badge/🤗-Data-yellow.svg"></a>
+    				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
                 <a href="https://github.com/viiika/HumanEdit"><img src="https://img.shields.io/github/stars/viiika/HumanEdit?style=social&amp;logo=github" width="75pt"></a>
                 <a href="https://viiika.github.io/HumanEdit/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
@@ -242,6 +244,7 @@ My research focuses on achieving **understanding and perception of the physical 
         </td>
     </tr>
 </table>
+
 
 
 
@@ -348,7 +351,7 @@ WWW'25, CVPR'25
       <img src="../images/oxford.png" alt="" style="width:62px;" />
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
+   <span style="font-size:16px; font-weight:bold;">University of Oxford</span> <br>
       2024.08 - 2024.09<br>
       Visiting Student
     </td>
@@ -375,7 +378,7 @@ WWW'25, CVPR'25
   </tr> 
   <tr>
     <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/usc.png" alt="" style="width:65px;" />
+      <img src="../images/usc.png" alt="" style="width:62px;" />
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">University of Southern California</span> <br>
@@ -384,6 +387,7 @@ WWW'25, CVPR'25
     </td>
   </tr> 
 </table>
+
 
 
 
