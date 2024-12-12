@@ -345,6 +345,16 @@ WWW'25, CVPR'25
   </tr>
   <tr>
     <td style="width:6%; vertical-align:middle; text-align:center;">
+      <img src="../images/oxford.png" alt="" style="width:62px;" />
+    </td>
+    <td style="width:90%; vertical-align:top; font-size:12px;">
+   <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
+      2024.08 - 2024.09<br>
+      Visiting Student
+    </td>
+  </tr>
+  <tr>
+    <td style="width:6%; vertical-align:middle; text-align:center;">
       <img src="../images/hku.png" alt="" style="width:60px;" />
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
@@ -360,7 +370,7 @@ WWW'25, CVPR'25
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">Nanyang Technological University</span> <br>
       2023.12 - 2024.06<br>
-      Intern supervisored by Professor <a href="https://mreallab.github.io/index.html">Hanwang Zhang</a>
+      Intern supervised by Professor <a href="https://mreallab.github.io/index.html">Hanwang Zhang</a>
     </td>
   </tr> 
   <tr>
@@ -370,10 +380,11 @@ WWW'25, CVPR'25
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">University of Southern California</span> <br>
       2024.06 - Present<br>
-      Intern supervisored by Professor <a href="https://yuewang.xyz/">Yue Wang</a>
+      Intern supervised by Professor <a href="https://yuewang.xyz/">Yue Wang</a>
     </td>
   </tr> 
 </table>
+
 
 
 
