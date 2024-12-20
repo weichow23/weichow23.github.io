@@ -138,7 +138,6 @@ My research focuses on achieving **understanding and perception of the physical 
             </div>
             <div>
                 <a href="https://arxiv.org/pdf/2402.02168.pdf"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
-                <a href="https://github.com/weichow23/CrossLink"><img src="https://img.shields.io/github/stars/weichow23/CrossLink?style=social&amp;logo=github" width="75pt"></a>
                 <a href="https://weichow23.github.io/CrossLink/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
                <a href="https://huggingface.co/MeissonFlow/Meissonic">
     				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>
@@ -161,7 +160,6 @@ My research focuses on achieving **understanding and perception of the physical 
             </div>
             <div>
                 <a href="https://arxiv.org/pdf/2405.04245"><img src="https://img.shields.io/badge/ICML 2024-poster-blue" alt="Poster"></a>
-                <a href="https://github.com/zjunet/GraphTCM"><img src="https://img.shields.io/github/stars/zjunet/GraphTCM?style=social&amp;logo=github" width="75pt"></a>
             </div> 
         </td>
     </tr>
@@ -185,7 +183,7 @@ My research focuses on achieving **understanding and perception of the physical 
             </div>
             <div>
                 <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/arXiv-2411.15738-b31b1b.svg" alt="arXiv"></a>
-               <a href="https://huggingface.co/Bin1117/anyedit-datasets">
+               <a href="https://huggingface.co/Bin1117/AnyEdit">
     				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
                 <a href="https://dcd-anyedit.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
@@ -210,7 +208,6 @@ My research focuses on achieving **understanding and perception of the physical 
                 <a href="https://arxiv.org/abs/2412.04280"><img src="https://img.shields.io/badge/arXiv-2412.04280-b31b1b.svg" alt="arXiv"></a>
                 <a href="https://huggingface.co/MeissonFlow/Meissonic">
     				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
-                <a href="https://github.com/viiika/HumanEdit"><img src="https://img.shields.io/github/stars/viiika/HumanEdit?style=social&amp;logo=github" width="75pt"></a>
                 <a href="https://viiika.github.io/HumanEdit/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
         </td>
@@ -234,7 +231,6 @@ My research focuses on achieving **understanding and perception of the physical 
             </div>
             <div>
                 <a href="https://arxiv.org/abs/2410.08261"><img src="https://img.shields.io/badge/arXiv-2410.08261-b31b1b.svg" alt="arXiv"></a>
-                <a href="https://github.com/viiika/Meissonic"><img src="https://img.shields.io/github/stars/viiika/Meissonic?style=social&amp;logo=github" width="75pt"></a>
                 <a href="https://huggingface.co/MeissonFlow/Meissonic">
     				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>
                 <a href="https://huggingface.co/spaces/MeissonFlow/meissonic">
@@ -244,6 +240,7 @@ My research focuses on achieving **understanding and perception of the physical 
         </td>
     </tr>
 </table>
+
 
 
 
