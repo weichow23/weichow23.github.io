@@ -91,7 +91,7 @@ My research focuses on achieving **understanding and perception of the physical 
                 Yue Wang
             </div>
             <div>
-                <a href="https://eval.ai/web/challenges/challenge-page/2379/overview">
+                <a href="https://eval.ai/web/challenges/challenge-page/2384/overview">
                     <img src="https://img.shields.io/badge/🔺-EvalAI-gray.svg?"></a>
             </div> 
         </td>
@@ -139,8 +139,8 @@ My research focuses on achieving **understanding and perception of the physical 
             <div>
                 <a href="https://arxiv.org/pdf/2402.02168.pdf"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
                 <a href="https://weichow23.github.io/CrossLink/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
-               <a href="https://huggingface.co/MeissonFlow/Meissonic">
-    				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>
+               <a href="https://huggingface.co/WeiChow/DyGraphs">
+    				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
             </div> 
         </td>
     </tr>
@@ -183,7 +183,7 @@ My research focuses on achieving **understanding and perception of the physical 
             </div>
             <div>
                 <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/arXiv-2411.15738-b31b1b.svg" alt="arXiv"></a>
-               <a href="https://huggingface.co/Bin1117/AnyEdit">
+               <a href="https://huggingface.co/datasets/Bin1117/AnyEdit">
     				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
                 <a href="https://dcd-anyedit.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
@@ -206,7 +206,7 @@ My research focuses on achieving **understanding and perception of the physical 
             </div>
             <div>
                 <a href="https://arxiv.org/abs/2412.04280"><img src="https://img.shields.io/badge/arXiv-2412.04280-b31b1b.svg" alt="arXiv"></a>
-                <a href="https://huggingface.co/MeissonFlow/Meissonic">
+                <a href="https://huggingface.co/datasets/BryanW/HumanEdit">
     				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
                 <a href="https://viiika.github.io/HumanEdit/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
