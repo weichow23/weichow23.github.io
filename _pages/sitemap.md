@@ -54,3 +54,29 @@ author_profile: true
 
 [![Home Page](https://img.shields.io/badge/Project-<Website>-blue.svg)](https://pku-yuangroup.github.io/ChronoMagic-Bench/) 
 
+My research centers around how AI can understand, virtually recreate, and interact with the physical world. It extends in three directions:
+
+- Enhancing VLMs' physical perception capabilities to enable their effective functioning as intelligent agents in the physical world
+- Establishing interactions with the physical world through robotics, particularly leveraging VLMs for robotic control
+- Synthesizing virtual environments through image/video generation models (world models)
+
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+  <svg width="500" height="330" style="border: 1px solid transparent;">
+    <!-- VL Circle -->
+    <circle cx="250" cy="120" r="100" fill="rgba(244,143,177,0.2)" stroke="rgb(244,143,177)" stroke-width="4"/>
+    <text x="180" y="70" fill="rgb(244,143,177)" style="font-size: 18px; font-weight: bold;">Vision-Language</text>
+    <text x="210" y="100" fill="black" style="font-size: 10px;">Sugar, NeurIPS’24</text>
+    <text x="225" y="115" fill="black" style="font-size: 10px;">PhysBench</text>
+    <!-- Robotics Circle -->
+    <circle cx="170" cy="220" r="100" fill="rgba(255,202,100,0.2)" stroke="rgb(255,202,100)" stroke-width="4"/>
+    <text x="100" y="210" fill="rgb(255,202,100)" style="font-size: 18px; font-weight: bold;">Robotics</text>
+    <text x="115" y="250" fill="black" style="font-size: 10px;">VLT</text>
+    <!-- Education Circle -->
+    <circle cx="330" cy="220" r="100" fill="rgba(129,212,250,0.2)" stroke="rgb(129,212,250)" stroke-width="4"/>
+    <text x="320" y="205" fill="rgb(129,212,250)" style="font-size: 18px; font-weight: bold;">Diffusion</text>
+    <!-- Intersection Text -->
+    <text x="325" y="230" fill="black" style="font-size: 10px;">AnyEdit</text>
+    <text x="320" y="245" fill="black" style="font-size: 10px;">Meissonic</text>
+  </svg>
+</div>
+

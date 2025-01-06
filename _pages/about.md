@@ -9,31 +9,8 @@ redirect_from:
 
 I'm an undergraduate student in Zhejiang University.
 
-My research focuses on achieving **understanding and perception of the physical world** and extends in three directions:
+My research focuses on enhancing the physical perception capabilities of Vision-Language Models (VLMs) to enable their effective operation as intelligent embodied agents in the physical world. Additionally, I am interested in physics-adherent generation.
 
-- Enhancing VLMs' physical perception capabilities to enable their effective functioning as intelligent agents in the physical world
-- Establishing interactions with the physical world through robotics, particularly leveraging VLMs for robotic control
-- Synthesizing virtual environments through image/video generation models (world models)
-
-<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-  <svg width="500" height="330" style="border: 1px solid transparent;">
-    <!-- VL Circle -->
-    <circle cx="250" cy="120" r="100" fill="rgba(244,143,177,0.2)" stroke="rgb(244,143,177)" stroke-width="4"/>
-    <text x="180" y="70" fill="rgb(244,143,177)" style="font-size: 18px; font-weight: bold;">Vision-Language</text>
-    <text x="210" y="100" fill="black" style="font-size: 10px;">Sugar, NeurIPS’24</text>
-    <text x="225" y="115" fill="black" style="font-size: 10px;">PhysBench</text>
-    <!-- Robotics Circle -->
-    <circle cx="170" cy="220" r="100" fill="rgba(255,202,100,0.2)" stroke="rgb(255,202,100)" stroke-width="4"/>
-    <text x="100" y="210" fill="rgb(255,202,100)" style="font-size: 18px; font-weight: bold;">Robotics</text>
-    <text x="115" y="250" fill="black" style="font-size: 10px;">VLT</text>
-    <!-- Education Circle -->
-    <circle cx="330" cy="220" r="100" fill="rgba(129,212,250,0.2)" stroke="rgb(129,212,250)" stroke-width="4"/>
-    <text x="320" y="205" fill="rgb(129,212,250)" style="font-size: 18px; font-weight: bold;">Diffusion</text>
-    <!-- Intersection Text -->
-    <text x="325" y="230" fill="black" style="font-size: 10px;">AnyEdit</text>
-    <text x="320" y="245" fill="black" style="font-size: 10px;">Meissonic</text>
-  </svg>
-</div>
 
 
 ### Publications
@@ -106,8 +83,8 @@ My research focuses on achieving **understanding and perception of the physical 
             <div>
                 <strong>Wei Chow</strong>,
                 Juncheng Li, 
-                Kaihang Pan, 
                 Qifan Yu, 
+                Kaihang Pan, 
                 Hao Fei, 
                 Zhiqi Ge, 
                 Shuai Yang, 
@@ -244,9 +221,6 @@ My research focuses on achieving **understanding and perception of the physical 
 
 
 
-
-
-
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
 
 
@@ -286,6 +260,17 @@ My research focuses on achieving **understanding and perception of the physical 
     }
 </style>
 <table>
+     <tr>
+        <td class="first-column">
+                <img src="../images/navi.gif" width="100%"/>
+        </td>
+        <td class="second-column">
+            <a href="https://github.com/weichow23/Wheeled-Robot-Enhancement-and-Practice"><span class="blue-bold">Wheeled robots tracking and navigating in ROS and real environments</span></a>
+            <div>
+                [2023 Summer in ZJU] Wheeled Robot Enhancement and Practice
+            </div>
+        </td>
+    </tr>
     <tr>
         <td class="first-column">
                 <img src="../images/secondhand.png" width="100%"/>
@@ -320,6 +305,7 @@ My research focuses on achieving **understanding and perception of the physical 
         </td>
     </tr>
 </table>
+
 ### Academic Service
 
 ##### Challenge Organizer
@@ -328,7 +314,7 @@ My research focuses on achieving **understanding and perception of the physical 
 
 ##### Reviewer
 
-WWW'25, CVPR'25
+WWW'25
 
 ### Experience
 
@@ -386,12 +372,6 @@ WWW'25, CVPR'25
     </td>
   </tr> 
 </table>
-
-
-
-
-
-
 
 
 ### Misc.
