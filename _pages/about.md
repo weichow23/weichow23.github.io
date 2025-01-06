@@ -220,7 +220,6 @@ My research focuses on enhancing the physical perception capabilities of Vision-
 </table>
 
 
-
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
 
 
@@ -265,7 +264,7 @@ My research focuses on enhancing the physical perception capabilities of Vision-
                 <img src="../images/robotics.png" width="100%"/>
         </td>
         <td class="second-column">
-            <a href="https://github.com/weichow23/Wheeled-Robot-Enhancement-and-Practice"><span class="blue-bold">Wheeled robots tracking and navigating in ROS and real environments</span></a>
+            <a href="https://github.com/weichow23/Wheeled-Robot-Enhancement-and-Practice"><span class="blue-bold">Wheeled robots tracking and navigating in ROS and real environments (such as A star, ICP etc.)</span></a>
             <div>
                 [2023 Summer in ZJU] Wheeled Robot Enhancement and Practice
             </div>
