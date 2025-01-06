@@ -262,7 +262,7 @@ My research focuses on enhancing the physical perception capabilities of Vision-
 <table>
      <tr>
         <td class="first-column">
-                <img src="../images/navi.gif" width="100%"/>
+                <img src="../images/robotics.png" width="100%"/>
         </td>
         <td class="second-column">
             <a href="https://github.com/weichow23/Wheeled-Robot-Enhancement-and-Practice"><span class="blue-bold">Wheeled robots tracking and navigating in ROS and real environments</span></a>
@@ -305,6 +305,7 @@ My research focuses on enhancing the physical perception capabilities of Vision-
         </td>
     </tr>
 </table>
+
 
 ### Academic Service
 
