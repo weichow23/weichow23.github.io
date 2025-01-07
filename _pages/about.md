@@ -341,16 +341,6 @@ WWW'25
       Visiting Student
     </td>
   </tr>
-  <tr>
-    <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/hku.png" alt="" style="width:60px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
-      2023.06 - 2023.12<br>
-      Research Assistant in <a href="https://mmlab.ie.cuhk.edu.hk/people.html">MMLab</a> supervisored by Professor <a href="http://luoping.me/">Luo Ping</a>
-    </td>
-  </tr>
    <tr>
     <td style="width:3%; vertical-align:middle; text-align:center;">
       <img src="../images/ntu.png" alt="" style="width:56px;" />
@@ -372,6 +362,7 @@ WWW'25
     </td>
   </tr> 
 </table>
+
 
 
 ### Misc.
