@@ -9,7 +9,7 @@ redirect_from:
 
 I'm an undergraduate student in Zhejiang University.
 
-My research focuses on enhancing the physical perception capabilities of Vision-Language Models (VLMs) to enable their effective operation as intelligent embodied agents in the physical world. Additionally, I am interested in physics-adherent generation.
+My goal is to enhance the physical perception capabilities of Vision-Language Models (VLMs) to enable their effective operation as intelligent embodied agents in the physical world. Additionally, I am interested in physics-adherent generation.
 
 
 
