@@ -115,7 +115,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
                 Yang Yang
             </div>
             <div>
-                <a href="https://arxiv.org/pdf/2402.02168.pdf"><img src="https://img.shields.io/badge/arXiv-2402.02168-b31b1b.svg" alt="arXiv"></a>
+                <a href="https://arxiv.org/pdf/2402.02168"><img src="https://img.shields.io/badge/WWW 2025-poster-blue" alt="Poster"></a>
                 <a href="https://weichow23.github.io/CrossLink/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
                <a href="https://huggingface.co/WeiChow/DyGraphs">
     				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
@@ -218,6 +218,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
         </td>
     </tr>
 </table>
+
 
 
 <span style="text-transform:lowercase;">$^*$equal contribution</span>
