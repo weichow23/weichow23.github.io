@@ -68,6 +68,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
                 Yue Wang
             </div>
             <div>
+                <a href="https://arxiv.org/pdf/2410.08261"><img src="https://img.shields.io/badge/ICLR 2025-poster-blue" alt="Poster"></a>
                 <a href="https://eval.ai/web/challenges/challenge-page/2384/overview">
                     <img src="https://img.shields.io/badge/🔺-EvalAI-gray.svg?"></a>
                 <a href="https://physbench.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
@@ -208,7 +209,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
                 Shuicheng Yan
             </div>
             <div>
-                <a href="https://arxiv.org/abs/2410.08261"><img src="https://img.shields.io/badge/arXiv-2410.08261-b31b1b.svg" alt="arXiv"></a>
+                <a href="https://arxiv.org/pdf/2410.08261"><img src="https://img.shields.io/badge/ICLR 2025-poster-blue" alt="Poster"></a>
                 <a href="https://huggingface.co/MeissonFlow/Meissonic">
     				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>
                 <a href="https://huggingface.co/spaces/MeissonFlow/meissonic">
