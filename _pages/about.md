@@ -68,13 +68,13 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
                 Yue Wang
             </div>
             <div>
-                <a href="https://arxiv.org/pdf/2501.16411"><img src="https://img.shields.io/badge/ICLR 2025-poster-blue" alt="Poster"></a>
+                <a href="https://arxiv.org/pdf/2501.16411"><img src="https://img.shields.io/badge/ICLR 2025-oral-blue" alt="Poster"></a>
                 <a href="https://eval.ai/web/challenges/challenge-page/2384/overview">
                     <img src="https://img.shields.io/badge/🔺-EvalAI-gray.svg?"></a>
                 <a href="https://physbench.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
         </td>
-    </tr>
+    </tr>oral
     <tr>
         <td class="first-column">
                 <img src="../images/sugar.png" width="80%"/>
@@ -221,6 +221,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
         </td>
     </tr>
 </table>
+
 
 
 
