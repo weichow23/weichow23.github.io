@@ -355,7 +355,7 @@ WWW'25
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
-      2023.12 - 2024.06<br>
+      2023.6 - 2023.11<br>
       Research Assitant supervised by Professor <a href="http://luoping.me/">Ping Luo</a>
     </td>
   </tr> 
@@ -382,7 +382,6 @@ WWW'25
     </td>
   </tr> 
 </table>
-
 
 ### Misc.
 
