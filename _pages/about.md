@@ -331,7 +331,7 @@ WWW'25
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
       <span style="font-size:16px; font-weight:bold;">Zhejiang University</span><br>
-      2021.08 ~ 2025.06 (expected)<br>
+      2021.8 ~ 2025.6 (expected)<br>
         GPA: GPA: 92.9/100 (rank <b>1/301</b>)<br>
       B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)<br>
     	supervisored by Professor <a href="https://person.zju.edu.cn/juncheng">Juncheng Li</a>
@@ -344,7 +344,7 @@ WWW'25
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">University of Oxford</span> <br>
-      2024.08 - 2024.09<br>
+      2024.8 - 2024.9<br>
       Visiting Student
     </td>
   </tr>
@@ -366,7 +366,7 @@ WWW'25
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">Nanyang Technological University</span> <br>
-      2023.12 - 2024.06<br>
+      2023.12 - 2024.6<br>
       Intern supervised by Professor <a href="https://mreallab.github.io/index.html">Hanwang Zhang</a>
     </td>
   </tr> 
@@ -377,13 +377,24 @@ WWW'25
     </td>
     <td style="width:90%; vertical-align:top; font-size:12px;">
    <span style="font-size:16px; font-weight:bold;">University of Southern California</span> <br>
-      2024.06 - Present<br>
+      2024.6 - Present<br>
       Intern supervised by Professor <a href="https://yuewang.xyz/">Yue Wang</a>
+    </td>
+  </tr>
+    <!--ByteDance-->
+  <tr>
+    <td style="width:6%; vertical-align:middle; text-align:center;">
+      <img src="../images/bytedance.png" alt="" style="width:62px;" />
+    </td>
+    <td style="width:90%; vertical-align:top; font-size:12px;">
+   <span style="font-size:16px; font-weight:bold;">ByteDance</span> <br>
+      2024.1 - 2024.8<br>
+      Intern
     </td>
   </tr> 
 </table>
 
+
 ### Misc.
 
 In my free time, I like curving seal 🗿, playing tennis 🎾, cooking 🍳and taking photography 📷
-
