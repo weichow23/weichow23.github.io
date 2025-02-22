@@ -324,6 +324,7 @@ WWW'25
 ### Experience
 
 <table style="width:100%; border:none; border-collapse:collapse;"> 
+    <!--ZJU-->
   <tr>
     <td style="width:10%; vertical-align:middle; text-align:center;">
       <img src="../images/zju.png" alt="" style="width:70px;" />
@@ -336,6 +337,7 @@ WWW'25
     	supervisored by Professor <a href="https://person.zju.edu.cn/juncheng">Juncheng Li</a>
       </td>
   </tr>
+    <!--Oxford-->
   <tr>
     <td style="width:6%; vertical-align:middle; text-align:center;">
       <img src="../images/oxford.png" alt="" style="width:62px;" />
@@ -346,6 +348,18 @@ WWW'25
       Visiting Student
     </td>
   </tr>
+    <!--HKU-->
+   <tr>
+    <td style="width:3%; vertical-align:middle; text-align:center;">
+      <img src="../images/hku.png" alt="" style="width:56px;" />
+    </td>
+    <td style="width:90%; vertical-align:top; font-size:12px;">
+   <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
+      2023.12 - 2024.06<br>
+      Research Assitant supervised by Professor <a href="http://luoping.me/">Ping Luo</a>
+    </td>
+  </tr> 
+    <!--NTU-->
    <tr>
     <td style="width:3%; vertical-align:middle; text-align:center;">
       <img src="../images/ntu.png" alt="" style="width:56px;" />
@@ -356,6 +370,7 @@ WWW'25
       Intern supervised by Professor <a href="https://mreallab.github.io/index.html">Hanwang Zhang</a>
     </td>
   </tr> 
+    <!--USC-->
   <tr>
     <td style="width:6%; vertical-align:middle; text-align:center;">
       <img src="../images/usc.png" alt="" style="width:62px;" />
@@ -367,7 +382,6 @@ WWW'25
     </td>
   </tr> 
 </table>
-
 
 
 ### Misc.
