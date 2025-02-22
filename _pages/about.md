@@ -74,7 +74,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
                 <a href="https://physbench.github.io/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
             </div> 
         </td>
-    </tr>oral
+    </tr>
     <tr>
         <td class="first-column">
                 <img src="../images/sugar.png" width="80%"/>
