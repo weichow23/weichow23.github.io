@@ -323,76 +323,78 @@ WWW'25
 
 ### Experience
 
-<table style="width:100%; border:none; border-collapse:collapse;"> 
-    <!--ZJU-->
-  <tr>
-    <td style="width:10%; vertical-align:middle; text-align:center;">
-      <img src="../images/zju.png" alt="" style="width:70px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-      <span style="font-size:16px; font-weight:bold;">Zhejiang University</span><br>
-      2021.8 ~ 2025.6 (expected)<br>
-        GPA: GPA: 92.9/100 (rank <b>1/301</b>)<br>
-      B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)<br>
-    	supervisored by Professor <a href="https://person.zju.edu.cn/juncheng">Juncheng Li</a>
-      </td>
-  </tr>
-    <!--Oxford-->
-  <tr>
-    <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/oxford.png" alt="" style="width:62px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">University of Oxford</span> <br>
-      2024.8 - 2024.9<br>
-      Visiting Student
-    </td>
-  </tr>
-    <!--HKU-->
-   <tr>
-    <td style="width:3%; vertical-align:middle; text-align:center;">
-      <img src="../images/hku.png" alt="" style="width:56px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">University of Hong Kong</span> <br>
-      2023.6 - 2023.11<br>
-      Research Assitant supervised by Professor <a href="http://luoping.me/">Ping Luo</a>
-    </td>
-  </tr> 
-    <!--NTU-->
-   <tr>
-    <td style="width:3%; vertical-align:middle; text-align:center;">
-      <img src="../images/ntu.png" alt="" style="width:56px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">Nanyang Technological University</span> <br>
-      2023.12 - 2024.6<br>
-      Intern supervised by Professor <a href="https://mreallab.github.io/index.html">Hanwang Zhang</a>
-    </td>
-  </tr> 
-    <!--USC-->
-  <tr>
-    <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/usc.png" alt="" style="width:62px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">University of Southern California</span> <br>
-      2024.6 - Present<br>
-      Intern supervised by Professor <a href="https://yuewang.xyz/">Yue Wang</a>
-    </td>
-  </tr>
-    <!--ByteDance-->
-  <tr>
-    <td style="width:6%; vertical-align:middle; text-align:center;">
-      <img src="../images/bytedance.png" alt="" style="width:62px;" />
-    </td>
-    <td style="width:90%; vertical-align:top; font-size:12px;">
-   <span style="font-size:16px; font-weight:bold;">ByteDance</span> <br>
-      2024.1 - 2024.8<br>
-      Intern
-    </td>
-  </tr> 
+<style>
+    .institution {
+        font-weight: bold;
+    }
+    .region {
+        font-size: 1px;
+    }
+</style>
+<table cellspacing="17"> 
+    <tbody>
+        <tr>
+            <td width="15%">
+                <img src="../images/zju.png" alt="" style="width:62px;" />
+            </td>
+            <td>
+                <div class="institution">B.Eng. in Computer Science and Technology, Zhejiang University</div>
+                <div class="period">2021.8 ~ 2025.6 (expected)</div>
+                <div class="region">GPA: GPA: 92.9/100 (rank <b>1/301</b>)<br>
+      B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)					</div>
+            </td>
+        </tr>
+        <tr>
+             <td width="15%">
+                 <img src="../images/oxford.png" alt="" style="width:62px;" />
+            </td>
+            <td>
+                <div class="institution">University of Oxford</div>
+                <div class="period">2024.8 - 2024.9</div>
+                <div class="region">Visiting Student</div>
+            </td>
+            <td width="15%">
+                <img src="../images/hku.png" alt="" style="width:62px;" />
+            </td>
+            <td>
+                <div class="institution">University of Hong Kong</div>
+                <div class="period">2023.6 - 2023.11</div>
+                <div class="region"> Research Assitant supervised by Professor <a href="http://luoping.me/">Ping Luo</a></div>
+            </td>
+        </tr>
+        <tr>
+            <td width="15%">
+                <img src="../images/ntu.png" alt="" style="width:62px;" />
+            </td>
+            <td>
+                <div class="institution">Nanyang Technological University</div>
+                <div class="period">2023.12 - 2024.6</div>
+                <div class="region">Intern supervised by Professor <a href="https://mreallab.github.io/index.html">Hanwang Zhang</a></div>
+            </td>
+            <!--USC-->
+            <td width="15%">
+                <img src="../images/usc.png" alt="" style="width:62px;" />
+            </td>
+            <td>
+                <div class="institution">University of Southern California</div>
+                <div class="period">2024.6 - Present</div>
+                <div class="region">Intern supervised by Professor <a href="https://yuewang.xyz/">Yue Wang</a></div>
+            </td>
+        </tr>
+        <tr>
+            <!--ByteDance-->
+            <td width="15%">
+                <img src="../images/bytedance.png" alt="" style="width:62px;" />
+            </td>
+            <td>
+                <div class="institution">ByteDance</div>
+                <div class="period">2024.1 - 2024.8</div>
+                <div class="region">Intern</div>
+            </td>
+        </tr>
+    </tbody>
 </table>
+
 
 
 ### Misc.
