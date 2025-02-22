@@ -117,7 +117,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
             </div>
             <div>
                 <a href="https://arxiv.org/pdf/2402.02168"><img src="https://img.shields.io/badge/WWW 2025-poster-blue" alt="Poster"></a>
-                <a href="https://weichow23.github.io/CrossLink/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
+                <a href="https://zjunet.github.io/CrossLink/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
                <a href="https://huggingface.co/WeiChow/DyGraphs">
     				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
             </div> 
