@@ -340,8 +340,8 @@ WWW'25
             <td colspan='3'>
                 <div class="institution">Zhejiang University</div>
                 <div class="period">2021.8 ~ 2025.6 (expected)</div>
-                <div class="region">GPA: GPA: 92.9/100 (rank <b>1/301</b>)<br>
-      B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)					</div>
+                <div class="region">B.Eng. in Computer Science and Technology, GPA: 92.9/100 (rank <b>1/301</b>)<br>
+      Minor in Advanced Class of Engineering Education (Honors)					</div>
             </td>
         </tr>
         <tr>
@@ -364,7 +364,7 @@ WWW'25
         </tr>
         <tr>
             <td width="15%">
-                <img src="../images/ntu.png" alt="" style="width:59px;" />
+                <img src="../images/ntu.png" alt="" style="width:57px;" />
             </td>
             <td>
                 <div class="institution">Nanyang Technological University</div>
