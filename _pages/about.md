@@ -328,17 +328,17 @@ WWW'25
         font-weight: bold;
     }
     .region {
-        font-size: 1px;
+        font-size: 11px;
     }
 </style>
 <table cellspacing="17"> 
     <tbody>
         <tr>
             <td width="15%">
-                <img src="../images/zju.png" alt="" style="width:62px;" />
+                <img src="../images/zju.png" alt="" style="width:64px;" />
             </td>
-            <td>
-                <div class="institution">B.Eng. in Computer Science and Technology, Zhejiang University</div>
+            <td colspan='3'>
+                <div class="institution">Zhejiang University</div>
                 <div class="period">2021.8 ~ 2025.6 (expected)</div>
                 <div class="region">GPA: GPA: 92.9/100 (rank <b>1/301</b>)<br>
       B.Eng. in Computer Science and Technology, Minor in Advanced Class of Engineering Education (Honors)					</div>
@@ -364,7 +364,7 @@ WWW'25
         </tr>
         <tr>
             <td width="15%">
-                <img src="../images/ntu.png" alt="" style="width:62px;" />
+                <img src="../images/ntu.png" alt="" style="width:59px;" />
             </td>
             <td>
                 <div class="institution">Nanyang Technological University</div>
