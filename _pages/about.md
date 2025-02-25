@@ -343,17 +343,7 @@ WWW'25
                 <div class="region">B.Eng. in Computer Science and Technology, GPA: 92.9/100 (rank <b>1/301</b>)<br>
       Minor in Advanced Class of Engineering Education (Honors)					</div>
             </td>
-        </tr>
-        <tr>
-            <td width="15%">
-                <img src="../images/upenn.png" alt="" style="width:68px;" />
-            </td>
-            <td colspan='3'>
-                <div class="institution">University of Pennsylvania</div>
-                <div class="period">2025.8 ~ Present</div>
-                <div class="region">Incoming Phd in Computer and Information Science (CIS)</div>
-            </td>
-        </tr>        
+        </tr>       
         <tr>
              <td width="15%">
                  <img src="../images/oxford.png" alt="" style="width:62px;" />
