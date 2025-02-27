@@ -161,7 +161,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
                 Yueting Zhuang
             </div>
             <div>
-                <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/arXiv-2411.15738-b31b1b.svg" alt="arXiv"></a>
+                    <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/CVPR 2025-poster-blue" alt="arXiv"></a>
                <a href="https://huggingface.co/datasets/Bin1117/AnyEdit">
     				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
                 <a href="https://huggingface.co/WeiChow/AnySD">
@@ -221,6 +221,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
         </td>
     </tr>
 </table>
+
 
 
 
