@@ -334,6 +334,7 @@ WWW'25
 </style>
 <table cellspacing="17"> 
     <tbody>
+        <!-- ZJU -->
         <tr>
             <td width="15%">
                 <img src="../images/zju.png" alt="" style="width:64px;" />
@@ -341,11 +342,10 @@ WWW'25
             <td colspan='3'>
                 <div class="institution">Zhejiang University</div>
                 <div class="period">2021.8 - 2025.6 (expected)</div>
-                <div class="region">B.Eng. in Computer Science and Technology, GPA: 92.9/100<br>
-      Minor in Advanced Class of Engineering Education (Honors)					</div>
+                <div class="region">B.Eng. in Computer Science and Technology, GPA: 92.9/100<br>Minor in Advanced Class of Engineering Education (Honors)</div>
             </td>
-        </tr> 
         </tr>
+        <!-- Upenn -->
         <tr>
             <td width="15%">
                 <img src="../images/upenn.png" alt="" style="width:72px;" />
