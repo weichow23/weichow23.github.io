@@ -341,7 +341,7 @@ WWW'25
             <td colspan='3'>
                 <div class="institution">Zhejiang University</div>
                 <div class="period">2021.8 - 2025.6 (expected)</div>
-                <div class="region">B.Eng. in Computer Science and Technology, GPA: 92.9/100 (rank <b>1/301</b>)<br>
+                <div class="region">B.Eng. in Computer Science and Technology, GPA: 92.9/100<br>
       Minor in Advanced Class of Engineering Education (Honors)					</div>
             </td>
         </tr> 
@@ -353,7 +353,7 @@ WWW'25
             <td colspan='3'>
                 <div class="institution">University of Pennsylvania</div>
                 <div class="period">2025.8 ~ Present</div>
-                <div class="region">Incoming PhD in Computer and Information Science (CIS)</div>
+                <div class="region">Incoming PhD in Computer and Information Science</div>
             </td>
         </tr> 
         <tr>
@@ -406,6 +406,7 @@ WWW'25
         </tr>
     </tbody>
 </table>
+
 
 
 
