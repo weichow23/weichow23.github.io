@@ -348,7 +348,7 @@ WWW'25
         </tr>
         <tr>
             <td width="15%">
-                <img src="../images/upenn.png" alt="" style="width:68px;" />
+                <img src="../images/upenn.png" alt="" style="width:72px;" />
             </td>
             <td colspan='3'>
                 <div class="institution">University of Pennsylvania</div>
@@ -406,6 +406,7 @@ WWW'25
         </tr>
     </tbody>
 </table>
+
 
 
 
