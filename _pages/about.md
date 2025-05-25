@@ -55,6 +55,37 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
 <table>
     <tr>
         <td class="first-column">
+                <img src="../images/merit.png" width="80%"/>
+        </td>
+        <td class="second-column">
+            <span class="blue-bold">MERIT: Multilingual Semantic Retrieval with Interleaved Multi-Condition Query</span>
+            <div>
+                <strong>Wei Chow<sup>*</sup></strong>, 
+                Yuan Gao<sup>*</sup>,
+                Linfeng Li<sup>*</sup>, 
+                Xian Wang, 
+                Qi Xu, 
+                Hang Song, 
+                Lingdong Kong, 
+                Ran Zhou, 
+                Yi Zeng,
+                Yidong Cai, 
+                Botian Jiang, 
+                Shilin Xu, 
+                Jiajunzhang,
+                Minghui Qiu, 
+                Xiangtai Li, 
+                Tianshu Yang, 
+                Siliang Tang, 
+                Juncheng Li
+            </div>
+            <div>
+                <a href="https://arxiv.org/abs/2505.04280"><img src="https://img.shields.io/badge/arXiv-2505.04280-b31b1b.svg" alt="arXiv"></a>
+            </div> 
+        </td>
+    </tr>
+    <tr>
+        <td class="first-column">
                 <img src="../images/physbench.png" width="80%"/>
         </td>
         <td class="second-column">
@@ -161,7 +192,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
                 Yueting Zhuang
             </div>
             <div>
-                    <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/CVPR 2025-poster-blue" alt="arXiv"></a>
+                    <a href="https://arxiv.org/abs/2411.15738"><img src="https://img.shields.io/badge/CVPR 2025-oral-blue" alt="arXiv"></a>
                <a href="https://huggingface.co/datasets/Bin1117/AnyEdit">
     				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
                 <a href="https://huggingface.co/WeiChow/AnySD">
@@ -170,58 +201,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
             </div> 
         </td>
     </tr>
-        <tr>
-        <td class="first-column">
-                <img src="../images/hiedit.png" width="80%"/>
-        </td>
-        <td class="second-column">
-            <span class="blue-bold">HumanEdit: A High-Quality Human-Rewarded Dataset for Instruction-based Image Editing</span>
-            <div>
-                Jinbin Bai<sup>*</sup>, 
-                <strong>Wei Chow<sup>*</sup></strong>, 
-                Ling Yang, 
-                Xiangtai Li,
-                Juncheng Li,
-                Hanwang Zhang, 
-                Shuicheng Yan
-            </div>
-            <div>
-                <a href="https://arxiv.org/abs/2412.04280"><img src="https://img.shields.io/badge/arXiv-2412.04280-b31b1b.svg" alt="arXiv"></a>
-                <a href="https://huggingface.co/datasets/BryanW/HumanEdit">
-    				<img src="https://img.shields.io/badge/🤗-Data-green.svg"></a>
-                <a href="https://viiika.github.io/HumanEdit/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
-            </div> 
-        </td>
-    </tr>
-    <tr>
-        <td class="first-column">
-                <img src="../images/paper4.png" width="80%"/>
-        </td>
-        <td class="second-column">
-            <span class="blue-bold">Meissonic: Revitalizing Masked Generative Transformers for Efficient High-Resolution Text-to-Image Synthesis</span>
-            <div>
-                Jinbin Bai, 
-                Tian Ye, 
-                <strong>Wei Chow</strong>, 
-                Enxin Song, 
-                Qing-Guo Chen, 
-                Xiangtai Li,
-                Zhen Dong, 
-                Lei Zhu, 
-                Shuicheng Yan
-            </div>
-            <div>
-                <a href="https://arxiv.org/pdf/2410.08261"><img src="https://img.shields.io/badge/ICLR 2025-poster-blue" alt="Poster"></a>
-                <a href="https://huggingface.co/MeissonFlow/Meissonic">
-    				<img src="https://img.shields.io/badge/🤗-Model-blue.svg"></a>
-                <a href="https://huggingface.co/spaces/MeissonFlow/meissonic">
-    				<img src="https://img.shields.io/badge/🤗-Space-purple.svg"></a>
-                <a href="https://viiika.github.io/Meissonic/"><img src="https://img.shields.io/badge/website-gold" alt="project website"></a>
-            </div> 
-        </td>
-    </tr>
 </table>
-
 
 
 
@@ -320,7 +300,7 @@ My goal is to enhance the physical perception capabilities of Vision-Language Mo
 
 ##### Reviewer
 
-WWW'25
+WWW'25, NeurIPS'25
 
 ### Experience
 
@@ -345,17 +325,7 @@ WWW'25
                 <div class="region">B.Eng. in Computer Science and Technology, GPA: 92.9/100<br>Minor in Advanced Class of Engineering Education (Honors)</div>
             </td>
         </tr>
-        <!-- Upenn -->
-        <tr>
-            <td width="15%">
-                <img src="../images/upenn.png" alt="" style="width:72px;" />
-            </td>
-            <td colspan='3'>
-                <div class="institution">University of Pennsylvania</div>
-                <div class="period">2025.8 ~ Present</div>
-                <div class="region">Incoming PhD in Computer and Information Science</div>
-            </td>
-        </tr> 
+        <!-- Oxford -->
         <tr>
              <td width="15%">
                  <img src="../images/oxford.png" alt="" style="width:62px;" />
@@ -406,8 +376,6 @@ WWW'25
         </tr>
     </tbody>
 </table>
-
-
 
 
 
