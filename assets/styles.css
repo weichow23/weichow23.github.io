@@ -362,9 +362,26 @@ h3 {
   padding: 18px;
 }
 
-.experience img {
+.experience img,
+.logo-mark {
   width: 64px;
   max-height: 64px;
+}
+
+.logo-mark {
+  display: inline-flex;
+  aspect-ratio: 1;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.experience img {
   object-fit: contain;
 }
 
@@ -531,7 +548,8 @@ h3 {
     gap: 12px;
   }
 
-  .experience img {
+  .experience img,
+  .logo-mark {
     width: 52px;
     max-height: 52px;
   }
