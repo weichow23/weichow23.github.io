@@ -22,10 +22,18 @@
     </header>
 
     <main>
-      <section class="intro section">
+      <section class="intro section" aria-labelledby="intro-title">
+        <figure class="portrait-card">
+          <img src="images/head.jpg" alt="Portrait of Wei Chow">
+          <figcaption>
+            <strong>Wei Chow</strong>
+            <span>National University of Singapore</span>
+          </figcaption>
+        </figure>
         <div class="intro-copy">
-          <p class="eyebrow">PhD student at NUS</p>
-          <h1>Building multimodal AI systems for the physical world.</h1>
+          <p class="eyebrow">National University of Singapore</p>
+          <h1 id="intro-title">Wei Chow</h1>
+          <p class="subtitle">PhD student in Computer Science</p>
           <p class="lead">
             I am a PhD student at the National University of Singapore. My work
             focuses on physical perception for vision-language models, embodied AI,
@@ -38,11 +46,6 @@
             <a class="button" href="https://github.com/weichow23">GitHub</a>
             <a class="button" href="https://www.linkedin.com/in/wei-chow-3b0109392/">LinkedIn</a>
             <a class="button" href="https://huggingface.co/WeiChow">Hugging Face</a>
-          </div>
-          <div class="hero-signature" aria-label="Profile summary">
-            <span>Wei Chow</span>
-            <span>National University of Singapore</span>
-            <span>VLMs / Embodied AI / Image Editing</span>
           </div>
         </div>
       </section>
@@ -121,39 +124,27 @@
             <p class="eyebrow">Selected builds</p>
             <h2>Projects</h2>
           </div>
-          <p class="section-kicker">Small, concrete systems from robotics, data analysis, computational photography, and modeling.</p>
+          <p class="section-kicker">Small coursework systems and experiments.</p>
         </div>
-        <div class="project-grid">
-          <article class="project">
-            <img src="images/robotics.jpg" alt="Wheeled robotics project preview">
-            <div>
-              <h3><a href="https://github.com/weichow23/Wheeled-Robot-Enhancement-and-Practice">Wheeled robots tracking and navigating in ROS and real environments</a></h3>
-              <p>2023 Summer, Zhejiang University</p>
-            </div>
+        <div class="project-list">
+          <article class="project-item">
+            <h3><a href="https://github.com/weichow23/Wheeled-Robot-Enhancement-and-Practice">Wheeled robots tracking and navigation</a></h3>
+            <p>ROS, A*, ICP, and real-environment robot practice. Zhejiang University, 2023 Summer.</p>
           </article>
 
-          <article class="project">
-            <img src="images/secondhand.jpg" alt="Housing transaction project preview">
-            <div>
-              <h3><a href="https://github.com/weichow23/Second-hand_housing_transaction">Analysis of second-hand housing transactions and business districts in Hangzhou</a></h3>
-              <p>2024 Spring, Zhejiang University</p>
-            </div>
+          <article class="project-item">
+            <h3><a href="https://github.com/weichow23/Second-hand_housing_transaction">Hangzhou second-hand housing analysis</a></h3>
+            <p>Relationship between housing transactions and business districts. Zhejiang University, 2024 Spring.</p>
           </article>
 
-          <article class="project">
-            <img src="images/photo.jpg" alt="Computational photography project preview">
-            <div>
-              <h3><a href="https://github.com/weichow23/Computational-Photography">Interactive digital montage</a></h3>
-              <p>2024 Spring, Zhejiang University</p>
-            </div>
+          <article class="project-item">
+            <h3><a href="https://github.com/weichow23/Computational-Photography">Interactive digital montage</a></h3>
+            <p>Computational photography course project. Zhejiang University, 2024 Spring.</p>
           </article>
 
-          <article class="project">
-            <img src="images/mathm.jpg" alt="Math modeling project preview">
-            <div>
-              <h3><a href="https://github.com/weichow23/math-modeling-proj">Optimal matching of tutors and students</a></h3>
-              <p>2022 Fall, Zhejiang University</p>
-            </div>
+          <article class="project-item">
+            <h3><a href="https://github.com/weichow23/math-modeling-proj">Optimal matching of tutors and students</a></h3>
+            <p>Mathematical modeling course project. Zhejiang University, 2022 Fall.</p>
           </article>
         </div>
       </section>
