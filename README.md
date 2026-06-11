@@ -9,7 +9,7 @@ steps.
 
 ## Structure
 
-- `index.html` - homepage with profile, publications, projects, service, and experience
+- `index.html` - homepage with profile, publications, projects, and service
 - `gallery/index.html` - photography gallery
 - `assets/styles.css` - shared responsive styling
 - `images/` - images used by the live pages
